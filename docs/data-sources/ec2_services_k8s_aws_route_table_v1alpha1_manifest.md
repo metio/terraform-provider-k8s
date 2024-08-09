@@ -98,6 +98,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -114,6 +115,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -130,6 +132,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -146,6 +149,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -162,6 +166,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)
 
 
 
@@ -188,3 +193,4 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)

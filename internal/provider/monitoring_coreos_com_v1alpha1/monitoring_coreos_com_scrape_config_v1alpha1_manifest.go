@@ -89,9 +89,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
@@ -217,9 +256,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Partition            *string            `tfsdk:"partition" json:"partition,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -302,9 +380,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -401,9 +518,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -493,9 +649,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -602,9 +797,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
@@ -701,9 +935,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -864,9 +1137,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
@@ -957,9 +1269,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
 			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
@@ -1053,9 +1404,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -1135,9 +1525,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -1191,8 +1620,69 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 			SourceLabels *[]string `tfsdk:"source_labels" json:"sourceLabels,omitempty"`
 			TargetLabel  *string   `tfsdk:"target_label" json:"targetLabel,omitempty"`
 		} `tfsdk:"metric_relabelings" json:"metricRelabelings,omitempty"`
-		MetricsPath        *string `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
-		NoProxy            *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+		MetricsPath *string `tfsdk:"metrics_path" json:"metricsPath,omitempty"`
+		NoProxy     *string `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+		Oauth2      *struct {
+			ClientId *struct {
+				ConfigMap *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"config_map" json:"configMap,omitempty"`
+				Secret *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"secret" json:"secret,omitempty"`
+			} `tfsdk:"client_id" json:"clientId,omitempty"`
+			ClientSecret *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+			EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+			NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+			ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+			ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+			Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+			TlsConfig            *struct {
+				Ca *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"ca" json:"ca,omitempty"`
+				Cert *struct {
+					ConfigMap *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					Secret *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"cert" json:"cert,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+				KeySecret          *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+				MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+				MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+				ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+			} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+			TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+		} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 		OpenstackSDConfigs *[]struct {
 			AllTenants                  *bool   `tfsdk:"all_tenants" json:"allTenants,omitempty"`
 			ApplicationCredentialId     *string `tfsdk:"application_credential_id" json:"applicationCredentialId,omitempty"`
@@ -1318,9 +1808,48 @@ type MonitoringCoreosComScrapeConfigV1Alpha1ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-				EndpointParams *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
-				Scopes         *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
-				TokenUrl       *string            `tfsdk:"token_url" json:"tokenUrl,omitempty"`
+				EndpointParams       *map[string]string `tfsdk:"endpoint_params" json:"endpointParams,omitempty"`
+				NoProxy              *string            `tfsdk:"no_proxy" json:"noProxy,omitempty"`
+				ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
+				ProxyFromEnvironment *bool              `tfsdk:"proxy_from_environment" json:"proxyFromEnvironment,omitempty"`
+				ProxyUrl             *string            `tfsdk:"proxy_url" json:"proxyUrl,omitempty"`
+				Scopes               *[]string          `tfsdk:"scopes" json:"scopes,omitempty"`
+				TlsConfig            *struct {
+					Ca *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"ca" json:"ca,omitempty"`
+					Cert *struct {
+						ConfigMap *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						Secret *struct {
+							Key      *string `tfsdk:"key" json:"key,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"cert" json:"cert,omitempty"`
+					InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+					KeySecret          *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
+					MaxVersion *string `tfsdk:"max_version" json:"maxVersion,omitempty"`
+					MinVersion *string `tfsdk:"min_version" json:"minVersion,omitempty"`
+					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
+				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TokenUrl *string `tfsdk:"token_url" json:"tokenUrl,omitempty"`
 			} `tfsdk:"oauth2" json:"oauth2,omitempty"`
 			Port                 *int64             `tfsdk:"port" json:"port,omitempty"`
 			ProxyConnectHeader   *map[string]string `tfsdk:"proxy_connect_header" json:"proxyConnectHeader,omitempty"`
@@ -1849,6 +2378,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -1856,6 +2421,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -2726,6 +3521,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -2733,6 +3564,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -3315,6 +4376,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -3322,6 +4419,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -3643,6 +4970,10 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.Int64{
+										int64validator.AtLeast(0),
+										int64validator.AtMost(65535),
+									},
 								},
 
 								"refresh_interval": schema.StringAttribute{
@@ -3657,13 +4988,13 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"type": schema.StringAttribute{
-									Description:         "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, It requires Prometheus >= 2.49.0.",
-									MarkdownDescription: "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, It requires Prometheus >= 2.49.0.",
+									Description:         "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, it requires Prometheus >= v2.49.0.When set to MX, it requires Prometheus >= v2.38.0",
+									MarkdownDescription: "The type of DNS query to perform. One of SRV, A, AAAA, MX or NS.If not set, Prometheus uses its default value.When set to NS, it requires Prometheus >= v2.49.0.When set to MX, it requires Prometheus >= v2.38.0",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("SRV", "A", "AAAA", "MX", "NS"),
+										stringvalidator.OneOf("A", "AAAA", "MX", "NS", "SRV"),
 									},
 								},
 							},
@@ -3995,6 +5326,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -4002,6 +5369,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -4617,6 +6214,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -4624,6 +6257,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -5363,6 +7226,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -5370,6 +7269,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -6048,6 +8177,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -6055,6 +8220,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -6838,11 +9233,14 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+									},
 								},
 
 								"attach_metadata": schema.SingleNestedAttribute{
-									Description:         "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 for 'pod' role andPrometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
-									MarkdownDescription: "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 for 'pod' role andPrometheus >= v2.37.0 for 'endpoints' and 'endpointslice' roles.",
+									Description:         "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 when using the 'Pod' role andPrometheus >= v2.37.0 for 'Endpoints' and 'Endpointslice' roles.",
+									MarkdownDescription: "Optional metadata to attach to discovered targets.It requires Prometheus >= v2.35.0 when using the 'Pod' role andPrometheus >= v2.37.0 for 'Endpoints' and 'Endpointslice' roles.",
 									Attributes: map[string]schema.Attribute{
 										"node": schema.BoolAttribute{
 											Description:         "Attaches node metadata to discovered targets.When set to true, Prometheus must have the 'get' permission on the'Nodes' objects.Only valid for Pod, Endpoint and Endpointslice roles.",
@@ -7012,8 +9410,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 										},
 
 										"own_namespace": schema.BoolAttribute{
-											Description:         "Includes the namespace in which the Prometheus pod exists to the list of watched namesapces.",
-											MarkdownDescription: "Includes the namespace in which the Prometheus pod exists to the list of watched namesapces.",
+											Description:         "Includes the namespace in which the Prometheus pod runs to the list of watched namespaces.",
+											MarkdownDescription: "Includes the namespace in which the Prometheus pod runs to the list of watched namespaces.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -7153,6 +9551,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -7160,6 +9594,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -7207,45 +9871,51 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"role": schema.StringAttribute{
-									Description:         "Role of the Kubernetes entities that should be discovered.",
-									MarkdownDescription: "Role of the Kubernetes entities that should be discovered.",
+									Description:         "Role of the Kubernetes entities that should be discovered.Role 'Endpointslice' requires Prometheus >= v2.21.0",
+									MarkdownDescription: "Role of the Kubernetes entities that should be discovered.Role 'Endpointslice' requires Prometheus >= v2.21.0",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 									Validators: []validator.String{
-										stringvalidator.OneOf("Node", "node", "Service", "service", "Pod", "pod", "Endpoints", "endpoints", "EndpointSlice", "endpointslice", "Ingress", "ingress"),
+										stringvalidator.OneOf("Pod", "Endpoints", "Ingress", "Service", "Node", "EndpointSlice"),
 									},
 								},
 
 								"selectors": schema.ListNestedAttribute{
-									Description:         "Selector to select objects.",
-									MarkdownDescription: "Selector to select objects.",
+									Description:         "Selector to select objects.It requires Prometheus >= v2.17.0",
+									MarkdownDescription: "Selector to select objects.It requires Prometheus >= v2.17.0",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"field": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "An optional field selector to limit the service discovery to resources which have fields with specific values.e.g: 'metadata.name=foobar'",
+												MarkdownDescription: "An optional field selector to limit the service discovery to resources which have fields with specific values.e.g: 'metadata.name=foobar'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"label": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
+												Description:         "An optional label selector to limit the service discovery to resources with specific labels and label values.e.g: 'node.kubernetes.io/instance-type=master'",
+												MarkdownDescription: "An optional label selector to limit the service discovery to resources with specific labels and label values.e.g: 'node.kubernetes.io/instance-type=master'",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.LengthAtLeast(1),
+												},
 											},
 
 											"role": schema.StringAttribute{
-												Description:         "Role is role of the service in Kubernetes.",
-												MarkdownDescription: "Role is role of the service in Kubernetes.",
+												Description:         "Role specifies the type of Kubernetes resource to limit the service discovery to.Accepted values are: Node, Pod, Endpoints, EndpointSlice, Service, Ingress.",
+												MarkdownDescription: "Role specifies the type of Kubernetes resource to limit the service discovery to.Accepted values are: Node, Pod, Endpoints, EndpointSlice, Service, Ingress.",
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("Node", "node", "Service", "service", "Pod", "pod", "Endpoints", "endpoints", "EndpointSlice", "endpointslice", "Ingress", "ingress"),
+													stringvalidator.OneOf("Pod", "Endpoints", "Ingress", "Service", "Node", "EndpointSlice"),
 												},
 											},
 										},
@@ -7256,8 +9926,8 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 								},
 
 								"tls_config": schema.SingleNestedAttribute{
-									Description:         "TLS configuration to use on every scrape request.",
-									MarkdownDescription: "TLS configuration to use on every scrape request.",
+									Description:         "TLS configuration to connect to the Kubernetes API.",
+									MarkdownDescription: "TLS configuration to connect to the Kubernetes API.",
 									Attributes: map[string]schema.Attribute{
 										"ca": schema.SingleNestedAttribute{
 											Description:         "Certificate authority used when verifying server certificates.",
@@ -7785,6 +10455,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -7792,6 +10498,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -8439,6 +11375,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -8446,6 +11418,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -9003,6 +12205,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -9010,6 +12248,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{
@@ -9422,6 +12890,418 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"oauth2": schema.SingleNestedAttribute{
+						Description:         "OAuth2 client credentials used to fetch a token for the targets.",
+						MarkdownDescription: "OAuth2 client credentials used to fetch a token for the targets.",
+						Attributes: map[string]schema.Attribute{
+							"client_id": schema.SingleNestedAttribute{
+								Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+								MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+								Attributes: map[string]schema.Attribute{
+									"config_map": schema.SingleNestedAttribute{
+										Description:         "ConfigMap containing data to use for the targets.",
+										MarkdownDescription: "ConfigMap containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key to select.",
+												MarkdownDescription: "The key to select.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the ConfigMap or its key must be defined",
+												MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing data to use for the targets.",
+										MarkdownDescription: "Secret containing data to use for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"client_secret": schema.SingleNestedAttribute{
+								Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+								MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"endpoint_params": schema.MapAttribute{
+								Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+								MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"no_proxy": schema.StringAttribute{
+								Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+								MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_connect_header": schema.MapAttribute{
+								Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+								MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_from_environment": schema.BoolAttribute{
+								Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+								MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"proxy_url": schema.StringAttribute{
+								Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+								MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+								},
+							},
+
+							"scopes": schema.ListAttribute{
+								Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+								MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"tls_config": schema.SingleNestedAttribute{
+								Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+								MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+								Attributes: map[string]schema.Attribute{
+									"ca": schema.SingleNestedAttribute{
+										Description:         "Certificate authority used when verifying server certificates.",
+										MarkdownDescription: "Certificate authority used when verifying server certificates.",
+										Attributes: map[string]schema.Attribute{
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap containing data to use for the targets.",
+												MarkdownDescription: "ConfigMap containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key to select.",
+														MarkdownDescription: "The key to select.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the ConfigMap or its key must be defined",
+														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": schema.SingleNestedAttribute{
+												Description:         "Secret containing data to use for the targets.",
+												MarkdownDescription: "Secret containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"cert": schema.SingleNestedAttribute{
+										Description:         "Client certificate to present when doing client-authentication.",
+										MarkdownDescription: "Client certificate to present when doing client-authentication.",
+										Attributes: map[string]schema.Attribute{
+											"config_map": schema.SingleNestedAttribute{
+												Description:         "ConfigMap containing data to use for the targets.",
+												MarkdownDescription: "ConfigMap containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key to select.",
+														MarkdownDescription: "The key to select.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the ConfigMap or its key must be defined",
+														MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"secret": schema.SingleNestedAttribute{
+												Description:         "Secret containing data to use for the targets.",
+												MarkdownDescription: "Secret containing data to use for the targets.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "The key of the secret to select from.  Must be a valid secret key.",
+														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "Specify whether the Secret or its key must be defined",
+														MarkdownDescription: "Specify whether the Secret or its key must be defined",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"insecure_skip_verify": schema.BoolAttribute{
+										Description:         "Disable target certificate validation.",
+										MarkdownDescription: "Disable target certificate validation.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"key_secret": schema.SingleNestedAttribute{
+										Description:         "Secret containing the client key file for the targets.",
+										MarkdownDescription: "Secret containing the client key file for the targets.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"max_version": schema.StringAttribute{
+										Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"min_version": schema.StringAttribute{
+										Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+										},
+									},
+
+									"server_name": schema.StringAttribute{
+										Description:         "Used to verify the hostname for the targets.",
+										MarkdownDescription: "Used to verify the hostname for the targets.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"token_url": schema.StringAttribute{
+								Description:         "'tokenURL' configures the URL to fetch the token from.",
+								MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"openstack_sd_configs": schema.ListNestedAttribute{
@@ -10301,6 +14181,42 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Computed:            false,
 										},
 
+										"no_proxy": schema.StringAttribute{
+											Description:         "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_connect_header": schema.MapAttribute{
+											Description:         "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_from_environment": schema.BoolAttribute{
+											Description:         "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"proxy_url": schema.StringAttribute{
+											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^http(s)?://.+$`), ""),
+											},
+										},
+
 										"scopes": schema.ListAttribute{
 											Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
 											MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
@@ -10308,6 +14224,236 @@ func (r *MonitoringCoreosComScrapeConfigV1Alpha1Manifest) Schema(_ context.Conte
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"tls_config": schema.SingleNestedAttribute{
+											Description:         "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											MarkdownDescription: "TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0.",
+											Attributes: map[string]schema.Attribute{
+												"ca": schema.SingleNestedAttribute{
+													Description:         "Certificate authority used when verifying server certificates.",
+													MarkdownDescription: "Certificate authority used when verifying server certificates.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"cert": schema.SingleNestedAttribute{
+													Description:         "Client certificate to present when doing client-authentication.",
+													MarkdownDescription: "Client certificate to present when doing client-authentication.",
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap containing data to use for the targets.",
+															MarkdownDescription: "ConfigMap containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key to select.",
+																	MarkdownDescription: "The key to select.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the ConfigMap or its key must be defined",
+																	MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret containing data to use for the targets.",
+															MarkdownDescription: "Secret containing data to use for the targets.",
+															Attributes: map[string]schema.Attribute{
+																"key": schema.StringAttribute{
+																	Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																	MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "Specify whether the Secret or its key must be defined",
+																	MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"insecure_skip_verify": schema.BoolAttribute{
+													Description:         "Disable target certificate validation.",
+													MarkdownDescription: "Disable target certificate validation.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"key_secret": schema.SingleNestedAttribute{
+													Description:         "Secret containing the client key file for the targets.",
+													MarkdownDescription: "Secret containing the client key file for the targets.",
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "The key of the secret to select from.  Must be a valid secret key.",
+															MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "Specify whether the Secret or its key must be defined",
+															MarkdownDescription: "Specify whether the Secret or its key must be defined",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"max_version": schema.StringAttribute{
+													Description:         "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													MarkdownDescription: "Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"min_version": schema.StringAttribute{
+													Description:         "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													MarkdownDescription: "Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("TLS10", "TLS11", "TLS12", "TLS13"),
+													},
+												},
+
+												"server_name": schema.StringAttribute{
+													Description:         "Used to verify the hostname for the targets.",
+													MarkdownDescription: "Used to verify the hostname for the targets.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"token_url": schema.StringAttribute{

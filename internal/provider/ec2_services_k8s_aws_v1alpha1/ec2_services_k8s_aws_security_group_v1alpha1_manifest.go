@@ -66,7 +66,8 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 				GroupName   *string `tfsdk:"group_name" json:"groupName,omitempty"`
 				GroupRef    *struct {
 					From *struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"from" json:"from,omitempty"`
 				} `tfsdk:"group_ref" json:"groupRef,omitempty"`
 				PeeringStatus          *string `tfsdk:"peering_status" json:"peeringStatus,omitempty"`
@@ -75,7 +76,8 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 				VpcPeeringConnectionID *string `tfsdk:"vpc_peering_connection_id" json:"vpcPeeringConnectionID,omitempty"`
 				VpcRef                 *struct {
 					From *struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"from" json:"from,omitempty"`
 				} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 			} `tfsdk:"user_id_group_pairs" json:"userIDGroupPairs,omitempty"`
@@ -102,7 +104,8 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 				GroupName   *string `tfsdk:"group_name" json:"groupName,omitempty"`
 				GroupRef    *struct {
 					From *struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"from" json:"from,omitempty"`
 				} `tfsdk:"group_ref" json:"groupRef,omitempty"`
 				PeeringStatus          *string `tfsdk:"peering_status" json:"peeringStatus,omitempty"`
@@ -111,7 +114,8 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 				VpcPeeringConnectionID *string `tfsdk:"vpc_peering_connection_id" json:"vpcPeeringConnectionID,omitempty"`
 				VpcRef                 *struct {
 					From *struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"from" json:"from,omitempty"`
 				} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 			} `tfsdk:"user_id_group_pairs" json:"userIDGroupPairs,omitempty"`
@@ -124,7 +128,8 @@ type Ec2ServicesK8SAwsSecurityGroupV1Alpha1ManifestData struct {
 		VpcID  *string `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 		VpcRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -369,6 +374,14 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 																Optional:            true,
 																Computed:            false,
 															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -421,6 +434,14 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,
@@ -604,6 +625,14 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 																Optional:            true,
 																Computed:            false,
 															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -656,6 +685,14 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 														MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 														Attributes: map[string]schema.Attribute{
 															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,
@@ -737,6 +774,14 @@ func (r *Ec2ServicesK8SAwsSecurityGroupV1Alpha1Manifest) Schema(_ context.Contex
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

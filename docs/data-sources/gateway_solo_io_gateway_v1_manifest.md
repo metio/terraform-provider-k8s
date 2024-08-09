@@ -477,6 +477,7 @@ Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
+- `one_way_tls` (Boolean)
 - `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters))
 - `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--sds))
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref))
@@ -2388,6 +2389,7 @@ Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
+- `one_way_tls` (Boolean)
 - `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--parameters))
 - `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--sds))
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--hybrid_gateway--matched_gateways--http_gateway--options--dynamic_forward_proxy--ssl_config--secret_ref))

@@ -55,7 +55,8 @@ type DocumentdbServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 		PerformanceInsightsKMSKeyID  *string `tfsdk:"performance_insights_kms_key_id" json:"performanceInsightsKMSKeyID,omitempty"`
 		PerformanceInsightsKMSKeyRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"performance_insights_kms_key_ref" json:"performanceInsightsKMSKeyRef,omitempty"`
 		PreferredMaintenanceWindow *string `tfsdk:"preferred_maintenance_window" json:"preferredMaintenanceWindow,omitempty"`
@@ -233,6 +234,14 @@ func (r *DocumentdbServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Co
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

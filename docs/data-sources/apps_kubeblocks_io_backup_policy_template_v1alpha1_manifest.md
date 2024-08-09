@@ -58,7 +58,6 @@ Required:
 
 Optional:
 
-- `cluster_definition_ref` (String) Specifies the name of a ClusterDefinition.This is an immutable attribute that cannot be changed after creation.And this field is deprecated since v0.9, consider using the ComponentDef instead.
 - `identifier` (String) Specifies a unique identifier for the BackupPolicyTemplate.This identifier will be used as the suffix of the name of automatically generated BackupPolicy.This prevents unintended overwriting of BackupPolicies due to name conflicts when multiple BackupPolicyTemplatesare present.For instance, using 'backup-policy' for regular backups and 'backup-policy-hscale' for horizontal-scale opscan differentiate the policies.
 
 <a id="nestedatt--spec--backup_policies"></a>
@@ -71,7 +70,6 @@ Required:
 Optional:
 
 - `backoff_limit` (Number) Specifies the maximum number of retry attempts for a backup before it is considered a failure.
-- `component_def_ref` (String) Specifies the name of ClusterComponentDefinition defined in the ClusterDefinition.Must comply with the IANA Service Naming rule.Deprecated since v0.9, should use 'componentDefs' instead.This field is maintained for backward compatibility and its use is discouraged.Existing usage should be updated to the current preferred approach to avoid compatibility issues in future releases.
 - `component_defs` (List of String) Specifies a list of names of ComponentDefinitions that the specified ClusterDefinition references.They should be different versions of definitions of the same component,thus allowing them to share a single BackupPolicy.Each name must adhere to the IANA Service Naming rule.
 - `schedules` (Attributes List) Defines the execution plans for backup tasks, specifying when and how backups should occur,and the retention period of backup files. (see [below for nested schema](#nestedatt--spec--backup_policies--schedules))
 - `target` (Attributes) Defines the selection criteria of instance to be backed up, and the connection credential to be usedduring the backup process. (see [below for nested schema](#nestedatt--spec--backup_policies--target))
@@ -240,9 +238,9 @@ Required:
 
 Optional:
 
-- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.
+- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--connection_credential))
-- `connection_credential_key` (Attributes) Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--connection_credential_key))
+- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.
 - `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--resources))
@@ -264,25 +262,37 @@ Optional:
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
 
 
-<a id="nestedatt--spec--backup_policies--backup_methods--target--connection_credential_key"></a>
-### Nested Schema for `spec.backup_policies.backup_methods.target.connection_credential_key`
-
-Optional:
-
-- `host_key` (String) Defines the key of the host in the connection credential secret.
-- `password_key` (String) Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.
-- `port_key` (String) Indicates map key of the port in the connection credential secret.
-- `username_key` (String) Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.
-
-
 <a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector`
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--backup_policies--backup_methods--target--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.target.pod_selector.match_expressions`
@@ -387,9 +397,32 @@ Optional:
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.backup_policies.backup_methods.targets.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_policies.backup_methods.targets.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--backup_policies--backup_methods--targets--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_policies.backup_methods.targets.pod_selector.match_expressions`
@@ -462,16 +495,6 @@ Required:
 
 Optional:
 
-- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.If 'backupPolicy.componentDefRef' (a legacy and deprecated API) is set, the secret defined in'clusterDefinition.spec.ConnectionCredential' is used instead.
-- `connection_credential_key` (Attributes) Specifies the keys of the connection credential secret defined in 'clusterDefinition.spec.ConnectionCredential'.It will be ignored when the 'account' is set. (see [below for nested schema](#nestedatt--spec--backup_policies--target--connection_credential_key))
+- `account` (String) If 'backupPolicy.componentDefs' is set, this field is required to specify the system account name.This account must match one listed in 'componentDefinition.spec.systemAccounts[*].name'.The corresponding secret created by this account is used to connect to the database.
+- `fallback_role` (String) Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.
 - `strategy` (String) Specifies the PodSelectionStrategy to use when multiple pods areselected for the backup target.Valid values are:- Any: Selects any one pod that matches the labelsSelector.- All: Selects all pods that match the labelsSelector.
-
-<a id="nestedatt--spec--backup_policies--target--connection_credential_key"></a>
-### Nested Schema for `spec.backup_policies.target.connection_credential_key`
-
-Optional:
-
-- `host_key` (String) Defines the key of the host in the connection credential secret.
-- `password_key` (String) Represents the key of the password in the connection credential secret.If not specified, the default key 'password' is used.
-- `port_key` (String) Indicates map key of the port in the connection credential secret.
-- `username_key` (String) Represents the key of the username in the connection credential secret.If not specified, the default key 'username' is used.

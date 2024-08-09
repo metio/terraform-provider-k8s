@@ -69,6 +69,7 @@ Optional:
 - `priority` (Number) Priority indicates the importance of a policy(PropagationPolicy or ClusterPropagationPolicy).A policy will be applied for the matched resource templates if there isno other policies with higher priority at the point of the resourcetemplate be processed.Once a resource template has been claimed by a policy, by default it willnot be preempted by following policies even with a higher priority.See Preemption for more details.In case of two policies have the same priority, the one with a more precisematching rules in ResourceSelectors wins:- matching by name(resourceSelector.name) has higher priority than  by selector(resourceSelector.labelSelector)- matching by selector(resourceSelector.labelSelector) has higher priority  than by APIVersion(resourceSelector.apiVersion) and Kind(resourceSelector.kind).If there is still no winner at this point, the one with the lower alphabeticorder wins, e.g. policy 'bar' has higher priority than 'foo'.The higher the value, the higher the priority. Defaults to zero.
 - `propagate_deps` (Boolean) PropagateDeps tells if relevant resources should be propagated automatically.Take 'Deployment' which referencing 'ConfigMap' and 'Secret' as an example, when 'propagateDeps' is 'true',the referencing resources could be omitted(for saving config effort) from 'resourceSelectors' as they will bepropagated along with the Deployment. In addition to the propagating process, the referencing resources will bemigrated along with the Deployment in the fail-over scenario.Defaults to false.
 - `scheduler_name` (String) SchedulerName represents which scheduler to proceed the scheduling.If specified, the policy will be dispatched by specified scheduler.If not specified, the policy will be dispatched by default scheduler.
+- `suspension` (Attributes) Suspension declares the policy for suspending different aspects of propagation.nil means no suspension. no default values. (see [below for nested schema](#nestedatt--spec--suspension))
 
 <a id="nestedatt--spec--resource_selectors"></a>
 ### Nested Schema for `spec.resource_selectors`
@@ -362,3 +363,20 @@ Optional:
 - `min_groups` (Number) MinGroups restricts the minimum number of cluster groups to be selected.Defaults to 1.
 - `spread_by_field` (String) SpreadByField represents the fields on Karmada cluster API used fordynamically grouping member clusters into different groups.Resources will be spread among different cluster groups.Available fields for spreading are: cluster, region, zone, and provider.SpreadByField should not co-exist with SpreadByLabel.If both SpreadByField and SpreadByLabel are empty, SpreadByField will be set to 'cluster' by system.
 - `spread_by_label` (String) SpreadByLabel represents the label key used forgrouping member clusters into different groups.Resources will be spread among different cluster groups.SpreadByLabel should not co-exist with SpreadByField.
+
+
+
+<a id="nestedatt--spec--suspension"></a>
+### Nested Schema for `spec.suspension`
+
+Optional:
+
+- `dispatching` (Boolean) Dispatching controls whether dispatching should be suspended.nil means not suspend, no default value, only accepts 'true'.Note: true means stop propagating to all clusters. Can not co-existwith DispatchingOnClusters which is used to suspend particular clusters.
+- `dispatching_on_clusters` (Attributes) DispatchingOnClusters declares a list of clusters to which the dispatchingshould be suspended.Note: Can not co-exist with Dispatching which is used to suspend all. (see [below for nested schema](#nestedatt--spec--suspension--dispatching_on_clusters))
+
+<a id="nestedatt--spec--suspension--dispatching_on_clusters"></a>
+### Nested Schema for `spec.suspension.dispatching_on_clusters`
+
+Optional:
+
+- `cluster_names` (List of String) ClusterNames is the list of clusters to be selected.

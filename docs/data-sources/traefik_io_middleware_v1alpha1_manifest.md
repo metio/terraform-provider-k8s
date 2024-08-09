@@ -60,7 +60,7 @@ Optional:
 - `buffering` (Attributes) Buffering holds the buffering middleware configuration.This middleware retries or limits the size of requests that can be forwarded to backends.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/buffering/#maxrequestbodybytes (see [below for nested schema](#nestedatt--spec--buffering))
 - `chain` (Attributes) Chain holds the configuration of the chain middleware.This middleware enables to define reusable combinations of other pieces of middleware.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/chain/ (see [below for nested schema](#nestedatt--spec--chain))
 - `circuit_breaker` (Attributes) CircuitBreaker holds the circuit breaker configuration. (see [below for nested schema](#nestedatt--spec--circuit_breaker))
-- `compress` (Attributes) Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/ (see [below for nested schema](#nestedatt--spec--compress))
+- `compress` (Attributes) Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/ (see [below for nested schema](#nestedatt--spec--compress))
 - `content_type` (Attributes) ContentType holds the content-type middleware configuration.This middleware exists to enable the correct behavior until at least the default one can be changed in a future version. (see [below for nested schema](#nestedatt--spec--content_type))
 - `digest_auth` (Attributes) DigestAuth holds the digest auth middleware configuration.This middleware restricts access to your services to known users.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/digestauth/ (see [below for nested schema](#nestedatt--spec--digest_auth))
 - `errors` (Attributes) ErrorPage holds the custom error middleware configuration.This middleware returns a custom page in lieu of the default, according to configured ranges of HTTP Status codes.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/errorpages/ (see [below for nested schema](#nestedatt--spec--errors))
@@ -150,6 +150,7 @@ Optional:
 Optional:
 
 - `default_encoding` (String) DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').
+- `encodings` (List of String) Encodings defines the list of supported compression algorithms.
 - `excluded_content_types` (List of String) ExcludedContentTypes defines the list of content types to compare the Content-Type header of the incoming requests and responses before compressing.'application/grpc' is always excluded.
 - `included_content_types` (List of String) IncludedContentTypes defines the list of content types to compare the Content-Type header of the responses before compressing.
 - `min_response_body_bytes` (Number) MinResponseBodyBytes defines the minimum amount of bytes a response body must have to be compressed.Default: 1024.

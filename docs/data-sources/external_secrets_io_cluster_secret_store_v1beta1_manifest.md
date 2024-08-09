@@ -88,6 +88,7 @@ Optional:
 - `alibaba` (Attributes) Alibaba configures this store to sync secrets using Alibaba Cloud provider (see [below for nested schema](#nestedatt--spec--provider--alibaba))
 - `aws` (Attributes) AWS configures this store to sync secrets using AWS Secret Manager provider (see [below for nested schema](#nestedatt--spec--provider--aws))
 - `azurekv` (Attributes) AzureKV configures this store to sync secrets using Azure Key Vault provider (see [below for nested schema](#nestedatt--spec--provider--azurekv))
+- `beyondtrust` (Attributes) Beyondtrust configures this store to sync secrets using Password Safe provider. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust))
 - `bitwardensecretsmanager` (Attributes) BitwardenSecretsManager configures this store to sync secrets using BitwardenSecretsManager provider (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager))
 - `chef` (Attributes) Chef configures this store to sync secrets with chef server (see [below for nested schema](#nestedatt--spec--provider--chef))
 - `conjur` (Attributes) Conjur configures this store to sync secrets using conjur provider (see [below for nested schema](#nestedatt--spec--provider--conjur))
@@ -474,6 +475,120 @@ Optional:
 
 - `audiences` (List of String) Audience specifies the 'aud' claim for the service account tokenIf the service account uses a well-known annotation for e.g. IRSA or GCP Workload Identitythen this audiences will be appended to the list
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--beyondtrust"></a>
+### Nested Schema for `spec.provider.beyondtrust`
+
+Required:
+
+- `auth` (Attributes) Auth configures how the operator authenticates with Beyondtrust. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth))
+- `server` (Attributes) Auth configures how API server works. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--server))
+
+<a id="nestedatt--spec--provider--beyondtrust--auth"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth`
+
+Required:
+
+- `client_id` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--client_id))
+- `client_secret` (Attributes) (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--client_secret))
+
+Optional:
+
+- `certificate` (Attributes) Content of the certificate (cert.pem) for use when authenticating with an OAuth client Id using a Client Certificate. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--certificate))
+- `certificate_key` (Attributes) Certificate private key (key.pem). For use when authenticating with an OAuth client Id (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--certificate_key))
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--client_id"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.client_id`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--client_id--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--client_id--secret_ref"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.client_id.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--client_secret"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.client_secret`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--client_secret--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--client_secret--secret_ref"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.client_secret.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--certificate"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.certificate`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--certificate--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--certificate--secret_ref"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.certificate.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--certificate_key"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.certificate_key`
+
+Optional:
+
+- `secret_ref` (Attributes) SecretRef references a key in a secret that will be used as value. (see [below for nested schema](#nestedatt--spec--provider--beyondtrust--auth--certificate_key--secret_ref))
+- `value` (String) Value can be specified directly to set a value without using a secret.
+
+<a id="nestedatt--spec--provider--beyondtrust--auth--certificate_key--secret_ref"></a>
+### Nested Schema for `spec.provider.beyondtrust.auth.certificate_key.secret_ref`
+
+Optional:
+
+- `key` (String) The key of the entry in the Secret resource's 'data' field to be used. Some instances of this field may bedefaulted, in others it may be required.
+- `name` (String) The name of the Secret resource being referred to.
+- `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
+
+
+
+
+<a id="nestedatt--spec--provider--beyondtrust--server"></a>
+### Nested Schema for `spec.provider.beyondtrust.server`
+
+Required:
+
+- `api_url` (String)
+- `verify_ca` (Boolean)
+
+Optional:
+
+- `client_time_out_seconds` (Number) Timeout specifies a time limit for requests made by this Client. The timeout includes connection time, any redirects, and reading the response body. Defaults to 45 seconds.
+- `retrieval_type` (String) The secret retrieval type. SECRET = Secrets Safe (credential, text, file). MANAGED_ACCOUNT = Password Safe account associated with a system.
+- `separator` (String) A character that separates the folder names.
 
 
 

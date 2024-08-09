@@ -216,9 +216,32 @@ Optional:
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--backup_methods--target--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.backup_methods.target.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--backup_methods--target--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.target.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--backup_methods--target--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_methods.target.pod_selector.match_expressions`
@@ -323,9 +346,32 @@ Optional:
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--backup_methods--targets--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.backup_methods.targets.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--backup_methods--targets--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup_methods.targets.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--backup_methods--targets--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.backup_methods.targets.pod_selector.match_expressions`
@@ -428,9 +474,32 @@ Optional:
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--target--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--target--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--target--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.target.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--target--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--target--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.target.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--target--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.target.pod_selector.match_expressions`
@@ -510,9 +579,32 @@ Optional:
 
 Optional:
 
+- `fallback_label_selector` (Attributes) fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'. (see [below for nested schema](#nestedatt--spec--targets--pod_selector--fallback_label_selector))
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--targets--pod_selector--match_expressions))
 - `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 - `strategy` (String) Specifies the strategy to select the target pod when multiple pods are selected.Valid values are:- 'Any': select any one pod that match the labelsSelector.- 'All': select all pods that match the labelsSelector. The backup data for the current podwill be stored in a subdirectory named after the pod.
+
+<a id="nestedatt--spec--targets--pod_selector--fallback_label_selector"></a>
+### Nested Schema for `spec.targets.pod_selector.fallback_label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--targets--pod_selector--fallback_label_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--targets--pod_selector--fallback_label_selector--match_expressions"></a>
+### Nested Schema for `spec.targets.pod_selector.fallback_label_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
 
 <a id="nestedatt--spec--targets--pod_selector--match_expressions"></a>
 ### Nested Schema for `spec.targets.pod_selector.match_expressions`

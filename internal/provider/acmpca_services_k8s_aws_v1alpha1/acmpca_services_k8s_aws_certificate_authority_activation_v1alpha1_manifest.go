@@ -51,7 +51,8 @@ type AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1ManifestData stru
 		CertificateAuthorityARN *string `tfsdk:"certificate_authority_arn" json:"certificateAuthorityARN,omitempty"`
 		CertificateAuthorityRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"certificate_authority_ref" json:"certificateAuthorityRef,omitempty"`
 		CertificateChain *struct {
@@ -190,6 +191,14 @@ func (r *AcmpcaServicesK8SAwsCertificateAuthorityActivationV1Alpha1Manifest) Sch
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

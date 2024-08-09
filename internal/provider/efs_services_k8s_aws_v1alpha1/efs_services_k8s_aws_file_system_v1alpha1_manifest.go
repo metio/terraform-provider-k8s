@@ -55,7 +55,8 @@ type EfsServicesK8SAwsFileSystemV1Alpha1ManifestData struct {
 		KmsKeyID  *string `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 		KmsKeyRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
 		LifecyclePolicies *[]struct {
@@ -226,6 +227,14 @@ func (r *EfsServicesK8SAwsFileSystemV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

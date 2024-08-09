@@ -472,8 +472,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Metadata(_ context.Context,
 
 func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
-		MarkdownDescription: "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior. It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
+		Description:         "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior.It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
+		MarkdownDescription: "IntegrationProfile is the resource used to apply user defined settings to the Camel K operator behavior.It defines the behavior of all Custom Resources ('IntegrationKit', 'Integration', 'Kamelet') in the given namespace.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -548,8 +548,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 						MarkdownDescription: "specify how to build the Integration/IntegrationKits",
 						Attributes: map[string]schema.Attribute{
 							"base_image": schema.StringAttribute{
-								Description:         "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility software",
-								MarkdownDescription: "a base image that can be used as base layer for all images. It can be useful if you want to provide some custom base image with further utility software",
+								Description:         "a base image that can be used as base layer for all images.It can be useful if you want to provide some custom base image with further utility software",
+								MarkdownDescription: "a base image that can be used as base layer for all images.It can be useful if you want to provide some custom base image with further utility software",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -560,8 +560,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "Maven configuration used to build the Camel/Camel-Quarkus applications",
 								Attributes: map[string]schema.Attribute{
 									"ca_secrets": schema.ListNestedAttribute{
-										Description:         "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
-										MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore.",
+										Description:         "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
+										MarkdownDescription: "The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
@@ -573,8 +573,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 												},
 
 												"name": schema.StringAttribute{
-													Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -595,8 +595,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"cli_options": schema.ListAttribute{
-										Description:         "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
-										MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+										Description:         "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
+										MarkdownDescription: "The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -604,8 +604,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"extension": schema.ListNestedAttribute{
-										Description:         "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
-										MarkdownDescription: "The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+										Description:         "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
+										MarkdownDescription: "The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"artifact_id": schema.StringAttribute{
@@ -663,8 +663,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"profiles": schema.ListNestedAttribute{
-										Description:         "A reference to the ConfigMap or Secret key that contains the Maven profile.",
-										MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven profile.",
+										Description:         "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
+										MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven profile.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"config_map_key_ref": schema.SingleNestedAttribute{
@@ -680,8 +680,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -713,8 +713,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 														},
 
 														"name": schema.StringAttribute{
-															Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-															MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+															Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+															MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -749,8 +749,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"settings": schema.SingleNestedAttribute{
-										Description:         "A reference to the ConfigMap or Secret key that contains the Maven settings.",
-										MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the Maven settings.",
+										Description:         "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
+										MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe Maven settings.",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Selects a key of a ConfigMap.",
@@ -765,8 +765,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -798,8 +798,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -824,8 +824,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"settings_security": schema.SingleNestedAttribute{
-										Description:         "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
-										MarkdownDescription: "A reference to the ConfigMap or Secret key that contains the security of the Maven settings.",
+										Description:         "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
+										MarkdownDescription: "A reference to the ConfigMap or Secret key that containsthe security of the Maven settings.",
 										Attributes: map[string]schema.Attribute{
 											"config_map_key_ref": schema.SingleNestedAttribute{
 												Description:         "Selects a key of a ConfigMap.",
@@ -840,8 +840,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -873,8 +873,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 													},
 
 													"name": schema.StringAttribute{
-														Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-														MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+														Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+														MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1045,8 +1045,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Affinity trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1079,8 +1079,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"pod_affinity_labels": schema.ListAttribute{
-										Description:         "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should be co-located with.",
-										MarkdownDescription: "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should be co-located with.",
+										Description:         "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that theintegration pod(s) should be co-located with.",
+										MarkdownDescription: "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that theintegration pod(s) should be co-located with.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1096,8 +1096,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"pod_anti_affinity_labels": schema.ListAttribute{
-										Description:         "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should not be co-located with.",
-										MarkdownDescription: "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that the integration pod(s) should not be co-located with.",
+										Description:         "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that theintegration pod(s) should not be co-located with.",
+										MarkdownDescription: "Defines a set of pods (namely those matching the label selector, relative to the given namespace) that theintegration pod(s) should not be co-located with.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1123,16 +1123,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"base_image": schema.StringAttribute{
-										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
-										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDK installed and ready to use on path (ie '/usr/bin/java').",
+										Description:         "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDKinstalled and ready to use on path (ie '/usr/bin/java').",
+										MarkdownDescription: "Specify a base image. In order to have the application working properly it must be a container image which has a Java JDKinstalled and ready to use on path (ie '/usr/bin/java').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1156,24 +1156,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"limit_cpu": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the maximum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"limit_memory": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the maximum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the maximum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"maven_profiles": schema.ListAttribute{
-										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
-										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile. This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit. The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM. Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										Description:         "A list of references pointing to configmaps/secrets that contains a maven profile.This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit.The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM.Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
+										MarkdownDescription: "A list of references pointing to configmaps/secrets that contains a maven profile.This configmap/secret is a resource of the IntegrationKit created, therefore it needs to be present in the namespace where the operator is going to create the IntegrationKit.The content of the maven profile is expected to be a text containing a valid maven profile starting with '<profile>' and ending with '</profile>' that will be integrated as an inline profile in the POM.Syntax: [configmap|secret]:name[/key], where name represents the resource name, key optionally represents the resource key to be filtered (default key value = profile.xml).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1219,16 +1219,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"request_cpu": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the minimum amount of CPU required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"request_memory": schema.StringAttribute{
-										Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
-										MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder. Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										Description:         "When using 'pod' strategy, the minimum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
+										MarkdownDescription: "When using 'pod' strategy, the minimum amount of memory required by the pod builder.Deprecated: use TasksRequestCPU instead with task name 'builder'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1255,8 +1255,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"tasks_filter": schema.StringAttribute{
-										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
-										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'. Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i') if you need to execute them. Useful only with 'pod' strategy.",
+										Description:         "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'.Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i')if you need to execute them. Useful only with 'pod' strategy.",
+										MarkdownDescription: "A list of tasks sorted by the order of execution in a csv format, ie, '<taskName1>,<taskName2>,...'.Mind that you must include also the operator tasks ('builder', 'quarkus-native', 'package', 'jib', 's2i')if you need to execute them. Useful only with 'pod' strategy.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1299,8 +1299,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"verbose": schema.BoolAttribute{
-										Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
-										MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod). Deprecated no longer in use",
+										Description:         "Enable verbose logging on build components that support it (e.g. Kaniko build pod).Deprecated no longer in use",
+										MarkdownDescription: "Enable verbose logging on build components that support it (e.g. Kaniko build pod).Deprecated no longer in use",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1316,8 +1316,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Camel trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1342,8 +1342,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"runtime_version": schema.StringAttribute{
-										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
-										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform. You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolve to the best matching Catalog existing on the cluster.",
+										Description:         "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolveto the best matching Catalog existing on the cluster.",
+										MarkdownDescription: "The camel-k-runtime version to use for the integration. It overrides the default version set in the Integration Platform.You can use a fixed version (for example '3.2.3') or a semantic version (for example '3.x') which will try to resolveto the best matching Catalog existing on the cluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1393,8 +1393,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1418,8 +1418,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"image": schema.StringAttribute{
-										Description:         "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
-										MarkdownDescription: "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit which won't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use instead Integration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
+										Description:         "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit whichwon't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use insteadIntegration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
+										MarkdownDescription: "The main container image to use for the Integration. When using this parameter the operator will create a synthetic IntegrationKit whichwon't be able to execute traits requiring CamelCatalog. If the container image you're using is coming from an IntegrationKit, use insteadIntegration '.spec.integrationKit' parameter. If you're moving the Integration across environments, you will also need to create an 'external' IntegrationKit.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1545,40 +1545,40 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Cron trait",
 								Attributes: map[string]schema.Attribute{
 									"active_deadline_seconds": schema.Int64Attribute{
-										Description:         "Specifies the duration in seconds, relative to the start time, that the job may be continuously active before it is considered to be failed. It defaults to 60s.",
-										MarkdownDescription: "Specifies the duration in seconds, relative to the start time, that the job may be continuously active before it is considered to be failed. It defaults to 60s.",
+										Description:         "Specifies the duration in seconds, relative to the start time, that the jobmay be continuously active before it is considered to be failed.It defaults to 60s.",
+										MarkdownDescription: "Specifies the duration in seconds, relative to the start time, that the jobmay be continuously active before it is considered to be failed.It defaults to 60s.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"auto": schema.BoolAttribute{
-										Description:         "Automatically deploy the integration as CronJob when all routes are either starting from a periodic consumer (only 'cron', 'timer' and 'quartz' are supported) or a passive consumer (e.g. 'direct' is a passive consumer).  It's required that all periodic consumers have the same period, and it can be expressed as cron schedule (e.g. '1m' can be expressed as '0/1 * * * *', while '35m' or '50s' cannot).",
-										MarkdownDescription: "Automatically deploy the integration as CronJob when all routes are either starting from a periodic consumer (only 'cron', 'timer' and 'quartz' are supported) or a passive consumer (e.g. 'direct' is a passive consumer).  It's required that all periodic consumers have the same period, and it can be expressed as cron schedule (e.g. '1m' can be expressed as '0/1 * * * *', while '35m' or '50s' cannot).",
+										Description:         "Automatically deploy the integration as CronJob when all routes areeither starting from a periodic consumer (only 'cron', 'timer' and 'quartz' are supported) or a passive consumer (e.g. 'direct' is a passive consumer).It's required that all periodic consumers have the same period, and it can be expressed as cron schedule (e.g. '1m' can be expressed as '0/1 * * * *',while '35m' or '50s' cannot).",
+										MarkdownDescription: "Automatically deploy the integration as CronJob when all routes areeither starting from a periodic consumer (only 'cron', 'timer' and 'quartz' are supported) or a passive consumer (e.g. 'direct' is a passive consumer).It's required that all periodic consumers have the same period, and it can be expressed as cron schedule (e.g. '1m' can be expressed as '0/1 * * * *',while '35m' or '50s' cannot).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"backoff_limit": schema.Int64Attribute{
-										Description:         "Specifies the number of retries before marking the job failed. It defaults to 2.",
-										MarkdownDescription: "Specifies the number of retries before marking the job failed. It defaults to 2.",
+										Description:         "Specifies the number of retries before marking the job failed.It defaults to 2.",
+										MarkdownDescription: "Specifies the number of retries before marking the job failed.It defaults to 2.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"components": schema.StringAttribute{
-										Description:         "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer is activated (it's present in the 'org.apache.camel.k:camel-k-cron' library).  Supported components are currently: 'cron', 'timer' and 'quartz'.",
-										MarkdownDescription: "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes. A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer is activated (it's present in the 'org.apache.camel.k:camel-k-cron' library).  Supported components are currently: 'cron', 'timer' and 'quartz'.",
+										Description:         "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes.A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer isactivated (it's present in the 'org.apache.camel.k:camel-k-cron' library).Supported components are currently: 'cron', 'timer' and 'quartz'.",
+										MarkdownDescription: "A comma separated list of the Camel components that need to be customized in order for them to work when the schedule is triggered externally by Kubernetes.A specific customizer is activated for each specified component. E.g. for the 'timer' component, the 'cron-timer' customizer isactivated (it's present in the 'org.apache.camel.k:camel-k-cron' library).Supported components are currently: 'cron', 'timer' and 'quartz'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"concurrency_policy": schema.StringAttribute{
-										Description:         "Specifies how to treat concurrent executions of a Job. Valid values are: - 'Allow': allows CronJobs to run concurrently; - 'Forbid' (default): forbids concurrent runs, skipping next run if previous run hasn't finished yet; - 'Replace': cancels currently running job and replaces it with a new one",
-										MarkdownDescription: "Specifies how to treat concurrent executions of a Job. Valid values are: - 'Allow': allows CronJobs to run concurrently; - 'Forbid' (default): forbids concurrent runs, skipping next run if previous run hasn't finished yet; - 'Replace': cancels currently running job and replaces it with a new one",
+										Description:         "Specifies how to treat concurrent executions of a Job.Valid values are:- 'Allow': allows CronJobs to run concurrently;- 'Forbid' (default): forbids concurrent runs, skipping next run if previous run hasn't finished yet;- 'Replace': cancels currently running job and replaces it with a new one",
+										MarkdownDescription: "Specifies how to treat concurrent executions of a Job.Valid values are:- 'Allow': allows CronJobs to run concurrently;- 'Forbid' (default): forbids concurrent runs, skipping next run if previous run hasn't finished yet;- 'Replace': cancels currently running job and replaces it with a new one",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1588,8 +1588,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1605,24 +1605,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"fallback": schema.BoolAttribute{
-										Description:         "Use the default Camel implementation of the 'cron' endpoint ('quartz') instead of trying to materialize the integration as Kubernetes CronJob.",
-										MarkdownDescription: "Use the default Camel implementation of the 'cron' endpoint ('quartz') instead of trying to materialize the integration as Kubernetes CronJob.",
+										Description:         "Use the default Camel implementation of the 'cron' endpoint ('quartz') instead of trying to materialize the integrationas Kubernetes CronJob.",
+										MarkdownDescription: "Use the default Camel implementation of the 'cron' endpoint ('quartz') instead of trying to materialize the integrationas Kubernetes CronJob.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"schedule": schema.StringAttribute{
-										Description:         "The CronJob schedule for the whole integration. If multiple routes are declared, they must have the same schedule for this mechanism to work correctly.",
-										MarkdownDescription: "The CronJob schedule for the whole integration. If multiple routes are declared, they must have the same schedule for this mechanism to work correctly.",
+										Description:         "The CronJob schedule for the whole integration. If multiple routes are declared, they must have the same schedule for thismechanism to work correctly.",
+										MarkdownDescription: "The CronJob schedule for the whole integration. If multiple routes are declared, they must have the same schedule for thismechanism to work correctly.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"starting_deadline_seconds": schema.Int64Attribute{
-										Description:         "Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.",
-										MarkdownDescription: "Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.",
+										Description:         "Optional deadline in seconds for starting the job if it misses scheduledtime for any reason.  Missed jobs executions will be counted as failed ones.",
+										MarkdownDescription: "Optional deadline in seconds for starting the job if it misses scheduledtime for any reason.  Missed jobs executions will be counted as failed ones.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1646,8 +1646,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Dependencies trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1672,8 +1672,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Deployer trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1700,8 +1700,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"use_ssa": schema.BoolAttribute{
-										Description:         "Use server-side apply to update the owned resources (default 'true'). Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
-										MarkdownDescription: "Use server-side apply to update the owned resources (default 'true'). Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
+										Description:         "Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
+										MarkdownDescription: "Use server-side apply to update the owned resources (default 'true').Note that it automatically falls back to client-side patching, if SSA is not available, e.g., on old Kubernetes clusters.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1717,8 +1717,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Deployment trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1734,24 +1734,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"progress_deadline_seconds": schema.Int64Attribute{
-										Description:         "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.",
-										MarkdownDescription: "The maximum time in seconds for the deployment to make progress before it is considered to be failed. It defaults to '60s'.",
+										Description:         "The maximum time in seconds for the deployment to make progress before itis considered to be failed. It defaults to '60s'.",
+										MarkdownDescription: "The maximum time in seconds for the deployment to make progress before itis considered to be failed. It defaults to '60s'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"rolling_update_max_surge": schema.StringAttribute{
-										Description:         "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
-										MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to '25%'.",
+										Description:         "The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to '25%'.",
+										MarkdownDescription: "The maximum number of pods that can be scheduled above the desired number ofpods.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).This can not be 0 if MaxUnavailable is 0.Absolute number is calculated from percentage by rounding up.Defaults to '25%'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"rolling_update_max_unavailable": schema.StringAttribute{
-										Description:         "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
-										MarkdownDescription: "The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to '25%'.",
+										Description:         "The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to '25%'.",
+										MarkdownDescription: "The maximum number of pods that can be unavailable during the update.Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%).Absolute number is calculated from percentage by rounding down.This can not be 0 if MaxSurge is 0.Defaults to '25%'.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1778,8 +1778,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Environment trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1811,8 +1811,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"vars": schema.ListAttribute{
-										Description:         "A list of environment variables to be added to the integration container. The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''. These take precedence over the previously defined environment variables.",
-										MarkdownDescription: "A list of environment variables to be added to the integration container. The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''. These take precedence over the previously defined environment variables.",
+										Description:         "A list of environment variables to be added to the integration container.The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''.These take precedence over the previously defined environment variables.",
+										MarkdownDescription: "A list of environment variables to be added to the integration container.The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''.These take precedence over the previously defined environment variables.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1829,8 +1829,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Error Handler trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1863,8 +1863,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of GC trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -1872,8 +1872,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"discovery_cache": schema.StringAttribute{
-										Description:         "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: to be removed from trait configuration.",
-										MarkdownDescription: "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory'). Deprecated: to be removed from trait configuration.",
+										Description:         "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory').Deprecated: to be removed from trait configuration.",
+										MarkdownDescription: "Discovery client cache to be used, either 'disabled', 'disk' or 'memory' (default 'memory').Deprecated: to be removed from trait configuration.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -1900,8 +1900,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Health trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2118,8 +2118,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Ingress trait",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "The annotations added to the ingress. This can be used to set controller specific annotations, e.g., when using the NGINX Ingress controller: See https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md",
-										MarkdownDescription: "The annotations added to the ingress. This can be used to set controller specific annotations, e.g., when using the NGINX Ingress controller: See https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md",
+										Description:         "The annotations added to the ingress.This can be used to set controller specific annotations, e.g., when using the NGINX Ingress controller:See https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md",
+										MarkdownDescription: "The annotations added to the ingress.This can be used to set controller specific annotations, e.g., when using the NGINX Ingress controller:See https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2135,8 +2135,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2168,8 +2168,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"path_type": schema.StringAttribute{
-										Description:         "To configure the path type exposed by the ingress. One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').",
-										MarkdownDescription: "To configure the path type exposed by the ingress. One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').",
+										Description:         "To configure the path type exposed by the ingress.One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').",
+										MarkdownDescription: "To configure the path type exposed by the ingress.One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2213,8 +2213,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2247,16 +2247,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Jolokia trait",
 								Attributes: map[string]schema.Attribute{
 									"ca_cert": schema.StringAttribute{
-										Description:         "The PEM encoded CA certification file path, used to verify client certificates, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default '/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt' for OpenShift).",
-										MarkdownDescription: "The PEM encoded CA certification file path, used to verify client certificates, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default '/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt' for OpenShift).",
+										Description:         "The PEM encoded CA certification file path, used to verify client certificates,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default '/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt' for OpenShift).",
+										MarkdownDescription: "The PEM encoded CA certification file path, used to verify client certificates,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default '/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt' for OpenShift).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"client_principal": schema.ListAttribute{
-										Description:         "The principal(s) which must be given in a client certificate to allow access to the Jolokia endpoint, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default 'clientPrincipal=cn=system:master-proxy', 'cn=hawtio-online.hawtio.svc' and 'cn=fuse-console.fuse.svc' for OpenShift).",
-										MarkdownDescription: "The principal(s) which must be given in a client certificate to allow access to the Jolokia endpoint, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default 'clientPrincipal=cn=system:master-proxy', 'cn=hawtio-online.hawtio.svc' and 'cn=fuse-console.fuse.svc' for OpenShift).",
+										Description:         "The principal(s) which must be given in a client certificate to allow access to the Jolokia endpoint,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default 'clientPrincipal=cn=system:master-proxy', 'cn=hawtio-online.hawtio.svc' and 'cn=fuse-console.fuse.svc' for OpenShift).",
+										MarkdownDescription: "The principal(s) which must be given in a client certificate to allow access to the Jolokia endpoint,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default 'clientPrincipal=cn=system:master-proxy', 'cn=hawtio-online.hawtio.svc' and 'cn=fuse-console.fuse.svc' for OpenShift).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2264,8 +2264,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2289,24 +2289,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"extended_client_check": schema.BoolAttribute{
-										Description:         "Mandate the client certificate contains a client flag in the extended key usage section, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default 'true' for OpenShift).",
-										MarkdownDescription: "Mandate the client certificate contains a client flag in the extended key usage section, applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true' (default 'true' for OpenShift).",
+										Description:         "Mandate the client certificate contains a client flag in the extended key usage section,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default 'true' for OpenShift).",
+										MarkdownDescription: "Mandate the client certificate contains a client flag in the extended key usage section,applicable when 'protocol' is 'https' and 'use-ssl-client-authentication' is 'true'(default 'true' for OpenShift).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"host": schema.StringAttribute{
-										Description:         "The Host address to which the Jolokia agent should bind to. If ''*'' or ''0.0.0.0'' is given, the servers binds to every network interface (default ''*'').",
-										MarkdownDescription: "The Host address to which the Jolokia agent should bind to. If ''*'' or ''0.0.0.0'' is given, the servers binds to every network interface (default ''*'').",
+										Description:         "The Host address to which the Jolokia agent should bind to. If ''*'' or ''0.0.0.0'' is given,the servers binds to every network interface (default ''*'').",
+										MarkdownDescription: "The Host address to which the Jolokia agent should bind to. If ''*'' or ''0.0.0.0'' is given,the servers binds to every network interface (default ''*'').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"options": schema.ListAttribute{
-										Description:         "A list of additional Jolokia options as defined in https://jolokia.org/reference/html/agents.html#agent-jvm-config[JVM agent configuration options]",
-										MarkdownDescription: "A list of additional Jolokia options as defined in https://jolokia.org/reference/html/agents.html#agent-jvm-config[JVM agent configuration options]",
+										Description:         "A list of additional Jolokia options as definedin https://jolokia.org/reference/html/agents.html#agent-jvm-config[JVM agent configuration options]",
+										MarkdownDescription: "A list of additional Jolokia options as definedin https://jolokia.org/reference/html/agents.html#agent-jvm-config[JVM agent configuration options]",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2371,8 +2371,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2429,8 +2429,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"print_command": schema.BoolAttribute{
-										Description:         "Prints the command used the start the JVM in the container logs (default 'true') Deprecated: no longer in use.",
-										MarkdownDescription: "Prints the command used the start the JVM in the container logs (default 'true') Deprecated: no longer in use.",
+										Description:         "Prints the command used the start the JVM in the container logs (default 'true')Deprecated: no longer in use.",
+										MarkdownDescription: "Prints the command used the start the JVM in the container logs (default 'true')Deprecated: no longer in use.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2454,8 +2454,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2522,8 +2522,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"channel_sinks": schema.ListAttribute{
-										Description:         "List of channels used as destination of integration routes. Can contain simple channel names or full Camel URIs.",
-										MarkdownDescription: "List of channels used as destination of integration routes. Can contain simple channel names or full Camel URIs.",
+										Description:         "List of channels used as destination of integration routes.Can contain simple channel names or full Camel URIs.",
+										MarkdownDescription: "List of channels used as destination of integration routes.Can contain simple channel names or full Camel URIs.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2531,8 +2531,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"channel_sources": schema.ListAttribute{
-										Description:         "List of channels used as source of integration routes. Can contain simple channel names or full Camel URIs.",
-										MarkdownDescription: "List of channels used as source of integration routes. Can contain simple channel names or full Camel URIs.",
+										Description:         "List of channels used as source of integration routes.Can contain simple channel names or full Camel URIs.",
+										MarkdownDescription: "List of channels used as source of integration routes.Can contain simple channel names or full Camel URIs.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2548,8 +2548,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2565,8 +2565,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"endpoint_sinks": schema.ListAttribute{
-										Description:         "List of endpoints used as destination of integration routes. Can contain simple endpoint names or full Camel URIs.",
-										MarkdownDescription: "List of endpoints used as destination of integration routes. Can contain simple endpoint names or full Camel URIs.",
+										Description:         "List of endpoints used as destination of integration routes.Can contain simple endpoint names or full Camel URIs.",
+										MarkdownDescription: "List of endpoints used as destination of integration routes.Can contain simple endpoint names or full Camel URIs.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2583,8 +2583,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"event_sinks": schema.ListAttribute{
-										Description:         "List of event types that the integration will produce. Can contain simple event types or full Camel URIs (to use a specific broker).",
-										MarkdownDescription: "List of event types that the integration will produce. Can contain simple event types or full Camel URIs (to use a specific broker).",
+										Description:         "List of event types that the integration will produce.Can contain simple event types or full Camel URIs (to use a specific broker).",
+										MarkdownDescription: "List of event types that the integration will produce.Can contain simple event types or full Camel URIs (to use a specific broker).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2592,8 +2592,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"event_sources": schema.ListAttribute{
-										Description:         "List of event types that the integration will be subscribed to. Can contain simple event types or full Camel URIs (to use a specific broker different from 'default').",
-										MarkdownDescription: "List of event types that the integration will be subscribed to. Can contain simple event types or full Camel URIs (to use a specific broker different from 'default').",
+										Description:         "List of event types that the integration will be subscribed to.Can contain simple event types or full Camel URIs (to use a specific broker different from 'default').",
+										MarkdownDescription: "List of event types that the integration will be subscribed to.Can contain simple event types or full Camel URIs (to use a specific broker different from 'default').",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2601,24 +2601,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"filter_event_type": schema.BoolAttribute{
-										Description:         "Enables the default filtering for the Knative trigger using the event type If this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
-										MarkdownDescription: "Enables the default filtering for the Knative trigger using the event type If this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
+										Description:         "Enables the default filtering for the Knative trigger using the event typeIf this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
+										MarkdownDescription: "Enables the default filtering for the Knative trigger using the event typeIf this is true, the created Knative trigger uses the event type as a filter on the event stream when no other filter criteria is given. (default: true)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"filter_source_channels": schema.BoolAttribute{
-										Description:         "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions of Knative, filtering is disabled by default.",
-										MarkdownDescription: "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions of Knative, filtering is disabled by default.",
+										Description:         "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions ofKnative, filtering is disabled by default.",
+										MarkdownDescription: "Enables filtering on events based on the header 'ce-knativehistory'. Since this header has been removed in newer versions ofKnative, filtering is disabled by default.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"filters": schema.ListAttribute{
-										Description:         "Sets filter attributes on the event stream (such as event type, source, subject and so on). A list of key-value pairs that represent filter attributes and its values. The syntax is KEY=VALUE, e.g., 'source='my.source''. Filter attributes get set on the Knative trigger that is being created as part of this integration.",
-										MarkdownDescription: "Sets filter attributes on the event stream (such as event type, source, subject and so on). A list of key-value pairs that represent filter attributes and its values. The syntax is KEY=VALUE, e.g., 'source='my.source''. Filter attributes get set on the Knative trigger that is being created as part of this integration.",
+										Description:         "Sets filter attributes on the event stream (such as event type, source, subject and so on).A list of key-value pairs that represent filter attributes and its values.The syntax is KEY=VALUE, e.g., 'source='my.source''.Filter attributes get set on the Knative trigger that is being created as part of this integration.",
+										MarkdownDescription: "Sets filter attributes on the event stream (such as event type, source, subject and so on).A list of key-value pairs that represent filter attributes and its values.The syntax is KEY=VALUE, e.g., 'source='my.source''.Filter attributes get set on the Knative trigger that is being created as part of this integration.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2626,16 +2626,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"namespace_label": schema.BoolAttribute{
-										Description:         "Enables the camel-k-operator to set the 'bindings.knative.dev/include=true' label to the namespace As Knative requires this label to perform injection of K_SINK URL into the service. If this is false, the integration pod may start and fail, read the SinkBinding Knative documentation. (default: true)",
-										MarkdownDescription: "Enables the camel-k-operator to set the 'bindings.knative.dev/include=true' label to the namespace As Knative requires this label to perform injection of K_SINK URL into the service. If this is false, the integration pod may start and fail, read the SinkBinding Knative documentation. (default: true)",
+										Description:         "Enables the camel-k-operator to set the 'bindings.knative.dev/include=true' label to the namespaceAs Knative requires this label to perform injection of K_SINK URL into the service.If this is false, the integration pod may start and fail, read the SinkBinding Knative documentation. (default: true)",
+										MarkdownDescription: "Enables the camel-k-operator to set the 'bindings.knative.dev/include=true' label to the namespaceAs Knative requires this label to perform injection of K_SINK URL into the service.If this is false, the integration pod may start and fail, read the SinkBinding Knative documentation. (default: true)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"sink_binding": schema.BoolAttribute{
-										Description:         "Allows binding the integration to a sink via a Knative SinkBinding resource. This can be used when the integration targets a single sink. It's enabled by default when the integration targets a single sink (except when the integration is owned by a Knative source).",
-										MarkdownDescription: "Allows binding the integration to a sink via a Knative SinkBinding resource. This can be used when the integration targets a single sink. It's enabled by default when the integration targets a single sink (except when the integration is owned by a Knative source).",
+										Description:         "Allows binding the integration to a sink via a Knative SinkBinding resource.This can be used when the integration targets a single sink.It's enabled by default when the integration targets a single sink(except when the integration is owned by a Knative source).",
+										MarkdownDescription: "Allows binding the integration to a sink via a Knative SinkBinding resource.This can be used when the integration targets a single sink.It's enabled by default when the integration targets a single sink(except when the integration is owned by a Knative source).",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2651,8 +2651,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Knative Service trait",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "The annotations added to route. This can be used to set knative service specific annotations CLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
-										MarkdownDescription: "The annotations added to route. This can be used to set knative service specific annotations CLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
+										Description:         "The annotations added to route.This can be used to set knative service specific annotationsCLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
+										MarkdownDescription: "The annotations added to route.This can be used to set knative service specific annotationsCLI usage example: -t 'knative-service.annotations.'haproxy.router.openshift.io/balance'=true'",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2660,32 +2660,32 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"auto": schema.BoolAttribute{
-										Description:         "Automatically deploy the integration as Knative service when all conditions hold:  * Integration is using the Knative profile * All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
-										MarkdownDescription: "Automatically deploy the integration as Knative service when all conditions hold:  * Integration is using the Knative profile * All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
+										Description:         "Automatically deploy the integration as Knative service when all conditions hold:* Integration is using the Knative profile* All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
+										MarkdownDescription: "Automatically deploy the integration as Knative service when all conditions hold:* Integration is using the Knative profile* All routes are either starting from an HTTP based consumer or a passive consumer (e.g. 'direct' is a passive consumer)",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"autoscaling_metric": schema.StringAttribute{
-										Description:         "Configures the Knative autoscaling metric property (e.g. to set 'concurrency' based or 'cpu' based autoscaling).  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "Configures the Knative autoscaling metric property (e.g. to set 'concurrency' based or 'cpu' based autoscaling).  Refer to the Knative documentation for more information.",
+										Description:         "Configures the Knative autoscaling metric property (e.g. to set 'concurrency' based or 'cpu' based autoscaling).Refer to the Knative documentation for more information.",
+										MarkdownDescription: "Configures the Knative autoscaling metric property (e.g. to set 'concurrency' based or 'cpu' based autoscaling).Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"autoscaling_target": schema.Int64Attribute{
-										Description:         "Sets the allowed concurrency level or CPU percentage (depending on the autoscaling metric) for each Pod.  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "Sets the allowed concurrency level or CPU percentage (depending on the autoscaling metric) for each Pod.  Refer to the Knative documentation for more information.",
+										Description:         "Sets the allowed concurrency level or CPU percentage (depending on the autoscaling metric) for each Pod.Refer to the Knative documentation for more information.",
+										MarkdownDescription: "Sets the allowed concurrency level or CPU percentage (depending on the autoscaling metric) for each Pod.Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"class": schema.StringAttribute{
-										Description:         "Configures the Knative autoscaling class property (e.g. to set 'hpa.autoscaling.knative.dev' or 'kpa.autoscaling.knative.dev' autoscaling).  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "Configures the Knative autoscaling class property (e.g. to set 'hpa.autoscaling.knative.dev' or 'kpa.autoscaling.knative.dev' autoscaling).  Refer to the Knative documentation for more information.",
+										Description:         "Configures the Knative autoscaling class property (e.g. to set 'hpa.autoscaling.knative.dev' or 'kpa.autoscaling.knative.dev' autoscaling).Refer to the Knative documentation for more information.",
+										MarkdownDescription: "Configures the Knative autoscaling class property (e.g. to set 'hpa.autoscaling.knative.dev' or 'kpa.autoscaling.knative.dev' autoscaling).Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2695,8 +2695,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2712,40 +2712,40 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"max_scale": schema.Int64Attribute{
-										Description:         "An upper bound for the number of Pods that can be running in parallel for the integration. Knative has its own cap value that depends on the installation.  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "An upper bound for the number of Pods that can be running in parallel for the integration. Knative has its own cap value that depends on the installation.  Refer to the Knative documentation for more information.",
+										Description:         "An upper bound for the number of Pods that can be running in parallel for the integration.Knative has its own cap value that depends on the installation.Refer to the Knative documentation for more information.",
+										MarkdownDescription: "An upper bound for the number of Pods that can be running in parallel for the integration.Knative has its own cap value that depends on the installation.Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"min_scale": schema.Int64Attribute{
-										Description:         "The minimum number of Pods that should be running at any time for the integration. It's **zero** by default, meaning that the integration is scaled down to zero when not used for a configured amount of time.  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "The minimum number of Pods that should be running at any time for the integration. It's **zero** by default, meaning that the integration is scaled down to zero when not used for a configured amount of time.  Refer to the Knative documentation for more information.",
+										Description:         "The minimum number of Pods that should be running at any time for the integration. It's **zero** by default, meaning thatthe integration is scaled down to zero when not used for a configured amount of time.Refer to the Knative documentation for more information.",
+										MarkdownDescription: "The minimum number of Pods that should be running at any time for the integration. It's **zero** by default, meaning thatthe integration is scaled down to zero when not used for a configured amount of time.Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"rollout_duration": schema.StringAttribute{
-										Description:         "Enables to gradually shift traffic to the latest Revision and sets the rollout duration. It's disabled by default and must be expressed as a Golang 'time.Duration' string representation, rounded to a second precision.",
-										MarkdownDescription: "Enables to gradually shift traffic to the latest Revision and sets the rollout duration. It's disabled by default and must be expressed as a Golang 'time.Duration' string representation, rounded to a second precision.",
+										Description:         "Enables to gradually shift traffic to the latest Revision and sets the rollout duration.It's disabled by default and must be expressed as a Golang 'time.Duration' string representation,rounded to a second precision.",
+										MarkdownDescription: "Enables to gradually shift traffic to the latest Revision and sets the rollout duration.It's disabled by default and must be expressed as a Golang 'time.Duration' string representation,rounded to a second precision.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"timeout_seconds": schema.Int64Attribute{
-										Description:         "The maximum duration in seconds that the request instance is allowed to respond to a request. This field propagates to the integration pod's terminationGracePeriodSeconds  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "The maximum duration in seconds that the request instance is allowed to respond to a request. This field propagates to the integration pod's terminationGracePeriodSeconds  Refer to the Knative documentation for more information.",
+										Description:         "The maximum duration in seconds that the request instance is allowed to respond to a request.This field propagates to the integration pod's terminationGracePeriodSecondsRefer to the Knative documentation for more information.",
+										MarkdownDescription: "The maximum duration in seconds that the request instance is allowed to respond to a request.This field propagates to the integration pod's terminationGracePeriodSecondsRefer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"visibility": schema.StringAttribute{
-										Description:         "Setting 'cluster-local', Knative service becomes a private service. Specifically, this option applies the 'networking.knative.dev/visibility' label to Knative service.  Refer to the Knative documentation for more information.",
-										MarkdownDescription: "Setting 'cluster-local', Knative service becomes a private service. Specifically, this option applies the 'networking.knative.dev/visibility' label to Knative service.  Refer to the Knative documentation for more information.",
+										Description:         "Setting 'cluster-local', Knative service becomes a private service.Specifically, this option applies the 'networking.knative.dev/visibility' label to Knative service.Refer to the Knative documentation for more information.",
+										MarkdownDescription: "Setting 'cluster-local', Knative service becomes a private service.Specifically, this option applies the 'networking.knative.dev/visibility' label to Knative service.Refer to the Knative documentation for more information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2772,8 +2772,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2851,8 +2851,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Mount trait",
 								Attributes: map[string]schema.Attribute{
 									"configs": schema.ListAttribute{
-										Description:         "A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered",
-										MarkdownDescription: "A list of configuration pointing to configmap/secret. The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files. They are also made available on the classpath in order to ease their usage directly from the Route. Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered",
+										Description:         "A list of configuration pointing to configmap/secret.The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files.They are also made available on the classpath in order to ease their usage directly from the Route.Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered",
+										MarkdownDescription: "A list of configuration pointing to configmap/secret.The configuration are expected to be UTF-8 resources as they are processed by runtime Camel Context and tried to be parsed as property files.They are also made available on the classpath in order to ease their usage directly from the Route.Syntax: [configmap|secret]:name[/key], where name represents the resource name and key optionally represents the resource key to be filtered",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2860,8 +2860,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2886,16 +2886,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"hot_reload": schema.BoolAttribute{
-										Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
-										MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must be marked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also for changes in metadata.",
+										Description:         "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must bemarked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also forchanges in metadata.",
+										MarkdownDescription: "Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must bemarked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also forchanges in metadata.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"resources": schema.ListAttribute{
-										Description:         "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
-										MarkdownDescription: "A list of resources (text or binary content) pointing to configmap/secret. The resources are expected to be any resource type (text or binary content). The destination path can be either a default location or any path specified by the user. Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
+										Description:         "A list of resources (text or binary content) pointing to configmap/secret.The resources are expected to be any resource type (text or binary content).The destination path can be either a default location or any path specified by the user.Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
+										MarkdownDescription: "A list of resources (text or binary content) pointing to configmap/secret.The resources are expected to be any resource type (text or binary content).The destination path can be either a default location or any path specified by the user.Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2903,8 +2903,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"scan_kamelets_implicit_label_secrets": schema.BoolAttribute{
-										Description:         "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
-										MarkdownDescription: "Deprecated: include your properties in an explicit property file backed by a secret. Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'. These secrets are mounted to the application and treated as plain properties file with their key/value list (ie .spec.data['camel.my-property'] = my-value) (default 'true').",
+										Description:         "Deprecated: include your properties in an explicit property file backed by a secret.Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'.These secrets are mounted to the application and treated as plain properties file with their key/value list(ie .spec.data['camel.my-property'] = my-value) (default 'true').",
+										MarkdownDescription: "Deprecated: include your properties in an explicit property file backed by a secret.Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'.These secrets are mounted to the application and treated as plain properties file with their key/value list(ie .spec.data['camel.my-property'] = my-value) (default 'true').",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -2929,8 +2929,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of OpenAPI trait",
 								Attributes: map[string]schema.Attribute{
 									"configmaps": schema.ListAttribute{
-										Description:         "The configmaps holding the spec of the OpenAPI",
-										MarkdownDescription: "The configmaps holding the spec of the OpenAPI",
+										Description:         "The configmaps holding the spec of the OpenAPI (compatible with > 3.0 spec only).",
+										MarkdownDescription: "The configmaps holding the spec of the OpenAPI (compatible with > 3.0 spec only).",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2938,8 +2938,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -2964,8 +2964,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Owner trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3008,8 +3008,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of PDB trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3025,16 +3025,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"max_unavailable": schema.StringAttribute{
-										Description:         "The number of pods for the Integration that can be unavailable after an eviction. It can be either an absolute number or a percentage (default '1' if 'min-available' is also not set). Only one of 'max-unavailable' and 'min-available' can be specified.",
-										MarkdownDescription: "The number of pods for the Integration that can be unavailable after an eviction. It can be either an absolute number or a percentage (default '1' if 'min-available' is also not set). Only one of 'max-unavailable' and 'min-available' can be specified.",
+										Description:         "The number of pods for the Integration that can be unavailable after an eviction.It can be either an absolute number or a percentage (default '1' if 'min-available' is also not set).Only one of 'max-unavailable' and 'min-available' can be specified.",
+										MarkdownDescription: "The number of pods for the Integration that can be unavailable after an eviction.It can be either an absolute number or a percentage (default '1' if 'min-available' is also not set).Only one of 'max-unavailable' and 'min-available' can be specified.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"min_available": schema.StringAttribute{
-										Description:         "The number of pods for the Integration that must still be available after an eviction. It can be either an absolute number or a percentage. Only one of 'min-available' and 'max-unavailable' can be specified.",
-										MarkdownDescription: "The number of pods for the Integration that must still be available after an eviction. It can be either an absolute number or a percentage. Only one of 'min-available' and 'max-unavailable' can be specified.",
+										Description:         "The number of pods for the Integration that must still be available after an eviction.It can be either an absolute number or a percentage.Only one of 'min-available' and 'max-unavailable' can be specified.",
+										MarkdownDescription: "The number of pods for the Integration that must still be available after an eviction.It can be either an absolute number or a percentage.Only one of 'min-available' and 'max-unavailable' can be specified.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3050,16 +3050,16 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Platform trait",
 								Attributes: map[string]schema.Attribute{
 									"auto": schema.BoolAttribute{
-										Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
-										MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										Description:         "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set).Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "To automatically detect from the environment if a default platform can be created (it will be created on OpenShift or when a registry address is set).Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3067,8 +3067,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"create_default": schema.BoolAttribute{
-										Description:         "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
-										MarkdownDescription: "To create a default (empty) platform when the platform is missing. Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										Description:         "To create a default (empty) platform when the platform is missing.Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "To create a default (empty) platform when the platform is missing.Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3083,8 +3083,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"global": schema.BoolAttribute{
-										Description:         "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
-										MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true). Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										Description:         "Indicates if the platform should be created globally in the case of global operator (default true).Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
+										MarkdownDescription: "Indicates if the platform should be created globally in the case of global operator (default true).Deprecated: Platform is auto generated by the operator install procedure - maintained for backward compatibility",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3100,8 +3100,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Pod trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3126,8 +3126,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Prometheus trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3177,8 +3177,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3219,8 +3219,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Quarkus trait",
 								Attributes: map[string]schema.Attribute{
 									"build_mode": schema.ListAttribute{
-										Description:         "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
-										MarkdownDescription: "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm'). In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created, with the 'native' kit having precedence over the 'jvm' one once ready.",
+										Description:         "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm').In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created,with the 'native' kit having precedence over the 'jvm' one once ready.",
+										MarkdownDescription: "The Quarkus mode to run: either 'jvm' or 'native' (default 'jvm').In case both 'jvm' and 'native' are specified, two 'IntegrationKit' resources are created,with the 'native' kit having precedence over the 'jvm' one once ready.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3228,8 +3228,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3261,8 +3261,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"package_types": schema.ListAttribute{
-										Description:         "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
-										MarkdownDescription: "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar'). In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created, with the native kit having precedence over the 'fast-jar' one once ready. The order influences the resolution of the current kit for the integration. The kit corresponding to the first package type will be assigned to the integration in case no existing kit that matches the integration exists. Deprecated: use 'build-mode' instead.",
+										Description:         "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar').In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created,with the native kit having precedence over the 'fast-jar' one once ready.The order influences the resolution of the current kit for the integration.The kit corresponding to the first package type will be assigned to theintegration in case no existing kit that matches the integration exists.Deprecated: use 'build-mode' instead.",
+										MarkdownDescription: "The Quarkus package types, 'fast-jar' or 'native' (default 'fast-jar').In case both 'fast-jar' and 'native' are specified, two 'IntegrationKit' resources are created,with the native kit having precedence over the 'fast-jar' one once ready.The order influences the resolution of the current kit for the integration.The kit corresponding to the first package type will be assigned to theintegration in case no existing kit that matches the integration exists.Deprecated: use 'build-mode' instead.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3275,12 +3275,12 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 							},
 
 							"registry": schema.SingleNestedAttribute{
-								Description:         "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
-								MarkdownDescription: "The configuration of Registry trait Deprecated: use jvm trait or read documentation.",
+								Description:         "The configuration of Registry trait (support removed since version 2.5.0).Deprecated: use jvm trait or read documentation.",
+								MarkdownDescription: "The configuration of Registry trait (support removed since version 2.5.0).Deprecated: use jvm trait or read documentation.",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3305,8 +3305,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Route trait",
 								Attributes: map[string]schema.Attribute{
 									"annotations": schema.MapAttribute{
-										Description:         "The annotations added to route. This can be used to set route specific annotations For annotations options see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#route-specific-annotations CLI usage example: -t 'route.annotations.'haproxy.router.openshift.io/balance'=true'",
-										MarkdownDescription: "The annotations added to route. This can be used to set route specific annotations For annotations options see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#route-specific-annotations CLI usage example: -t 'route.annotations.'haproxy.router.openshift.io/balance'=true'",
+										Description:         "The annotations added to route.This can be used to set route specific annotationsFor annotations options see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#route-specific-annotationsCLI usage example: -t 'route.annotations.'haproxy.router.openshift.io/balance'=true'",
+										MarkdownDescription: "The annotations added to route.This can be used to set route specific annotationsFor annotations options see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#route-specific-annotationsCLI usage example: -t 'route.annotations.'haproxy.router.openshift.io/balance'=true'",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3314,8 +3314,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3339,56 +3339,56 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"tls_ca_certificate": schema.StringAttribute{
-										Description:         "The TLS CA certificate contents.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The TLS CA certificate contents.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The TLS CA certificate contents.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The TLS CA certificate contents.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_ca_certificate_secret": schema.StringAttribute{
-										Description:         "The secret name and key reference to the TLS CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The secret name and key reference to the TLS CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The secret name and key reference to the TLS CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The secret name and key reference to the TLS CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_certificate": schema.StringAttribute{
-										Description:         "The TLS certificate contents.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The TLS certificate contents.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The TLS certificate contents.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The TLS certificate contents.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_certificate_secret": schema.StringAttribute{
-										Description:         "The secret name and key reference to the TLS certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The secret name and key reference to the TLS certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The secret name and key reference to the TLS certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The secret name and key reference to the TLS certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_destination_ca_certificate": schema.StringAttribute{
-										Description:         "The destination CA certificate provides the contents of the ca certificate of the final destination.  When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The destination CA certificate provides the contents of the ca certificate of the final destination.  When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The destination CA certificate provides the contents of the ca certificate of the final destination.  When using reencrypttermination this file should be provided in order to have routers use it for health checks on the secure connection.If this field is not specified, the router may provide its own destination CA and perform hostname validation usingthe short service name (service.namespace.svc), which allows infrastructure generated certificates to automaticallyverify.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The destination CA certificate provides the contents of the ca certificate of the final destination.  When using reencrypttermination this file should be provided in order to have routers use it for health checks on the secure connection.If this field is not specified, the router may provide its own destination CA and perform hostname validation usingthe short service name (service.namespace.svc), which allows infrastructure generated certificates to automaticallyverify.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_destination_ca_certificate_secret": schema.StringAttribute{
-										Description:         "The secret name and key reference to the destination CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The secret name and key reference to the destination CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The secret name and key reference to the destination CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The secret name and key reference to the destination CA certificate. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_insecure_edge_termination_policy": schema.StringAttribute{
-										Description:         "To configure how to deal with insecure traffic, e.g. 'Allow', 'Disable' or 'Redirect' traffic.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "To configure how to deal with insecure traffic, e.g. 'Allow', 'Disable' or 'Redirect' traffic.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "To configure how to deal with insecure traffic, e.g. 'Allow', 'Disable' or 'Redirect' traffic.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "To configure how to deal with insecure traffic, e.g. 'Allow', 'Disable' or 'Redirect' traffic.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3398,24 +3398,24 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"tls_key": schema.StringAttribute{
-										Description:         "The TLS certificate key contents.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The TLS certificate key contents.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The TLS certificate key contents.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The TLS certificate key contents.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_key_secret": schema.StringAttribute{
-										Description:         "The secret name and key reference to the TLS certificate key. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The secret name and key reference to the TLS certificate key. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The secret name and key reference to the TLS certificate key. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The secret name and key reference to the TLS certificate key. The format is 'secret-name[/key-name]', the value represents the secret name, if there is only one key in the secret it will be read, otherwise you can set a key name separated with a '/'.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
 									},
 
 									"tls_termination": schema.StringAttribute{
-										Description:         "The TLS termination type, like 'edge', 'passthrough' or 'reencrypt'.  Refer to the OpenShift route documentation for additional information.",
-										MarkdownDescription: "The TLS termination type, like 'edge', 'passthrough' or 'reencrypt'.  Refer to the OpenShift route documentation for additional information.",
+										Description:         "The TLS termination type, like 'edge', 'passthrough' or 'reencrypt'.Refer to the OpenShift route documentation for additional information.",
+										MarkdownDescription: "The TLS termination type, like 'edge', 'passthrough' or 'reencrypt'.Refer to the OpenShift route documentation for additional information.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3434,8 +3434,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Security Context trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3495,8 +3495,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3512,8 +3512,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 									},
 
 									"node_port": schema.BoolAttribute{
-										Description:         "Enable Service to be exposed as NodePort (default 'false'). Deprecated: Use service type instead.",
-										MarkdownDescription: "Enable Service to be exposed as NodePort (default 'false'). Deprecated: Use service type instead.",
+										Description:         "Enable Service to be exposed as NodePort (default 'false').Deprecated: Use service type instead.",
+										MarkdownDescription: "Enable Service to be exposed as NodePort (default 'false').Deprecated: Use service type instead.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -3540,8 +3540,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Service Binding trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,
@@ -3593,8 +3593,8 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "The configuration of Toleration trait",
 								Attributes: map[string]schema.Attribute{
 									"configuration": schema.MapAttribute{
-										Description:         "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
-										MarkdownDescription: "Legacy trait configuration parameters. Deprecated: for backward compatibility.",
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
 										ElementType:         types.StringType,
 										Required:            false,
 										Optional:            true,

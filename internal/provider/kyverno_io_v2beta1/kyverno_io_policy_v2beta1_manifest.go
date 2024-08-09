@@ -742,13 +742,14 @@ type KyvernoIoPolicyV2Beta1ManifestData struct {
 					Providers             *[]string `tfsdk:"providers" json:"providers,omitempty"`
 					Secrets               *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 				} `tfsdk:"image_registry_credentials" json:"imageRegistryCredentials,omitempty"`
-				MutateDigest        *bool     `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
-				Repository          *string   `tfsdk:"repository" json:"repository,omitempty"`
-				Required            *bool     `tfsdk:"required" json:"required,omitempty"`
-				SkipImageReferences *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
-				Type                *string   `tfsdk:"type" json:"type,omitempty"`
-				UseCache            *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
-				VerifyDigest        *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
+				MutateDigest            *bool     `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
+				Repository              *string   `tfsdk:"repository" json:"repository,omitempty"`
+				Required                *bool     `tfsdk:"required" json:"required,omitempty"`
+				SkipImageReferences     *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
+				Type                    *string   `tfsdk:"type" json:"type,omitempty"`
+				UseCache                *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
+				ValidationFailureAction *string   `tfsdk:"validation_failure_action" json:"validationFailureAction,omitempty"`
+				VerifyDigest            *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
 			} `tfsdk:"verify_images" json:"verifyImages,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 		SchemaValidation                 *bool   `tfsdk:"schema_validation" json:"schemaValidation,omitempty"`
@@ -4653,13 +4654,13 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 										},
 
 										"validation_failure_action": schema.StringAttribute{
-											Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.",
-											MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.",
+											Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
+											MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+												stringvalidator.OneOf("Audit", "Enforce"),
 											},
 										},
 
@@ -5750,6 +5751,17 @@ func (r *KyvernoIoPolicyV2Beta1Manifest) Schema(_ context.Context, _ datasource.
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"validation_failure_action": schema.StringAttribute{
+												Description:         "Allowed values are Audit or Enforce.",
+												MarkdownDescription: "Allowed values are Audit or Enforce.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Audit", "Enforce"),
+												},
 											},
 
 											"verify_digest": schema.BoolAttribute{

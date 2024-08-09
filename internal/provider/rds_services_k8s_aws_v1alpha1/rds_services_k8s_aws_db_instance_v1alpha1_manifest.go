@@ -60,14 +60,16 @@ type RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 		DbParameterGroupName        *string `tfsdk:"db_parameter_group_name" json:"dbParameterGroupName,omitempty"`
 		DbParameterGroupRef         *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"db_parameter_group_ref" json:"dbParameterGroupRef,omitempty"`
 		DbSnapshotIdentifier *string `tfsdk:"db_snapshot_identifier" json:"dbSnapshotIdentifier,omitempty"`
 		DbSubnetGroupName    *string `tfsdk:"db_subnet_group_name" json:"dbSubnetGroupName,omitempty"`
 		DbSubnetGroupRef     *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"db_subnet_group_ref" json:"dbSubnetGroupRef,omitempty"`
 		DeletionProtection              *bool     `tfsdk:"deletion_protection" json:"deletionProtection,omitempty"`
@@ -83,7 +85,8 @@ type RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 		KmsKeyID                        *string   `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 		KmsKeyRef                       *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
 		LicenseModel             *string `tfsdk:"license_model" json:"licenseModel,omitempty"`
@@ -96,7 +99,8 @@ type RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 		MasterUserSecretKMSKeyID  *string `tfsdk:"master_user_secret_kms_key_id" json:"masterUserSecretKMSKeyID,omitempty"`
 		MasterUserSecretKMSKeyRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"master_user_secret_kms_key_ref" json:"masterUserSecretKMSKeyRef,omitempty"`
 		MasterUsername                     *string `tfsdk:"master_username" json:"masterUsername,omitempty"`
@@ -137,7 +141,8 @@ type RdsServicesK8SAwsDbinstanceV1Alpha1ManifestData struct {
 		VpcSecurityGroupIDs         *[]string `tfsdk:"vpc_security_group_i_ds" json:"vpcSecurityGroupIDs,omitempty"`
 		VpcSecurityGroupRefs        *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"vpc_security_group_refs" json:"vpcSecurityGroupRefs,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -355,6 +360,14 @@ func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -391,6 +404,14 @@ func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -512,6 +533,14 @@ func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -589,6 +618,14 @@ func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -895,6 +932,14 @@ func (r *RdsServicesK8SAwsDbinstanceV1Alpha1Manifest) Schema(_ context.Context, 
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

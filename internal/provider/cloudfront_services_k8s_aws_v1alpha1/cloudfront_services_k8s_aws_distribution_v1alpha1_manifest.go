@@ -242,7 +242,8 @@ type CloudfrontServicesK8SAwsDistributionV1Alpha1ManifestData struct {
 				AcmCertificateARN *string `tfsdk:"acm_certificate_arn" json:"acmCertificateARN,omitempty"`
 				AcmCertificateRef *struct {
 					From *struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 					} `tfsdk:"from" json:"from,omitempty"`
 				} `tfsdk:"acm_certificate_ref" json:"acmCertificateRef,omitempty"`
 				Certificate                  *string `tfsdk:"certificate" json:"certificate,omitempty"`
@@ -1606,6 +1607,14 @@ func (r *CloudfrontServicesK8SAwsDistributionV1Alpha1Manifest) Schema(_ context.
 												MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 												Attributes: map[string]schema.Attribute{
 													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
 														Required:            false,

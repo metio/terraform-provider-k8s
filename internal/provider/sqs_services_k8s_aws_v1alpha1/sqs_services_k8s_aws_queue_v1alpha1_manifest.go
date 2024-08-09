@@ -50,7 +50,8 @@ type SqsServicesK8SAwsQueueV1Alpha1ManifestData struct {
 		KmsMasterKeyID               *string `tfsdk:"kms_master_key_id" json:"kmsMasterKeyID,omitempty"`
 		KmsMasterKeyRef              *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_master_key_ref" json:"kmsMasterKeyRef,omitempty"`
 		MaximumMessageSize     *string `tfsdk:"maximum_message_size" json:"maximumMessageSize,omitempty"`
@@ -58,7 +59,8 @@ type SqsServicesK8SAwsQueueV1Alpha1ManifestData struct {
 		Policy                 *string `tfsdk:"policy" json:"policy,omitempty"`
 		PolicyRef              *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"policy_ref" json:"policyRef,omitempty"`
 		QueueName                     *string            `tfsdk:"queue_name" json:"queueName,omitempty"`
@@ -202,6 +204,14 @@ func (r *SqsServicesK8SAwsQueueV1Alpha1Manifest) Schema(_ context.Context, _ dat
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -246,6 +256,14 @@ func (r *SqsServicesK8SAwsQueueV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

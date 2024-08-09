@@ -53,7 +53,8 @@ type Ec2ServicesK8SAwsRouteTableV1Alpha1ManifestData struct {
 			GatewayID                   *string `tfsdk:"gateway_id" json:"gatewayID,omitempty"`
 			GatewayRef                  *struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"gateway_ref" json:"gatewayRef,omitempty"`
 			InstanceID     *string `tfsdk:"instance_id" json:"instanceID,omitempty"`
@@ -61,26 +62,30 @@ type Ec2ServicesK8SAwsRouteTableV1Alpha1ManifestData struct {
 			NatGatewayID   *string `tfsdk:"nat_gateway_id" json:"natGatewayID,omitempty"`
 			NatGatewayRef  *struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"nat_gateway_ref" json:"natGatewayRef,omitempty"`
 			NetworkInterfaceID *string `tfsdk:"network_interface_id" json:"networkInterfaceID,omitempty"`
 			TransitGatewayID   *string `tfsdk:"transit_gateway_id" json:"transitGatewayID,omitempty"`
 			TransitGatewayRef  *struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"transit_gateway_ref" json:"transitGatewayRef,omitempty"`
 			VpcEndpointID  *string `tfsdk:"vpc_endpoint_id" json:"vpcEndpointID,omitempty"`
 			VpcEndpointRef *struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"vpc_endpoint_ref" json:"vpcEndpointRef,omitempty"`
 			VpcPeeringConnectionID  *string `tfsdk:"vpc_peering_connection_id" json:"vpcPeeringConnectionID,omitempty"`
 			VpcPeeringConnectionRef *struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"vpc_peering_connection_ref" json:"vpcPeeringConnectionRef,omitempty"`
 		} `tfsdk:"routes" json:"routes,omitempty"`
@@ -91,7 +96,8 @@ type Ec2ServicesK8SAwsRouteTableV1Alpha1ManifestData struct {
 		VpcID  *string `tfsdk:"vpc_id" json:"vpcID,omitempty"`
 		VpcRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"vpc_ref" json:"vpcRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -250,6 +256,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -300,6 +314,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -342,6 +364,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -376,6 +406,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 													Optional:            true,
 													Computed:            false,
 												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 											Required: false,
 											Optional: true,
@@ -404,6 +442,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -471,6 +517,14 @@ func (r *Ec2ServicesK8SAwsRouteTableV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

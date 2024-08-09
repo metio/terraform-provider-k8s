@@ -54,7 +54,7 @@ type NetworkfirewallServicesK8SAwsFirewallV1Alpha1ManifestData struct {
 		FirewallPolicyChangeProtection *bool   `tfsdk:"firewall_policy_change_protection" json:"firewallPolicyChangeProtection,omitempty"`
 		SubnetChangeProtection         *bool   `tfsdk:"subnet_change_protection" json:"subnetChangeProtection,omitempty"`
 		SubnetMappings                 *[]struct {
-			IPAddressType *string `tfsdk:"i_p_address_type" json:"iPAddressType,omitempty"`
+			IpAddressType *string `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
 			SubnetID      *string `tfsdk:"subnet_id" json:"subnetID,omitempty"`
 		} `tfsdk:"subnet_mappings" json:"subnetMappings,omitempty"`
 		Tags *[]struct {
@@ -220,7 +220,7 @@ func (r *NetworkfirewallServicesK8SAwsFirewallV1Alpha1Manifest) Schema(_ context
 						MarkdownDescription: "The public subnets to use for your Network Firewall firewalls. Each subnetmust belong to a different Availability Zone in the VPC. Network Firewallcreates a firewall endpoint in each subnet.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"i_p_address_type": schema.StringAttribute{
+								"ip_address_type": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
 									Required:            false,

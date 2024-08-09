@@ -910,6 +910,24 @@ type AnywhereEksAmazonawsComBundlesV1Alpha1ManifestData struct {
 							OsName      *string   `tfsdk:"os_name" json:"osName,omitempty"`
 							Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
 						} `tfsdk:"tink_controller" json:"tinkController,omitempty"`
+						TinkRelay *struct {
+							Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
+							Description *string   `tfsdk:"description" json:"description,omitempty"`
+							ImageDigest *string   `tfsdk:"image_digest" json:"imageDigest,omitempty"`
+							Name        *string   `tfsdk:"name" json:"name,omitempty"`
+							Os          *string   `tfsdk:"os" json:"os,omitempty"`
+							OsName      *string   `tfsdk:"os_name" json:"osName,omitempty"`
+							Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
+						} `tfsdk:"tink_relay" json:"tinkRelay,omitempty"`
+						TinkRelayInit *struct {
+							Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
+							Description *string   `tfsdk:"description" json:"description,omitempty"`
+							ImageDigest *string   `tfsdk:"image_digest" json:"imageDigest,omitempty"`
+							Name        *string   `tfsdk:"name" json:"name,omitempty"`
+							Os          *string   `tfsdk:"os" json:"os,omitempty"`
+							OsName      *string   `tfsdk:"os_name" json:"osName,omitempty"`
+							Uri         *string   `tfsdk:"uri" json:"uri,omitempty"`
+						} `tfsdk:"tink_relay_init" json:"tinkRelayInit,omitempty"`
 						TinkServer *struct {
 							Arch        *[]string `tfsdk:"arch" json:"arch,omitempty"`
 							Description *string   `tfsdk:"description" json:"description,omitempty"`
@@ -7341,6 +7359,144 @@ func (r *AnywhereEksAmazonawsComBundlesV1Alpha1Manifest) Schema(_ context.Contex
 														},
 
 														"tink_controller": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"arch": schema.ListAttribute{
+																	Description:         "Architectures of the asset",
+																	MarkdownDescription: "Architectures of the asset",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"description": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"image_digest": schema.StringAttribute{
+																	Description:         "The SHA256 digest of the image manifest",
+																	MarkdownDescription: "The SHA256 digest of the image manifest",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "The asset name",
+																	MarkdownDescription: "The asset name",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"os": schema.StringAttribute{
+																	Description:         "Operating system of the asset",
+																	MarkdownDescription: "Operating system of the asset",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("linux", "darwin", "windows"),
+																	},
+																},
+
+																"os_name": schema.StringAttribute{
+																	Description:         "Name of the OS like ubuntu, bottlerocket",
+																	MarkdownDescription: "Name of the OS like ubuntu, bottlerocket",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"uri": schema.StringAttribute{
+																	Description:         "The image repository, name, and tag",
+																	MarkdownDescription: "The image repository, name, and tag",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"tink_relay": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"arch": schema.ListAttribute{
+																	Description:         "Architectures of the asset",
+																	MarkdownDescription: "Architectures of the asset",
+																	ElementType:         types.StringType,
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"description": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"image_digest": schema.StringAttribute{
+																	Description:         "The SHA256 digest of the image manifest",
+																	MarkdownDescription: "The SHA256 digest of the image manifest",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "The asset name",
+																	MarkdownDescription: "The asset name",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"os": schema.StringAttribute{
+																	Description:         "Operating system of the asset",
+																	MarkdownDescription: "Operating system of the asset",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.String{
+																		stringvalidator.OneOf("linux", "darwin", "windows"),
+																	},
+																},
+
+																"os_name": schema.StringAttribute{
+																	Description:         "Name of the OS like ubuntu, bottlerocket",
+																	MarkdownDescription: "Name of the OS like ubuntu, bottlerocket",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"uri": schema.StringAttribute{
+																	Description:         "The image repository, name, and tag",
+																	MarkdownDescription: "The image repository, name, and tag",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: true,
+															Optional: false,
+															Computed: false,
+														},
+
+														"tink_relay_init": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Attributes: map[string]schema.Attribute{

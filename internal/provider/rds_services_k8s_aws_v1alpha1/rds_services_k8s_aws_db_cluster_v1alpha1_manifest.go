@@ -56,13 +56,15 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 		DbClusterParameterGroupName *string   `tfsdk:"db_cluster_parameter_group_name" json:"dbClusterParameterGroupName,omitempty"`
 		DbClusterParameterGroupRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"db_cluster_parameter_group_ref" json:"dbClusterParameterGroupRef,omitempty"`
 		DbSubnetGroupName *string `tfsdk:"db_subnet_group_name" json:"dbSubnetGroupName,omitempty"`
 		DbSubnetGroupRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"db_subnet_group_ref" json:"dbSubnetGroupRef,omitempty"`
 		DbSystemID                      *string   `tfsdk:"db_system_id" json:"dbSystemID,omitempty"`
@@ -83,7 +85,8 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 		KmsKeyID                        *string   `tfsdk:"kms_key_id" json:"kmsKeyID,omitempty"`
 		KmsKeyRef                       *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
 		ManageMasterUserPassword *bool `tfsdk:"manage_master_user_password" json:"manageMasterUserPassword,omitempty"`
@@ -95,7 +98,8 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 		MasterUserSecretKMSKeyID  *string `tfsdk:"master_user_secret_kms_key_id" json:"masterUserSecretKMSKeyID,omitempty"`
 		MasterUserSecretKMSKeyRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"master_user_secret_kms_key_ref" json:"masterUserSecretKMSKeyRef,omitempty"`
 		MasterUsername                     *string `tfsdk:"master_username" json:"masterUsername,omitempty"`
@@ -134,7 +138,8 @@ type RdsServicesK8SAwsDbclusterV1Alpha1ManifestData struct {
 		VpcSecurityGroupIDs  *[]string `tfsdk:"vpc_security_group_i_ds" json:"vpcSecurityGroupIDs,omitempty"`
 		VpcSecurityGroupRefs *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"vpc_security_group_refs" json:"vpcSecurityGroupRefs,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -321,6 +326,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -349,6 +362,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -510,6 +531,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -579,6 +608,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -860,6 +897,14 @@ func (r *RdsServicesK8SAwsDbclusterV1Alpha1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

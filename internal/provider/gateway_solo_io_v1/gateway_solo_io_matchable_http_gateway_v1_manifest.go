@@ -198,6 +198,7 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					SslConfig           *struct {
 						AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
 						AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+						OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
 						Parameters         *struct {
 							CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 							EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
@@ -1834,6 +1835,14 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 														Description:         "",
 														MarkdownDescription: "",
 														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"one_way_tls": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

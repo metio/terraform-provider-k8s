@@ -46,14 +46,16 @@ type Ec2ServicesK8SAwsNatgatewayV1Alpha1ManifestData struct {
 		AllocationID  *string `tfsdk:"allocation_id" json:"allocationID,omitempty"`
 		AllocationRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"allocation_ref" json:"allocationRef,omitempty"`
 		ConnectivityType *string `tfsdk:"connectivity_type" json:"connectivityType,omitempty"`
 		SubnetID         *string `tfsdk:"subnet_id" json:"subnetID,omitempty"`
 		SubnetRef        *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"subnet_ref" json:"subnetRef,omitempty"`
 		Tags *[]struct {
@@ -163,6 +165,14 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -199,6 +209,14 @@ func (r *Ec2ServicesK8SAwsNatgatewayV1Alpha1Manifest) Schema(_ context.Context, 
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

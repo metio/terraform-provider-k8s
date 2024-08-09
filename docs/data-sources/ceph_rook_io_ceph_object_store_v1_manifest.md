@@ -54,15 +54,41 @@ Optional:
 Optional:
 
 - `allow_users_in_namespaces` (List of String) The list of allowed namespaces in addition to the object store namespacewhere ceph object store users may be created. Specify '*' to allow allnamespaces, otherwise list individual namespaces that are to be allowed.This is useful for applications that need object store credentialsto be created in their own namespace, where neither OBCs nor COSIis being used to create buckets. The default is empty.
+- `auth` (Attributes) The authentication configuration (see [below for nested schema](#nestedatt--spec--auth))
 - `data_pool` (Attributes) The data pool settings (see [below for nested schema](#nestedatt--spec--data_pool))
 - `gateway` (Attributes) The rgw pod info (see [below for nested schema](#nestedatt--spec--gateway))
 - `health_check` (Attributes) The RGW health probes (see [below for nested schema](#nestedatt--spec--health_check))
 - `hosting` (Attributes) Hosting settings for the object store.A common use case for hosting configuration is to inform Rook of endpoints that support DNSwildcards, which in turn allows virtual host-style bucket addressing. (see [below for nested schema](#nestedatt--spec--hosting))
 - `metadata_pool` (Attributes) The metadata pool settings (see [below for nested schema](#nestedatt--spec--metadata_pool))
 - `preserve_pools_on_delete` (Boolean) Preserve pools on object store deletion
+- `protocols` (Attributes) The protocol specification (see [below for nested schema](#nestedatt--spec--protocols))
 - `security` (Attributes) Security represents security settings (see [below for nested schema](#nestedatt--spec--security))
 - `shared_pools` (Attributes) The pool information when configuring RADOS namespaces in existing pools. (see [below for nested schema](#nestedatt--spec--shared_pools))
 - `zone` (Attributes) The multisite info (see [below for nested schema](#nestedatt--spec--zone))
+
+<a id="nestedatt--spec--auth"></a>
+### Nested Schema for `spec.auth`
+
+Optional:
+
+- `keystone` (Attributes) The spec for Keystone (see [below for nested schema](#nestedatt--spec--auth--keystone))
+
+<a id="nestedatt--spec--auth--keystone"></a>
+### Nested Schema for `spec.auth.keystone`
+
+Required:
+
+- `accepted_roles` (List of String) The roles requires to serve requests.
+- `service_user_secret_name` (String) The name of the secret containing the credentials for the service user account used by RGW. It has to be in the same namespace as the object store resource.
+- `url` (String) The URL for the Keystone server.
+
+Optional:
+
+- `implicit_tenants` (String) Create new users in their own tenants of the same name. Possible values are true, false, swift and s3. The latter have the effect of splitting the identity space such that only the indicated protocol will use implicit tenants.
+- `revocation_interval` (Number) The number of seconds between token revocation checks.
+- `token_cache_size` (Number) The maximum number of entries in each Keystone token cache.
+
+
 
 <a id="nestedatt--spec--data_pool"></a>
 ### Nested Schema for `spec.data_pool`
@@ -976,6 +1002,34 @@ Optional:
 - `interval` (String) Interval is the internal in second or minute for the health check to run like 60s for 60 seconds
 - `timeout` (String)
 
+
+
+
+<a id="nestedatt--spec--protocols"></a>
+### Nested Schema for `spec.protocols`
+
+Optional:
+
+- `s3` (Attributes) The spec for S3 (see [below for nested schema](#nestedatt--spec--protocols--s3))
+- `swift` (Attributes) The spec for Swift (see [below for nested schema](#nestedatt--spec--protocols--swift))
+
+<a id="nestedatt--spec--protocols--s3"></a>
+### Nested Schema for `spec.protocols.s3`
+
+Optional:
+
+- `auth_use_keystone` (Boolean) Whether to use Keystone for authentication. This option maps directly to the rgw_s3_auth_use_keystone option. Enabling it allows generating S3 credentials via an OpenStack API call, see the docs. If not given, the defaults of the corresponding RGW option apply.
+- `enabled` (Boolean) Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.
+
+
+<a id="nestedatt--spec--protocols--swift"></a>
+### Nested Schema for `spec.protocols.swift`
+
+Optional:
+
+- `account_in_url` (Boolean) Whether or not the Swift account name should be included in the Swift API URL. If set to false (the default), then the Swift API will listen on a URL formed like http://host:port/<rgw_swift_url_prefix>/v1. If set to true, the Swift API URL will be http://host:port/<rgw_swift_url_prefix>/v1/AUTH_<account_name>. You must set this option to true (and update the Keystone service catalog) if you want radosgw to support publicly-readable containers and temporary URLs.
+- `url_prefix` (String) The URL prefix for the Swift API, to distinguish it from the S3 API endpoint. The default is swift, which makes the Swift API available at the URL http://host:port/swift/v1 (or http://host:port/swift/v1/AUTH_%(tenant_id)s if rgw swift account in url is enabled).
+- `versioning_enabled` (Boolean) Enables the Object Versioning of OpenStack Object Storage API. This allows clients to put the X-Versions-Location attribute on containers that should be versioned.
 
 
 

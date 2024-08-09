@@ -128,8 +128,8 @@ func (r *SnsServicesK8SAwsPlatformEndpointV1Alpha1Manifest) Schema(_ context.Con
 				MarkdownDescription: "PlatformEndpointSpec defines the desired state of PlatformEndpoint.",
 				Attributes: map[string]schema.Attribute{
 					"custom_user_data": schema.StringAttribute{
-						Description:         "Arbitrary user data to associate with the endpoint. Amazon SNS does not usethis data. The data must be in UTF-8 format and less than 2KB.",
-						MarkdownDescription: "Arbitrary user data to associate with the endpoint. Amazon SNS does not usethis data. The data must be in UTF-8 format and less than 2KB.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -152,8 +152,8 @@ func (r *SnsServicesK8SAwsPlatformEndpointV1Alpha1Manifest) Schema(_ context.Con
 					},
 
 					"token": schema.StringAttribute{
-						Description:         "Unique identifier created by the notification service for an app on a device.The specific name for Token will vary, depending on which notification serviceis being used. For example, when using APNS as the notification service,you need the device token. Alternatively, when using GCM (Firebase CloudMessaging) or ADM, the device token equivalent is called the registrationID.",
-						MarkdownDescription: "Unique identifier created by the notification service for an app on a device.The specific name for Token will vary, depending on which notification serviceis being used. For example, when using APNS as the notification service,you need the device token. Alternatively, when using GCM (Firebase CloudMessaging) or ADM, the device token equivalent is called the registrationID.",
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

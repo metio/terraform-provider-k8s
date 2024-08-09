@@ -139,7 +139,7 @@ Optional:
 - `secrets` (List of String) Secrets is a list of Secrets in the same namespace as the Prometheusobject, which shall be mounted into the Prometheus Pods.Each Secret is added to the StatefulSet definition as a volume named 'secret-<secret-name>'.The Secrets are mounted into /etc/prometheus/secrets/<secret-name> in the 'prometheus' container.
 - `security_context` (Attributes) SecurityContext holds pod-level security attributes and common container settings.This defaults to the default PodSecurityContext. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run thePrometheus Pods.
-- `service_discovery_role` (String) Defines the service discovery role used to discover targets from 'ServiceMonitor' objects.If set, the value should be either 'Endpoints' or 'EndpointSlice'.If unset, the operator assumes the 'Endpoints' role.
+- `service_discovery_role` (String) Defines the service discovery role used to discover targets from'ServiceMonitor' objects and Alertmanager endpoints.If set, the value should be either 'Endpoints' or 'EndpointSlice'.If unset, the operator assumes the 'Endpoints' role.
 - `service_monitor_namespace_selector` (Attributes) Namespaces to match for ServicedMonitors discovery. An empty label selectormatches all namespaces. A null label selector (default value) matches the currentnamespace only. (see [below for nested schema](#nestedatt--spec--service_monitor_namespace_selector))
 - `service_monitor_selector` (Attributes) ServiceMonitors to be selected for target discovery. An empty labelselector matches all objects. A null label selector matches no objects.If 'spec.serviceMonitorSelector', 'spec.podMonitorSelector', 'spec.probeSelector'and 'spec.scrapeConfigSelector' are null, the Prometheus configuration is unmanaged.The Prometheus operator will ensure that the Prometheus configuration'sSecret exists, but it is the responsibility of the user to provide the rawgzipped Prometheus configuration under the 'prometheus.yaml.gz' key.This behavior is *deprecated* and will be removed in the next major versionof the custom resource definition. It is recommended to use'spec.additionalScrapeConfigs' instead. (see [below for nested schema](#nestedatt--spec--service_monitor_selector))
 - `sha` (String) Deprecated: use 'spec.image' instead. The image's digest can be specified as part of the image name.
@@ -596,7 +596,7 @@ Optional:
 
 Required:
 
-- `alertmanagers` (Attributes List) AlertmanagerEndpoints Prometheus should fire alerts against. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers))
+- `alertmanagers` (Attributes List) Alertmanager endpoints where Prometheus should send alerts to. (see [below for nested schema](#nestedatt--spec--alerting--alertmanagers))
 
 <a id="nestedatt--spec--alerting--alertmanagers"></a>
 ### Nested Schema for `spec.alerting.alertmanagers`
@@ -2558,7 +2558,12 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config))
 
 <a id="nestedatt--spec--remote_read--oauth2--client_id"></a>
 ### Nested Schema for `spec.remote_read.oauth2.client_id`
@@ -2606,6 +2611,103 @@ Optional:
 
 - `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--ca"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--ca--secret))
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--ca--secret"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--cert"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_read--oauth2--tls_config--cert--secret))
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--cert--secret"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_read--oauth2--tls_config--key_secret"></a>
+### Nested Schema for `spec.remote_read.oauth2.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 
@@ -2871,7 +2973,12 @@ Required:
 Optional:
 
 - `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config))
 
 <a id="nestedatt--spec--remote_write--oauth2--client_id"></a>
 ### Nested Schema for `spec.remote_write.oauth2.client_id`
@@ -2919,6 +3026,103 @@ Optional:
 
 - `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--ca"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--ca--secret))
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--ca--secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--cert"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config--cert--secret))
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--cert--secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--remote_write--oauth2--tls_config--key_secret"></a>
+### Nested Schema for `spec.remote_write.oauth2.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 

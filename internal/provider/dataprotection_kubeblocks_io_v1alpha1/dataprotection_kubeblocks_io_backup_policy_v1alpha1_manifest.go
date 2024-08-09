@@ -94,6 +94,14 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
 				PodSelector *struct {
+					FallbackLabelSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"fallback_label_selector" json:"fallbackLabelSelector,omitempty"`
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -137,6 +145,14 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
 				PodSelector *struct {
+					FallbackLabelSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"fallback_label_selector" json:"fallbackLabelSelector,omitempty"`
 					MatchExpressions *[]struct {
 						Key      *string   `tfsdk:"key" json:"key,omitempty"`
 						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -180,6 +196,14 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			PodSelector *struct {
+				FallbackLabelSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"fallback_label_selector" json:"fallbackLabelSelector,omitempty"`
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -212,6 +236,14 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			PodSelector *struct {
+				FallbackLabelSelector *struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"fallback_label_selector" json:"fallbackLabelSelector,omitempty"`
 				MatchExpressions *[]struct {
 					Key      *string   `tfsdk:"key" json:"key,omitempty"`
 					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
@@ -642,6 +674,60 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 											MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 											Attributes: map[string]schema.Attribute{
+												"fallback_label_selector": schema.SingleNestedAttribute{
+													Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+													MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+													Attributes: map[string]schema.Attribute{
+														"match_expressions": schema.ListNestedAttribute{
+															Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "key is the label key that the selector applies to.",
+																		MarkdownDescription: "key is the label key that the selector applies to.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"operator": schema.StringAttribute{
+																		Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"values": schema.ListAttribute{
+																		Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"match_labels": schema.MapAttribute{
+															Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"match_expressions": schema.ListNestedAttribute{
 													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -943,6 +1029,60 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 												Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 												MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 												Attributes: map[string]schema.Attribute{
+													"fallback_label_selector": schema.SingleNestedAttribute{
+														Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+														MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"match_expressions": schema.ListNestedAttribute{
 														Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 														MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1245,6 +1385,60 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 								MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 								Attributes: map[string]schema.Attribute{
+									"fallback_label_selector": schema.SingleNestedAttribute{
+										Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+										MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+										Attributes: map[string]schema.Attribute{
+											"match_expressions": schema.ListNestedAttribute{
+												Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"key": schema.StringAttribute{
+															Description:         "key is the label key that the selector applies to.",
+															MarkdownDescription: "key is the label key that the selector applies to.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"operator": schema.StringAttribute{
+															Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"values": schema.ListAttribute{
+															Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+															ElementType:         types.StringType,
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"match_labels": schema.MapAttribute{
+												Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+												ElementType:         types.StringType,
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"match_expressions": schema.ListNestedAttribute{
 										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -1469,6 +1663,60 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 									Description:         "Used to find the target pod. The volumes of the target pod will be backed up.",
 									MarkdownDescription: "Used to find the target pod. The volumes of the target pod will be backed up.",
 									Attributes: map[string]schema.Attribute{
+										"fallback_label_selector": schema.SingleNestedAttribute{
+											Description:         "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+											MarkdownDescription: "fallbackLabelSelector is used to filter available pods when the labelSelector fails.This only takes effect when the 'strategy' field below is set to 'Any'.",
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "key is the label key that the selector applies to.",
+																MarkdownDescription: "key is the label key that the selector applies to.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"match_expressions": schema.ListNestedAttribute{
 											Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
 											MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",

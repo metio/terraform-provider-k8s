@@ -1803,6 +1803,7 @@ type K8SMariadbComMaxScaleV1Alpha1ManifestData struct {
 				SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"sidecar_containers" json:"sidecarContainers,omitempty"`
+		Suspend     *bool `tfsdk:"suspend" json:"suspend,omitempty"`
 		Tolerations *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -12162,8 +12163,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"suspend": schema.BoolAttribute{
-								Description:         "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
-								MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
+								Description:         "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
+								MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -13050,8 +13051,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"suspend": schema.BoolAttribute{
-											Description:         "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
-											MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
+											Description:         "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
+											MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -13091,8 +13092,8 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"suspend": schema.BoolAttribute{
-									Description:         "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
-									MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.",
+									Description:         "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
+									MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -14102,6 +14103,14 @@ func (r *K8SMariadbComMaxScaleV1Alpha1Manifest) Schema(_ context.Context, _ data
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"suspend": schema.BoolAttribute{
+						Description:         "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
+						MarkdownDescription: "Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

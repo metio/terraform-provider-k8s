@@ -89,3 +89,4 @@ Optional:
 Optional:
 
 - `name` (String)
+- `namespace` (String)

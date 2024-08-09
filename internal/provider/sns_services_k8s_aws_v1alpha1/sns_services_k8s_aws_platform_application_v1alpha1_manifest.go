@@ -47,25 +47,29 @@ type SnsServicesK8SAwsPlatformApplicationV1Alpha1ManifestData struct {
 		EventEndpointCreated    *string `tfsdk:"event_endpoint_created" json:"eventEndpointCreated,omitempty"`
 		EventEndpointCreatedRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"event_endpoint_created_ref" json:"eventEndpointCreatedRef,omitempty"`
 		EventEndpointDeleted    *string `tfsdk:"event_endpoint_deleted" json:"eventEndpointDeleted,omitempty"`
 		EventEndpointDeletedRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"event_endpoint_deleted_ref" json:"eventEndpointDeletedRef,omitempty"`
 		EventEndpointUpdated    *string `tfsdk:"event_endpoint_updated" json:"eventEndpointUpdated,omitempty"`
 		EventEndpointUpdatedRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"event_endpoint_updated_ref" json:"eventEndpointUpdatedRef,omitempty"`
 		FailureFeedbackRoleARN *string `tfsdk:"failure_feedback_role_arn" json:"failureFeedbackRoleARN,omitempty"`
 		FailureFeedbackRoleRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"failure_feedback_role_ref" json:"failureFeedbackRoleRef,omitempty"`
 		Name                   *string `tfsdk:"name" json:"name,omitempty"`
@@ -75,7 +79,8 @@ type SnsServicesK8SAwsPlatformApplicationV1Alpha1ManifestData struct {
 		SuccessFeedbackRoleARN *string `tfsdk:"success_feedback_role_arn" json:"successFeedbackRoleARN,omitempty"`
 		SuccessFeedbackRoleRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"success_feedback_role_ref" json:"successFeedbackRoleRef,omitempty"`
 		SuccessFeedbackSampleRate *string `tfsdk:"success_feedback_sample_rate" json:"successFeedbackSampleRate,omitempty"`
@@ -190,6 +195,14 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -218,6 +231,14 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -258,6 +279,14 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -286,6 +315,14 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -352,6 +389,14 @@ func (r *SnsServicesK8SAwsPlatformApplicationV1Alpha1Manifest) Schema(_ context.
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

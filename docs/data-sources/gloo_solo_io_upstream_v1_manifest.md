@@ -694,6 +694,7 @@ Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
+- `one_way_tls` (Boolean)
 - `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--parameters))
 - `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--sds))
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--failover--prioritized_localities--locality_endpoints--lb_endpoints--upstream_ssl_config--secret_ref))
@@ -998,6 +999,7 @@ Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
+- `one_way_tls` (Boolean)
 - `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config--parameters))
 - `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config--sds))
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--http_connect_ssl_config--secret_ref))
@@ -1671,6 +1673,7 @@ Optional:
 
 - `allow_renegotiation` (Boolean)
 - `alpn_protocols` (List of String)
+- `one_way_tls` (Boolean)
 - `parameters` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config--parameters))
 - `sds` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config--sds))
 - `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--ssl_config--secret_ref))

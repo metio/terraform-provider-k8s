@@ -43,7 +43,8 @@ type WorkKarmadaIoWorkV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Workload *struct {
+		SuspendDispatching *bool `tfsdk:"suspend_dispatching" json:"suspendDispatching,omitempty"`
+		Workload           *struct {
 			Manifests *[]map[string]string `tfsdk:"manifests" json:"manifests,omitempty"`
 		} `tfsdk:"workload" json:"workload,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -126,6 +127,14 @@ func (r *WorkKarmadaIoWorkV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 				Description:         "Spec represents the desired behavior of Work.",
 				MarkdownDescription: "Spec represents the desired behavior of Work.",
 				Attributes: map[string]schema.Attribute{
+					"suspend_dispatching": schema.BoolAttribute{
+						Description:         "SuspendDispatching controls whether dispatching shouldbe suspended, nil means not suspend.Note: true means stop propagating to all clusters.",
+						MarkdownDescription: "SuspendDispatching controls whether dispatching shouldbe suspended, nil means not suspend.Note: true means stop propagating to all clusters.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"workload": schema.SingleNestedAttribute{
 						Description:         "Workload represents the manifest workload to be deployed on managed cluster.",
 						MarkdownDescription: "Workload represents the manifest workload to be deployed on managed cluster.",

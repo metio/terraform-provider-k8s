@@ -51,7 +51,8 @@ type MemorydbServicesK8SAwsAclV1Alpha1ManifestData struct {
 		UserNames *[]string `tfsdk:"user_names" json:"userNames,omitempty"`
 		UserRefs  *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"user_refs" json:"userRefs,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -188,6 +189,14 @@ func (r *MemorydbServicesK8SAwsAclV1Alpha1Manifest) Schema(_ context.Context, _ 
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

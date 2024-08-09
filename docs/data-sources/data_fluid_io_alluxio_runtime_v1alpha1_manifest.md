@@ -61,6 +61,7 @@ Optional:
 - `disable_prometheus` (Boolean) Disable monitoring for Alluxio RuntimePrometheus is enabled by default
 - `fuse` (Attributes) The component spec of Alluxio Fuse (see [below for nested schema](#nestedatt--spec--fuse))
 - `hadoop_config` (String) Name of the configMap used to support HDFS configurations when using HDFS as Alluxio's UFS. The configMapmust be in the same namespace with the AlluxioRuntime. The configMap should contain user-specific HDFS conf files in it.For now, only 'hdfs-site.xml' and 'core-site.xml' are supported. It must take the filename of the conf file as the key and contentof the file as the value.
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--image_pull_secrets))
 - `init_users` (Attributes) The spec of init users (see [below for nested schema](#nestedatt--spec--init_users))
 - `job_master` (Attributes) The component spec of Alluxio job master (see [below for nested schema](#nestedatt--spec--job_master))
 - `job_worker` (Attributes) The component spec of Alluxio job Worker (see [below for nested schema](#nestedatt--spec--job_worker))
@@ -92,6 +93,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled or Disabled for the components. For now, only  API Gateway is enabled or disabled.
 - `env` (Map of String) Environment variables that will be used by Alluxio component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--api_gateway--image_pull_secrets))
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
@@ -101,6 +103,14 @@ Optional:
 - `replicas` (Number) Replicas is the desired number of replicas of the given template.If unspecified, defaults to 1.replicas is the min replicas of dataset in the cluster
 - `resources` (Attributes) Resources that will be requested by the Alluxio component. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--api_gateway--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--api_gateway--volume_mounts))
+
+<a id="nestedatt--spec--api_gateway--image_pull_secrets"></a>
+### Nested Schema for `spec.api_gateway.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--api_gateway--pod_metadata"></a>
 ### Nested Schema for `spec.api_gateway.pod_metadata`
@@ -165,6 +175,7 @@ Optional:
 - `env` (Map of String) Environment variables that will be used by Alluxio Fuse
 - `image` (String) Image for Alluxio Fuse(e.g. alluxio/alluxio-fuse)
 - `image_pull_policy` (String) One of the three policies: 'Always', 'IfNotPresent', 'Never'
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--fuse--image_pull_secrets))
 - `image_tag` (String) Image Tag for Alluxio Fuse(e.g. 2.3.0-SNAPSHOT)
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
@@ -173,6 +184,14 @@ Optional:
 - `properties` (Map of String) Configurable properties for Alluxio System. <br>Refer to <a href='https://docs.alluxio.io/os/user/stable/en/reference/Properties-List.html'>Alluxio Configuration Properties</a> for more info
 - `resources` (Attributes) Resources that will be requested by Alluxio Fuse. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--fuse--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--fuse--volume_mounts))
+
+<a id="nestedatt--spec--fuse--image_pull_secrets"></a>
+### Nested Schema for `spec.fuse.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--fuse--pod_metadata"></a>
 ### Nested Schema for `spec.fuse.pod_metadata`
@@ -218,6 +237,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--image_pull_secrets"></a>
+### Nested Schema for `spec.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
+
 <a id="nestedatt--spec--init_users"></a>
 ### Nested Schema for `spec.init_users`
 
@@ -255,6 +282,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled or Disabled for the components. For now, only  API Gateway is enabled or disabled.
 - `env` (Map of String) Environment variables that will be used by Alluxio component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--job_master--image_pull_secrets))
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
@@ -264,6 +292,14 @@ Optional:
 - `replicas` (Number) Replicas is the desired number of replicas of the given template.If unspecified, defaults to 1.replicas is the min replicas of dataset in the cluster
 - `resources` (Attributes) Resources that will be requested by the Alluxio component. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--job_master--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--job_master--volume_mounts))
+
+<a id="nestedatt--spec--job_master--image_pull_secrets"></a>
+### Nested Schema for `spec.job_master.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--job_master--pod_metadata"></a>
 ### Nested Schema for `spec.job_master.pod_metadata`
@@ -316,6 +352,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled or Disabled for the components. For now, only  API Gateway is enabled or disabled.
 - `env` (Map of String) Environment variables that will be used by Alluxio component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--job_worker--image_pull_secrets))
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
@@ -325,6 +362,14 @@ Optional:
 - `replicas` (Number) Replicas is the desired number of replicas of the given template.If unspecified, defaults to 1.replicas is the min replicas of dataset in the cluster
 - `resources` (Attributes) Resources that will be requested by the Alluxio component. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--job_worker--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--job_worker--volume_mounts))
+
+<a id="nestedatt--spec--job_worker--image_pull_secrets"></a>
+### Nested Schema for `spec.job_worker.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--job_worker--pod_metadata"></a>
 ### Nested Schema for `spec.job_worker.pod_metadata`
@@ -403,6 +448,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled or Disabled for the components. For now, only  API Gateway is enabled or disabled.
 - `env` (Map of String) Environment variables that will be used by Alluxio component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--master--image_pull_secrets))
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
@@ -412,6 +458,14 @@ Optional:
 - `replicas` (Number) Replicas is the desired number of replicas of the given template.If unspecified, defaults to 1.replicas is the min replicas of dataset in the cluster
 - `resources` (Attributes) Resources that will be requested by the Alluxio component. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--master--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--master--volume_mounts))
+
+<a id="nestedatt--spec--master--image_pull_secrets"></a>
+### Nested Schema for `spec.master.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--master--pod_metadata"></a>
 ### Nested Schema for `spec.master.pod_metadata`
@@ -2094,6 +2148,7 @@ Optional:
 
 - `enabled` (Boolean) Enabled or Disabled for the components. For now, only  API Gateway is enabled or disabled.
 - `env` (Map of String) Environment variables that will be used by Alluxio component. <br>
+- `image_pull_secrets` (Attributes List) ImagePullSecrets that will be used to pull images (see [below for nested schema](#nestedatt--spec--worker--image_pull_secrets))
 - `jvm_options` (List of String) Options for JVM
 - `network_mode` (String) Whether to use hostnetwork or not
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the master to fit on a node
@@ -2103,6 +2158,14 @@ Optional:
 - `replicas` (Number) Replicas is the desired number of replicas of the given template.If unspecified, defaults to 1.replicas is the min replicas of dataset in the cluster
 - `resources` (Attributes) Resources that will be requested by the Alluxio component. <br><br>Resources are not allowed for ephemeral containers. Ephemeral containers use spare resourcesalready allocated to the pod. (see [below for nested schema](#nestedatt--spec--worker--resources))
 - `volume_mounts` (Attributes List) VolumeMounts specifies the volumes listed in '.spec.volumes' to mount into the alluxio runtime component's filesystem. (see [below for nested schema](#nestedatt--spec--worker--volume_mounts))
+
+<a id="nestedatt--spec--worker--image_pull_secrets"></a>
+### Nested Schema for `spec.worker.image_pull_secrets`
+
+Optional:
+
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
+
 
 <a id="nestedatt--spec--worker--pod_metadata"></a>
 ### Nested Schema for `spec.worker.pod_metadata`

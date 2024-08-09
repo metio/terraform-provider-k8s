@@ -46,20 +46,23 @@ type EfsServicesK8SAwsMountTargetV1Alpha1ManifestData struct {
 		FileSystemID  *string `tfsdk:"file_system_id" json:"fileSystemID,omitempty"`
 		FileSystemRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"file_system_ref" json:"fileSystemRef,omitempty"`
 		IpAddress         *string `tfsdk:"ip_address" json:"ipAddress,omitempty"`
 		SecurityGroupRefs *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
 		SecurityGroups *[]string `tfsdk:"security_groups" json:"securityGroups,omitempty"`
 		SubnetID       *string   `tfsdk:"subnet_id" json:"subnetID,omitempty"`
 		SubnetRef      *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"subnet_ref" json:"subnetRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -165,6 +168,14 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -194,6 +205,14 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,
@@ -238,6 +257,14 @@ func (r *EfsServicesK8SAwsMountTargetV1Alpha1Manifest) Schema(_ context.Context,
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

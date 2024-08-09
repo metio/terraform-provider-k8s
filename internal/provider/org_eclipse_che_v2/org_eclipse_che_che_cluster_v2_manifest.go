@@ -855,8 +855,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Metadata(_ context.Context, request 
 
 func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
-		MarkdownDescription: "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
+		Description:         "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
+		MarkdownDescription: "The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -1698,8 +1698,8 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								MarkdownDescription: "Configuration settings related to the devfile registry used by the Che installation.",
 								Attributes: map[string]schema.Attribute{
 									"deployment": schema.SingleNestedAttribute{
-										Description:         "Deployment override options.",
-										MarkdownDescription: "Deployment override options.",
+										Description:         "Deprecated deployment override options.",
+										MarkdownDescription: "Deprecated deployment override options.",
 										Attributes: map[string]schema.Attribute{
 											"containers": schema.ListNestedAttribute{
 												Description:         "List of containers belonging to the pod.",

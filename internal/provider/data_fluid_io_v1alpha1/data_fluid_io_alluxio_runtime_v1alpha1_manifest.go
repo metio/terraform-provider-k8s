@@ -51,8 +51,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 			ImageTag        *string `tfsdk:"image_tag" json:"imageTag,omitempty"`
 		} `tfsdk:"alluxio_version" json:"alluxioVersion,omitempty"`
 		ApiGateway *struct {
-			Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
 			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -85,16 +88,19 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 		} `tfsdk:"data" json:"data,omitempty"`
 		DisablePrometheus *bool `tfsdk:"disable_prometheus" json:"disablePrometheus,omitempty"`
 		Fuse              *struct {
-			Args            *[]string          `tfsdk:"args" json:"args,omitempty"`
-			CleanPolicy     *string            `tfsdk:"clean_policy" json:"cleanPolicy,omitempty"`
-			Env             *map[string]string `tfsdk:"env" json:"env,omitempty"`
-			Image           *string            `tfsdk:"image" json:"image,omitempty"`
-			ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			ImageTag        *string            `tfsdk:"image_tag" json:"imageTag,omitempty"`
-			JvmOptions      *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
-			NetworkMode     *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
-			NodeSelector    *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			PodMetadata     *struct {
+			Args             *[]string          `tfsdk:"args" json:"args,omitempty"`
+			CleanPolicy      *string            `tfsdk:"clean_policy" json:"cleanPolicy,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Image            *string            `tfsdk:"image" json:"image,omitempty"`
+			ImagePullPolicy  *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+			ImageTag     *string            `tfsdk:"image_tag" json:"imageTag,omitempty"`
+			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
+			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
+			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PodMetadata  *struct {
 				Annotations *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 				Labels      *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 			} `tfsdk:"pod_metadata" json:"podMetadata,omitempty"`
@@ -115,8 +121,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 				SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"fuse" json:"fuse,omitempty"`
-		HadoopConfig *string `tfsdk:"hadoop_config" json:"hadoopConfig,omitempty"`
-		InitUsers    *struct {
+		HadoopConfig     *string `tfsdk:"hadoop_config" json:"hadoopConfig,omitempty"`
+		ImagePullSecrets *[]struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
+		InitUsers *struct {
 			Env             *map[string]string `tfsdk:"env" json:"env,omitempty"`
 			Image           *string            `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
@@ -130,8 +139,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 			} `tfsdk:"resources" json:"resources,omitempty"`
 		} `tfsdk:"init_users" json:"initUsers,omitempty"`
 		JobMaster *struct {
-			Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
 			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -159,8 +171,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 		} `tfsdk:"job_master" json:"jobMaster,omitempty"`
 		JobWorker *struct {
-			Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
 			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -198,8 +213,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 			} `tfsdk:"metadata_sync_policy" json:"metadataSyncPolicy,omitempty"`
 		} `tfsdk:"management" json:"management,omitempty"`
 		Master *struct {
-			Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
 			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -855,8 +873,11 @@ type DataFluidIoAlluxioRuntimeV1Alpha1ManifestData struct {
 			} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 		} `tfsdk:"volumes" json:"volumes,omitempty"`
 		Worker *struct {
-			Enabled      *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-			Env          *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+			Env              *map[string]string `tfsdk:"env" json:"env,omitempty"`
+			ImagePullSecrets *[]struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"image_pull_secrets" json:"imagePullSecrets,omitempty"`
 			JvmOptions   *[]string          `tfsdk:"jvm_options" json:"jvmOptions,omitempty"`
 			NetworkMode  *string            `tfsdk:"network_mode" json:"networkMode,omitempty"`
 			NodeSelector *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
@@ -1015,6 +1036,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"jvm_options": schema.ListAttribute{
@@ -1291,6 +1331,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Computed:            false,
 							},
 
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"image_tag": schema.StringAttribute{
 								Description:         "Image Tag for Alluxio Fuse(e.g. 2.3.0-SNAPSHOT)",
 								MarkdownDescription: "Image Tag for Alluxio Fuse(e.g. 2.3.0-SNAPSHOT)",
@@ -1482,6 +1541,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Computed:            false,
 					},
 
+					"image_pull_secrets": schema.ListNestedAttribute{
+						Description:         "ImagePullSecrets that will be used to pull images",
+						MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"name": schema.StringAttribute{
+									Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+									MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"init_users": schema.SingleNestedAttribute{
 						Description:         "The spec of init users",
 						MarkdownDescription: "The spec of init users",
@@ -1589,6 +1667,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"jvm_options": schema.ListAttribute{
@@ -1805,6 +1902,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"jvm_options": schema.ListAttribute{
@@ -2081,6 +2197,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"jvm_options": schema.ListAttribute{
@@ -6496,6 +6631,25 @@ func (r *DataFluidIoAlluxioRuntimeV1Alpha1Manifest) Schema(_ context.Context, _ 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"image_pull_secrets": schema.ListNestedAttribute{
+								Description:         "ImagePullSecrets that will be used to pull images",
+								MarkdownDescription: "ImagePullSecrets that will be used to pull images",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"name": schema.StringAttribute{
+											Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"jvm_options": schema.ListAttribute{
