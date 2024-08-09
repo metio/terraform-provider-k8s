@@ -70,6 +70,7 @@ Optional:
 - `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `region` (String) Region of the Endpoint where the BucketName is located in.
 - `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
+- `sts` (Attributes) STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider. (see [below for nested schema](#nestedatt--spec--sts))
 - `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thisBucket.
 - `timeout` (String) Timeout for fetch operations, defaults to 60s.
 
@@ -111,3 +112,12 @@ Required:
 Required:
 
 - `name` (String) Name of the referent.
+
+
+<a id="nestedatt--spec--sts"></a>
+### Nested Schema for `spec.sts`
+
+Required:
+
+- `endpoint` (String) Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.
+- `provider` (String) Provider of the Security Token Service.

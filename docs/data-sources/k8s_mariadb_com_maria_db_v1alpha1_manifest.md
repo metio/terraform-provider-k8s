@@ -95,7 +95,7 @@ Optional:
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to be used by the Pods.
 - `sidecar_containers` (Attributes List) SidecarContainers to be used in the Pod. (see [below for nested schema](#nestedatt--spec--sidecar_containers))
 - `storage` (Attributes) Storage defines the storage options to be used for provisioning the PVCs mounted by MariaDB. (see [below for nested schema](#nestedatt--spec--storage))
-- `suspend` (Boolean) Suspend defines whether the MariaDB reconciliation loop is enabled. This can be useful for maintenance, as disabling the reconciliation loop prevents the operator from interfering with user operations during maintenance activities.
+- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.
 - `time_zone` (String) TimeZone sets the default timezone. If not provided, it defaults to SYSTEM and the timezone data is not loaded.
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 - `topology_spread_constraints` (Attributes List) TopologySpreadConstraints to be used in the Pod. (see [below for nested schema](#nestedatt--spec--topology_spread_constraints))
@@ -6609,7 +6609,7 @@ Optional:
 - `module` (String) Module is the module to use to monitor MariaDB servers. It is mandatory when no MariaDB reference is provided.
 - `name` (String) Name is the identifier of the monitor. It is defaulted if not provided.
 - `params` (Map of String) Params defines extra parameters to pass to the monitor.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-common-monitor-parameters/.Monitor specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-galera-monitor/#galera-monitor-optional-parameters.https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-monitor/#configuration.
-- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.
+- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.
 
 
 <a id="nestedatt--spec--max_scale--pod_disruption_budget"></a>
@@ -6633,7 +6633,7 @@ Required:
 Optional:
 
 - `params` (Map of String) Params defines extra parameters to pass to the service.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#service_1.Router specific parameter are also suported:https://mariadb.com/kb/en/mariadb-maxscale-2308-readwritesplit/#configuration.https://mariadb.com/kb/en/mariadb-maxscale-2308-readconnroute/#configuration.
-- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.
+- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.
 
 <a id="nestedatt--spec--max_scale--services--listener"></a>
 ### Nested Schema for `spec.max_scale.services.listener`
@@ -6644,7 +6644,7 @@ Optional:
 - `params` (Map of String) Params defines extra parameters to pass to the listener.Any parameter supported by MaxScale may be specified here. See reference:https://mariadb.com/kb/en/mariadb-maxscale-2308-mariadb-maxscale-configuration-guide/#listener_1.
 - `port` (Number) Port is the network port where the MaxScale server will listen.
 - `protocol` (String) Protocol is the MaxScale protocol to use when communicating with the client. If not provided, it defaults to MariaDBProtocol.
-- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not. Feature flag --feature-maxscale-suspend is required in the controller to enable this.
+- `suspend` (Boolean) Suspend indicates whether the current resource should be suspended or not.This can be useful for maintenance, as disabling the reconciliation prevents the operator from interfering with user operations during maintenance activities.
 
 
 

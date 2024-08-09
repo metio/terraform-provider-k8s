@@ -69,6 +69,7 @@ Optional:
 - `args` (List of String)
 - `checkpoint_trigger_nonce` (Number)
 - `entry_class` (String)
+- `flink_state_snapshot_reference` (Attributes) (see [below for nested schema](#nestedatt--spec--job--flink_state_snapshot_reference))
 - `initial_savepoint_path` (String)
 - `jar_uri` (String)
 - `parallelism` (Number)
@@ -76,3 +77,12 @@ Optional:
 - `savepoint_trigger_nonce` (Number)
 - `state` (String)
 - `upgrade_mode` (String)
+
+<a id="nestedatt--spec--job--flink_state_snapshot_reference"></a>
+### Nested Schema for `spec.job.flink_state_snapshot_reference`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+- `path` (String)

@@ -134,13 +134,15 @@ type AcmpcaServicesK8SAwsCertificateV1Alpha1ManifestData struct {
 		CertificateAuthorityARN *string `tfsdk:"certificate_authority_arn" json:"certificateAuthorityARN,omitempty"`
 		CertificateAuthorityRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"certificate_authority_ref" json:"certificateAuthorityRef,omitempty"`
 		CertificateSigningRequest    *string `tfsdk:"certificate_signing_request" json:"certificateSigningRequest,omitempty"`
 		CertificateSigningRequestRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"certificate_signing_request_ref" json:"certificateSigningRequestRef,omitempty"`
 		SigningAlgorithm *string `tfsdk:"signing_algorithm" json:"signingAlgorithm,omitempty"`
@@ -869,6 +871,14 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -897,6 +907,14 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

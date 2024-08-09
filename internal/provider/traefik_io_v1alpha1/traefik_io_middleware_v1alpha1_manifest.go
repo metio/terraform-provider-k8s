@@ -74,6 +74,7 @@ type TraefikIoMiddlewareV1Alpha1ManifestData struct {
 		} `tfsdk:"circuit_breaker" json:"circuitBreaker,omitempty"`
 		Compress *struct {
 			DefaultEncoding      *string   `tfsdk:"default_encoding" json:"defaultEncoding,omitempty"`
+			Encodings            *[]string `tfsdk:"encodings" json:"encodings,omitempty"`
 			ExcludedContentTypes *[]string `tfsdk:"excluded_content_types" json:"excludedContentTypes,omitempty"`
 			IncludedContentTypes *[]string `tfsdk:"included_content_types" json:"includedContentTypes,omitempty"`
 			MinResponseBodyBytes *int64    `tfsdk:"min_response_body_bytes" json:"minResponseBodyBytes,omitempty"`
@@ -550,12 +551,21 @@ func (r *TraefikIoMiddlewareV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 					},
 
 					"compress": schema.SingleNestedAttribute{
-						Description:         "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/",
-						MarkdownDescription: "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/",
+						Description:         "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/",
+						MarkdownDescription: "Compress holds the compress middleware configuration.This middleware compresses responses before sending them to the client, using gzip, brotli, or zstd compression.More info: https://doc.traefik.io/traefik/v3.1/middlewares/http/compress/",
 						Attributes: map[string]schema.Attribute{
 							"default_encoding": schema.StringAttribute{
 								Description:         "DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').",
 								MarkdownDescription: "DefaultEncoding specifies the default encoding if the 'Accept-Encoding' header is not in the request or contains a wildcard ('*').",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"encodings": schema.ListAttribute{
+								Description:         "Encodings defines the list of supported compression algorithms.",
+								MarkdownDescription: "Encodings defines the list of supported compression algorithms.",
+								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

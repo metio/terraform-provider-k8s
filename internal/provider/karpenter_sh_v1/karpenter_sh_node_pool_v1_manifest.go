@@ -282,8 +282,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 							},
 
 							"spec": schema.SingleNestedAttribute{
-								Description:         "NodeClaimSpec describes the desired state of the NodeClaim",
-								MarkdownDescription: "NodeClaimSpec describes the desired state of the NodeClaim",
+								Description:         "NodeClaimTemplateSpec describes the desired state of the NodeClaim in the NodepoolNodeClaimTemplateSpec is used in the NodePool's NodeClaimTemplate, with the resource requests omitted sinceusers are not able to set resource requests in the NodePool.",
+								MarkdownDescription: "NodeClaimTemplateSpec describes the desired state of the NodeClaim in the NodepoolNodeClaimTemplateSpec is used in the NodePool's NodeClaimTemplate, with the resource requests omitted sinceusers are not able to set resource requests in the NodePool.",
 								Attributes: map[string]schema.Attribute{
 									"expire_after": schema.StringAttribute{
 										Description:         "ExpireAfter is the duration the controller will waitbefore terminating a node, measured from when the node is created. Thisis useful to implement features like eventually consistent node upgrade,memory leak protection, and disruption testing.",
@@ -306,6 +306,9 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 												Required:            true,
 												Optional:            false,
 												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.RegexMatches(regexp.MustCompile(`^[^/]*$`), ""),
+												},
 											},
 
 											"kind": schema.StringAttribute{

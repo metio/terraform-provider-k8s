@@ -49,7 +49,8 @@ type EksServicesK8SAwsNodegroupV1Alpha1ManifestData struct {
 		ClusterName        *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
 		ClusterRef         *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"cluster_ref" json:"clusterRef,omitempty"`
 		DiskSize       *int64             `tfsdk:"disk_size" json:"diskSize,omitempty"`
@@ -64,7 +65,8 @@ type EksServicesK8SAwsNodegroupV1Alpha1ManifestData struct {
 		NodeRole    *string `tfsdk:"node_role" json:"nodeRole,omitempty"`
 		NodeRoleRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"node_role_ref" json:"nodeRoleRef,omitempty"`
 		ReleaseVersion *string `tfsdk:"release_version" json:"releaseVersion,omitempty"`
@@ -72,7 +74,8 @@ type EksServicesK8SAwsNodegroupV1Alpha1ManifestData struct {
 			Ec2SshKey               *string `tfsdk:"ec2_ssh_key" json:"ec2SshKey,omitempty"`
 			SourceSecurityGroupRefs *[]struct {
 				From *struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"source_security_group_refs" json:"sourceSecurityGroupRefs,omitempty"`
 			SourceSecurityGroups *[]string `tfsdk:"source_security_groups" json:"sourceSecurityGroups,omitempty"`
@@ -84,7 +87,8 @@ type EksServicesK8SAwsNodegroupV1Alpha1ManifestData struct {
 		} `tfsdk:"scaling_config" json:"scalingConfig,omitempty"`
 		SubnetRefs *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"subnet_refs" json:"subnetRefs,omitempty"`
 		Subnets *[]string          `tfsdk:"subnets" json:"subnets,omitempty"`
@@ -226,6 +230,14 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -327,6 +339,14 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -368,6 +388,14 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"namespace": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -443,6 +471,14 @@ func (r *EksServicesK8SAwsNodegroupV1Alpha1Manifest) Schema(_ context.Context, _
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

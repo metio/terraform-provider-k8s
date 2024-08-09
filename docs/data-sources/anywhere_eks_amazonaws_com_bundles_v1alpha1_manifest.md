@@ -1870,6 +1870,8 @@ Required:
 
 - `nginx` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--nginx))
 - `tink_controller` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_controller))
+- `tink_relay` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_relay))
+- `tink_relay_init` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_relay_init))
 - `tink_server` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_server))
 - `tink_worker` (Attributes) (see [below for nested schema](#nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_worker))
 
@@ -1889,6 +1891,34 @@ Optional:
 
 <a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_controller"></a>
 ### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_controller`
+
+Optional:
+
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
+
+
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_relay"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_relay`
+
+Optional:
+
+- `arch` (List of String) Architectures of the asset
+- `description` (String)
+- `image_digest` (String) The SHA256 digest of the image manifest
+- `name` (String) The asset name
+- `os` (String) Operating system of the asset
+- `os_name` (String) Name of the OS like ubuntu, bottlerocket
+- `uri` (String) The image repository, name, and tag
+
+
+<a id="nestedatt--spec--versions_bundles--tinkerbell--tinkerbell_stack--tink--tink_relay_init"></a>
+### Nested Schema for `spec.versions_bundles.tinkerbell.tinkerbell_stack.tink.tink_relay_init`
 
 Optional:
 

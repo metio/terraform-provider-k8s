@@ -46,7 +46,8 @@ type MemorydbServicesK8SAwsClusterV1Alpha1ManifestData struct {
 		AclName *string `tfsdk:"acl_name" json:"aclName,omitempty"`
 		AclRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"acl_ref" json:"aclRef,omitempty"`
 		AutoMinorVersionUpgrade *bool   `tfsdk:"auto_minor_version_upgrade" json:"autoMinorVersionUpgrade,omitempty"`
@@ -61,21 +62,24 @@ type MemorydbServicesK8SAwsClusterV1Alpha1ManifestData struct {
 		ParameterGroupName      *string `tfsdk:"parameter_group_name" json:"parameterGroupName,omitempty"`
 		ParameterGroupRef       *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"parameter_group_ref" json:"parameterGroupRef,omitempty"`
 		Port              *int64    `tfsdk:"port" json:"port,omitempty"`
 		SecurityGroupIDs  *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
 		SecurityGroupRefs *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
 		SnapshotARNs *[]string `tfsdk:"snapshot_ar_ns" json:"snapshotARNs,omitempty"`
 		SnapshotName *string   `tfsdk:"snapshot_name" json:"snapshotName,omitempty"`
 		SnapshotRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"snapshot_ref" json:"snapshotRef,omitempty"`
 		SnapshotRetentionLimit *int64  `tfsdk:"snapshot_retention_limit" json:"snapshotRetentionLimit,omitempty"`
@@ -83,13 +87,15 @@ type MemorydbServicesK8SAwsClusterV1Alpha1ManifestData struct {
 		SnsTopicARN            *string `tfsdk:"sns_topic_arn" json:"snsTopicARN,omitempty"`
 		SnsTopicRef            *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"sns_topic_ref" json:"snsTopicRef,omitempty"`
 		SubnetGroupName *string `tfsdk:"subnet_group_name" json:"subnetGroupName,omitempty"`
 		SubnetGroupRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"subnet_group_ref" json:"subnetGroupRef,omitempty"`
 		Tags *[]struct {
@@ -194,6 +200,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -306,6 +320,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -350,6 +372,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -388,6 +418,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -444,6 +482,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -472,6 +518,14 @@ func (r *MemorydbServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

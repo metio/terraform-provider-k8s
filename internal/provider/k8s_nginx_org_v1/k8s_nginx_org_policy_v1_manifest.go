@@ -84,16 +84,18 @@ type K8SNginxOrgPolicyV1ManifestData struct {
 			Token    *string `tfsdk:"token" json:"token,omitempty"`
 		} `tfsdk:"jwt" json:"jwt,omitempty"`
 		Oidc *struct {
-			AccessTokenEnable *bool     `tfsdk:"access_token_enable" json:"accessTokenEnable,omitempty"`
-			AuthEndpoint      *string   `tfsdk:"auth_endpoint" json:"authEndpoint,omitempty"`
-			AuthExtraArgs     *[]string `tfsdk:"auth_extra_args" json:"authExtraArgs,omitempty"`
-			ClientID          *string   `tfsdk:"client_id" json:"clientID,omitempty"`
-			ClientSecret      *string   `tfsdk:"client_secret" json:"clientSecret,omitempty"`
-			JwksURI           *string   `tfsdk:"jwks_uri" json:"jwksURI,omitempty"`
-			RedirectURI       *string   `tfsdk:"redirect_uri" json:"redirectURI,omitempty"`
-			Scope             *string   `tfsdk:"scope" json:"scope,omitempty"`
-			TokenEndpoint     *string   `tfsdk:"token_endpoint" json:"tokenEndpoint,omitempty"`
-			ZoneSyncLeeway    *int64    `tfsdk:"zone_sync_leeway" json:"zoneSyncLeeway,omitempty"`
+			AccessTokenEnable     *bool     `tfsdk:"access_token_enable" json:"accessTokenEnable,omitempty"`
+			AuthEndpoint          *string   `tfsdk:"auth_endpoint" json:"authEndpoint,omitempty"`
+			AuthExtraArgs         *[]string `tfsdk:"auth_extra_args" json:"authExtraArgs,omitempty"`
+			ClientID              *string   `tfsdk:"client_id" json:"clientID,omitempty"`
+			ClientSecret          *string   `tfsdk:"client_secret" json:"clientSecret,omitempty"`
+			EndSessionEndpoint    *string   `tfsdk:"end_session_endpoint" json:"endSessionEndpoint,omitempty"`
+			JwksURI               *string   `tfsdk:"jwks_uri" json:"jwksURI,omitempty"`
+			PostLogoutRedirectURI *string   `tfsdk:"post_logout_redirect_uri" json:"postLogoutRedirectURI,omitempty"`
+			RedirectURI           *string   `tfsdk:"redirect_uri" json:"redirectURI,omitempty"`
+			Scope                 *string   `tfsdk:"scope" json:"scope,omitempty"`
+			TokenEndpoint         *string   `tfsdk:"token_endpoint" json:"tokenEndpoint,omitempty"`
+			ZoneSyncLeeway        *int64    `tfsdk:"zone_sync_leeway" json:"zoneSyncLeeway,omitempty"`
 		} `tfsdk:"oidc" json:"oidc,omitempty"`
 		RateLimit *struct {
 			Burst      *int64  `tfsdk:"burst" json:"burst,omitempty"`
@@ -524,7 +526,23 @@ func (r *K8SNginxOrgPolicyV1Manifest) Schema(_ context.Context, _ datasource.Sch
 								Computed:            false,
 							},
 
+							"end_session_endpoint": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"jwks_uri": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"post_logout_redirect_uri": schema.StringAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

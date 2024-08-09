@@ -64,7 +64,7 @@ Optional:
 
 Required:
 
-- `spec` (Attributes) NodeClaimSpec describes the desired state of the NodeClaim (see [below for nested schema](#nestedatt--spec--template--spec))
+- `spec` (Attributes) NodeClaimTemplateSpec describes the desired state of the NodeClaim in the NodepoolNodeClaimTemplateSpec is used in the NodePool's NodeClaimTemplate, with the resource requests omitted sinceusers are not able to set resource requests in the NodePool. (see [below for nested schema](#nestedatt--spec--template--spec))
 
 Optional:
 

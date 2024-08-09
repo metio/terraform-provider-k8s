@@ -74,7 +74,7 @@ Optional:
 
 Optional:
 
-- `i_p_address_type` (String)
+- `ip_address_type` (String)
 - `subnet_id` (String)
 
 

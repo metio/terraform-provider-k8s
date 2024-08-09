@@ -1050,7 +1050,7 @@ Optional:
 - `message` (String) Message specifies a custom message to be displayed on failure.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
 - `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
-- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (enforce), or allow (audit) the admission review requestand report an error in a policy report. Optional.Allowed values are audit or enforce.
+- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.
 - `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides))
 
 <a id="nestedatt--spec--rules--validate--cel"></a>
@@ -1551,6 +1551,7 @@ Optional:
 - `subject` (String) Deprecated. Use KeylessAttestor instead.
 - `type` (String) Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule.
+- `validation_failure_action` (String) Allowed values are Audit or Enforce.
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
 
 <a id="nestedatt--spec--rules--verify_images--attestations"></a>

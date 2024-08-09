@@ -74,6 +74,7 @@ Optional:
 - `required_by` (Attributes List) RequiredBy represents the list of Bindings that depend on the referencing resource. (see [below for nested schema](#nestedatt--spec--required_by))
 - `reschedule_triggered_at` (String) RescheduleTriggeredAt is a timestamp representing when the referenced resource is triggered rescheduling.When this field is updated, it means a rescheduling is manually triggered by user, and the expected behaviorof this action is to do a complete recalculation without referring to last scheduling results.It works with the status.lastScheduledTime field, and only when this timestamp is later than timestamp instatus.lastScheduledTime will the rescheduling actually execute, otherwise, ignored.It is represented in RFC3339 form (like '2006-01-02T15:04:05Z') and is in UTC.
 - `scheduler_name` (String) SchedulerName represents which scheduler to proceed the scheduling.It inherits directly from the associated PropagationPolicy(or ClusterPropagationPolicy).
+- `suspension` (Attributes) Suspension declares the policy for suspending different aspects of propagation.nil means no suspension. no default values. (see [below for nested schema](#nestedatt--spec--suspension))
 
 <a id="nestedatt--spec--resource"></a>
 ### Nested Schema for `spec.resource`
@@ -477,3 +478,20 @@ Required:
 Optional:
 
 - `replicas` (Number) Replicas in target cluster
+
+
+
+<a id="nestedatt--spec--suspension"></a>
+### Nested Schema for `spec.suspension`
+
+Optional:
+
+- `dispatching` (Boolean) Dispatching controls whether dispatching should be suspended.nil means not suspend, no default value, only accepts 'true'.Note: true means stop propagating to all clusters. Can not co-existwith DispatchingOnClusters which is used to suspend particular clusters.
+- `dispatching_on_clusters` (Attributes) DispatchingOnClusters declares a list of clusters to which the dispatchingshould be suspended.Note: Can not co-exist with Dispatching which is used to suspend all. (see [below for nested schema](#nestedatt--spec--suspension--dispatching_on_clusters))
+
+<a id="nestedatt--spec--suspension--dispatching_on_clusters"></a>
+### Nested Schema for `spec.suspension.dispatching_on_clusters`
+
+Optional:
+
+- `cluster_names` (List of String) ClusterNames is the list of clusters to be selected.

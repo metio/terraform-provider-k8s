@@ -49,7 +49,8 @@ type PrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1ManifestData stru
 		WorkspaceID   *string            `tfsdk:"workspace_id" json:"workspaceID,omitempty"`
 		WorkspaceRef  *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"workspace_ref" json:"workspaceRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -174,6 +175,14 @@ func (r *PrometheusserviceServicesK8SAwsRuleGroupsNamespaceV1Alpha1Manifest) Sch
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

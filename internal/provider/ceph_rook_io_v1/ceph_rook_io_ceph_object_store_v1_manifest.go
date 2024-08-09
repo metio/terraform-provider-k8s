@@ -46,7 +46,17 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 
 	Spec *struct {
 		AllowUsersInNamespaces *[]string `tfsdk:"allow_users_in_namespaces" json:"allowUsersInNamespaces,omitempty"`
-		DataPool               *struct {
+		Auth                   *struct {
+			Keystone *struct {
+				AcceptedRoles         *[]string `tfsdk:"accepted_roles" json:"acceptedRoles,omitempty"`
+				ImplicitTenants       *string   `tfsdk:"implicit_tenants" json:"implicitTenants,omitempty"`
+				RevocationInterval    *int64    `tfsdk:"revocation_interval" json:"revocationInterval,omitempty"`
+				ServiceUserSecretName *string   `tfsdk:"service_user_secret_name" json:"serviceUserSecretName,omitempty"`
+				TokenCacheSize        *int64    `tfsdk:"token_cache_size" json:"tokenCacheSize,omitempty"`
+				Url                   *string   `tfsdk:"url" json:"url,omitempty"`
+			} `tfsdk:"keystone" json:"keystone,omitempty"`
+		} `tfsdk:"auth" json:"auth,omitempty"`
+		DataPool *struct {
 			Application        *string `tfsdk:"application" json:"application,omitempty"`
 			CompressionMode    *string `tfsdk:"compression_mode" json:"compressionMode,omitempty"`
 			CrushRoot          *string `tfsdk:"crush_root" json:"crushRoot,omitempty"`
@@ -403,7 +413,18 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			} `tfsdk:"status_check" json:"statusCheck,omitempty"`
 		} `tfsdk:"metadata_pool" json:"metadataPool,omitempty"`
 		PreservePoolsOnDelete *bool `tfsdk:"preserve_pools_on_delete" json:"preservePoolsOnDelete,omitempty"`
-		Security              *struct {
+		Protocols             *struct {
+			S3 *struct {
+				AuthUseKeystone *bool `tfsdk:"auth_use_keystone" json:"authUseKeystone,omitempty"`
+				Enabled         *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+			} `tfsdk:"s3" json:"s3,omitempty"`
+			Swift *struct {
+				AccountInUrl      *bool   `tfsdk:"account_in_url" json:"accountInUrl,omitempty"`
+				UrlPrefix         *string `tfsdk:"url_prefix" json:"urlPrefix,omitempty"`
+				VersioningEnabled *bool   `tfsdk:"versioning_enabled" json:"versioningEnabled,omitempty"`
+			} `tfsdk:"swift" json:"swift,omitempty"`
+		} `tfsdk:"protocols" json:"protocols,omitempty"`
+		Security *struct {
 			KeyRotation *struct {
 				Enabled  *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 				Schedule *string `tfsdk:"schedule" json:"schedule,omitempty"`
@@ -512,6 +533,73 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"auth": schema.SingleNestedAttribute{
+						Description:         "The authentication configuration",
+						MarkdownDescription: "The authentication configuration",
+						Attributes: map[string]schema.Attribute{
+							"keystone": schema.SingleNestedAttribute{
+								Description:         "The spec for Keystone",
+								MarkdownDescription: "The spec for Keystone",
+								Attributes: map[string]schema.Attribute{
+									"accepted_roles": schema.ListAttribute{
+										Description:         "The roles requires to serve requests.",
+										MarkdownDescription: "The roles requires to serve requests.",
+										ElementType:         types.StringType,
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"implicit_tenants": schema.StringAttribute{
+										Description:         "Create new users in their own tenants of the same name. Possible values are true, false, swift and s3. The latter have the effect of splitting the identity space such that only the indicated protocol will use implicit tenants.",
+										MarkdownDescription: "Create new users in their own tenants of the same name. Possible values are true, false, swift and s3. The latter have the effect of splitting the identity space such that only the indicated protocol will use implicit tenants.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"revocation_interval": schema.Int64Attribute{
+										Description:         "The number of seconds between token revocation checks.",
+										MarkdownDescription: "The number of seconds between token revocation checks.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"service_user_secret_name": schema.StringAttribute{
+										Description:         "The name of the secret containing the credentials for the service user account used by RGW. It has to be in the same namespace as the object store resource.",
+										MarkdownDescription: "The name of the secret containing the credentials for the service user account used by RGW. It has to be in the same namespace as the object store resource.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"token_cache_size": schema.Int64Attribute{
+										Description:         "The maximum number of entries in each Keystone token cache.",
+										MarkdownDescription: "The maximum number of entries in each Keystone token cache.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"url": schema.StringAttribute{
+										Description:         "The URL for the Keystone server.",
+										MarkdownDescription: "The URL for the Keystone server.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"data_pool": schema.SingleNestedAttribute{
@@ -2968,6 +3056,73 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"protocols": schema.SingleNestedAttribute{
+						Description:         "The protocol specification",
+						MarkdownDescription: "The protocol specification",
+						Attributes: map[string]schema.Attribute{
+							"s3": schema.SingleNestedAttribute{
+								Description:         "The spec for S3",
+								MarkdownDescription: "The spec for S3",
+								Attributes: map[string]schema.Attribute{
+									"auth_use_keystone": schema.BoolAttribute{
+										Description:         "Whether to use Keystone for authentication. This option maps directly to the rgw_s3_auth_use_keystone option. Enabling it allows generating S3 credentials via an OpenStack API call, see the docs. If not given, the defaults of the corresponding RGW option apply.",
+										MarkdownDescription: "Whether to use Keystone for authentication. This option maps directly to the rgw_s3_auth_use_keystone option. Enabling it allows generating S3 credentials via an OpenStack API call, see the docs. If not given, the defaults of the corresponding RGW option apply.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
+										MarkdownDescription: "Whether to enable S3. This defaults to true (even if protocols.s3 is not present in the CRD). This maintains backwards compatibility – by default S3 is enabled.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"swift": schema.SingleNestedAttribute{
+								Description:         "The spec for Swift",
+								MarkdownDescription: "The spec for Swift",
+								Attributes: map[string]schema.Attribute{
+									"account_in_url": schema.BoolAttribute{
+										Description:         "Whether or not the Swift account name should be included in the Swift API URL. If set to false (the default), then the Swift API will listen on a URL formed like http://host:port/<rgw_swift_url_prefix>/v1. If set to true, the Swift API URL will be http://host:port/<rgw_swift_url_prefix>/v1/AUTH_<account_name>. You must set this option to true (and update the Keystone service catalog) if you want radosgw to support publicly-readable containers and temporary URLs.",
+										MarkdownDescription: "Whether or not the Swift account name should be included in the Swift API URL. If set to false (the default), then the Swift API will listen on a URL formed like http://host:port/<rgw_swift_url_prefix>/v1. If set to true, the Swift API URL will be http://host:port/<rgw_swift_url_prefix>/v1/AUTH_<account_name>. You must set this option to true (and update the Keystone service catalog) if you want radosgw to support publicly-readable containers and temporary URLs.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"url_prefix": schema.StringAttribute{
+										Description:         "The URL prefix for the Swift API, to distinguish it from the S3 API endpoint. The default is swift, which makes the Swift API available at the URL http://host:port/swift/v1 (or http://host:port/swift/v1/AUTH_%(tenant_id)s if rgw swift account in url is enabled).",
+										MarkdownDescription: "The URL prefix for the Swift API, to distinguish it from the S3 API endpoint. The default is swift, which makes the Swift API available at the URL http://host:port/swift/v1 (or http://host:port/swift/v1/AUTH_%(tenant_id)s if rgw swift account in url is enabled).",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"versioning_enabled": schema.BoolAttribute{
+										Description:         "Enables the Object Versioning of OpenStack Object Storage API. This allows clients to put the X-Versions-Location attribute on containers that should be versioned.",
+										MarkdownDescription: "Enables the Object Versioning of OpenStack Object Storage API. This allows clients to put the X-Versions-Location attribute on containers that should be versioned.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"security": schema.SingleNestedAttribute{

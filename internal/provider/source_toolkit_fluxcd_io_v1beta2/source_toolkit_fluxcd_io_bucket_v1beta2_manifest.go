@@ -66,6 +66,10 @@ type SourceToolkitFluxcdIoBucketV1Beta2ManifestData struct {
 		SecretRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+		Sts *struct {
+			Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Provider *string `tfsdk:"provider" json:"provider,omitempty"`
+		} `tfsdk:"sts" json:"sts,omitempty"`
 		Suspend *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
 		Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -291,6 +295,37 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sts": schema.SingleNestedAttribute{
+						Description:         "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider.",
+						MarkdownDescription: "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider.",
+						Attributes: map[string]schema.Attribute{
+							"endpoint": schema.StringAttribute{
+								Description:         "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
+								MarkdownDescription: "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^(http|https)://.*$`), ""),
+								},
+							},
+
+							"provider": schema.StringAttribute{
+								Description:         "Provider of the Security Token Service.",
+								MarkdownDescription: "Provider of the Security Token Service.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.OneOf("aws"),
+								},
 							},
 						},
 						Required: false,

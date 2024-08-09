@@ -161,6 +161,9 @@ func (r *KarpenterShNodeClaimV1Manifest) Schema(_ context.Context, _ datasource.
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^[^/]*$`), ""),
+								},
 							},
 
 							"kind": schema.StringAttribute{

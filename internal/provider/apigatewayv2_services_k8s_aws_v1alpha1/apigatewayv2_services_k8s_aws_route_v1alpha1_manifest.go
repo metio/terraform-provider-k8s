@@ -47,7 +47,8 @@ type Apigatewayv2ServicesK8SAwsRouteV1Alpha1ManifestData struct {
 		ApiKeyRequired *bool   `tfsdk:"api_key_required" json:"apiKeyRequired,omitempty"`
 		ApiRef         *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"api_ref" json:"apiRef,omitempty"`
 		AuthorizationScopes *[]string `tfsdk:"authorization_scopes" json:"authorizationScopes,omitempty"`
@@ -55,7 +56,8 @@ type Apigatewayv2ServicesK8SAwsRouteV1Alpha1ManifestData struct {
 		AuthorizerID        *string   `tfsdk:"authorizer_id" json:"authorizerID,omitempty"`
 		AuthorizerRef       *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"authorizer_ref" json:"authorizerRef,omitempty"`
 		ModelSelectionExpression *string            `tfsdk:"model_selection_expression" json:"modelSelectionExpression,omitempty"`
@@ -69,7 +71,8 @@ type Apigatewayv2ServicesK8SAwsRouteV1Alpha1ManifestData struct {
 		Target                           *string `tfsdk:"target" json:"target,omitempty"`
 		TargetRef                        *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"target_ref" json:"targetRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -183,6 +186,14 @@ func (r *Apigatewayv2ServicesK8SAwsRouteV1Alpha1Manifest) Schema(_ context.Conte
 										Optional:            true,
 										Computed:            false,
 									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
 								},
 								Required: false,
 								Optional: true,
@@ -228,6 +239,14 @@ func (r *Apigatewayv2ServicesK8SAwsRouteV1Alpha1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -320,6 +339,14 @@ func (r *Apigatewayv2ServicesK8SAwsRouteV1Alpha1Manifest) Schema(_ context.Conte
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

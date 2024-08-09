@@ -65,6 +65,7 @@ Optional:
 - `mongodb` (Attributes) (see [below for nested schema](#nestedatt--spec--mongodb))
 - `mqtt` (Attributes) (see [below for nested schema](#nestedatt--spec--mqtt))
 - `openobserve` (Attributes) (see [below for nested schema](#nestedatt--spec--openobserve))
+- `opentelemetry` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry))
 - `redis` (Attributes) (see [below for nested schema](#nestedatt--spec--redis))
 - `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--s3))
 - `splunk_hec_event` (Attributes) (see [below for nested schema](#nestedatt--spec--splunk_hec_event))
@@ -2199,6 +2200,226 @@ Optional:
 
 
 
+
+
+
+<a id="nestedatt--spec--opentelemetry"></a>
+### Nested Schema for `spec.opentelemetry`
+
+Required:
+
+- `url` (String)
+
+Optional:
+
+- `auth` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth))
+- `batch_bytes` (Number)
+- `batch_lines` (Number)
+- `batch_timeout` (Number)
+- `channel_args` (Map of String)
+- `compression` (Boolean)
+- `disk_buffer` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--disk_buffer))
+
+<a id="nestedatt--spec--opentelemetry--auth"></a>
+### Nested Schema for `spec.opentelemetry.auth`
+
+Optional:
+
+- `adc` (Map of String)
+- `alts` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--alts))
+- `insecure` (Map of String)
+- `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls))
+
+<a id="nestedatt--spec--opentelemetry--auth--alts"></a>
+### Nested Schema for `spec.opentelemetry.auth.alts`
+
+Optional:
+
+- `target_service_accounts` (List of String)
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls`
+
+Optional:
+
+- `ca_file` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--ca_file))
+- `cert_file` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--cert_file))
+- `key_file` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--key_file))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--ca_file"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.ca_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--ca_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--ca_file--value_from))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--ca_file--mount_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.ca_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--ca_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--ca_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.ca_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--ca_file--value_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.ca_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--ca_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--ca_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.ca_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--cert_file"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.cert_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--cert_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--cert_file--value_from))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--cert_file--mount_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.cert_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--cert_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--cert_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.cert_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--cert_file--value_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.cert_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--cert_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--cert_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.cert_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--key_file"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.key_file`
+
+Optional:
+
+- `mount_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--key_file--mount_from))
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--key_file--value_from))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--key_file--mount_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.key_file.mount_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--key_file--mount_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--key_file--mount_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.key_file.mount_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--key_file--value_from"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.key_file.value_from`
+
+Optional:
+
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--opentelemetry--auth--tls--key_file--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--opentelemetry--auth--tls--key_file--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.opentelemetry.auth.tls.key_file.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+
+
+<a id="nestedatt--spec--opentelemetry--disk_buffer"></a>
+### Nested Schema for `spec.opentelemetry.disk_buffer`
+
+Required:
+
+- `disk_buf_size` (Number)
+- `reliable` (Boolean)
+
+Optional:
+
+- `compaction` (Boolean)
+- `dir` (String)
+- `mem_buf_length` (Number)
+- `mem_buf_size` (Number)
+- `q_out_size` (Number)
 
 
 

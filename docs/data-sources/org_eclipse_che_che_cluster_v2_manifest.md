@@ -3,12 +3,12 @@
 page_title: "k8s_org_eclipse_che_che_cluster_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "org.eclipse.che"
 description: |-
-  The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.
+  The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.
 ---
 
 # k8s_org_eclipse_che_che_cluster_v2_manifest (Data Source)
 
-The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry', 'devfile-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.
+The 'CheCluster' custom resource allows defining and managing Eclipse Che server installation.Based on these settings, the  Operator automatically creates and maintains several ConfigMaps:'che', 'plugin-registry' that will contain the appropriate environment variablesof the various components of the installation. These generated ConfigMaps must NOT be updated manually.
 
 ## Example Usage
 
@@ -412,7 +412,7 @@ Optional:
 
 Optional:
 
-- `deployment` (Attributes) Deployment override options. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment))
+- `deployment` (Attributes) Deprecated deployment override options. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--deployment))
 - `disable_internal_registry` (Boolean) Disables internal devfile registry.
 - `external_devfile_registries` (Attributes List) External devfile registries serving sample ready-to-use devfiles. (see [below for nested schema](#nestedatt--spec--components--devfile_registry--external_devfile_registries))
 

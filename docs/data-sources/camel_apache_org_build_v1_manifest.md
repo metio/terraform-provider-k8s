@@ -30,7 +30,7 @@ data "k8s_camel_apache_org_build_v1_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriate to think it as pipeline. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) BuildSpec defines the list of tasks to be execute for a Build. From Camel K version 2, it would be more appropriateto think it as pipeline. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,12 +55,12 @@ Optional:
 
 Optional:
 
-- `configuration` (Attributes) The configuration that should be used to perform the Build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility (see [below for nested schema](#nestedatt--spec--configuration))
-- `max_running_builds` (Number) the maximum amount of parallel running builds started by this operator instance Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility
-- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation). Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility
+- `configuration` (Attributes) The configuration that should be used to perform the Build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility (see [below for nested schema](#nestedatt--spec--configuration))
+- `max_running_builds` (Number) the maximum amount of parallel running builds started by this operator instanceDeprecated: no longer in use in Camel K 2 - maintained for backward compatibility
+- `operator_namespace` (String) The namespace where to run the builder Pod (must be the same of the operator in charge of this Build reconciliation).Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility
 - `tasks` (Attributes List) The sequence of tasks (pipeline) to be performed. (see [below for nested schema](#nestedatt--spec--tasks))
-- `timeout` (String) Timeout defines the Build maximum execution duration. The Build deadline is set to the Build start time plus the Timeout duration. If the Build deadline is exceeded, the Build context is canceled, and its phase set to BuildPhaseFailed.
-- `tool_image` (String) The container image to be used to run the build. Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility
+- `timeout` (String) Timeout defines the Build maximum execution duration.The Build deadline is set to the Build start time plus the Timeout duration.If the Build deadline is exceeded, the Build context is canceled,and its phase set to BuildPhaseFailed.
+- `tool_image` (String) The container image to be used to run the build.Deprecated: no longer in use in Camel K 2 - maintained for backward compatibility
 
 <a id="nestedatt--spec--configuration"></a>
 ### Nested Schema for `spec.configuration`
@@ -85,14 +85,14 @@ Optional:
 
 Optional:
 
-- `buildah` (Attributes) a BuildahTask, for Buildah strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--buildah))
+- `buildah` (Attributes) a BuildahTask, for Buildah strategyDeprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--buildah))
 - `builder` (Attributes) a BuilderTask, used to generate and build the project (see [below for nested schema](#nestedatt--spec--tasks--builder))
 - `custom` (Attributes) User customizable task execution. These are executed after the build and before the package task. (see [below for nested schema](#nestedatt--spec--tasks--custom))
 - `jib` (Attributes) a JibTask, for Jib strategy (see [below for nested schema](#nestedatt--spec--tasks--jib))
-- `kaniko` (Attributes) a KanikoTask, for Kaniko strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
-- `package` (Attributes) Application pre publishing a PackageTask, used to package the project (see [below for nested schema](#nestedatt--spec--tasks--package))
+- `kaniko` (Attributes) a KanikoTask, for Kaniko strategyDeprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--kaniko))
+- `package` (Attributes) Application pre publishinga PackageTask, used to package the project (see [below for nested schema](#nestedatt--spec--tasks--package))
 - `s2i` (Attributes) a S2iTask, for S2I strategy (see [below for nested schema](#nestedatt--spec--tasks--s2i))
-- `spectrum` (Attributes) a SpectrumTask, for Spectrum strategy Deprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--spectrum))
+- `spectrum` (Attributes) a SpectrumTask, for Spectrum strategyDeprecated: use jib, s2i or a custom publishing strategy instead (see [below for nested schema](#nestedatt--spec--tasks--spectrum))
 
 <a id="nestedatt--spec--tasks--buildah"></a>
 ### Nested Schema for `spec.tasks.buildah`
@@ -178,16 +178,16 @@ Optional:
 
 Optional:
 
-- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--ca_secrets))
-- `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
-- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--extension))
+- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--ca_secrets))
+- `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
+- `extension` (Attributes List) The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--extension))
 - `local_repository` (String) The path of the local Maven repository.
-- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--profiles))
+- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that containsthe Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--profiles))
 - `properties` (Map of String) The Maven properties.
 - `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--repositories))
 - `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--servers))
-- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings))
-- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings_security))
+- `settings` (Attributes) A reference to the ConfigMap or Secret key that containsthe Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings))
+- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that containsthe security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--builder--maven--settings_security))
 
 <a id="nestedatt--spec--tasks--builder--maven--ca_secrets"></a>
 ### Nested Schema for `spec.tasks.builder.maven.ca_secrets`
@@ -198,7 +198,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -234,7 +234,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -247,7 +247,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -275,8 +275,8 @@ Required:
 
 Optional:
 
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
 <a id="nestedatt--spec--tasks--builder--maven--repositories--snapshots"></a>
@@ -288,8 +288,8 @@ Required:
 
 Optional:
 
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
 
@@ -321,7 +321,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -334,7 +334,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -356,7 +356,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -369,7 +369,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -467,9 +467,9 @@ Optional:
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
 - `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
-- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
+- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
-- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
+- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime
 - `name` (String) the name of the specification
 - `path` (String) the path where the file is stored
 - `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')
@@ -483,7 +483,7 @@ Optional:
 
 Optional:
 
-- `command` (String) the command to execute Deprecated: use ContainerCommands
+- `command` (String) the command to executeDeprecated: use ContainerCommands
 - `commands` (List of String) the command to execute
 - `configuration` (Attributes) The configuration that should be used to perform the Build. (see [below for nested schema](#nestedatt--spec--tasks--custom--configuration))
 - `image` (String) the container image to use
@@ -646,16 +646,16 @@ Optional:
 
 Optional:
 
-- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connect to remote Maven repositories. It can contain X.509 certificates, and PKCS#7 formatted certificate chains. A JKS formatted keystore is automatically created to store the CA certificate(s), and configured to be used as a trusted certificate(s) by the Maven commands. Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--ca_secrets))
-- `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands, e.g., '-V,--no-transfer-progress,-Dstyle.color=never'. See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
-- `extension` (Attributes List) The Maven build extensions. See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--extension))
+- `ca_secrets` (Attributes List) The Secrets name and key, containing the CA certificate(s) used to connectto remote Maven repositories.It can contain X.509 certificates, and PKCS#7 formatted certificate chains.A JKS formatted keystore is automatically created to store the CA certificate(s),and configured to be used as a trusted certificate(s) by the Maven commands.Note that the root CA certificates are also imported into the created keystore. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--ca_secrets))
+- `cli_options` (List of String) The CLI options that are appended to the list of arguments for Maven commands,e.g., '-V,--no-transfer-progress,-Dstyle.color=never'.See https://maven.apache.org/ref/3.8.4/maven-embedder/cli.html.
+- `extension` (Attributes List) The Maven build extensions.See https://maven.apache.org/guides/mini/guide-using-extensions.html. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--extension))
 - `local_repository` (String) The path of the local Maven repository.
-- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that contains the Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--profiles))
+- `profiles` (Attributes List) A reference to the ConfigMap or Secret key that containsthe Maven profile. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--profiles))
 - `properties` (Map of String) The Maven properties.
 - `repositories` (Attributes List) additional repositories (see [below for nested schema](#nestedatt--spec--tasks--package--maven--repositories))
 - `servers` (Attributes List) Servers (auth) (see [below for nested schema](#nestedatt--spec--tasks--package--maven--servers))
-- `settings` (Attributes) A reference to the ConfigMap or Secret key that contains the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings))
-- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that contains the security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings_security))
+- `settings` (Attributes) A reference to the ConfigMap or Secret key that containsthe Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings))
+- `settings_security` (Attributes) A reference to the ConfigMap or Secret key that containsthe security of the Maven settings. (see [below for nested schema](#nestedatt--spec--tasks--package--maven--settings_security))
 
 <a id="nestedatt--spec--tasks--package--maven--ca_secrets"></a>
 ### Nested Schema for `spec.tasks.package.maven.ca_secrets`
@@ -666,7 +666,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -702,7 +702,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -715,7 +715,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -743,8 +743,8 @@ Required:
 
 Optional:
 
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
 <a id="nestedatt--spec--tasks--package--maven--repositories--snapshots"></a>
@@ -756,8 +756,8 @@ Required:
 
 Optional:
 
-- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
-- `update_policy` (String) This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
+- `checksum_policy` (String) When Maven deploys files to the repository, it also deploys corresponding checksum files.Your options are to 'ignore', 'fail', or 'warn' on missing or incorrect checksums.
+- `update_policy` (String) This element specifies how often updates should attempt to occur.Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote.The choices are: 'always', 'daily' (default), 'interval:X' (where X is an integer in minutes) or 'never'
 
 
 
@@ -789,7 +789,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -802,7 +802,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -824,7 +824,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -837,7 +837,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -935,9 +935,9 @@ Optional:
 - `content_ref` (String) the confimap reference holding the source content
 - `content_type` (String) the content type (tipically text or binary)
 - `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
-- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoader uses to pre/post process sources
+- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources
 - `language` (String) specify which is the language (Camel DSL) used to interpret this source code
-- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that will interpret this source at runtime
+- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime
 - `name` (String) the name of the specification
 - `path` (String) the path where the file is stored
 - `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')

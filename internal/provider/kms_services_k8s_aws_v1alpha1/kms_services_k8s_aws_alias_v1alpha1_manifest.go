@@ -47,7 +47,8 @@ type KmsServicesK8SAwsAliasV1Alpha1ManifestData struct {
 		TargetKeyID  *string `tfsdk:"target_key_id" json:"targetKeyID,omitempty"`
 		TargetKeyRef *struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"target_key_ref" json:"targetKeyRef,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
@@ -155,6 +156,14 @@ func (r *KmsServicesK8SAwsAliasV1Alpha1Manifest) Schema(_ context.Context, _ dat
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

@@ -198,5 +198,4 @@ Required:
 Optional:
 
 - `duration` (String) Duration determines how long a Budget is active since each Schedule hit.Only minutes and hours are accepted, as cron does not work in seconds.If omitted, the budget is always active.This is required if Schedule is set.This regex has an optional 0s at the end since the duration.String() always addsa 0s at the end.
-- `reasons` (List of String) Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted.
 - `schedule` (String) Schedule specifies when a budget begins being active, followingthe upstream cronjob syntax. If omitted, the budget is always active.Timezones are not supported.This field is required if Duration is set.

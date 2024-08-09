@@ -84,7 +84,8 @@ type MqServicesK8SAwsBrokerV1Alpha1ManifestData struct {
 		PubliclyAccessible *bool   `tfsdk:"publicly_accessible" json:"publiclyAccessible,omitempty"`
 		SecurityGroupRefs  *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
 		SecurityGroups *[]string `tfsdk:"security_groups" json:"securityGroups,omitempty"`
@@ -92,7 +93,8 @@ type MqServicesK8SAwsBrokerV1Alpha1ManifestData struct {
 		SubnetIDs      *[]string `tfsdk:"subnet_i_ds" json:"subnetIDs,omitempty"`
 		SubnetRefs     *[]struct {
 			From *struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"subnet_refs" json:"subnetRefs,omitempty"`
 		Tags  *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
@@ -480,6 +482,14 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -528,6 +538,14 @@ func (r *MqServicesK8SAwsBrokerV1Alpha1Manifest) Schema(_ context.Context, _ dat
 									MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

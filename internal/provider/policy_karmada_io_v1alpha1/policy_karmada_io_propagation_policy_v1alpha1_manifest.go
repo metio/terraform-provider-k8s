@@ -158,6 +158,12 @@ type PolicyKarmadaIoPropagationPolicyV1Alpha1ManifestData struct {
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 		} `tfsdk:"resource_selectors" json:"resourceSelectors,omitempty"`
 		SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+		Suspension    *struct {
+			Dispatching           *bool `tfsdk:"dispatching" json:"dispatching,omitempty"`
+			DispatchingOnClusters *struct {
+				ClusterNames *[]string `tfsdk:"cluster_names" json:"clusterNames,omitempty"`
+			} `tfsdk:"dispatching_on_clusters" json:"dispatchingOnClusters,omitempty"`
+		} `tfsdk:"suspension" json:"suspension,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -316,6 +322,9 @@ func (r *PolicyKarmadaIoPropagationPolicyV1Alpha1Manifest) Schema(_ context.Cont
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("Immediately", "Graciously", "Never"),
+										},
 									},
 								},
 								Required: false,
@@ -1029,6 +1038,41 @@ func (r *PolicyKarmadaIoPropagationPolicyV1Alpha1Manifest) Schema(_ context.Cont
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"suspension": schema.SingleNestedAttribute{
+						Description:         "Suspension declares the policy for suspending different aspects of propagation.nil means no suspension. no default values.",
+						MarkdownDescription: "Suspension declares the policy for suspending different aspects of propagation.nil means no suspension. no default values.",
+						Attributes: map[string]schema.Attribute{
+							"dispatching": schema.BoolAttribute{
+								Description:         "Dispatching controls whether dispatching should be suspended.nil means not suspend, no default value, only accepts 'true'.Note: true means stop propagating to all clusters. Can not co-existwith DispatchingOnClusters which is used to suspend particular clusters.",
+								MarkdownDescription: "Dispatching controls whether dispatching should be suspended.nil means not suspend, no default value, only accepts 'true'.Note: true means stop propagating to all clusters. Can not co-existwith DispatchingOnClusters which is used to suspend particular clusters.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"dispatching_on_clusters": schema.SingleNestedAttribute{
+								Description:         "DispatchingOnClusters declares a list of clusters to which the dispatchingshould be suspended.Note: Can not co-exist with Dispatching which is used to suspend all.",
+								MarkdownDescription: "DispatchingOnClusters declares a list of clusters to which the dispatchingshould be suspended.Note: Can not co-exist with Dispatching which is used to suspend all.",
+								Attributes: map[string]schema.Attribute{
+									"cluster_names": schema.ListAttribute{
+										Description:         "ClusterNames is the list of clusters to be selected.",
+										MarkdownDescription: "ClusterNames is the list of clusters to be selected.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: true,

@@ -65,6 +65,7 @@ type FlowsNetobservIoFlowCollectorV1Beta1ManifestData struct {
 					Ports       *string `tfsdk:"ports" json:"ports,omitempty"`
 					Protocol    *string `tfsdk:"protocol" json:"protocol,omitempty"`
 					SourcePorts *string `tfsdk:"source_ports" json:"sourcePorts,omitempty"`
+					TcpFlags    *string `tfsdk:"tcp_flags" json:"tcpFlags,omitempty"`
 				} `tfsdk:"flow_filter" json:"flowFilter,omitempty"`
 				ImagePullPolicy *string   `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 				Interfaces      *[]string `tfsdk:"interfaces" json:"interfaces,omitempty"`
@@ -781,6 +782,17 @@ func (r *FlowsNetobservIoFlowCollectorV1Beta1Manifest) Schema(_ context.Context,
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"tcp_flags": schema.StringAttribute{
+												Description:         "'tcpFlags' defines the TCP flags to filter flows by.",
+												MarkdownDescription: "'tcpFlags' defines the TCP flags to filter flows by.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("SYN", "SYN-ACK", "ACK", "FIN", "RST", "URG", "ECE", "CWR", "FIN-ACK", "RST-ACK"),
+												},
 											},
 										},
 										Required: false,

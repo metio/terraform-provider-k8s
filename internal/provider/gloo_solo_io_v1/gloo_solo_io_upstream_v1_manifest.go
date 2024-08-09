@@ -293,6 +293,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 						UpstreamSslConfig   *struct {
 							AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
 							AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+							OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
 							Parameters         *struct {
 								CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 								EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
@@ -429,6 +430,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 		HttpConnectSslConfig *struct {
 			AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
 			AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+			OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
 			Parameters         *struct {
 				CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 				EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
@@ -722,6 +724,7 @@ type GlooSoloIoUpstreamV1ManifestData struct {
 		SslConfig            *struct {
 			AllowRenegotiation *bool     `tfsdk:"allow_renegotiation" json:"allowRenegotiation,omitempty"`
 			AlpnProtocols      *[]string `tfsdk:"alpn_protocols" json:"alpnProtocols,omitempty"`
+			OneWayTls          *bool     `tfsdk:"one_way_tls" json:"oneWayTls,omitempty"`
 			Parameters         *struct {
 				CipherSuites           *[]string `tfsdk:"cipher_suites" json:"cipherSuites,omitempty"`
 				EcdhCurves             *[]string `tfsdk:"ecdh_curves" json:"ecdhCurves,omitempty"`
@@ -2622,6 +2625,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 																			Computed:            false,
 																		},
 
+																		"one_way_tls": schema.BoolAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"parameters": schema.SingleNestedAttribute{
 																			Description:         "",
 																			MarkdownDescription: "",
@@ -3533,6 +3544,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"one_way_tls": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -5542,6 +5561,14 @@ func (r *GlooSoloIoUpstreamV1Manifest) Schema(_ context.Context, _ datasource.Sc
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"one_way_tls": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

@@ -117,6 +117,7 @@ Optional:
 - `ports` (String) Ports defines the ports to filter flows by. it can be user for either source or destination ports.To filter a single port, set a single port as an integer value. For example ports: 80.To filter a range of ports, use a 'start-end' range, string format. For example ports: '80-10
 - `protocol` (String) Protocol defines the protocol to filter flows by.
 - `source_ports` (String) SourcePorts defines the source ports to filter flows by.To filter a single port, set a single port as an integer value. For example sourcePorts: 80.To filter a range of ports, use a 'start-end' range, string format. For example sourcePorts: '80-100'.
+- `tcp_flags` (String) 'tcpFlags' defines the TCP flags to filter flows by.
 
 
 <a id="nestedatt--spec--agent--ebpf--metrics"></a>
