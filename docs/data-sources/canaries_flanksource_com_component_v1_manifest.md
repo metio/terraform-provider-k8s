@@ -60,6 +60,7 @@ Optional:
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--configs))
 - `external_id` (String)
 - `for_each` (Map of String) Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself
+- `health` (String)
 - `hidden` (Boolean) If set to true, do not display in UI
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--id))
@@ -95,10 +96,12 @@ Optional:
 - `external_id` (String) Deprecated. Use 'fieldSelector (external_id=)'
 - `field_selector` (String)
 - `id` (String)
+- `include_deleted` (Boolean)
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
+- `search` (String) Search query that applies to the resource name, tag & labels.
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `tags` (Map of String) Deprecated. Use 'labelSelector'
@@ -156,10 +159,12 @@ Optional:
 - `cache` (String) Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)
 - `field_selector` (String)
 - `id` (String)
+- `include_deleted` (Boolean)
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
+- `search` (String) Search query that applies to the resource name, tag & labels.
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)

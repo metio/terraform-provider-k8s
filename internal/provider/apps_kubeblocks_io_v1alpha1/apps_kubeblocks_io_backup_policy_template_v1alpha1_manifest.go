@@ -106,6 +106,10 @@ type AppsKubeblocksIoBackupPolicyTemplateV1Alpha1ManifestData struct {
 						SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 						UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 					} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+					ContainerPort *struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+					} `tfsdk:"container_port" json:"containerPort,omitempty"`
 					FallbackRole *string `tfsdk:"fallback_role" json:"fallbackRole,omitempty"`
 					Name         *string `tfsdk:"name" json:"name,omitempty"`
 					PodSelector  *struct {
@@ -160,6 +164,10 @@ type AppsKubeblocksIoBackupPolicyTemplateV1Alpha1ManifestData struct {
 						SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 						UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 					} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+					ContainerPort *struct {
+						ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+						PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+					} `tfsdk:"container_port" json:"containerPort,omitempty"`
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
 					PodSelector *struct {
 						FallbackLabelSelector *struct {
@@ -201,7 +209,11 @@ type AppsKubeblocksIoBackupPolicyTemplateV1Alpha1ManifestData struct {
 				RetentionPeriod *string `tfsdk:"retention_period" json:"retentionPeriod,omitempty"`
 			} `tfsdk:"schedules" json:"schedules,omitempty"`
 			Target *struct {
-				Account      *string `tfsdk:"account" json:"account,omitempty"`
+				Account       *string `tfsdk:"account" json:"account,omitempty"`
+				ContainerPort *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+				} `tfsdk:"container_port" json:"containerPort,omitempty"`
 				FallbackRole *string `tfsdk:"fallback_role" json:"fallbackRole,omitempty"`
 				Role         *string `tfsdk:"role" json:"role,omitempty"`
 				Strategy     *string `tfsdk:"strategy" json:"strategy,omitempty"`
@@ -688,6 +700,31 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 														Computed: false,
 													},
 
+													"container_port": schema.SingleNestedAttribute{
+														Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+														MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+														Attributes: map[string]schema.Attribute{
+															"container_name": schema.StringAttribute{
+																Description:         "Specifies the name of container with the port.",
+																MarkdownDescription: "Specifies the name of container with the port.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"port_name": schema.StringAttribute{
+																Description:         "Specifies the port name.",
+																MarkdownDescription: "Specifies the port name.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fallback_role": schema.StringAttribute{
 														Description:         "Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.",
 														MarkdownDescription: "Specifies the fallback role to select one replica for backup, this only takes effect when the'strategy' field below is set to 'Any'.",
@@ -1070,6 +1107,31 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 															Computed: false,
 														},
 
+														"container_port": schema.SingleNestedAttribute{
+															Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+															MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+															Attributes: map[string]schema.Attribute{
+																"container_name": schema.StringAttribute{
+																	Description:         "Specifies the name of container with the port.",
+																	MarkdownDescription: "Specifies the name of container with the port.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"port_name": schema.StringAttribute{
+																	Description:         "Specifies the port name.",
+																	MarkdownDescription: "Specifies the port name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"name": schema.StringAttribute{
 															Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
 															MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
@@ -1360,6 +1422,31 @@ func (r *AppsKubeblocksIoBackupPolicyTemplateV1Alpha1Manifest) Schema(_ context.
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+
+										"container_port": schema.SingleNestedAttribute{
+											Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+											MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+											Attributes: map[string]schema.Attribute{
+												"container_name": schema.StringAttribute{
+													Description:         "Specifies the name of container with the port.",
+													MarkdownDescription: "Specifies the name of container with the port.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"port_name": schema.StringAttribute{
+													Description:         "Specifies the port name.",
+													MarkdownDescription: "Specifies the port name.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
 										},
 
 										"fallback_role": schema.StringAttribute{

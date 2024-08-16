@@ -608,7 +608,8 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 			MaxNumberOfWorkspacesPerUser        *int64             `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
 			NodeSelector                        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			PersistUserHome                     *struct {
-				Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
+				DisableInitContainer *bool `tfsdk:"disable_init_container" json:"disableInitContainer,omitempty"`
+				Enabled              *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"persist_user_home" json:"persistUserHome,omitempty"`
 			PodSchedulerName      *string `tfsdk:"pod_scheduler_name" json:"podSchedulerName,omitempty"`
 			ProjectCloneContainer *struct {
@@ -4830,6 +4831,14 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Description:         "PersistUserHome defines configuration options for persisting theuser home directory in workspaces.",
 								MarkdownDescription: "PersistUserHome defines configuration options for persisting theuser home directory in workspaces.",
 								Attributes: map[string]schema.Attribute{
+									"disable_init_container": schema.BoolAttribute{
+										Description:         "Determines whether the init container that initializes the persistent home directory should be disabled.When the '/home/user' directory is persisted, the init container is used to initialize the directory beforethe workspace starts. If set to true, the init container will not be created.Disabling the init container allows home persistence to be initialized by the entrypoint present in the workspace's first container component.This field is not used if the 'devEnvironments.persistUserHome.enabled' field is set to false.The init container is enabled by default.",
+										MarkdownDescription: "Determines whether the init container that initializes the persistent home directory should be disabled.When the '/home/user' directory is persisted, the init container is used to initialize the directory beforethe workspace starts. If set to true, the init container will not be created.Disabling the init container allows home persistence to be initialized by the entrypoint present in the workspace's first container component.This field is not used if the 'devEnvironments.persistUserHome.enabled' field is set to false.The init container is enabled by default.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"enabled": schema.BoolAttribute{
 										Description:         "Determines whether the user home directory in workspaces should persist betweenworkspace shutdown and startup.Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect.Disabled by default.",
 										MarkdownDescription: "Determines whether the user home directory in workspaces should persist betweenworkspace shutdown and startup.Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect.Disabled by default.",

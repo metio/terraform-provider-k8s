@@ -47,24 +47,27 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 		} `tfsdk:"checks" json:"checks,omitempty"`
 		Components *map[string]string `tfsdk:"components" json:"components,omitempty"`
 		Configs    *[]struct {
-			Agent         *string            `tfsdk:"agent" json:"agent,omitempty"`
-			Cache         *string            `tfsdk:"cache" json:"cache,omitempty"`
-			Class         *string            `tfsdk:"class" json:"class,omitempty"`
-			External_id   *string            `tfsdk:"external_id" json:"external_id,omitempty"`
-			FieldSelector *string            `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
-			Id            *string            `tfsdk:"id" json:"id,omitempty"`
-			LabelSelector *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-			Name          *string            `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-			Scope         *string            `tfsdk:"scope" json:"scope,omitempty"`
-			Statuses      *[]string          `tfsdk:"statuses" json:"statuses,omitempty"`
-			TagSelector   *string            `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
-			Tags          *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
-			Type          *string            `tfsdk:"type" json:"type,omitempty"`
-			Types         *[]string          `tfsdk:"types" json:"types,omitempty"`
+			Agent          *string            `tfsdk:"agent" json:"agent,omitempty"`
+			Cache          *string            `tfsdk:"cache" json:"cache,omitempty"`
+			Class          *string            `tfsdk:"class" json:"class,omitempty"`
+			External_id    *string            `tfsdk:"external_id" json:"external_id,omitempty"`
+			FieldSelector  *string            `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+			Id             *string            `tfsdk:"id" json:"id,omitempty"`
+			IncludeDeleted *bool              `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
+			LabelSelector  *string            `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Name           *string            `tfsdk:"name" json:"name,omitempty"`
+			Namespace      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+			Scope          *string            `tfsdk:"scope" json:"scope,omitempty"`
+			Search         *string            `tfsdk:"search" json:"search,omitempty"`
+			Statuses       *[]string          `tfsdk:"statuses" json:"statuses,omitempty"`
+			TagSelector    *string            `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
+			Tags           *map[string]string `tfsdk:"tags" json:"tags,omitempty"`
+			Type           *string            `tfsdk:"type" json:"type,omitempty"`
+			Types          *[]string          `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"configs" json:"configs,omitempty"`
 		ExternalID *string            `tfsdk:"external_id" json:"externalID,omitempty"`
 		ForEach    *map[string]string `tfsdk:"for_each" json:"forEach,omitempty"`
+		Health     *string            `tfsdk:"health" json:"health,omitempty"`
 		Hidden     *bool              `tfsdk:"hidden" json:"hidden,omitempty"`
 		Icon       *string            `tfsdk:"icon" json:"icon,omitempty"`
 		Id         *struct {
@@ -97,17 +100,19 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"relationships" json:"relationships,omitempty"`
 		Selectors *[]struct {
-			Agent         *string   `tfsdk:"agent" json:"agent,omitempty"`
-			Cache         *string   `tfsdk:"cache" json:"cache,omitempty"`
-			FieldSelector *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
-			Id            *string   `tfsdk:"id" json:"id,omitempty"`
-			LabelSelector *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-			Name          *string   `tfsdk:"name" json:"name,omitempty"`
-			Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
-			Scope         *string   `tfsdk:"scope" json:"scope,omitempty"`
-			Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
-			TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
-			Types         *[]string `tfsdk:"types" json:"types,omitempty"`
+			Agent          *string   `tfsdk:"agent" json:"agent,omitempty"`
+			Cache          *string   `tfsdk:"cache" json:"cache,omitempty"`
+			FieldSelector  *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+			Id             *string   `tfsdk:"id" json:"id,omitempty"`
+			IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
+			LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+			Name           *string   `tfsdk:"name" json:"name,omitempty"`
+			Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+			Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
+			Search         *string   `tfsdk:"search" json:"search,omitempty"`
+			Statuses       *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
+			TagSelector    *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
+			Types          *[]string `tfsdk:"types" json:"types,omitempty"`
 		} `tfsdk:"selectors" json:"selectors,omitempty"`
 		StatusExpr *string `tfsdk:"status_expr" json:"statusExpr,omitempty"`
 		Summary    *struct {
@@ -276,6 +281,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"include_deleted": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"label_selector": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -303,6 +316,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								"scope": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"search": schema.StringAttribute{
+									Description:         "Search query that applies to the resource name, tag & labels.",
+									MarkdownDescription: "Search query that applies to the resource name, tag & labels.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -369,6 +390,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 						Description:         "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
 						MarkdownDescription: "Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself",
 						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"health": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -639,6 +668,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 									Computed:            false,
 								},
 
+								"include_deleted": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"label_selector": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -666,6 +703,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 								"scope": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"search": schema.StringAttribute{
+									Description:         "Search query that applies to the resource name, tag & labels.",
+									MarkdownDescription: "Search query that applies to the resource name, tag & labels.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

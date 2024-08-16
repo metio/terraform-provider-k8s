@@ -831,8 +831,8 @@ func (r *MonitoringCoreosComPodMonitorV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_url": schema.StringAttribute{
-											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Description:         "'proxyURL' defines the HTTP proxy server to use.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

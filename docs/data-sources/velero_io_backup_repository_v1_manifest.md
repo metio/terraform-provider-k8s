@@ -62,4 +62,5 @@ Required:
 
 Optional:
 
+- `repository_config` (Map of String) RepositoryConfig is for repository-specific configuration fields.
 - `repository_type` (String) RepositoryType indicates the type of the backend repository

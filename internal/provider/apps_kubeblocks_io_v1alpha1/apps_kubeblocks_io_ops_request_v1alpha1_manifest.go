@@ -703,36 +703,6 @@ type AppsKubeblocksIoOpsRequestV1Alpha1ManifestData struct {
 			RestorePointInTime                *string `tfsdk:"restore_point_in_time" json:"restorePointInTime,omitempty"`
 			VolumeRestorePolicy               *string `tfsdk:"volume_restore_policy" json:"volumeRestorePolicy,omitempty"`
 		} `tfsdk:"restore_spec" json:"restoreSpec,omitempty"`
-		ScriptSpec *struct {
-			ComponentName *string   `tfsdk:"component_name" json:"componentName,omitempty"`
-			Image         *string   `tfsdk:"image" json:"image,omitempty"`
-			Script        *[]string `tfsdk:"script" json:"script,omitempty"`
-			ScriptFrom    *struct {
-				ConfigMapRef *[]struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"config_map_ref" json:"configMapRef,omitempty"`
-				SecretRef *[]struct {
-					Key      *string `tfsdk:"key" json:"key,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-				} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
-			} `tfsdk:"script_from" json:"scriptFrom,omitempty"`
-			Secret *struct {
-				Name        *string `tfsdk:"name" json:"name,omitempty"`
-				PasswordKey *string `tfsdk:"password_key" json:"passwordKey,omitempty"`
-				UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
-			} `tfsdk:"secret" json:"secret,omitempty"`
-			Selector *struct {
-				MatchExpressions *[]struct {
-					Key      *string   `tfsdk:"key" json:"key,omitempty"`
-					Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-					Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-				} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-				MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-			} `tfsdk:"selector" json:"selector,omitempty"`
-		} `tfsdk:"script_spec" json:"scriptSpec,omitempty"`
 		Switchover *[]struct {
 			ComponentName *string `tfsdk:"component_name" json:"componentName,omitempty"`
 			InstanceName  *string `tfsdk:"instance_name" json:"instanceName,omitempty"`
@@ -5339,210 +5309,6 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
-					"script_spec": schema.SingleNestedAttribute{
-						Description:         "Specifies the image and scripts for executing engine-specific operations such as creating databases or users.It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.ScriptSpec has been replaced by the more versatile OpsDefinition.It is recommended to use OpsDefinition instead.ScriptSpec is deprecated and will be removed in a future version.",
-						MarkdownDescription: "Specifies the image and scripts for executing engine-specific operations such as creating databases or users.It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.ScriptSpec has been replaced by the more versatile OpsDefinition.It is recommended to use OpsDefinition instead.ScriptSpec is deprecated and will be removed in a future version.",
-						Attributes: map[string]schema.Attribute{
-							"component_name": schema.StringAttribute{
-								Description:         "Specifies the name of the Component.",
-								MarkdownDescription: "Specifies the name of the Component.",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-
-							"image": schema.StringAttribute{
-								Description:         "Specifies the image to be used to execute scripts.By default, the image 'apecloud/kubeblocks-datascript:latest' is used.",
-								MarkdownDescription: "Specifies the image to be used to execute scripts.By default, the image 'apecloud/kubeblocks-datascript:latest' is used.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"script": schema.ListAttribute{
-								Description:         "Defines the content of scripts to be executed.All scripts specified in this field will be executed in the order they are provided.Note: this field cannot be modified once set.",
-								MarkdownDescription: "Defines the content of scripts to be executed.All scripts specified in this field will be executed in the order they are provided.Note: this field cannot be modified once set.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
-							"script_from": schema.SingleNestedAttribute{
-								Description:         "Specifies the sources of the scripts to be executed.Each script can be imported either from a ConfigMap or a Secret.All scripts obtained from the sources specified in this field will be executed afterany scripts provided in the 'script' field.Execution order:1. Scripts provided in the 'script' field, in the order of the scripts listed.2. Scripts imported from ConfigMaps, in the order of the sources listed.3. Scripts imported from Secrets, in the order of the sources listed.Note: this field cannot be modified once set.",
-								MarkdownDescription: "Specifies the sources of the scripts to be executed.Each script can be imported either from a ConfigMap or a Secret.All scripts obtained from the sources specified in this field will be executed afterany scripts provided in the 'script' field.Execution order:1. Scripts provided in the 'script' field, in the order of the scripts listed.2. Scripts imported from ConfigMaps, in the order of the sources listed.3. Scripts imported from Secrets, in the order of the sources listed.Note: this field cannot be modified once set.",
-								Attributes: map[string]schema.Attribute{
-									"config_map_ref": schema.ListNestedAttribute{
-										Description:         "A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.Note: This field cannot be modified once set.",
-										MarkdownDescription: "A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.Note: This field cannot be modified once set.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "The key to select.",
-													MarkdownDescription: "The key to select.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the ConfigMap or its key must be defined",
-													MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"secret_ref": schema.ListNestedAttribute{
-										Description:         "A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.Note: This field cannot be modified once set.",
-										MarkdownDescription: "A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.Note: This field cannot be modified once set.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "The key of the secret to select from.  Must be a valid secret key.",
-													MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"name": schema.StringAttribute{
-													Description:         "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													MarkdownDescription: "Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"optional": schema.BoolAttribute{
-													Description:         "Specify whether the Secret or its key must be defined",
-													MarkdownDescription: "Specify whether the Secret or its key must be defined",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"secret": schema.SingleNestedAttribute{
-								Description:         "Defines the secret to be used to execute the script. If not specified, the default cluster root credential secret is used.",
-								MarkdownDescription: "Defines the secret to be used to execute the script. If not specified, the default cluster root credential secret is used.",
-								Attributes: map[string]schema.Attribute{
-									"name": schema.StringAttribute{
-										Description:         "Specifies the name of the secret.",
-										MarkdownDescription: "Specifies the name of the secret.",
-										Required:            true,
-										Optional:            false,
-										Computed:            false,
-										Validators: []validator.String{
-											stringvalidator.LengthAtMost(63),
-											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([a-z0-9\.\-]*[a-z0-9])?$`), ""),
-										},
-									},
-
-									"password_key": schema.StringAttribute{
-										Description:         "Used to specify the password part of the secret.",
-										MarkdownDescription: "Used to specify the password part of the secret.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"username_key": schema.StringAttribute{
-										Description:         "Used to specify the username part of the secret.",
-										MarkdownDescription: "Used to specify the username part of the secret.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"selector": schema.SingleNestedAttribute{
-								Description:         "Specifies the labels used to select the Pods on which the script should be executed.By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}',which typically routes to the Pod with the primary/leader role.However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods.In these cases, the script must be executed on all replica Pods matching the selector.Note: this field cannot be modified once set.",
-								MarkdownDescription: "Specifies the labels used to select the Pods on which the script should be executed.By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}',which typically routes to the Pod with the primary/leader role.However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods.In these cases, the script must be executed on all replica Pods matching the selector.Note: this field cannot be modified once set.",
-								Attributes: map[string]schema.Attribute{
-									"match_expressions": schema.ListNestedAttribute{
-										Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-										MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "key is the label key that the selector applies to.",
-													MarkdownDescription: "key is the label key that the selector applies to.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"operator": schema.StringAttribute{
-													Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"values": schema.ListAttribute{
-													Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-													ElementType:         types.StringType,
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"match_labels": schema.MapAttribute{
-										Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"switchover": schema.ListNestedAttribute{
 						Description:         "Lists Switchover objects, each specifying a Component to perform the switchover operation.",
 						MarkdownDescription: "Lists Switchover objects, each specifying a Component to perform the switchover operation.",
@@ -5595,13 +5361,13 @@ func (r *AppsKubeblocksIoOpsRequestV1Alpha1Manifest) Schema(_ context.Context, _
 					},
 
 					"type": schema.StringAttribute{
-						Description:         "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'DataScript', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.",
-						MarkdownDescription: "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'DataScript', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.",
+						Description:         "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.",
+						MarkdownDescription: "Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("Upgrade", "VerticalScaling", "VolumeExpansion", "HorizontalScaling", "Restart", "Reconfiguring", "Start", "Stop", "Expose", "Switchover", "DataScript", "Backup", "Restore", "RebuildInstance", "Custom"),
+							stringvalidator.OneOf("Upgrade", "VerticalScaling", "VolumeExpansion", "HorizontalScaling", "Restart", "Reconfiguring", "Start", "Stop", "Expose", "Switchover", "Backup", "Restore", "RebuildInstance", "Custom"),
 						},
 					},
 

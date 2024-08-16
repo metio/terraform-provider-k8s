@@ -74,6 +74,7 @@ Optional:
 
 - `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--options--buffer_per_route))
 - `cors` (Attributes) (see [below for nested schema](#nestedatt--spec--options--cors))
+- `cors_policy_merge_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--options--cors_policy_merge_settings))
 - `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--options--csrf))
 - `dlp` (Attributes) (see [below for nested schema](#nestedatt--spec--options--dlp))
 - `ext_proc` (Attributes) (see [below for nested schema](#nestedatt--spec--options--ext_proc))
@@ -128,6 +129,14 @@ Optional:
 - `disable_for_route` (Boolean)
 - `expose_headers` (List of String)
 - `max_age` (String)
+
+
+<a id="nestedatt--spec--options--cors_policy_merge_settings"></a>
+### Nested Schema for `spec.options.cors_policy_merge_settings`
+
+Optional:
+
+- `expose_headers` (String)
 
 
 <a id="nestedatt--spec--options--csrf"></a>

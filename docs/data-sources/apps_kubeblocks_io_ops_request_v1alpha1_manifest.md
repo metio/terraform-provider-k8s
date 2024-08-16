@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `type` (String) Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'DataScript', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.
+- `type` (String) Specifies the type of this operation. Supported types include 'Start', 'Stop', 'Restart', 'Switchover','VerticalScaling', 'HorizontalScaling', 'VolumeExpansion', 'Reconfiguring', 'Upgrade', 'Backup', 'Restore','Expose', 'RebuildInstance', 'Custom'.Note: This field is immutable once set.
 
 Optional:
 
@@ -76,7 +76,6 @@ Optional:
 - `restart` (Attributes List) Lists Components to be restarted. (see [below for nested schema](#nestedatt--spec--restart))
 - `restore` (Attributes) Specifies the parameters to restore a Cluster.Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore))
 - `restore_spec` (Attributes) Deprecated: since v0.9, use restore instead.Specifies the parameters to restore a Cluster.Note that this restore operation will roll back cluster services. (see [below for nested schema](#nestedatt--spec--restore_spec))
-- `script_spec` (Attributes) Specifies the image and scripts for executing engine-specific operations such as creating databases or users.It supports limited engines including MySQL, PostgreSQL, Redis, MongoDB.ScriptSpec has been replaced by the more versatile OpsDefinition.It is recommended to use OpsDefinition instead.ScriptSpec is deprecated and will be removed in a future version. (see [below for nested schema](#nestedatt--spec--script_spec))
 - `switchover` (Attributes List) Lists Switchover objects, each specifying a Component to perform the switchover operation. (see [below for nested schema](#nestedatt--spec--switchover))
 - `timeout_seconds` (Number) Specifies the maximum duration (in seconds) that an opsRequest is allowed to run.If the opsRequest runs longer than this duration, its phase will be marked as Aborted.If this value is not set or set to 0, the timeout will be ignored and the opsRequest will run indefinitely.
 - `ttl_seconds_after_succeed` (Number) Specifies the duration in seconds that an OpsRequest will remain in the system after successfully completing(when 'opsRequest.status.phase' is 'Succeed') before automatic deletion.
@@ -1816,92 +1815,6 @@ Optional:
 - `defer_post_ready_until_cluster_running` (Boolean) Controls the timing of PostReady actions during the recovery process.If false (default), PostReady actions execute when the Component reaches the 'Running' state.If true, PostReady actions are delayed until the entire Cluster is 'Running,'ensuring the cluster's overall stability before proceeding.This setting is useful for coordinating PostReady operations across the Cluster for optimal cluster conditions.
 - `restore_point_in_time` (String) Specifies the point in time to which the restore should be performed.Supported time formats:- RFC3339 format, e.g. '2023-11-25T18:52:53Z'- A human-readable date-time format, e.g. 'Jul 25,2023 18:52:53 UTC+0800'
 - `volume_restore_policy` (String) Specifies the policy for restoring volume claims of a Component's Pods.It determines whether the volume claims should be restored sequentially (one by one) or in parallel (all at once).Support values:- 'Serial'- 'Parallel'
-
-
-<a id="nestedatt--spec--script_spec"></a>
-### Nested Schema for `spec.script_spec`
-
-Required:
-
-- `component_name` (String) Specifies the name of the Component.
-
-Optional:
-
-- `image` (String) Specifies the image to be used to execute scripts.By default, the image 'apecloud/kubeblocks-datascript:latest' is used.
-- `script` (List of String) Defines the content of scripts to be executed.All scripts specified in this field will be executed in the order they are provided.Note: this field cannot be modified once set.
-- `script_from` (Attributes) Specifies the sources of the scripts to be executed.Each script can be imported either from a ConfigMap or a Secret.All scripts obtained from the sources specified in this field will be executed afterany scripts provided in the 'script' field.Execution order:1. Scripts provided in the 'script' field, in the order of the scripts listed.2. Scripts imported from ConfigMaps, in the order of the sources listed.3. Scripts imported from Secrets, in the order of the sources listed.Note: this field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from))
-- `secret` (Attributes) Defines the secret to be used to execute the script. If not specified, the default cluster root credential secret is used. (see [below for nested schema](#nestedatt--spec--script_spec--secret))
-- `selector` (Attributes) Specifies the labels used to select the Pods on which the script should be executed.By default, the script is executed on the Pod associated with the service named '{clusterName}-{componentName}',which typically routes to the Pod with the primary/leader role.However, some Components, such as Redis, do not synchronize account information between primary and secondary Pods.In these cases, the script must be executed on all replica Pods matching the selector.Note: this field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--selector))
-
-<a id="nestedatt--spec--script_spec--script_from"></a>
-### Nested Schema for `spec.script_spec.script_from`
-
-Optional:
-
-- `config_map_ref` (Attributes List) A list of ConfigMapKeySelector objects, each specifies a ConfigMap and a key containing the script.Note: This field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--config_map_ref))
-- `secret_ref` (Attributes List) A list of SecretKeySelector objects, each specifies a Secret and a key containing the script.Note: This field cannot be modified once set. (see [below for nested schema](#nestedatt--spec--script_spec--script_from--secret_ref))
-
-<a id="nestedatt--spec--script_spec--script_from--config_map_ref"></a>
-### Nested Schema for `spec.script_spec.script_from.config_map_ref`
-
-Required:
-
-- `key` (String) The key to select.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
-
-
-<a id="nestedatt--spec--script_spec--script_from--secret_ref"></a>
-### Nested Schema for `spec.script_spec.script_from.secret_ref`
-
-Required:
-
-- `key` (String) The key of the secret to select from.  Must be a valid secret key.
-
-Optional:
-
-- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
-- `optional` (Boolean) Specify whether the Secret or its key must be defined
-
-
-
-<a id="nestedatt--spec--script_spec--secret"></a>
-### Nested Schema for `spec.script_spec.secret`
-
-Required:
-
-- `name` (String) Specifies the name of the secret.
-
-Optional:
-
-- `password_key` (String) Used to specify the password part of the secret.
-- `username_key` (String) Used to specify the username part of the secret.
-
-
-<a id="nestedatt--spec--script_spec--selector"></a>
-### Nested Schema for `spec.script_spec.selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--script_spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--script_spec--selector--match_expressions"></a>
-### Nested Schema for `spec.script_spec.selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
 
 
 <a id="nestedatt--spec--switchover"></a>

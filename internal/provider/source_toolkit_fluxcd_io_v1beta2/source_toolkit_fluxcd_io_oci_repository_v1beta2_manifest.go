@@ -54,8 +54,11 @@ type SourceToolkitFluxcdIoOcirepositoryV1Beta2ManifestData struct {
 			MediaType *string `tfsdk:"media_type" json:"mediaType,omitempty"`
 			Operation *string `tfsdk:"operation" json:"operation,omitempty"`
 		} `tfsdk:"layer_selector" json:"layerSelector,omitempty"`
-		Provider *string `tfsdk:"provider" json:"provider,omitempty"`
-		Ref      *struct {
+		Provider       *string `tfsdk:"provider" json:"provider,omitempty"`
+		ProxySecretRef *struct {
+			Name *string `tfsdk:"name" json:"name,omitempty"`
+		} `tfsdk:"proxy_secret_ref" json:"proxySecretRef,omitempty"`
+		Ref *struct {
 			Digest       *string `tfsdk:"digest" json:"digest,omitempty"`
 			Semver       *string `tfsdk:"semver" json:"semver,omitempty"`
 			SemverFilter *string `tfsdk:"semver_filter" json:"semverFilter,omitempty"`
@@ -239,6 +242,23 @@ func (r *SourceToolkitFluxcdIoOcirepositoryV1Beta2Manifest) Schema(_ context.Con
 						Validators: []validator.String{
 							stringvalidator.OneOf("generic", "aws", "azure", "gcp"),
 						},
+					},
+
+					"proxy_secret_ref": schema.SingleNestedAttribute{
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.",
+								MarkdownDescription: "Name of the referent.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"ref": schema.SingleNestedAttribute{

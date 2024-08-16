@@ -89,7 +89,7 @@ Optional:
 - `params` (Map of List of String) Optional HTTP URL parameters
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `puppet_dbsd_configs` (Attributes List) PuppetDBSDConfigs defines a list of PuppetDB service discovery configurations. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs))
 - `relabelings` (Attributes List) RelabelConfigs defines how to rewrite the target's labels before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--relabelings))
 - `sample_limit` (Number) SampleLimit defines per-scrape limit on number of scraped samples that will be accepted.
@@ -215,7 +215,7 @@ Optional:
 - `partition` (String) Admin Partitions are only supported in Consul Enterprise.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the provided names are refreshed.On large setup it might be a good idea to increase this value because the catalog will change all the time.If unset, Prometheus uses its default value.
 - `scheme` (String) HTTP Scheme default 'http'
 - `services` (List of String) A list of services for which targets are retrieved. If omitted, all services are scraped.
@@ -296,7 +296,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--consul_sd_configs--oauth2--tls_config))
 
@@ -570,7 +570,7 @@ Optional:
 - `port` (Number) The port to scrape metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--tls_config))
 
@@ -611,7 +611,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--digital_ocean_sd_configs--oauth2--tls_config))
 
@@ -893,7 +893,7 @@ Optional:
 - `port` (Number) The port to scrape metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Time after which the container is refreshed.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--tls_config))
 
@@ -978,7 +978,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2--tls_config))
 
@@ -1246,7 +1246,7 @@ Optional:
 - `port` (Number) The port to scrape metrics from, when 'role' is nodes, and for discoveredtasks and services that don't have published ports.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the service discovery data is refreshed.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--tls_config))
 
@@ -1331,7 +1331,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--docker_swarm_sd_configs--oauth2--tls_config))
 
@@ -1585,12 +1585,19 @@ Optional:
 Optional:
 
 - `access_key` (Attributes) AccessKey is the AWS API key. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--access_key))
-- `filters` (Attributes List) Filters can be used optionally to filter the instance list by other criteria.Available filter criteria can be found here:https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.htmlFilter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.html (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--filters))
+- `enable_http2` (Boolean) Whether to enable HTTP2.It requires Prometheus >= v2.41.0
+- `filters` (Attributes List) Filters can be used optionally to filter the instance list by other criteria.Available filter criteria can be found here:https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.htmlFilter API documentation: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Filter.htmlIt requires Prometheus >= v2.3.0 (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--filters))
+- `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.It requires Prometheus >= v2.41.0
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `port` (Number) The port to scrape metrics from. If using the public IP address, this mustinstead be specified in the relabeling rule.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) RefreshInterval configures the refresh interval at which Prometheus will re-read the instance list.
-- `region` (String) The AWS region
+- `region` (String) The AWS region.
 - `role_arn` (String) AWS Role ARN, an alternative to using AWS API keys.
 - `secret_key` (Attributes) SecretKey is the AWS API secret. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--secret_key))
+- `tls_config` (Attributes) TLS configuration to connect to the AWS EC2 API.It requires Prometheus >= v2.41.0 (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config))
 
 <a id="nestedatt--spec--ec2_sd_configs--access_key"></a>
 ### Nested Schema for `spec.ec2_sd_configs.access_key`
@@ -1627,6 +1634,103 @@ Optional:
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
+<a id="nestedatt--spec--ec2_sd_configs--tls_config"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--ca"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--ca--secret))
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--cert"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ec2_sd_configs--tls_config--cert--secret))
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--ec2_sd_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.ec2_sd_configs.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
 
 <a id="nestedatt--spec--eureka_sd_configs"></a>
 ### Nested Schema for `spec.eureka_sd_configs`
@@ -1645,7 +1749,7 @@ Optional:
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the instance list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--tls_config))
 
@@ -1721,7 +1825,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--eureka_sd_configs--oauth2--tls_config))
 
@@ -2015,7 +2119,7 @@ Optional:
 - `port` (Number) The port to scrape metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time after which the servers are refreshed.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--tls_config))
 
@@ -2091,7 +2195,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--hetzner_sd_configs--oauth2--tls_config))
 
@@ -2353,7 +2457,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) RefreshInterval configures the refresh interval at which Prometheus will re-query theendpoint to update the target list.
 - `tls_config` (Attributes) TLS configuration applying to the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--http_sd_configs--tls_config))
 
@@ -2532,7 +2636,7 @@ Optional:
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `selectors` (Attributes List) Selector to select objects.It requires Prometheus >= v2.17.0 (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--selectors))
 - `tls_config` (Attributes) TLS configuration to connect to the Kubernetes API. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--tls_config))
 
@@ -2625,7 +2729,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs--oauth2--tls_config))
 
@@ -2905,7 +3009,7 @@ Optional:
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) The time to wait between polling update requests.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--tls_config))
 
@@ -2981,7 +3085,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--kuma_sd_configs--oauth2--tls_config))
 
@@ -3245,7 +3349,7 @@ Optional:
 - `port` (Number) Port to scrape the metrics from.If using the public IP address, this must instead be specified in the relabeling rule.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of instances.
 - `region` (String) The AWS region.
 - `role_arn` (String) AWS Role ARN, an alternative to using AWS API keys.
@@ -3337,7 +3441,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--light_sail_sd_configs--oauth2--tls_config))
 
@@ -3611,7 +3715,7 @@ Optional:
 - `port` (Number) Default port to scrape metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Time after which the linode instances are refreshed.
 - `region` (String) Optional region to filter on.
 - `tag_separator` (String) The string by which Linode Instance tags are joined into the tag label.
@@ -3654,7 +3758,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--linode_sd_configs--oauth2--tls_config))
 
@@ -3935,7 +4039,7 @@ Optional:
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization' or 'basic_auth'. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Duration is a valid time duration that can be parsed by Prometheus model.ParseDuration() function.Supported units: y, w, d, h, m, s, msExamples: '30s', '1m', '1h20m15s', '15d'
 - `region` (String)
 - `tag_separator` (String)
@@ -4013,7 +4117,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs--oauth2--tls_config))
 
@@ -4276,7 +4380,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--oauth2--tls_config))
 
@@ -4639,7 +4743,7 @@ Optional:
 - `port` (Number) Port to scrape the metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of resources.
 - `tls_config` (Attributes) TLS configuration to connect to the Puppet DB. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--tls_config))
 
@@ -4715,7 +4819,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--puppet_dbsd_configs--oauth2--tls_config))
 
@@ -4997,7 +5101,7 @@ Optional:
 - `port` (Number) The port to scrape metrics from.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `refresh_interval` (String) Refresh interval to re-read the list of instances.
 - `tags_filter` (List of String) TagsFilter specify a tag filter (a server needs to have all defined tags to be listed) to apply on the server listing request.
 - `tls_config` (Attributes) TLS configuration to use on every scrape request (see [below for nested schema](#nestedatt--spec--scaleway_sd_configs--tls_config))

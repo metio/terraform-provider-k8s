@@ -43,11 +43,12 @@ type VeleroIoBackupRepositoryV1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		BackupStorageLocation *string `tfsdk:"backup_storage_location" json:"backupStorageLocation,omitempty"`
-		MaintenanceFrequency  *string `tfsdk:"maintenance_frequency" json:"maintenanceFrequency,omitempty"`
-		RepositoryType        *string `tfsdk:"repository_type" json:"repositoryType,omitempty"`
-		ResticIdentifier      *string `tfsdk:"restic_identifier" json:"resticIdentifier,omitempty"`
-		VolumeNamespace       *string `tfsdk:"volume_namespace" json:"volumeNamespace,omitempty"`
+		BackupStorageLocation *string            `tfsdk:"backup_storage_location" json:"backupStorageLocation,omitempty"`
+		MaintenanceFrequency  *string            `tfsdk:"maintenance_frequency" json:"maintenanceFrequency,omitempty"`
+		RepositoryConfig      *map[string]string `tfsdk:"repository_config" json:"repositoryConfig,omitempty"`
+		RepositoryType        *string            `tfsdk:"repository_type" json:"repositoryType,omitempty"`
+		ResticIdentifier      *string            `tfsdk:"restic_identifier" json:"resticIdentifier,omitempty"`
+		VolumeNamespace       *string            `tfsdk:"volume_namespace" json:"volumeNamespace,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -141,6 +142,15 @@ func (r *VeleroIoBackupRepositoryV1Manifest) Schema(_ context.Context, _ datasou
 						MarkdownDescription: "MaintenanceFrequency is how often maintenance should be run.",
 						Required:            true,
 						Optional:            false,
+						Computed:            false,
+					},
+
+					"repository_config": schema.MapAttribute{
+						Description:         "RepositoryConfig is for repository-specific configuration fields.",
+						MarkdownDescription: "RepositoryConfig is for repository-specific configuration fields.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 

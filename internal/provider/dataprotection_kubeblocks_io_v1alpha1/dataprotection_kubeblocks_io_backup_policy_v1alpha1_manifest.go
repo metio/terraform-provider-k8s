@@ -92,6 +92,10 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 					UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+				ContainerPort *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+				} `tfsdk:"container_port" json:"containerPort,omitempty"`
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
 				PodSelector *struct {
 					FallbackLabelSelector *struct {
@@ -143,6 +147,10 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 					UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 				} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+				ContainerPort *struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+				} `tfsdk:"container_port" json:"containerPort,omitempty"`
 				Name        *string `tfsdk:"name" json:"name,omitempty"`
 				PodSelector *struct {
 					FallbackLabelSelector *struct {
@@ -194,6 +202,10 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+			ContainerPort *struct {
+				ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+				PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+			} `tfsdk:"container_port" json:"containerPort,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			PodSelector *struct {
 				FallbackLabelSelector *struct {
@@ -234,6 +246,10 @@ type DataprotectionKubeblocksIoBackupPolicyV1Alpha1ManifestData struct {
 				SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				UsernameKey *string `tfsdk:"username_key" json:"usernameKey,omitempty"`
 			} `tfsdk:"connection_credential" json:"connectionCredential,omitempty"`
+			ContainerPort *struct {
+				ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+				PortName      *string `tfsdk:"port_name" json:"portName,omitempty"`
+			} `tfsdk:"container_port" json:"containerPort,omitempty"`
 			Name        *string `tfsdk:"name" json:"name,omitempty"`
 			PodSelector *struct {
 				FallbackLabelSelector *struct {
@@ -662,6 +678,31 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 											Computed: false,
 										},
 
+										"container_port": schema.SingleNestedAttribute{
+											Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+											MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+											Attributes: map[string]schema.Attribute{
+												"container_name": schema.StringAttribute{
+													Description:         "Specifies the name of container with the port.",
+													MarkdownDescription: "Specifies the name of container with the port.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"port_name": schema.StringAttribute{
+													Description:         "Specifies the port name.",
+													MarkdownDescription: "Specifies the port name.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"name": schema.StringAttribute{
 											Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
 											MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
@@ -1007,6 +1048,31 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 													"username_key": schema.StringAttribute{
 														Description:         "Specifies the map key of the user in the connection credential secret.",
 														MarkdownDescription: "Specifies the map key of the user in the connection credential secret.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"container_port": schema.SingleNestedAttribute{
+												Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+												MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+												Attributes: map[string]schema.Attribute{
+													"container_name": schema.StringAttribute{
+														Description:         "Specifies the name of container with the port.",
+														MarkdownDescription: "Specifies the name of container with the port.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"port_name": schema.StringAttribute{
+														Description:         "Specifies the port name.",
+														MarkdownDescription: "Specifies the port name.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -1373,6 +1439,31 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 								Computed: false,
 							},
 
+							"container_port": schema.SingleNestedAttribute{
+								Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+								MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+								Attributes: map[string]schema.Attribute{
+									"container_name": schema.StringAttribute{
+										Description:         "Specifies the name of container with the port.",
+										MarkdownDescription: "Specifies the name of container with the port.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"port_name": schema.StringAttribute{
+										Description:         "Specifies the port name.",
+										MarkdownDescription: "Specifies the port name.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"name": schema.StringAttribute{
 								Description:         "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
 								MarkdownDescription: "Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.",
@@ -1641,6 +1732,31 @@ func (r *DataprotectionKubeblocksIoBackupPolicyV1Alpha1Manifest) Schema(_ contex
 										"username_key": schema.StringAttribute{
 											Description:         "Specifies the map key of the user in the connection credential secret.",
 											MarkdownDescription: "Specifies the map key of the user in the connection credential secret.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"container_port": schema.SingleNestedAttribute{
+									Description:         "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+									MarkdownDescription: "Specifies the container port in the target pod.If not specified, the first container and its first port will be used.",
+									Attributes: map[string]schema.Attribute{
+										"container_name": schema.StringAttribute{
+											Description:         "Specifies the name of container with the port.",
+											MarkdownDescription: "Specifies the name of container with the port.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"port_name": schema.StringAttribute{
+											Description:         "Specifies the port name.",
+											MarkdownDescription: "Specifies the port name.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

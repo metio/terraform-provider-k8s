@@ -80,6 +80,7 @@ Optional:
 - `security_context` (Attributes) SecurityContext holds security configuration that will be applied to a container. (see [below for nested schema](#nestedatt--spec--security_context))
 - `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to be used by the Pods.
 - `successful_jobs_history_limit` (Number)
+- `time_zone` (String)
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 
 <a id="nestedatt--spec--maria_db_ref"></a>

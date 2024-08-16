@@ -900,19 +900,22 @@ type MonitoringCoreosComPrometheusV1ManifestData struct {
 			} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 		} `tfsdk:"init_containers" json:"initContainers,omitempty"`
-		KeepDroppedTargets                   *int64             `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
-		LabelLimit                           *int64             `tfsdk:"label_limit" json:"labelLimit,omitempty"`
-		LabelNameLengthLimit                 *int64             `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
-		LabelValueLengthLimit                *int64             `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
-		ListenLocal                          *bool              `tfsdk:"listen_local" json:"listenLocal,omitempty"`
-		LogFormat                            *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
-		LogLevel                             *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
-		MaximumStartupDurationSeconds        *int64             `tfsdk:"maximum_startup_duration_seconds" json:"maximumStartupDurationSeconds,omitempty"`
-		MinReadySeconds                      *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
-		NodeSelector                         *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-		OverrideHonorLabels                  *bool              `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
-		OverrideHonorTimestamps              *bool              `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
-		Paused                               *bool              `tfsdk:"paused" json:"paused,omitempty"`
+		KeepDroppedTargets            *int64             `tfsdk:"keep_dropped_targets" json:"keepDroppedTargets,omitempty"`
+		LabelLimit                    *int64             `tfsdk:"label_limit" json:"labelLimit,omitempty"`
+		LabelNameLengthLimit          *int64             `tfsdk:"label_name_length_limit" json:"labelNameLengthLimit,omitempty"`
+		LabelValueLengthLimit         *int64             `tfsdk:"label_value_length_limit" json:"labelValueLengthLimit,omitempty"`
+		ListenLocal                   *bool              `tfsdk:"listen_local" json:"listenLocal,omitempty"`
+		LogFormat                     *string            `tfsdk:"log_format" json:"logFormat,omitempty"`
+		LogLevel                      *string            `tfsdk:"log_level" json:"logLevel,omitempty"`
+		MaximumStartupDurationSeconds *int64             `tfsdk:"maximum_startup_duration_seconds" json:"maximumStartupDurationSeconds,omitempty"`
+		MinReadySeconds               *int64             `tfsdk:"min_ready_seconds" json:"minReadySeconds,omitempty"`
+		NodeSelector                  *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+		Otlp                          *struct {
+			PromoteResourceAttributes *[]string `tfsdk:"promote_resource_attributes" json:"promoteResourceAttributes,omitempty"`
+		} `tfsdk:"otlp" json:"otlp,omitempty"`
+		OverrideHonorLabels                  *bool `tfsdk:"override_honor_labels" json:"overrideHonorLabels,omitempty"`
+		OverrideHonorTimestamps              *bool `tfsdk:"override_honor_timestamps" json:"overrideHonorTimestamps,omitempty"`
+		Paused                               *bool `tfsdk:"paused" json:"paused,omitempty"`
 		PersistentVolumeClaimRetentionPolicy *struct {
 			WhenDeleted *string `tfsdk:"when_deleted" json:"whenDeleted,omitempty"`
 			WhenScaled  *string `tfsdk:"when_scaled" json:"whenScaled,omitempty"`
@@ -8043,6 +8046,24 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 						Computed:            false,
 					},
 
+					"otlp": schema.SingleNestedAttribute{
+						Description:         "Settings related to the OTLP receiver feature.It requires Prometheus >= v2.54.0.",
+						MarkdownDescription: "Settings related to the OTLP receiver feature.It requires Prometheus >= v2.54.0.",
+						Attributes: map[string]schema.Attribute{
+							"promote_resource_attributes": schema.ListAttribute{
+								Description:         "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.",
+								MarkdownDescription: "List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"override_honor_labels": schema.BoolAttribute{
 						Description:         "When true, Prometheus resolves label conflicts by renaming the labels in the scraped data to “exported_” for all targets created from ServiceMonitor, PodMonitor andScrapeConfig objects. Otherwise the HonorLabels field of the service or pod monitor applies.In practice,'overrideHonorLaels:true' enforces 'honorLabels:false'for all ServiceMonitor, PodMonitor and ScrapeConfig objects.",
 						MarkdownDescription: "When true, Prometheus resolves label conflicts by renaming the labels in the scraped data to “exported_” for all targets created from ServiceMonitor, PodMonitor andScrapeConfig objects. Otherwise the HonorLabels field of the service or pod monitor applies.In practice,'overrideHonorLaels:true' enforces 'honorLabels:false'for all ServiceMonitor, PodMonitor and ScrapeConfig objects.",
@@ -8811,8 +8832,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_url": schema.StringAttribute{
-											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Description:         "'proxyURL' defines the HTTP proxy server to use.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9094,8 +9115,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -9892,8 +9913,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 										},
 
 										"proxy_url": schema.StringAttribute{
-											Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
-											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+											Description:         "'proxyURL' defines the HTTP proxy server to use.",
+											MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -10175,8 +10196,8 @@ func (r *MonitoringCoreosComPrometheusV1Manifest) Schema(_ context.Context, _ da
 								},
 
 								"proxy_url": schema.StringAttribute{
-									Description:         "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
-									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.",
+									Description:         "'proxyURL' defines the HTTP proxy server to use.",
+									MarkdownDescription: "'proxyURL' defines the HTTP proxy server to use.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

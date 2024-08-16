@@ -706,9 +706,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--buffer_volume_metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--buffer_volume_metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--buffer_volume_metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.buffer_volume_metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--buffer_volume_metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.buffer_volume_metrics.service_monitor_config`
@@ -1445,9 +1460,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.metrics.service_monitor_config`

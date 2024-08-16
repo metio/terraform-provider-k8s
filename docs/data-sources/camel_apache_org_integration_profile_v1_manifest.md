@@ -437,7 +437,7 @@ Optional:
 - `container_meta` (Boolean) Enables injection of 'NAMESPACE' and 'POD_NAME' environment variables (default 'true')
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `http_proxy` (Boolean) Propagates the 'HTTP_PROXY', 'HTTPS_PROXY' and 'NO_PROXY' environment variables (default 'true')
-- `vars` (List of String) A list of environment variables to be added to the integration container.The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''.These take precedence over the previously defined environment variables.
+- `vars` (List of String) A list of environment variables to be added to the integration container.The syntax is either VAR=VALUE or VAR=[configmap|secret]:name/key, where name represents the resource name,and key represents the resource key to be mapped as and environment variable.These take precedence over any previously defined environment variables.
 
 
 <a id="nestedatt--spec--traits--error_handler"></a>
@@ -650,7 +650,7 @@ Optional:
 - `enabled` (Boolean) Deprecated: no longer in use.
 - `hot_reload` (Boolean) Enable 'hot reload' when a secret/configmap mounted is edited (default 'false'). The configmap/secret must bemarked with 'camel.apache.org/integration' label to be taken in account. The resource will be watched for any kind change, also forchanges in metadata.
 - `resources` (List of String) A list of resources (text or binary content) pointing to configmap/secret.The resources are expected to be any resource type (text or binary content).The destination path can be either a default location or any path specified by the user.Syntax: [configmap|secret]:name[/key][@path], where name represents the resource name, key optionally represents the resource key to be filtered and path represents the destination path
-- `scan_kamelets_implicit_label_secrets` (Boolean) Deprecated: include your properties in an explicit property file backed by a secret.Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'.These secrets are mounted to the application and treated as plain properties file with their key/value list(ie .spec.data['camel.my-property'] = my-value) (default 'true').
+- `scan_kamelets_implicit_label_secrets` (Boolean) Deprecated: no longer available since version 2.5.
 - `volumes` (List of String) A list of Persistent Volume Claims to be mounted. Syntax: [pvcname:/container/path]
 
 

@@ -107,7 +107,19 @@ type KyvernoIoUpdateRequestV2ManifestData struct {
 			Uid        *string `tfsdk:"uid" json:"uid,omitempty"`
 		} `tfsdk:"resource" json:"resource,omitempty"`
 		Rule        *string `tfsdk:"rule" json:"rule,omitempty"`
-		Synchronize *bool   `tfsdk:"synchronize" json:"synchronize,omitempty"`
+		RuleContext *[]struct {
+			DeleteDownstream *bool   `tfsdk:"delete_downstream" json:"deleteDownstream,omitempty"`
+			Rule             *string `tfsdk:"rule" json:"rule,omitempty"`
+			Synchronize      *bool   `tfsdk:"synchronize" json:"synchronize,omitempty"`
+			Trigger          *struct {
+				ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+				Kind       *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name       *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace  *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				Uid        *string `tfsdk:"uid" json:"uid,omitempty"`
+			} `tfsdk:"trigger" json:"trigger,omitempty"`
+		} `tfsdk:"rule_context" json:"ruleContext,omitempty"`
+		Synchronize *bool `tfsdk:"synchronize" json:"synchronize,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -189,8 +201,8 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 				MarkdownDescription: "ResourceSpec is the information to identify the trigger resource.",
 				Attributes: map[string]schema.Attribute{
 					"context": schema.SingleNestedAttribute{
-						Description:         "Context ...",
-						MarkdownDescription: "Context ...",
+						Description:         "Context represents admission request context.It is used upon admission review only and is shared across rules within the same UR.",
+						MarkdownDescription: "Context represents admission request context.It is used upon admission review only and is shared across rules within the same UR.",
 						Attributes: map[string]schema.Attribute{
 							"admission_request_info": schema.SingleNestedAttribute{
 								Description:         "AdmissionRequestInfoObject stores the admission request and operation details",
@@ -552,8 +564,8 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 					},
 
 					"delete_downstream": schema.BoolAttribute{
-						Description:         "DeleteDownstream represents whether the downstream needs to be deleted.",
-						MarkdownDescription: "DeleteDownstream represents whether the downstream needs to be deleted.",
+						Description:         "DeleteDownstream represents whether the downstream needs to be deleted.Deprecated",
+						MarkdownDescription: "DeleteDownstream represents whether the downstream needs to be deleted.Deprecated",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
@@ -635,9 +647,93 @@ func (r *KyvernoIoUpdateRequestV2Manifest) Schema(_ context.Context, _ datasourc
 						Computed:            false,
 					},
 
+					"rule_context": schema.ListNestedAttribute{
+						Description:         "RuleContext is the associate context to apply rules.optional",
+						MarkdownDescription: "RuleContext is the associate context to apply rules.optional",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"delete_downstream": schema.BoolAttribute{
+									Description:         "DeleteDownstream represents whether the downstream needs to be deleted.",
+									MarkdownDescription: "DeleteDownstream represents whether the downstream needs to be deleted.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"rule": schema.StringAttribute{
+									Description:         "Rule is the associate rule name of the current UR.",
+									MarkdownDescription: "Rule is the associate rule name of the current UR.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"synchronize": schema.BoolAttribute{
+									Description:         "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
+									MarkdownDescription: "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"trigger": schema.SingleNestedAttribute{
+									Description:         "ResourceSpec is the information to identify the trigger resource.",
+									MarkdownDescription: "ResourceSpec is the information to identify the trigger resource.",
+									Attributes: map[string]schema.Attribute{
+										"api_version": schema.StringAttribute{
+											Description:         "APIVersion specifies resource apiVersion.",
+											MarkdownDescription: "APIVersion specifies resource apiVersion.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kind": schema.StringAttribute{
+											Description:         "Kind specifies resource kind.",
+											MarkdownDescription: "Kind specifies resource kind.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name specifies the resource name.",
+											MarkdownDescription: "Name specifies the resource name.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"namespace": schema.StringAttribute{
+											Description:         "Namespace specifies resource namespace.",
+											MarkdownDescription: "Namespace specifies resource namespace.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"uid": schema.StringAttribute{
+											Description:         "UID specifies the resource uid.",
+											MarkdownDescription: "UID specifies the resource uid.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: true,
+									Optional: false,
+									Computed: false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"synchronize": schema.BoolAttribute{
-						Description:         "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
-						MarkdownDescription: "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.",
+						Description:         "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.Deprecated, will be removed in 1.14.",
+						MarkdownDescription: "Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.Deprecated, will be removed in 1.14.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -3662,8 +3662,9 @@ type K8SMariadbComMariaDbV1Alpha1ManifestData struct {
 			TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 			TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 		} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
-		Replicas    *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
-		Replication *struct {
+		Replicas                *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+		ReplicasAllowEvenNumber *bool  `tfsdk:"replicas_allow_even_number" json:"replicasAllowEvenNumber,omitempty"`
+		Replication             *struct {
 			Enabled *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			Primary *struct {
 				AutomaticFailover *bool  `tfsdk:"automatic_failover" json:"automaticFailover,omitempty"`
@@ -10225,8 +10226,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"init_container": schema.SingleNestedAttribute{
-								Description:         "InitContainer is an init container that co-operates with mariadb-operator.",
-								MarkdownDescription: "InitContainer is an init container that co-operates with mariadb-operator.",
+								Description:         "InitContainer is an init container that runs in the MariaDB Pod and co-operates with mariadb-operator.",
+								MarkdownDescription: "InitContainer is an init container that runs in the MariaDB Pod and co-operates with mariadb-operator.",
 								Attributes: map[string]schema.Attribute{
 									"args": schema.ListAttribute{
 										Description:         "Args to be used in the Container.",
@@ -11223,8 +11224,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"init_job": schema.SingleNestedAttribute{
-								Description:         "InitJob defines additional properties for the Job used to perform the initialization.",
-								MarkdownDescription: "InitJob defines additional properties for the Job used to perform the initialization.",
+								Description:         "InitJob defines a Job that co-operates with mariadb-operator by performing initialization tasks.",
+								MarkdownDescription: "InitJob defines a Job that co-operates with mariadb-operator by performing initialization tasks.",
 								Attributes: map[string]schema.Attribute{
 									"affinity": schema.SingleNestedAttribute{
 										Description:         "Affinity to be used in the Pod.",
@@ -12278,8 +12279,8 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 									},
 
 									"job": schema.SingleNestedAttribute{
-										Description:         "Job allows configuration of the Galera recovery Job, which is used to recover the Galera cluster.",
-										MarkdownDescription: "Job allows configuration of the Galera recovery Job, which is used to recover the Galera cluster.",
+										Description:         "Job defines a Job that co-operates with mariadb-operator by performing the Galera cluster recovery .",
+										MarkdownDescription: "Job defines a Job that co-operates with mariadb-operator by performing the Galera cluster recovery .",
 										Attributes: map[string]schema.Attribute{
 											"metadata": schema.SingleNestedAttribute{
 												Description:         "Metadata defines additional metadata for the Galera recovery Jobs.",
@@ -28732,6 +28733,14 @@ func (r *K8SMariadbComMariaDbV1Alpha1Manifest) Schema(_ context.Context, _ datas
 					"replicas": schema.Int64Attribute{
 						Description:         "Replicas indicates the number of desired instances.",
 						MarkdownDescription: "Replicas indicates the number of desired instances.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"replicas_allow_even_number": schema.BoolAttribute{
+						Description:         "disables the validation check for an odd number of replicas.",
+						MarkdownDescription: "disables the validation check for an odd number of replicas.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

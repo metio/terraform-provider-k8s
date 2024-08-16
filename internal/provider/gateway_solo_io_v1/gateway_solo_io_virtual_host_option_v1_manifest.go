@@ -64,6 +64,9 @@ type GatewaySoloIoVirtualHostOptionV1ManifestData struct {
 				ExposeHeaders    *[]string `tfsdk:"expose_headers" json:"exposeHeaders,omitempty"`
 				MaxAge           *string   `tfsdk:"max_age" json:"maxAge,omitempty"`
 			} `tfsdk:"cors" json:"cors,omitempty"`
+			CorsPolicyMergeSettings *struct {
+				ExposeHeaders *string `tfsdk:"expose_headers" json:"exposeHeaders,omitempty"`
+			} `tfsdk:"cors_policy_merge_settings" json:"corsPolicyMergeSettings,omitempty"`
 			Csrf *struct {
 				AdditionalOrigins *[]struct {
 					Exact      *string `tfsdk:"exact" json:"exact,omitempty"`
@@ -1631,6 +1634,23 @@ func (r *GatewaySoloIoVirtualHostOptionV1Manifest) Schema(_ context.Context, _ d
 									},
 
 									"max_age": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"cors_policy_merge_settings": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"expose_headers": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

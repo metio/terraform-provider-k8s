@@ -163,6 +163,7 @@ Optional:
 
 - `buffer_per_route` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--buffer_per_route))
 - `cors` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--cors))
+- `cors_policy_merge_settings` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--cors_policy_merge_settings))
 - `csrf` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--csrf))
 - `dlp` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--dlp))
 - `ext_proc` (Attributes) (see [below for nested schema](#nestedatt--spec--virtual_host--options--ext_proc))
@@ -217,6 +218,14 @@ Optional:
 - `disable_for_route` (Boolean)
 - `expose_headers` (List of String)
 - `max_age` (String)
+
+
+<a id="nestedatt--spec--virtual_host--options--cors_policy_merge_settings"></a>
+### Nested Schema for `spec.virtual_host.options.cors_policy_merge_settings`
+
+Optional:
+
+- `expose_headers` (String)
 
 
 <a id="nestedatt--spec--virtual_host--options--csrf"></a>

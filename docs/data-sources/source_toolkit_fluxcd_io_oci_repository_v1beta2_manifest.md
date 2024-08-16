@@ -65,6 +65,7 @@ Optional:
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP container registry.
 - `layer_selector` (Attributes) LayerSelector specifies which layer should be extracted from the OCI artifact.When not specified, the first layer found in the artifact is selected. (see [below for nested schema](#nestedatt--spec--layer_selector))
 - `provider` (String) The provider used for authentication, can be 'aws', 'azure', 'gcp' or 'generic'.When not specified, defaults to 'generic'.
+- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the container registry. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `ref` (Attributes) The OCI reference to pull and monitor for changes,defaults to the latest tag. (see [below for nested schema](#nestedatt--spec--ref))
 - `secret_ref` (Attributes) SecretRef contains the secret name containing the registry logincredentials to resolve image metadata.The secret must be of type kubernetes.io/dockerconfigjson. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `service_account_name` (String) ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticatethe image pull if the service account has attached pull secrets. For more information:https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#add-imagepullsecrets-to-a-service-account
@@ -87,6 +88,14 @@ Optional:
 
 - `media_type` (String) MediaType specifies the OCI media type of the layerwhich should be extracted from the OCI Artifact. Thefirst layer matching this type is selected.
 - `operation` (String) Operation specifies how the selected layer should be processed.By default, the layer compressed content is extracted to storage.When the operation is set to 'copy', the layer compressed contentis persisted to storage as it is.
+
+
+<a id="nestedatt--spec--proxy_secret_ref"></a>
+### Nested Schema for `spec.proxy_secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
 
 
 <a id="nestedatt--spec--ref"></a>

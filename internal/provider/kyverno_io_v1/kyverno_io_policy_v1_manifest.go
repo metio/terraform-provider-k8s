@@ -568,14 +568,16 @@ type KyvernoIoPolicyV1ManifestData struct {
 									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
-								Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
-								Rekor  *struct {
+								Issuer       *string `tfsdk:"issuer" json:"issuer,omitempty"`
+								IssuerRegExp *string `tfsdk:"issuer_reg_exp" json:"issuerRegExp,omitempty"`
+								Rekor        *struct {
 									IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
 									Pubkey     *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 									Url        *string `tfsdk:"url" json:"url,omitempty"`
 								} `tfsdk:"rekor" json:"rekor,omitempty"`
-								Roots   *string `tfsdk:"roots" json:"roots,omitempty"`
-								Subject *string `tfsdk:"subject" json:"subject,omitempty"`
+								Roots         *string `tfsdk:"roots" json:"roots,omitempty"`
+								Subject       *string `tfsdk:"subject" json:"subject,omitempty"`
+								SubjectRegExp *string `tfsdk:"subject_reg_exp" json:"subjectRegExp,omitempty"`
 							} `tfsdk:"keyless" json:"keyless,omitempty"`
 							Keys *struct {
 								Ctlog *struct {
@@ -671,14 +673,16 @@ type KyvernoIoPolicyV1ManifestData struct {
 									Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 									TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 								} `tfsdk:"ctlog" json:"ctlog,omitempty"`
-								Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
-								Rekor  *struct {
+								Issuer       *string `tfsdk:"issuer" json:"issuer,omitempty"`
+								IssuerRegExp *string `tfsdk:"issuer_reg_exp" json:"issuerRegExp,omitempty"`
+								Rekor        *struct {
 									IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
 									Pubkey     *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 									Url        *string `tfsdk:"url" json:"url,omitempty"`
 								} `tfsdk:"rekor" json:"rekor,omitempty"`
-								Roots   *string `tfsdk:"roots" json:"roots,omitempty"`
-								Subject *string `tfsdk:"subject" json:"subject,omitempty"`
+								Roots         *string `tfsdk:"roots" json:"roots,omitempty"`
+								Subject       *string `tfsdk:"subject" json:"subject,omitempty"`
+								SubjectRegExp *string `tfsdk:"subject_reg_exp" json:"subjectRegExp,omitempty"`
 							} `tfsdk:"keyless" json:"keyless,omitempty"`
 							Keys *struct {
 								Ctlog *struct {
@@ -745,14 +749,16 @@ type KyvernoIoPolicyV1ManifestData struct {
 								Pubkey       *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 								TsaCertChain *string `tfsdk:"tsa_cert_chain" json:"tsaCertChain,omitempty"`
 							} `tfsdk:"ctlog" json:"ctlog,omitempty"`
-							Issuer *string `tfsdk:"issuer" json:"issuer,omitempty"`
-							Rekor  *struct {
+							Issuer       *string `tfsdk:"issuer" json:"issuer,omitempty"`
+							IssuerRegExp *string `tfsdk:"issuer_reg_exp" json:"issuerRegExp,omitempty"`
+							Rekor        *struct {
 								IgnoreTlog *bool   `tfsdk:"ignore_tlog" json:"ignoreTlog,omitempty"`
 								Pubkey     *string `tfsdk:"pubkey" json:"pubkey,omitempty"`
 								Url        *string `tfsdk:"url" json:"url,omitempty"`
 							} `tfsdk:"rekor" json:"rekor,omitempty"`
-							Roots   *string `tfsdk:"roots" json:"roots,omitempty"`
-							Subject *string `tfsdk:"subject" json:"subject,omitempty"`
+							Roots         *string `tfsdk:"roots" json:"roots,omitempty"`
+							Subject       *string `tfsdk:"subject" json:"subject,omitempty"`
+							SubjectRegExp *string `tfsdk:"subject_reg_exp" json:"subjectRegExp,omitempty"`
 						} `tfsdk:"keyless" json:"keyless,omitempty"`
 						Keys *struct {
 							Ctlog *struct {
@@ -4566,6 +4572,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																					Computed:            false,
 																				},
 
+																				"issuer_reg_exp": schema.StringAttribute{
+																					Description:         "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																					MarkdownDescription: "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
 																				"rekor": schema.SingleNestedAttribute{
 																					Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																					MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
@@ -4610,6 +4624,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				"subject": schema.StringAttribute{
 																					Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
 																					MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"subject_reg_exp": schema.StringAttribute{
+																					Description:         "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
+																					MarkdownDescription: "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5282,6 +5304,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																							Computed:            false,
 																						},
 
+																						"issuer_reg_exp": schema.StringAttribute{
+																							Description:         "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																							MarkdownDescription: "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
 																						"rekor": schema.SingleNestedAttribute{
 																							Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																							MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
@@ -5326,6 +5356,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																						"subject": schema.StringAttribute{
 																							Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
 																							MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"subject_reg_exp": schema.StringAttribute{
+																							Description:         "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
+																							MarkdownDescription: "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5793,6 +5831,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																				Computed:            false,
 																			},
 
+																			"issuer_reg_exp": schema.StringAttribute{
+																				Description:         "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																				MarkdownDescription: "IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
 																			"rekor": schema.SingleNestedAttribute{
 																				Description:         "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
 																				MarkdownDescription: "Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used.",
@@ -5837,6 +5883,14 @@ func (r *KyvernoIoPolicyV1Manifest) Schema(_ context.Context, _ datasource.Schem
 																			"subject": schema.StringAttribute{
 																				Description:         "Subject is the verified identity used for keyless signing, for example the email address.",
 																				MarkdownDescription: "Subject is the verified identity used for keyless signing, for example the email address.",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"subject_reg_exp": schema.StringAttribute{
+																				Description:         "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
+																				MarkdownDescription: "SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,

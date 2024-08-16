@@ -67,7 +67,7 @@ Optional:
 - `insecure` (Boolean) Insecure allows connecting to a non-TLS HTTP Endpoint.
 - `prefix` (String) Prefix to use for server-side filtering of files in the Bucket.
 - `provider` (String) Provider of the object storage bucket.Defaults to 'generic', which expects an S3 (API) compatible objectstorage.
-- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
+- `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `region` (String) Region of the Endpoint where the BucketName is located in.
 - `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
 - `sts` (Attributes) STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider. (see [below for nested schema](#nestedatt--spec--sts))
