@@ -97,6 +97,7 @@ type AcidZalanDoOperatorConfigurationV1ManifestData struct {
 			Enable_cross_namespace_secret           *bool              `tfsdk:"enable_cross_namespace_secret" json:"enable_cross_namespace_secret,omitempty"`
 			Enable_finalizers                       *bool              `tfsdk:"enable_finalizers" json:"enable_finalizers,omitempty"`
 			Enable_init_containers                  *bool              `tfsdk:"enable_init_containers" json:"enable_init_containers,omitempty"`
+			Enable_owner_references                 *bool              `tfsdk:"enable_owner_references" json:"enable_owner_references,omitempty"`
 			Enable_persistent_volume_claim_deletion *bool              `tfsdk:"enable_persistent_volume_claim_deletion" json:"enable_persistent_volume_claim_deletion,omitempty"`
 			Enable_pod_antiaffinity                 *bool              `tfsdk:"enable_pod_antiaffinity" json:"enable_pod_antiaffinity,omitempty"`
 			Enable_pod_disruption_budget            *bool              `tfsdk:"enable_pod_disruption_budget" json:"enable_pod_disruption_budget,omitempty"`
@@ -748,6 +749,14 @@ func (r *AcidZalanDoOperatorConfigurationV1Manifest) Schema(_ context.Context, _
 							},
 
 							"enable_init_containers": schema.BoolAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"enable_owner_references": schema.BoolAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								Required:            false,

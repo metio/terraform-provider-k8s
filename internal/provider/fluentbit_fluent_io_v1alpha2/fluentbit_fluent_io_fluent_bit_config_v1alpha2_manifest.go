@@ -104,6 +104,7 @@ type FluentbitFluentIoFluentBitConfigV1Alpha2ManifestData struct {
 			HcPeriod            *int64    `tfsdk:"hc_period" json:"hcPeriod,omitempty"`
 			HcRetryFailureCount *int64    `tfsdk:"hc_retry_failure_count" json:"hcRetryFailureCount,omitempty"`
 			HealthCheck         *bool     `tfsdk:"health_check" json:"healthCheck,omitempty"`
+			HotReload           *bool     `tfsdk:"hot_reload" json:"hotReload,omitempty"`
 			HttpListen          *string   `tfsdk:"http_listen" json:"httpListen,omitempty"`
 			HttpPort            *int64    `tfsdk:"http_port" json:"httpPort,omitempty"`
 			HttpServer          *bool     `tfsdk:"http_server" json:"httpServer,omitempty"`
@@ -613,6 +614,14 @@ func (r *FluentbitFluentIoFluentBitConfigV1Alpha2Manifest) Schema(_ context.Cont
 							"health_check": schema.BoolAttribute{
 								Description:         "enable Health check feature at http://127.0.0.1:2020/api/v1/health Note: Enabling this will not automatically configure kubernetes to use fluentbit's healthcheck endpoint",
 								MarkdownDescription: "enable Health check feature at http://127.0.0.1:2020/api/v1/health Note: Enabling this will not automatically configure kubernetes to use fluentbit's healthcheck endpoint",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"hot_reload": schema.BoolAttribute{
+								Description:         "If true enable reloading via HTTP",
+								MarkdownDescription: "If true enable reloading via HTTP",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

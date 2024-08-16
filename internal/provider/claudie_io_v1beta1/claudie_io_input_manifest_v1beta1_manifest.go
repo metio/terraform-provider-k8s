@@ -130,6 +130,11 @@ type ClaudieIoInputManifestV1Beta1ManifestData struct {
 				Name      *string `tfsdk:"name" json:"name,omitempty"`
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
+			Templates *struct {
+				Path       *string `tfsdk:"path" json:"path,omitempty"`
+				Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
+			} `tfsdk:"templates" json:"templates,omitempty"`
 		} `tfsdk:"providers" json:"providers,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -784,8 +789,8 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 								},
 
 								"provider_type": schema.StringAttribute{
-									Description:         "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.3.2/input-manifest/providers/aws/",
-									MarkdownDescription: "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.3.2/input-manifest/providers/aws/",
+									Description:         "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
+									MarkdownDescription: "ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
@@ -816,6 +821,39 @@ func (r *ClaudieIoInputManifestV1Beta1Manifest) Schema(_ context.Context, _ data
 									},
 									Required: true,
 									Optional: false,
+									Computed: false,
+								},
+
+								"templates": schema.SingleNestedAttribute{
+									Description:         "External templates for building the cluster infrastructure.",
+									MarkdownDescription: "External templates for building the cluster infrastructure.",
+									Attributes: map[string]schema.Attribute{
+										"path": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"repository": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+										},
+
+										"tag": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
 									Computed: false,
 								},
 							},

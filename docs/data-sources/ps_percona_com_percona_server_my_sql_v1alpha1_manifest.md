@@ -66,7 +66,6 @@ Optional:
 - `pmm` (Attributes) (see [below for nested schema](#nestedatt--spec--pmm))
 - `proxy` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy))
 - `secrets_name` (String)
-- `ssl_internal_secret_name` (String)
 - `ssl_secret_name` (String)
 - `tls` (Attributes) (see [below for nested schema](#nestedatt--spec--tls))
 - `toolkit` (Attributes) (see [below for nested schema](#nestedatt--spec--toolkit))
@@ -89,7 +88,9 @@ Optional:
 - `image_pull_policy` (String)
 - `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--image_pull_secrets))
 - `init_image` (String)
+- `pitr` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr))
 - `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--resources))
+- `schedule` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--schedule))
 - `service_account_name` (String)
 - `storages` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages))
 
@@ -175,6 +176,1124 @@ Optional:
 - `name` (String)
 
 
+<a id="nestedatt--spec--backup--pitr"></a>
+### Nested Schema for `spec.backup.pitr`
+
+Optional:
+
+- `binlog_server` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server))
+- `enabled` (Boolean)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server`
+
+Required:
+
+- `image` (String)
+- `storage` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--storage))
+
+Optional:
+
+- `affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity))
+- `annotations` (Map of String)
+- `configuration` (String)
+- `connect_timeout` (Number)
+- `container_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context))
+- `env` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env))
+- `env_from` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env_from))
+- `grace_period` (Number)
+- `idle_time` (Number)
+- `image_pull_policy` (String)
+- `image_pull_secrets` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--image_pull_secrets))
+- `init_image` (String)
+- `labels` (Map of String)
+- `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe))
+- `node_selector` (Map of String)
+- `pod_security_context` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context))
+- `priority_class_name` (String)
+- `read_timeout` (Number)
+- `readiness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--resources))
+- `runtime_class_name` (String)
+- `scheduler_name` (String)
+- `server_id` (Number)
+- `service_account_name` (String)
+- `size` (Number)
+- `startup_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe))
+- `tolerations` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--tolerations))
+- `topology_spread_constraints` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints))
+- `volume_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec))
+- `write_timeout` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--storage"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.storage`
+
+Optional:
+
+- `s3` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--storage--s3))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--storage--s3"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.storage.s3`
+
+Required:
+
+- `bucket` (String)
+- `credentials_secret` (String)
+
+Optional:
+
+- `endpoint_url` (String)
+- `prefix` (String)
+- `region` (String)
+- `storage_class` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity`
+
+Optional:
+
+- `advanced` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced))
+- `anti_affinity_topology_key` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced`
+
+Optional:
+
+- `node_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity))
+- `pod_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity))
+- `pod_anti_affinity` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `preference` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference))
+- `weight` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.preferred_during_scheduling_ignored_during_execution.preference.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `node_selector_terms` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions))
+- `match_fields` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.node_affinity.required_during_scheduling_ignored_during_execution.node_selector_terms.match_fields`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity`
+
+Optional:
+
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `pod_affinity_term` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
+- `weight` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
+
+Required:
+
+- `topology_key` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution`
+
+Required:
+
+- `topology_key` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
+- `namespace_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--affinity--advanced--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.affinity.advanced.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context`
+
+Optional:
+
+- `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context--app_armor_profile))
+- `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context--capabilities))
+- `privileged` (Boolean)
+- `proc_mount` (String)
+- `read_only_root_filesystem` (Boolean)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context--seccomp_profile))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--container_security_context--windows_options))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context--capabilities"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context.capabilities`
+
+Optional:
+
+- `add` (List of String)
+- `drop` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--container_security_context--windows_options"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.container_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env`
+
+Required:
+
+- `name` (String)
+
+Optional:
+
+- `value` (String)
+- `value_from` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env--value_from))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env--value_from"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env--value_from--config_map_key_ref))
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env--value_from--field_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env.value_from.field_ref`
+
+Required:
+
+- `field_path` (String)
+
+Optional:
+
+- `api_version` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String)
+
+Optional:
+
+- `container_name` (String)
+- `divisor` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String)
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env_from"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env_from`
+
+Optional:
+
+- `config_map_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env_from--config_map_ref))
+- `prefix` (String)
+- `secret_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--env_from--secret_ref))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env_from--config_map_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env_from.config_map_ref`
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--env_from--secret_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.env_from.secret_ref`
+
+Optional:
+
+- `name` (String)
+- `optional` (Boolean)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--image_pull_secrets"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.image_pull_secrets`
+
+Optional:
+
+- `name` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe--exec))
+- `failure_threshold` (Number)
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe--http_get))
+- `initial_delay_seconds` (Number)
+- `period_seconds` (Number)
+- `success_threshold` (Number)
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe--tcp_socket))
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe--exec"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe--grpc"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe.grpc`
+
+Required:
+
+- `port` (Number)
+
+Optional:
+
+- `service` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe--http_get"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--liveness_probe--http_get--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe.http_get.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--liveness_probe--tcp_socket"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.liveness_probe.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context`
+
+Optional:
+
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--app_armor_profile))
+- `fs_group` (Number)
+- `fs_group_change_policy` (String)
+- `run_as_group` (Number)
+- `run_as_non_root` (Boolean)
+- `run_as_user` (Number)
+- `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String)
+- `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--sysctls))
+- `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--windows_options))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context.app_armor_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context.seccomp_profile`
+
+Required:
+
+- `type` (String)
+
+Optional:
+
+- `localhost_profile` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context.sysctls`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.pod_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (String)
+- `gmsa_credential_spec_name` (String)
+- `host_process` (Boolean)
+- `run_as_user_name` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe--exec))
+- `failure_threshold` (Number)
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe--http_get))
+- `initial_delay_seconds` (Number)
+- `period_seconds` (Number)
+- `success_threshold` (Number)
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe--tcp_socket))
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe--exec"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe--grpc"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe.grpc`
+
+Required:
+
+- `port` (Number)
+
+Optional:
+
+- `service` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe--http_get"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--readiness_probe--http_get--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe.http_get.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--readiness_probe--tcp_socket"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.readiness_probe.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--resources"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.resources`
+
+Optional:
+
+- `claims` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--resources--claims))
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--resources--claims"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.resources.claims`
+
+Required:
+
+- `name` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe`
+
+Optional:
+
+- `exec` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe--exec))
+- `failure_threshold` (Number)
+- `grpc` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe--grpc))
+- `http_get` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe--http_get))
+- `initial_delay_seconds` (Number)
+- `period_seconds` (Number)
+- `success_threshold` (Number)
+- `tcp_socket` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe--tcp_socket))
+- `termination_grace_period_seconds` (Number)
+- `timeout_seconds` (Number)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe--exec"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe.exec`
+
+Optional:
+
+- `command` (List of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe--grpc"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe.grpc`
+
+Required:
+
+- `port` (Number)
+
+Optional:
+
+- `service` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe--http_get"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe.http_get`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+- `http_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--startup_probe--http_get--http_headers))
+- `path` (String)
+- `scheme` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe--http_get--http_headers"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe.http_get.http_headers`
+
+Required:
+
+- `name` (String)
+- `value` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--startup_probe--tcp_socket"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.startup_probe.tcp_socket`
+
+Required:
+
+- `port` (String)
+
+Optional:
+
+- `host` (String)
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--tolerations"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.tolerations`
+
+Optional:
+
+- `effect` (String)
+- `key` (String)
+- `operator` (String)
+- `toleration_seconds` (Number)
+- `value` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.topology_spread_constraints`
+
+Required:
+
+- `max_skew` (Number)
+- `topology_key` (String)
+- `when_unsatisfiable` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String)
+- `min_domains` (Number)
+- `node_affinity_policy` (String)
+- `node_taints_policy` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints--label_selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.topology_spread_constraints.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--topology_spread_constraints--label_selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.topology_spread_constraints.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec`
+
+Optional:
+
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim))
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--empty_dir"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.empty_dir`
+
+Optional:
+
+- `medium` (String)
+- `size_limit` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--host_path"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.host_path`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `type` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim`
+
+Optional:
+
+- `access_modes` (List of String)
+- `data_source` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--data_source))
+- `data_source_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--data_source_ref))
+- `resources` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--resources))
+- `selector` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--selector))
+- `storage_class_name` (String)
+- `volume_attributes_class_name` (String)
+- `volume_mode` (String)
+- `volume_name` (String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--data_source"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim.data_source`
+
+Required:
+
+- `kind` (String)
+- `name` (String)
+
+Optional:
+
+- `api_group` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--data_source_ref"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim.data_source_ref`
+
+Required:
+
+- `kind` (String)
+- `name` (String)
+
+Optional:
+
+- `api_group` (String)
+- `namespace` (String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--resources"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim.resources`
+
+Optional:
+
+- `limits` (Map of String)
+- `requests` (Map of String)
+
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--selector"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--backup--pitr--binlog_server--volume_spec--persistent_volume_claim--selector--match_expressions"></a>
+### Nested Schema for `spec.backup.pitr.binlog_server.volume_spec.persistent_volume_claim.selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+
+
+
 <a id="nestedatt--spec--backup--resources"></a>
 ### Nested Schema for `spec.backup.resources`
 
@@ -191,6 +1310,17 @@ Required:
 
 - `name` (String)
 
+
+
+<a id="nestedatt--spec--backup--schedule"></a>
+### Nested Schema for `spec.backup.schedule`
+
+Optional:
+
+- `keep` (Number)
+- `name` (String)
+- `schedule` (String)
+- `storage_name` (String)
 
 
 <a id="nestedatt--spec--backup--storages"></a>

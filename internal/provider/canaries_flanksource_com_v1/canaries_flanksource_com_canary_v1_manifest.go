@@ -757,17 +757,19 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				} `tfsdk:"configs" json:"configs,omitempty"`
 			} `tfsdk:"relationships" json:"relationships,omitempty"`
 			Selector *[]struct {
-				Agent         *string   `tfsdk:"agent" json:"agent,omitempty"`
-				Cache         *string   `tfsdk:"cache" json:"cache,omitempty"`
-				FieldSelector *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
-				Id            *string   `tfsdk:"id" json:"id,omitempty"`
-				LabelSelector *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
-				Name          *string   `tfsdk:"name" json:"name,omitempty"`
-				Namespace     *string   `tfsdk:"namespace" json:"namespace,omitempty"`
-				Scope         *string   `tfsdk:"scope" json:"scope,omitempty"`
-				Statuses      *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
-				TagSelector   *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
-				Types         *[]string `tfsdk:"types" json:"types,omitempty"`
+				Agent          *string   `tfsdk:"agent" json:"agent,omitempty"`
+				Cache          *string   `tfsdk:"cache" json:"cache,omitempty"`
+				FieldSelector  *string   `tfsdk:"field_selector" json:"fieldSelector,omitempty"`
+				Id             *string   `tfsdk:"id" json:"id,omitempty"`
+				IncludeDeleted *bool     `tfsdk:"include_deleted" json:"includeDeleted,omitempty"`
+				LabelSelector  *string   `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+				Name           *string   `tfsdk:"name" json:"name,omitempty"`
+				Namespace      *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+				Scope          *string   `tfsdk:"scope" json:"scope,omitempty"`
+				Search         *string   `tfsdk:"search" json:"search,omitempty"`
+				Statuses       *[]string `tfsdk:"statuses" json:"statuses,omitempty"`
+				TagSelector    *string   `tfsdk:"tag_selector" json:"tagSelector,omitempty"`
+				Types          *[]string `tfsdk:"types" json:"types,omitempty"`
 			} `tfsdk:"selector" json:"selector,omitempty"`
 			Test *struct {
 				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
@@ -4855,6 +4857,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"bearer" json:"bearer,omitempty"`
 			Connection  *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description *string `tfsdk:"description" json:"description,omitempty"`
+			Digest      *bool   `tfsdk:"digest" json:"digest,omitempty"`
 			Display     *struct {
 				Expr       *string `tfsdk:"expr" json:"expr,omitempty"`
 				Javascript *string `tfsdk:"javascript" json:"javascript,omitempty"`
@@ -4868,6 +4871,8 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			} `tfsdk:"metrics" json:"metrics,omitempty"`
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			Ntlm      *bool   `tfsdk:"ntlm" json:"ntlm,omitempty"`
+			Ntlmv2    *bool   `tfsdk:"ntlmv2" json:"ntlmv2,omitempty"`
 			Oauth     *struct {
 				ClientID *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -10581,6 +10586,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 												Computed:            false,
 											},
 
+											"include_deleted": schema.BoolAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"label_selector": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -10608,6 +10621,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											"scope": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"search": schema.StringAttribute{
+												Description:         "Search query that applies to the resource name, tag & labels.",
+												MarkdownDescription: "Search query that applies to the resource name, tag & labels.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -25159,8 +25180,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								},
 
 								"env": schema.ListNestedAttribute{
-									Description:         "EnvVars are the environment variables that are accesible to templated body",
-									MarkdownDescription: "EnvVars are the environment variables that are accesible to templated body",
+									Description:         "EnvVars are the environment variables that are accessible to templated body",
+									MarkdownDescription: "EnvVars are the environment variables that are accessible to templated body",
 									NestedObject: schema.NestedAttributeObject{
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
@@ -37433,6 +37454,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"digest": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"display": schema.SingleNestedAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -37521,6 +37550,22 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 								"namespace": schema.StringAttribute{
 									Description:         "Namespace to insert the check into, if different to the namespace the canary is defined, e.g.",
 									MarkdownDescription: "Namespace to insert the check into, if different to the namespace the canary is defined, e.g.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ntlm": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ntlmv2": schema.BoolAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

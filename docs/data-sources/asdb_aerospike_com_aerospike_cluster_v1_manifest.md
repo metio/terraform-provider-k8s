@@ -74,6 +74,7 @@ Optional:
 - `max_unavailable` (String) MaxUnavailable is the percentage/number of pods that can be allowed to go down or unavailable before application disruption. This value is used to create PodDisruptionBudget. Defaults to 1. Refer Aerospike documentation for more details.
 - `operations` (Attributes List) Operations is a list of on-demand operations to be performed on the Aerospike cluster. (see [below for nested schema](#nestedatt--spec--operations))
 - `operator_client_cert` (Attributes) Certificates to connect to Aerospike. (see [below for nested schema](#nestedatt--spec--operator_client_cert))
+- `paused` (Boolean) Paused flag is used to pause the reconciliation for the AerospikeCluster.
 - `pod_spec` (Attributes) Specify additional configuration for the Aerospike pods (see [below for nested schema](#nestedatt--spec--pod_spec))
 - `rack_config` (Attributes) RackConfig Configures the operator to deploy rack aware Aerospike cluster. Pods will be deployed in given racks based on given configuration (see [below for nested schema](#nestedatt--spec--rack_config))
 - `roster_node_block_list` (List of String) RosterNodeBlockList is a list of blocked nodeIDs from roster in a strong-consistency setup

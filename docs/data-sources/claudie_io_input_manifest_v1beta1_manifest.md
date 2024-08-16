@@ -269,8 +269,12 @@ Optional:
 Required:
 
 - `name` (String) Name is the name of the provider specification. It has to be unique across all providers.
-- `provider_type` (String) ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.3.2/input-manifest/providers/aws/
+- `provider_type` (String) ProviderType type of a provider.A list of available providers can be found at https://docs.claudie.io/v0.8.1/input-manifest/providers/aws/
 - `secret_ref` (Attributes) SecretReference represents a Secret Reference. It has enough information to retrieve secretin any namespace (see [below for nested schema](#nestedatt--spec--providers--secret_ref))
+
+Optional:
+
+- `templates` (Attributes) External templates for building the cluster infrastructure. (see [below for nested schema](#nestedatt--spec--providers--templates))
 
 <a id="nestedatt--spec--providers--secret_ref"></a>
 ### Nested Schema for `spec.providers.secret_ref`
@@ -279,3 +283,16 @@ Optional:
 
 - `name` (String) name is unique within a namespace to reference a secret resource.
 - `namespace` (String) namespace defines the space within which the secret name must be unique.
+
+
+<a id="nestedatt--spec--providers--templates"></a>
+### Nested Schema for `spec.providers.templates`
+
+Required:
+
+- `path` (String)
+- `repository` (String)
+
+Optional:
+
+- `tag` (String)

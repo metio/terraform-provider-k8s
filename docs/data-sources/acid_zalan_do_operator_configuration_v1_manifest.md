@@ -137,6 +137,7 @@ Optional:
 - `enable_cross_namespace_secret` (Boolean)
 - `enable_finalizers` (Boolean)
 - `enable_init_containers` (Boolean)
+- `enable_owner_references` (Boolean)
 - `enable_persistent_volume_claim_deletion` (Boolean)
 - `enable_pod_antiaffinity` (Boolean)
 - `enable_pod_disruption_budget` (Boolean)

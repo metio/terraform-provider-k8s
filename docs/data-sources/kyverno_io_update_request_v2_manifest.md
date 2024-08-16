@@ -55,8 +55,8 @@ Optional:
 
 Required:
 
-- `context` (Attributes) Context ... (see [below for nested schema](#nestedatt--spec--context))
-- `delete_downstream` (Boolean) DeleteDownstream represents whether the downstream needs to be deleted.
+- `context` (Attributes) Context represents admission request context.It is used upon admission review only and is shared across rules within the same UR. (see [below for nested schema](#nestedatt--spec--context))
+- `delete_downstream` (Boolean) DeleteDownstream represents whether the downstream needs to be deleted.Deprecated
 - `policy` (String) Specifies the name of the policy.
 - `resource` (Attributes) ResourceSpec is the information to identify the trigger resource. (see [below for nested schema](#nestedatt--spec--resource))
 - `rule` (String) Rule is the associate rule name of the current UR.
@@ -64,7 +64,8 @@ Required:
 Optional:
 
 - `request_type` (String) Type represents request type for background processing
-- `synchronize` (Boolean) Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.
+- `rule_context` (Attributes List) RuleContext is the associate context to apply rules.optional (see [below for nested schema](#nestedatt--spec--rule_context))
+- `synchronize` (Boolean) Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.Deprecated, will be removed in 1.14.
 
 <a id="nestedatt--spec--context"></a>
 ### Nested Schema for `spec.context`
@@ -183,6 +184,31 @@ Optional:
 
 <a id="nestedatt--spec--resource"></a>
 ### Nested Schema for `spec.resource`
+
+Optional:
+
+- `api_version` (String) APIVersion specifies resource apiVersion.
+- `kind` (String) Kind specifies resource kind.
+- `name` (String) Name specifies the resource name.
+- `namespace` (String) Namespace specifies resource namespace.
+- `uid` (String) UID specifies the resource uid.
+
+
+<a id="nestedatt--spec--rule_context"></a>
+### Nested Schema for `spec.rule_context`
+
+Required:
+
+- `delete_downstream` (Boolean) DeleteDownstream represents whether the downstream needs to be deleted.
+- `rule` (String) Rule is the associate rule name of the current UR.
+- `trigger` (Attributes) ResourceSpec is the information to identify the trigger resource. (see [below for nested schema](#nestedatt--spec--rule_context--trigger))
+
+Optional:
+
+- `synchronize` (Boolean) Synchronize represents the sync behavior of the corresponding ruleOptional. Defaults to 'false' if not specified.
+
+<a id="nestedatt--spec--rule_context--trigger"></a>
+### Nested Schema for `spec.rule_context.trigger`
 
 Optional:
 

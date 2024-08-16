@@ -93,6 +93,7 @@ Optional:
 - `min_ready_seconds` (Number) Minimum number of seconds for which a newly created Pod should be readywithout any of its container crashing for it to be considered available.Defaults to 0 (pod will be considered available as soon as it is ready)This is an alpha field from kubernetes 1.22 until 1.24 which requiresenabling the StatefulSetMinReadySeconds feature gate.
 - `mode` (String) Mode defines how the Prometheus operator deploys the PrometheusAgent pod(s).For now this field has no effect.(Alpha) Using this field requires the 'PrometheusAgentDaemonSet' feature gate to be enabled.
 - `node_selector` (Map of String) Defines on which Nodes the Pods are scheduled.
+- `otlp` (Attributes) Settings related to the OTLP receiver feature.It requires Prometheus >= v2.54.0. (see [below for nested schema](#nestedatt--spec--otlp))
 - `override_honor_labels` (Boolean) When true, Prometheus resolves label conflicts by renaming the labels in the scraped data to “exported_” for all targets created from ServiceMonitor, PodMonitor andScrapeConfig objects. Otherwise the HonorLabels field of the service or pod monitor applies.In practice,'overrideHonorLaels:true' enforces 'honorLabels:false'for all ServiceMonitor, PodMonitor and ScrapeConfig objects.
 - `override_honor_timestamps` (Boolean) When true, Prometheus ignores the timestamps for all the targets createdfrom service and pod monitors.Otherwise the HonorTimestamps field of the service or pod monitor applies.
 - `paused` (Boolean) When a Prometheus deployment is paused, no actions except for deletionwill be performed on the underlying objects.
@@ -2023,6 +2024,14 @@ Optional:
 
 
 
+<a id="nestedatt--spec--otlp"></a>
+### Nested Schema for `spec.otlp`
+
+Optional:
+
+- `promote_resource_attributes` (List of String) List of OpenTelemetry Attributes that should be promoted to metric labels, defaults to none.
+
+
 <a id="nestedatt--spec--persistent_volume_claim_retention_policy"></a>
 ### Nested Schema for `spec.persistent_volume_claim_retention_policy`
 
@@ -2153,7 +2162,7 @@ Optional:
 - `oauth2` (Attributes) OAuth2 configuration for the URL.It requires Prometheus >= v2.27.0.Cannot be set at the same time as 'sigv4', 'authorization', 'basicAuth', or 'azureAd'. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `queue_config` (Attributes) QueueConfig allows tuning of the remote write queue parameters. (see [below for nested schema](#nestedatt--spec--remote_write--queue_config))
 - `remote_timeout` (String) Timeout for requests to the remote write endpoint.
 - `send_exemplars` (Boolean) Enables sending of exemplars over remote write. Note thatexemplar-storage itself must be enabled using the 'spec.enableFeature'option for exemplars to be scraped in the first place.It requires Prometheus >= v2.27.0.
@@ -2294,7 +2303,7 @@ Optional:
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
-- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
 - `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 - `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--remote_write--oauth2--tls_config))
 

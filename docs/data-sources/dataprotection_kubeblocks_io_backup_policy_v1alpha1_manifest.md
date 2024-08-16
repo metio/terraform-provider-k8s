@@ -191,6 +191,7 @@ Required:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_methods--target--connection_credential))
+- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_methods--target--container_port))
 - `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_methods--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_methods--target--resources))
@@ -209,6 +210,15 @@ Optional:
 - `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--backup_methods--target--container_port"></a>
+### Nested Schema for `spec.backup_methods.target.container_port`
+
+Optional:
+
+- `container_name` (String) Specifies the name of container with the port.
+- `port_name` (String) Specifies the port name.
 
 
 <a id="nestedatt--spec--backup_methods--target--pod_selector"></a>
@@ -321,6 +331,7 @@ Optional:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--connection_credential))
+- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--container_port))
 - `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--backup_methods--targets--resources))
@@ -339,6 +350,15 @@ Optional:
 - `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--backup_methods--targets--container_port"></a>
+### Nested Schema for `spec.backup_methods.targets.container_port`
+
+Optional:
+
+- `container_name` (String) Specifies the name of container with the port.
+- `port_name` (String) Specifies the port name.
 
 
 <a id="nestedatt--spec--backup_methods--targets--pod_selector"></a>
@@ -449,6 +469,7 @@ Optional:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--target--connection_credential))
+- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--target--container_port))
 - `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--target--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--target--resources))
@@ -467,6 +488,15 @@ Optional:
 - `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--target--container_port"></a>
+### Nested Schema for `spec.target.container_port`
+
+Optional:
+
+- `container_name` (String) Specifies the name of container with the port.
+- `port_name` (String) Specifies the port name.
 
 
 <a id="nestedatt--spec--target--pod_selector"></a>
@@ -554,6 +584,7 @@ Optional:
 Optional:
 
 - `connection_credential` (Attributes) Specifies the connection credential to connect to the target database cluster. (see [below for nested schema](#nestedatt--spec--targets--connection_credential))
+- `container_port` (Attributes) Specifies the container port in the target pod.If not specified, the first container and its first port will be used. (see [below for nested schema](#nestedatt--spec--targets--container_port))
 - `name` (String) Specifies a mandatory and unique identifier for each target when using the 'targets' field.The backup data for the current target is stored in a uniquely named subdirectory.
 - `pod_selector` (Attributes) Used to find the target pod. The volumes of the target pod will be backed up. (see [below for nested schema](#nestedatt--spec--targets--pod_selector))
 - `resources` (Attributes) Specifies the kubernetes resources to back up. (see [below for nested schema](#nestedatt--spec--targets--resources))
@@ -572,6 +603,15 @@ Optional:
 - `password_key` (String) Specifies the map key of the password in the connection credential secret.This password will be saved in the backup annotation for full backup.You can use the environment variable DP_ENCRYPTION_KEY to specify encryption key.
 - `port_key` (String) Specifies the map key of the port in the connection credential secret.
 - `username_key` (String) Specifies the map key of the user in the connection credential secret.
+
+
+<a id="nestedatt--spec--targets--container_port"></a>
+### Nested Schema for `spec.targets.container_port`
+
+Optional:
+
+- `container_name` (String) Specifies the name of container with the port.
+- `port_name` (String) Specifies the port name.
 
 
 <a id="nestedatt--spec--targets--pod_selector"></a>

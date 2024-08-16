@@ -105,6 +105,7 @@ type AsdbAerospikeComAerospikeClusterV1ManifestData struct {
 			} `tfsdk:"secret_cert_source" json:"secretCertSource,omitempty"`
 			TlsClientName *string `tfsdk:"tls_client_name" json:"tlsClientName,omitempty"`
 		} `tfsdk:"operator_client_cert" json:"operatorClientCert,omitempty"`
+		Paused  *bool `tfsdk:"paused" json:"paused,omitempty"`
 		PodSpec *struct {
 			AerospikeContainer *struct {
 				Resources *struct {
@@ -2012,6 +2013,14 @@ func (r *AsdbAerospikeComAerospikeClusterV1Manifest) Schema(_ context.Context, _
 						Required: false,
 						Optional: true,
 						Computed: false,
+					},
+
+					"paused": schema.BoolAttribute{
+						Description:         "Paused flag is used to pause the reconciliation for the AerospikeCluster.",
+						MarkdownDescription: "Paused flag is used to pause the reconciliation for the AerospikeCluster.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"pod_spec": schema.SingleNestedAttribute{

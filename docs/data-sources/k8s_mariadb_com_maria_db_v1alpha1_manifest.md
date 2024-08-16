@@ -84,6 +84,7 @@ Optional:
 - `priority_class_name` (String) PriorityClassName to be used in the Pod.
 - `readiness_probe` (Attributes) ReadinessProbe to be used in the Container. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number) Replicas indicates the number of desired instances.
+- `replicas_allow_even_number` (Boolean) disables the validation check for an odd number of replicas.
 - `replication` (Attributes) Replication configures high availability via replication. This feature is still in alpha, use Galera if you are looking for a more production-ready HA. (see [below for nested schema](#nestedatt--spec--replication))
 - `resources` (Attributes) Resouces describes the compute resource requirements. (see [below for nested schema](#nestedatt--spec--resources))
 - `root_empty_password` (Boolean) RootEmptyPassword indicates if the root password should be empty. Don't use this feature in production, it is only intended for development and test environments.
@@ -1956,8 +1957,8 @@ Optional:
 - `config` (Attributes) GaleraConfig defines storage options for the Galera configuration files. (see [below for nested schema](#nestedatt--spec--galera--config))
 - `enabled` (Boolean) Enabled is a flag to enable Galera.
 - `galera_lib_path` (String) GaleraLibPath is a path inside the MariaDB image to the wsrep provider plugin. It is defaulted if not provided.More info: https://galeracluster.com/library/documentation/mysql-wsrep-options.html#wsrep-provider.
-- `init_container` (Attributes) InitContainer is an init container that co-operates with mariadb-operator. (see [below for nested schema](#nestedatt--spec--galera--init_container))
-- `init_job` (Attributes) InitJob defines additional properties for the Job used to perform the initialization. (see [below for nested schema](#nestedatt--spec--galera--init_job))
+- `init_container` (Attributes) InitContainer is an init container that runs in the MariaDB Pod and co-operates with mariadb-operator. (see [below for nested schema](#nestedatt--spec--galera--init_container))
+- `init_job` (Attributes) InitJob defines a Job that co-operates with mariadb-operator by performing initialization tasks. (see [below for nested schema](#nestedatt--spec--galera--init_job))
 - `primary` (Attributes) Primary is the Galera configuration for the primary node. (see [below for nested schema](#nestedatt--spec--galera--primary))
 - `provider_options` (Map of String) ProviderOptions is map of Galera configuration parameters.More info: https://mariadb.com/kb/en/galera-cluster-system-variables/#wsrep_provider_options.
 - `recovery` (Attributes) GaleraRecovery is the recovery process performed by the operator whenever the Galera cluster is not healthy.More info: https://galeracluster.com/library/documentation/crash-recovery.html. (see [below for nested schema](#nestedatt--spec--galera--recovery))
@@ -3264,7 +3265,7 @@ Optional:
 - `cluster_monitor_interval` (String) ClusterMonitorInterval represents the interval used to monitor the Galera cluster health.
 - `enabled` (Boolean) Enabled is a flag to enable GaleraRecovery.
 - `force_cluster_bootstrap_in_pod` (String) ForceClusterBootstrapInPod allows you to manually initiate the bootstrap process in a specific Pod.IMPORTANT: Use this option only in exceptional circumstances. Not selecting the Pod with the highest sequence number may result in data loss.IMPORTANT: Ensure you unset this field after completing the bootstrap to allow the operator to choose the appropriate Pod to bootstrap from in an event of cluster recovery.
-- `job` (Attributes) Job allows configuration of the Galera recovery Job, which is used to recover the Galera cluster. (see [below for nested schema](#nestedatt--spec--galera--recovery--job))
+- `job` (Attributes) Job defines a Job that co-operates with mariadb-operator by performing the Galera cluster recovery . (see [below for nested schema](#nestedatt--spec--galera--recovery--job))
 - `min_cluster_size` (String) MinClusterSize is the minimum number of replicas to consider the cluster healthy. It can be either a number of replicas (3) or a percentage (50%).If Galera consistently reports less replicas than this value for the given 'ClusterHealthyTimeout' interval, a cluster recovery is iniated.It defaults to '50%' of the replicas specified by the MariaDB object.
 - `pod_recovery_timeout` (String) PodRecoveryTimeout is the time limit for recevorying the sequence of a Pod during the cluster recovery.
 - `pod_sync_timeout` (String) PodSyncTimeout is the time limit for a Pod to join the cluster after having performed a cluster bootstrap during the cluster recovery.

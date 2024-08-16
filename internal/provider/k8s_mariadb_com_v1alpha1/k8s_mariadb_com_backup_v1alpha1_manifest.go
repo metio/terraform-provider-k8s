@@ -647,7 +647,8 @@ type K8SMariadbComBackupV1Alpha1ManifestData struct {
 				} `tfsdk:"vsphere_volume" json:"vsphereVolume,omitempty"`
 			} `tfsdk:"volume" json:"volume,omitempty"`
 		} `tfsdk:"storage" json:"storage,omitempty"`
-		SuccessfulJobsHistoryLimit *int64 `tfsdk:"successful_jobs_history_limit" json:"successfulJobsHistoryLimit,omitempty"`
+		SuccessfulJobsHistoryLimit *int64  `tfsdk:"successful_jobs_history_limit" json:"successfulJobsHistoryLimit,omitempty"`
+		TimeZone                   *string `tfsdk:"time_zone" json:"timeZone,omitempty"`
 		Tolerations                *[]struct {
 			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
 			Key               *string `tfsdk:"key" json:"key,omitempty"`
@@ -4797,6 +4798,14 @@ func (r *K8SMariadbComBackupV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Validators: []validator.Int64{
 							int64validator.AtLeast(0),
 						},
+					},
+
+					"time_zone": schema.StringAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 
 					"tolerations": schema.ListNestedAttribute{

@@ -92,10 +92,10 @@ Optional:
 
 Required:
 
-- `group` (String) Group defines the group of the resource.
 - `resource` (String) Resource defines the type of the resource.Requires the pluralized form of the resource kind in lowercase. (Ex., 'deployments')
 - `version` (String) Version defines the version of the resource.
 
 Optional:
 
+- `group` (String) Group defines the group of the resource.
 - `namespace` (String) Namespace defines the namespace of the resource. Leave empty for cluster scoped resources.If left empty for namespaced resources, all resources from all namespaces will be cached.

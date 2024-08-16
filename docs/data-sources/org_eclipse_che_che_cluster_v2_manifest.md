@@ -1494,6 +1494,7 @@ Optional:
 
 Optional:
 
+- `disable_init_container` (Boolean) Determines whether the init container that initializes the persistent home directory should be disabled.When the '/home/user' directory is persisted, the init container is used to initialize the directory beforethe workspace starts. If set to true, the init container will not be created.Disabling the init container allows home persistence to be initialized by the entrypoint present in the workspace's first container component.This field is not used if the 'devEnvironments.persistUserHome.enabled' field is set to false.The init container is enabled by default.
 - `enabled` (Boolean) Determines whether the user home directory in workspaces should persist betweenworkspace shutdown and startup.Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect.Disabled by default.
 
 

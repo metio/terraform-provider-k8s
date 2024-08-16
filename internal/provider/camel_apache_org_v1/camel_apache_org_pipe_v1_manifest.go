@@ -9968,8 +9968,8 @@ func (r *CamelApacheOrgPipeV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"vars": schema.ListAttribute{
-												Description:         "A list of environment variables to be added to the integration container.The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''.These take precedence over the previously defined environment variables.",
-												MarkdownDescription: "A list of environment variables to be added to the integration container.The syntax is KEY=VALUE, e.g., 'MY_VAR='my value''.These take precedence over the previously defined environment variables.",
+												Description:         "A list of environment variables to be added to the integration container.The syntax is either VAR=VALUE or VAR=[configmap|secret]:name/key, where name represents the resource name,and key represents the resource key to be mapped as and environment variable.These take precedence over any previously defined environment variables.",
+												MarkdownDescription: "A list of environment variables to be added to the integration container.The syntax is either VAR=VALUE or VAR=[configmap|secret]:name/key, where name represents the resource name,and key represents the resource key to be mapped as and environment variable.These take precedence over any previously defined environment variables.",
 												ElementType:         types.StringType,
 												Required:            false,
 												Optional:            true,
@@ -11060,8 +11060,8 @@ func (r *CamelApacheOrgPipeV1Manifest) Schema(_ context.Context, _ datasource.Sc
 											},
 
 											"scan_kamelets_implicit_label_secrets": schema.BoolAttribute{
-												Description:         "Deprecated: include your properties in an explicit property file backed by a secret.Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'.These secrets are mounted to the application and treated as plain properties file with their key/value list(ie .spec.data['camel.my-property'] = my-value) (default 'true').",
-												MarkdownDescription: "Deprecated: include your properties in an explicit property file backed by a secret.Let the operator to scan for secret labeled with 'camel.apache.org/kamelet' and 'camel.apache.org/kamelet.configuration'.These secrets are mounted to the application and treated as plain properties file with their key/value list(ie .spec.data['camel.my-property'] = my-value) (default 'true').",
+												Description:         "Deprecated: no longer available since version 2.5.",
+												MarkdownDescription: "Deprecated: no longer available since version 2.5.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

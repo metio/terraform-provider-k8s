@@ -1629,10 +1629,12 @@ Optional:
 - `cache` (String) Cache directives 'no-cache' (should not fetch from cache but can be cached) 'no-store' (should not cache) 'max-age=X' (cache for X duration)
 - `field_selector` (String)
 - `id` (String)
+- `include_deleted` (Boolean)
 - `label_selector` (String)
 - `name` (String)
 - `namespace` (String)
 - `scope` (String)
+- `search` (String) Search query that applies to the resource name, tag & labels.
 - `statuses` (List of String)
 - `tag_selector` (String)
 - `types` (List of String)
@@ -7341,7 +7343,7 @@ Optional:
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--http--display))
 - `endpoint` (String) Deprecated: Use url instead
-- `env` (Attributes List) EnvVars are the environment variables that are accesible to templated body (see [below for nested schema](#nestedatt--spec--http--env))
+- `env` (Attributes List) EnvVars are the environment variables that are accessible to templated body (see [below for nested schema](#nestedatt--spec--http--env))
 - `headers` (Attributes List) Header fields to be used in the query (see [below for nested schema](#nestedatt--spec--http--headers))
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
@@ -11715,12 +11717,15 @@ Optional:
 - `bearer` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--bearer))
 - `connection` (String)
 - `description` (String) Description for the check
+- `digest` (Boolean)
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--display))
 - `host` (String) Deprecated: use 'url' instead
 - `icon` (String) Icon for overwriting default icon on the dashboard
 - `labels` (Map of String) Labels for the check
 - `metrics` (Attributes List) Metrics to expose from check.https://canarychecker.io/concepts/metrics-exporter (see [below for nested schema](#nestedatt--spec--prometheus--metrics))
 - `namespace` (String) Namespace to insert the check into, if different to the namespace the canary is defined, e.g.
+- `ntlm` (Boolean)
+- `ntlmv2` (Boolean)
 - `oauth` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--oauth))
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--prometheus--password))
 - `relationships` (Attributes) Relationships defines a way to link the check results to components and configsusing lookup expressions. (see [below for nested schema](#nestedatt--spec--prometheus--relationships))

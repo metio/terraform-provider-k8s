@@ -62,6 +62,7 @@ Optional:
 - `cluster_domain` (String)
 - `config_check` (Attributes) (see [below for nested schema](#nestedatt--spec--config_check))
 - `default_flow` (Attributes) (see [below for nested schema](#nestedatt--spec--default_flow))
+- `enable_docker_parser_compatibility_for_cri` (Boolean)
 - `enable_recreate_workload_on_immutable_field_change` (Boolean)
 - `error_output_ref` (String)
 - `flow_config_check_disabled` (Boolean)
@@ -1677,9 +1678,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_volume_metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--buffer_volume_metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--fluentbit--buffer_volume_metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.fluentbit.buffer_volume_metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--fluentbit--buffer_volume_metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.fluentbit.buffer_volume_metrics.service_monitor_config`
@@ -2416,9 +2432,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentbit--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentbit--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--fluentbit--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.fluentbit.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--fluentbit--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.fluentbit.metrics.service_monitor_config`
@@ -3745,9 +3776,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--buffer_volume_metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--fluentd--buffer_volume_metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.fluentd.buffer_volume_metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--fluentd--buffer_volume_metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.fluentd.buffer_volume_metrics.service_monitor_config`
@@ -4600,9 +4646,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--fluentd--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--fluentd--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--fluentd--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.fluentd.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--fluentd--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.fluentd.metrics.service_monitor_config`
@@ -10605,9 +10666,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agents--node_agent_fluentbit--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.node_agents.node_agent_fluentbit.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--node_agents--node_agent_fluentbit--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.node_agents.node_agent_fluentbit.metrics.service_monitor_config`
@@ -11271,9 +11347,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--buffer_volume_metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--buffer_volume_metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.syslog_ng.buffer_volume_metrics.service_monitor_config`
@@ -14821,9 +14912,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--syslog_ng--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--syslog_ng--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.syslog_ng.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--syslog_ng--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.syslog_ng.metrics.service_monitor_config`

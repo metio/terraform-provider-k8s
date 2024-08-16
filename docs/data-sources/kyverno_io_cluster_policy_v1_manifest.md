@@ -1369,9 +1369,11 @@ Optional:
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
 - `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
+- `issuer_reg_exp` (String) IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
+- `subject_reg_exp` (String) SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keyless--ctlog"></a>
 ### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keyless.ctlog`
@@ -1621,9 +1623,11 @@ Optional:
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
 - `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
+- `issuer_reg_exp` (String) IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
+- `subject_reg_exp` (String) SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keyless.ctlog`
@@ -1781,9 +1785,11 @@ Optional:
 - `additional_extensions` (Map of String) AdditionalExtensions are certificate-extensions used for keyless signing.
 - `ctlog` (Attributes) CTLog (certificate timestamp log) provides a configuration for validation of Signed CertificateTimestamps (SCTs). If the value is unset, the default behavior by Cosign is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless--ctlog))
 - `issuer` (String) Issuer is the certificate issuer used for keyless signing.
+- `issuer_reg_exp` (String) IssuerRegExp is the regular expression to match certificate issuer used for keyless signing.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless--rekor))
 - `roots` (String) Roots is an optional set of PEM encoded trusted root certificates.If not provided, the system roots are used.
 - `subject` (String) Subject is the verified identity used for keyless signing, for example the email address.
+- `subject_reg_exp` (String) SubjectRegExp is the regular expression to match identity used for keyless signing, for example the email address.
 
 <a id="nestedatt--spec--rules--verify_images--attestors--entries--keyless--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.attestors.entries.keyless.ctlog`

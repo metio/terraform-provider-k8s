@@ -261,8 +261,8 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"proxy_secret_ref": schema.SingleNestedAttribute{
-						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider.",
-						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.Only supported for the generic provider.",
+						Description:         "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.",
+						MarkdownDescription: "ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "Name of the referent.",

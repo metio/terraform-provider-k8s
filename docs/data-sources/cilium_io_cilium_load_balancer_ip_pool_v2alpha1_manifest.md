@@ -54,7 +54,7 @@ Optional:
 
 Optional:
 
-- `allow_first_last_i_ps` (String) AllowFirstLastIPs, if set to 'yes' means that the first and last IPs of each CIDR will be allocatable. If 'no' or undefined, these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.
+- `allow_first_last_i_ps` (String) AllowFirstLastIPs, if set to 'Yes' or undefined means that the first and last IPs of each CIDR will be allocatable. If 'No', these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.
 - `blocks` (Attributes List) Blocks is a list of CIDRs comprising this IP Pool (see [below for nested schema](#nestedatt--spec--blocks))
 - `disabled` (Boolean) Disabled, if set to true means that no new IPs will be allocated from this pool. Existing allocations will not be removed from services.
 - `service_selector` (Attributes) ServiceSelector selects a set of services which are eligible to receive IPs from this (see [below for nested schema](#nestedatt--spec--service_selector))

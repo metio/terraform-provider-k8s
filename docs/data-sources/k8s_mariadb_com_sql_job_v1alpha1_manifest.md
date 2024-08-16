@@ -81,6 +81,7 @@ Optional:
 - `sql` (String) Sql is the script to be executed by the SqlJob.
 - `sql_config_map_key_ref` (Attributes) SqlConfigMapKeyRef is a reference to a ConfigMap containing the Sql script.It is defaulted to a ConfigMap with the contents of the Sql field. (see [below for nested schema](#nestedatt--spec--sql_config_map_key_ref))
 - `successful_jobs_history_limit` (Number)
+- `time_zone` (String)
 - `tolerations` (Attributes List) Tolerations to be used in the Pod. (see [below for nested schema](#nestedatt--spec--tolerations))
 
 <a id="nestedatt--spec--maria_db_ref"></a>

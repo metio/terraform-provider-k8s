@@ -1080,7 +1080,7 @@ func (r *AcidZalanDoPostgresqlV1Manifest) Schema(_ context.Context, _ datasource
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("11", "12", "13", "14", "15", "16"),
+									stringvalidator.OneOf("12", "13", "14", "15", "16"),
 								},
 							},
 						},

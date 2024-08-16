@@ -225,8 +225,8 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 							"group": schema.StringAttribute{
 								Description:         "Group defines the group of the resource.",
 								MarkdownDescription: "Group defines the group of the resource.",
-								Required:            true,
-								Optional:            false,
+								Required:            false,
+								Optional:            true,
 								Computed:            false,
 							},
 

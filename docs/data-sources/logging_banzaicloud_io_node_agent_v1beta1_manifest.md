@@ -3797,9 +3797,24 @@ Optional:
 - `port` (Number)
 - `prometheus_annotations` (Boolean)
 - `prometheus_rules` (Boolean)
+- `prometheus_rules_override` (Attributes List) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics--prometheus_rules_override))
 - `service_monitor` (Boolean)
 - `service_monitor_config` (Attributes) (see [below for nested schema](#nestedatt--spec--node_agent_fluentbit--metrics--service_monitor_config))
 - `timeout` (String)
+
+<a id="nestedatt--spec--node_agent_fluentbit--metrics--prometheus_rules_override"></a>
+### Nested Schema for `spec.node_agent_fluentbit.metrics.prometheus_rules_override`
+
+Optional:
+
+- `alert` (String)
+- `annotations` (Map of String)
+- `expr` (String)
+- `for` (String)
+- `keep_firing_for` (String)
+- `labels` (Map of String)
+- `record` (String)
+
 
 <a id="nestedatt--spec--node_agent_fluentbit--metrics--service_monitor_config"></a>
 ### Nested Schema for `spec.node_agent_fluentbit.metrics.service_monitor_config`

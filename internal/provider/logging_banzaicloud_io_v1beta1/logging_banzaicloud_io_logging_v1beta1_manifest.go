@@ -497,6 +497,7 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			IncludeLabelInRouter *bool     `tfsdk:"include_label_in_router" json:"includeLabelInRouter,omitempty"`
 			OutputRefs           *[]string `tfsdk:"output_refs" json:"outputRefs,omitempty"`
 		} `tfsdk:"default_flow" json:"defaultFlow,omitempty"`
+		EnableDockerParserCompatibilityForCRI        *bool   `tfsdk:"enable_docker_parser_compatibility_for_cri" json:"enableDockerParserCompatibilityForCRI,omitempty"`
 		EnableRecreateWorkloadOnImmutableFieldChange *bool   `tfsdk:"enable_recreate_workload_on_immutable_field_change" json:"enableRecreateWorkloadOnImmutableFieldChange,omitempty"`
 		ErrorOutputRef                               *string `tfsdk:"error_output_ref" json:"errorOutputRef,omitempty"`
 		FlowConfigCheckDisabled                      *bool   `tfsdk:"flow_config_check_disabled" json:"flowConfigCheckDisabled,omitempty"`
@@ -719,13 +720,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"buffer_volume_image" json:"bufferVolumeImage,omitempty"`
 			BufferVolumeMetrics *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -1065,13 +1075,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			LogLevel   *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 			LoggingRef *string `tfsdk:"logging_ref" json:"loggingRef,omitempty"`
 			Metrics    *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -1576,13 +1595,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				Tag        *string `tfsdk:"tag" json:"tag,omitempty"`
 			} `tfsdk:"buffer_volume_image" json:"bufferVolumeImage,omitempty"`
 			BufferVolumeMetrics *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -1939,13 +1967,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			LogFormat *string `tfsdk:"log_format" json:"logFormat,omitempty"`
 			LogLevel  *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 			Metrics   *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -4433,13 +4470,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 				LivenessDefaultCheck *bool   `tfsdk:"liveness_default_check" json:"livenessDefaultCheck,omitempty"`
 				LogLevel             *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 				Metrics              *struct {
-					Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-					Path                  *string `tfsdk:"path" json:"path,omitempty"`
-					Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-					PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-					PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-					ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-					ServiceMonitorConfig  *struct {
+					Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+					Path                    *string `tfsdk:"path" json:"path,omitempty"`
+					Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+					PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+					PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+					PrometheusRulesOverride *[]struct {
+						Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+						Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+						Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+						For             *string            `tfsdk:"for" json:"for,omitempty"`
+						Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+						Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+						Record          *string            `tfsdk:"record" json:"record,omitempty"`
+					} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+					ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+					ServiceMonitorConfig *struct {
 						AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 						HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 						MetricRelabelings *[]struct {
@@ -4721,14 +4767,23 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 		SkipInvalidResources *bool `tfsdk:"skip_invalid_resources" json:"skipInvalidResources,omitempty"`
 		SyslogNG             *struct {
 			BufferVolumeMetrics *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Mount_name            *string `tfsdk:"mount_name" json:"mount_name,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Mount_name              *string `tfsdk:"mount_name" json:"mount_name,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -6121,13 +6176,22 @@ type LoggingBanzaicloudIoLoggingV1Beta1ManifestData struct {
 			LogIWSize      *int64  `tfsdk:"log_iw_size" json:"logIWSize,omitempty"`
 			MaxConnections *int64  `tfsdk:"max_connections" json:"maxConnections,omitempty"`
 			Metrics        *struct {
-				Interval              *string `tfsdk:"interval" json:"interval,omitempty"`
-				Path                  *string `tfsdk:"path" json:"path,omitempty"`
-				Port                  *int64  `tfsdk:"port" json:"port,omitempty"`
-				PrometheusAnnotations *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
-				PrometheusRules       *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
-				ServiceMonitor        *bool   `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
-				ServiceMonitorConfig  *struct {
+				Interval                *string `tfsdk:"interval" json:"interval,omitempty"`
+				Path                    *string `tfsdk:"path" json:"path,omitempty"`
+				Port                    *int64  `tfsdk:"port" json:"port,omitempty"`
+				PrometheusAnnotations   *bool   `tfsdk:"prometheus_annotations" json:"prometheusAnnotations,omitempty"`
+				PrometheusRules         *bool   `tfsdk:"prometheus_rules" json:"prometheusRules,omitempty"`
+				PrometheusRulesOverride *[]struct {
+					Alert           *string            `tfsdk:"alert" json:"alert,omitempty"`
+					Annotations     *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Expr            *string            `tfsdk:"expr" json:"expr,omitempty"`
+					For             *string            `tfsdk:"for" json:"for,omitempty"`
+					Keep_firing_for *string            `tfsdk:"keep_firing_for" json:"keep_firing_for,omitempty"`
+					Labels          *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+					Record          *string            `tfsdk:"record" json:"record,omitempty"`
+				} `tfsdk:"prometheus_rules_override" json:"prometheusRulesOverride,omitempty"`
+				ServiceMonitor       *bool `tfsdk:"service_monitor" json:"serviceMonitor,omitempty"`
+				ServiceMonitorConfig *struct {
 					AdditionalLabels  *map[string]string `tfsdk:"additional_labels" json:"additionalLabels,omitempty"`
 					HonorLabels       *bool              `tfsdk:"honor_labels" json:"honorLabels,omitempty"`
 					MetricRelabelings *[]struct {
@@ -10906,6 +10970,14 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 						Computed: false,
 					},
 
+					"enable_docker_parser_compatibility_for_cri": schema.BoolAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"enable_recreate_workload_on_immutable_field_change": schema.BoolAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -12431,6 +12503,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"service_monitor": schema.BoolAttribute{
@@ -14810,6 +14958,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"service_monitor": schema.BoolAttribute{
@@ -18258,6 +18482,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Computed:            false,
 									},
 
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
 									"service_monitor": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -20722,6 +21022,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"service_monitor": schema.BoolAttribute{
@@ -37669,6 +38045,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 													Computed:            false,
 												},
 
+												"prometheus_rules_override": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"alert": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"annotations": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"expr": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"for": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+																},
+															},
+
+															"keep_firing_for": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+																},
+															},
+
+															"labels": schema.MapAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"record": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"service_monitor": schema.BoolAttribute{
 													Description:         "",
 													MarkdownDescription: "",
@@ -39650,6 +40102,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"service_monitor": schema.BoolAttribute{
@@ -49053,6 +49581,82 @@ func (r *LoggingBanzaicloudIoLoggingV1Beta1Manifest) Schema(_ context.Context, _
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
+									},
+
+									"prometheus_rules_override": schema.ListNestedAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"alert": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"annotations": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"keep_firing_for": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.LengthAtLeast(1),
+														stringvalidator.RegexMatches(regexp.MustCompile(`^(0|(([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?)$`), ""),
+													},
+												},
+
+												"labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"record": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"service_monitor": schema.BoolAttribute{

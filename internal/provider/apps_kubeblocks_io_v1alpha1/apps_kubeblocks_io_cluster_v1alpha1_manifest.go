@@ -6818,6 +6818,9 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.OneOf("StrictInPlace", "PreferInPlace"),
+									},
 								},
 
 								"replicas": schema.Int64Attribute{
@@ -15909,6 +15912,9 @@ func (r *AppsKubeblocksIoClusterV1Alpha1Manifest) Schema(_ context.Context, _ da
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("StrictInPlace", "PreferInPlace"),
+											},
 										},
 
 										"replicas": schema.Int64Attribute{
