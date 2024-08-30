@@ -34,7 +34,7 @@ data "k8s_couchbase_com_couchbase_role_binding_v2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and the role i.e. group they are a member of. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and therole i.e. group they are a member of. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 

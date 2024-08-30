@@ -155,16 +155,16 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
-									Description:         "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
-									MarkdownDescription: "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
+									Description:         "ApiVersion of the kubernetes resources.",
+									MarkdownDescription: "ApiVersion of the kubernetes resources.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
-									MarkdownDescription: "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
+									Description:         "Kind of the kubernetes resources of the specific version.",
+									MarkdownDescription: "Kind of the kubernetes resources of the specific version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -199,16 +199,16 @@ func (r *KubeGreenComSleepInfoV1Alpha1Manifest) Schema(_ context.Context, _ data
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"api_version": schema.StringAttribute{
-									Description:         "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
-									MarkdownDescription: "ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.",
+									Description:         "ApiVersion of the kubernetes resources.",
+									MarkdownDescription: "ApiVersion of the kubernetes resources.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"kind": schema.StringAttribute{
-									Description:         "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
-									MarkdownDescription: "Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.",
+									Description:         "Kind of the kubernetes resources of the specific version.",
+									MarkdownDescription: "Kind of the kubernetes resources of the specific version.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,

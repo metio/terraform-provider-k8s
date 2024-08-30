@@ -98,7 +98,8 @@ type GatewaySoloIoRouteOptionV1ManifestData struct {
 				SemanticCache *struct {
 					Datastore *struct {
 						Redis *struct {
-							ConnectionString *string `tfsdk:"connection_string" json:"connectionString,omitempty"`
+							ConnectionString *string  `tfsdk:"connection_string" json:"connectionString,omitempty"`
+							ScoreThreshold   *float64 `tfsdk:"score_threshold" json:"scoreThreshold,omitempty"`
 						} `tfsdk:"redis" json:"redis,omitempty"`
 					} `tfsdk:"datastore" json:"datastore,omitempty"`
 					Embedding *struct {
@@ -112,7 +113,8 @@ type GatewaySoloIoRouteOptionV1ManifestData struct {
 							} `tfsdk:"auth_token" json:"authToken,omitempty"`
 						} `tfsdk:"openai" json:"openai,omitempty"`
 					} `tfsdk:"embedding" json:"embedding,omitempty"`
-					Ttl *int64 `tfsdk:"ttl" json:"ttl,omitempty"`
+					Mode *string `tfsdk:"mode" json:"mode,omitempty"`
+					Ttl  *int64  `tfsdk:"ttl" json:"ttl,omitempty"`
 				} `tfsdk:"semantic_cache" json:"semanticCache,omitempty"`
 			} `tfsdk:"ai" json:"ai,omitempty"`
 			AppendXForwardedHost *bool `tfsdk:"append_x_forwarded_host" json:"appendXForwardedHost,omitempty"`
@@ -1866,6 +1868,14 @@ func (r *GatewaySoloIoRouteOptionV1Manifest) Schema(_ context.Context, _ datasou
 																Optional:            true,
 																Computed:            false,
 															},
+
+															"score_threshold": schema.Float64Attribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 														Required: false,
 														Optional: true,
@@ -1935,6 +1945,14 @@ func (r *GatewaySoloIoRouteOptionV1Manifest) Schema(_ context.Context, _ datasou
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+
+											"mode": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
 											},
 
 											"ttl": schema.Int64Attribute{

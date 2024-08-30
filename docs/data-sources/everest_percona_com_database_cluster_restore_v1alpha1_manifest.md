@@ -72,7 +72,7 @@ Optional:
 
 Required:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups.
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `path` (String) Path is the path to the backup file/directory.
 
 

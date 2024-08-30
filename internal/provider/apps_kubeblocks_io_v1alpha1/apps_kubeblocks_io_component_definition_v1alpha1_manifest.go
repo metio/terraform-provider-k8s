@@ -1953,10 +1953,14 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 			Name       *string `tfsdk:"name" json:"name,omitempty"`
 			Value      *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom  *struct {
+				ClusterVarRef *struct {
+					ClusterName *string `tfsdk:"cluster_name" json:"clusterName,omitempty"`
+					ClusterUID  *string `tfsdk:"cluster_uid" json:"clusterUID,omitempty"`
+					Namespace   *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"cluster_var_ref" json:"clusterVarRef,omitempty"`
 				ComponentVarRef *struct {
 					CompDef                     *string `tfsdk:"comp_def" json:"compDef,omitempty"`
 					ComponentName               *string `tfsdk:"component_name" json:"componentName,omitempty"`
-					InstanceNames               *string `tfsdk:"instance_names" json:"instanceNames,omitempty"`
 					MultipleClusterObjectOption *struct {
 						CombinedOption *struct {
 							FlattenFormat *struct {
@@ -1968,10 +1972,20 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 						} `tfsdk:"combined_option" json:"combinedOption,omitempty"`
 						Strategy *string `tfsdk:"strategy" json:"strategy,omitempty"`
 					} `tfsdk:"multiple_cluster_object_option" json:"multipleClusterObjectOption,omitempty"`
-					Name     *string `tfsdk:"name" json:"name,omitempty"`
-					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					PodFQDNs *string `tfsdk:"pod_fqd_ns" json:"podFQDNs,omitempty"`
-					Replicas *string `tfsdk:"replicas" json:"replicas,omitempty"`
+					Name            *string `tfsdk:"name" json:"name,omitempty"`
+					Optional        *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					PodFQDNs        *string `tfsdk:"pod_fqd_ns" json:"podFQDNs,omitempty"`
+					PodFQDNsForRole *struct {
+						Option *string `tfsdk:"option" json:"option,omitempty"`
+						Role   *string `tfsdk:"role" json:"role,omitempty"`
+					} `tfsdk:"pod_fqd_ns_for_role" json:"podFQDNsForRole,omitempty"`
+					PodNames        *string `tfsdk:"pod_names" json:"podNames,omitempty"`
+					PodNamesForRole *struct {
+						Option *string `tfsdk:"option" json:"option,omitempty"`
+						Role   *string `tfsdk:"role" json:"role,omitempty"`
+					} `tfsdk:"pod_names_for_role" json:"podNamesForRole,omitempty"`
+					Replicas  *string `tfsdk:"replicas" json:"replicas,omitempty"`
+					ShortName *string `tfsdk:"short_name" json:"shortName,omitempty"`
 				} `tfsdk:"component_var_ref" json:"componentVarRef,omitempty"`
 				ConfigMapKeyRef *struct {
 					Key      *string `tfsdk:"key" json:"key,omitempty"`
@@ -2066,6 +2080,7 @@ type AppsKubeblocksIoComponentDefinitionV1Alpha1ManifestData struct {
 						Name   *string `tfsdk:"name" json:"name,omitempty"`
 						Option *string `tfsdk:"option" json:"option,omitempty"`
 					} `tfsdk:"port" json:"port,omitempty"`
+					ServiceType *string `tfsdk:"service_type" json:"serviceType,omitempty"`
 				} `tfsdk:"service_var_ref" json:"serviceVarRef,omitempty"`
 			} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 		} `tfsdk:"vars" json:"vars,omitempty"`
@@ -2414,8 +2429,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 						MarkdownDescription: "Defines a set of hooks and procedures that customize the behavior of a Component throughout its lifecycle.Actions are triggered at specific lifecycle stages:  - 'postProvision': Defines the hook to be executed after the creation of a Component,    with 'preCondition' specifying when the action should be fired relative to the Component's lifecycle stages:    'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'.  - 'preTerminate': Defines the hook to be executed before terminating a Component.  - 'roleProbe': Defines the procedure which is invoked regularly to assess the role of replicas.  - 'switchover': Defines the procedure for a controlled transition of leadership from the current leader to a new replica.    This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology,    such as before planned maintenance or upgrades on the current leader node.  - 'memberJoin': Defines the procedure to add a new replica to the replication group.  - 'memberLeave': Defines the method to remove a replica from the replication group.  - 'readOnly': Defines the procedure to switch a replica into the read-only state.  - 'readWrite': transition a replica from the read-only state back to the read-write state.  - 'dataDump': Defines the procedure to export the data from a replica.  - 'dataLoad': Defines the procedure to import data into a replica.  - 'reconfigure': Defines the procedure that update a replica with new configuration file.  - 'accountProvision': Defines the procedure to generate a new database account.This field is immutable.",
 						Attributes: map[string]schema.Attribute{
 							"account_provision": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure to generate a new database account.Use Case:This action is designed to create system accounts that are utilized for replication, monitoring, backup,and other administrative tasks.Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure to generate a new database account.Use Case:This action is designed to create system accounts that are utilized for replication, monitoring, backup,and other administrative tasks.Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure to generate a new database account.Use Case:This action is designed to create system accounts that are utilized for replication, monitoring, backup,and other administrative tasks.The container executing this action has access to following variables:- KB_ACCOUNT_NAME: The name of the system account to be created.- KB_ACCOUNT_PASSWORD: The password for the system account.  // TODO: how to pass the password securely?- KB_ACCOUNT_STATEMENT: The statement used to create the system account.Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure to generate a new database account.Use Case:This action is designed to create system accounts that are utilized for replication, monitoring, backup,and other administrative tasks.The container executing this action has access to following variables:- KB_ACCOUNT_NAME: The name of the system account to be created.- KB_ACCOUNT_PASSWORD: The password for the system account.  // TODO: how to pass the password securely?- KB_ACCOUNT_STATEMENT: The statement used to create the system account.Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run.This field cannot be updated.",
@@ -2440,8 +2455,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2608,24 +2623,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2712,8 +2727,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2880,24 +2895,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -2984,8 +2999,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3152,24 +3167,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3256,8 +3271,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3424,24 +3439,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3528,8 +3543,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3696,24 +3711,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3774,8 +3789,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"post_provision": schema.SingleNestedAttribute{
-								Description:         "Specifies the hook to be executed after a component's creation.By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stageat which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'.with 'ComponentReady' being the default.The PostProvision Action is intended to run only once.The container executing this action has access to following environment variables:- KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2').- KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2').- KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component  (e.g., 'pod1,pod2').- KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2').- KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted  (e.g., 'comp1,comp2').Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Specifies the hook to be executed after a component's creation.By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stageat which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'.with 'ComponentReady' being the default.The PostProvision Action is intended to run only once.The container executing this action has access to following environment variables:- KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2').- KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2').- KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component  (e.g., 'pod1,pod2').- KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2').- KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted  (e.g., 'comp1,comp2').Note: This field is immutable once it has been set.",
+								Description:         "Specifies the hook to be executed after a component's creation.By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stageat which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'.with 'ComponentReady' being the default.The PostProvision Action is intended to run only once.Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Specifies the hook to be executed after a component's creation.By setting 'postProvision.customHandler.preCondition', you can determine the specific lifecycle stageat which the action should trigger: 'Immediately', 'RuntimeReady', 'ComponentReady', and 'ClusterReady'.with 'ComponentReady' being the default.The PostProvision Action is intended to run only once.Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run.This field cannot be updated.",
@@ -3800,8 +3815,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -3968,24 +3983,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4046,8 +4061,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"pre_terminate": schema.SingleNestedAttribute{
-								Description:         "Specifies the hook to be executed prior to terminating a component.The PreTerminate Action is intended to run only once.This action is executed immediately when a scale-down operation for the Component is initiated.The actual termination and cleanup of the Component and its associated resources will not proceeduntil the PreTerminate action has completed successfully.The container executing this action has access to following environment variables:- KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2').- KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2').- KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component  (e.g., 'pod1,pod2').- KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2').- KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_IS_SCALING_IN: Indicates whether the component is currently scaling in.  If this variable is present and set to 'true', it denotes that the component is undergoing a scale-in operation.  During scale-in, data rebalancing is necessary to maintain cluster integrity.  Contrast this with a cluster deletion scenario where data rebalancing is not required as the entire cluster  is being cleaned up.Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Specifies the hook to be executed prior to terminating a component.The PreTerminate Action is intended to run only once.This action is executed immediately when a scale-down operation for the Component is initiated.The actual termination and cleanup of the Component and its associated resources will not proceeduntil the PreTerminate action has completed successfully.The container executing this action has access to following environment variables:- KB_CLUSTER_POD_IP_LIST: Comma-separated list of the cluster's pod IP addresses (e.g., 'podIp1,podIp2').- KB_CLUSTER_POD_NAME_LIST: Comma-separated list of the cluster's pod names (e.g., 'pod1,pod2').- KB_CLUSTER_POD_HOST_NAME_LIST: Comma-separated list of host names, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_POD_HOST_IP_LIST: Comma-separated list of host IP addresses, each corresponding to a pod in  KB_CLUSTER_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_POD_NAME_LIST: Comma-separated list of all pod names within the component  (e.g., 'pod1,pod2').- KB_CLUSTER_COMPONENT_POD_IP_LIST: Comma-separated list of pod IP addresses,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'podIp1,podIp2').- KB_CLUSTER_COMPONENT_POD_HOST_NAME_LIST: Comma-separated list of host names for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostName1,hostName2').- KB_CLUSTER_COMPONENT_POD_HOST_IP_LIST: Comma-separated list of host IP addresses for each pod,  matching the order of pods in KB_CLUSTER_COMPONENT_POD_NAME_LIST (e.g., 'hostIp1,hostIp2').- KB_CLUSTER_COMPONENT_LIST: Comma-separated list of all cluster components (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_DELETING_LIST: Comma-separated list of components that are currently being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_UNDELETED_LIST: Comma-separated list of components that are not being deleted  (e.g., 'comp1,comp2').- KB_CLUSTER_COMPONENT_IS_SCALING_IN: Indicates whether the component is currently scaling in.  If this variable is present and set to 'true', it denotes that the component is undergoing a scale-in operation.  During scale-in, data rebalancing is necessary to maintain cluster integrity.  Contrast this with a cluster deletion scenario where data rebalancing is not required as the entire cluster  is being cleaned up.Note: This field is immutable once it has been set.",
+								Description:         "Specifies the hook to be executed prior to terminating a component.The PreTerminate Action is intended to run only once.This action is executed immediately when a scale-down operation for the Component is initiated.The actual termination and cleanup of the Component and its associated resources will not proceeduntil the PreTerminate action has completed successfully.Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Specifies the hook to be executed prior to terminating a component.The PreTerminate Action is intended to run only once.This action is executed immediately when a scale-down operation for the Component is initiated.The actual termination and cleanup of the Component and its associated resources will not proceeduntil the PreTerminate action has completed successfully.Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run.This field cannot be updated.",
@@ -4072,8 +4087,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4240,24 +4255,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4344,8 +4359,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4512,24 +4527,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4616,8 +4631,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4784,24 +4799,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -4888,8 +4903,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5056,24 +5071,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5160,8 +5175,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5328,24 +5343,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5438,8 +5453,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 							},
 
 							"switchover": schema.SingleNestedAttribute{
-								Description:         "Defines the procedure for a controlled transition of leadership from the current leader to a new replica.This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology,during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operationsinvolving the current leader node.The container executing this action has access to following environment variables:- KB_LEADER_POD_IP: The IP address of the current leader's pod prior to the switchover.- KB_LEADER_POD_NAME: The name of the current leader's pod prior to the switchover.- KB_LEADER_POD_FQDN: The FQDN of the current leader's pod prior to the switchover.- KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty).- KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty).Note: This field is immutable once it has been set.",
-								MarkdownDescription: "Defines the procedure for a controlled transition of leadership from the current leader to a new replica.This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology,during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operationsinvolving the current leader node.The container executing this action has access to following environment variables:- KB_LEADER_POD_IP: The IP address of the current leader's pod prior to the switchover.- KB_LEADER_POD_NAME: The name of the current leader's pod prior to the switchover.- KB_LEADER_POD_FQDN: The FQDN of the current leader's pod prior to the switchover.- KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty).- KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty).Note: This field is immutable once it has been set.",
+								Description:         "Defines the procedure for a controlled transition of leadership from the current leader to a new replica.This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology,during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operationsinvolving the current leader node.The container executing this action has access to following variables:- KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty).- KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty).Note: This field is immutable once it has been set.",
+								MarkdownDescription: "Defines the procedure for a controlled transition of leadership from the current leader to a new replica.This approach aims to minimize downtime and maintain availability in systems with a leader-follower topology,during events such as planned maintenance or when performing stop, shutdown, restart, or upgrade operationsinvolving the current leader node.The container executing this action has access to following variables:- KB_SWITCHOVER_CANDIDATE_NAME: The name of the pod for the new leader candidate, which may not be specified (empty).- KB_SWITCHOVER_CANDIDATE_FQDN: The FQDN of the new leader candidate's pod, which may not be specified (empty).Note: This field is immutable once it has been set.",
 								Attributes: map[string]schema.Attribute{
 									"exec": schema.SingleNestedAttribute{
 										Description:         "Defines the command to run.This field cannot be updated.",
@@ -5464,8 +5479,8 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"container": schema.StringAttribute{
-												Description:         "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the name of the container within the target Pod where the action will be executed.This name must correspond to one of the containers defined in 'componentDefinition.spec.runtime'.If this field is not specified, the default behavior is to use the first container listed in'componentDefinition.spec.runtime'.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
+												MarkdownDescription: "Specifies the name of the container within the same pod whose resources will be shared with the action.This allows the action to utilize the specified container's resources without executing within it.The name must match one of the containers defined in 'componentDefinition.spec.runtime'.The resources that can be shared are included:- volume mountsThis field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5632,24 +5647,24 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 											},
 
 											"image": schema.StringAttribute{
-												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
-												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.This field is mutually exclusive with the 'container' field; only one of them should be provided.This field cannot be updated.",
+												Description:         "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
+												MarkdownDescription: "Specifies the container image to be used for running the Action.When specified, a dedicated container will be created using this image to execute the Action.All actions with same image will share the same container.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"matching_key": schema.StringAttribute{
-												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
+												MarkdownDescription: "Used in conjunction with the 'targetPodSelector' field to refine the selection of target pod(s) for Action execution.The impact of this field depends on the 'targetPodSelector' value:- When 'targetPodSelector' is set to 'Any' or 'All', this field will be ignored.- When 'targetPodSelector' is set to 'Role', only those replicas whose role matches the 'matchingKey'  will be selected for the Action.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 											},
 
 											"target_pod_selector": schema.StringAttribute{
-												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
-												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.This field cannot be updated.Note: This field is reserved for future use and is not currently active.",
+												Description:         "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
+												MarkdownDescription: "Defines the criteria used to select the target Pod(s) for executing the Action.This is useful when there is no default target replica identified.It allows for precise control over which Pod(s) the Action should run in.If not specified, the Action will be executed in the pod where the Action is triggered, such as the podto be removed or added; or a random pod if the Action is triggered at the component level, such aspost-provision or pre-terminate of the component.This field cannot be updated.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -15060,6 +15075,48 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 									Description:         "Source for the variable's value. Cannot be used if value is not empty.",
 									MarkdownDescription: "Source for the variable's value. Cannot be used if value is not empty.",
 									Attributes: map[string]schema.Attribute{
+										"cluster_var_ref": schema.SingleNestedAttribute{
+											Description:         "Selects a defined var of a Cluster.",
+											MarkdownDescription: "Selects a defined var of a Cluster.",
+											Attributes: map[string]schema.Attribute{
+												"cluster_name": schema.StringAttribute{
+													Description:         "Reference to the name of the Cluster object.",
+													MarkdownDescription: "Reference to the name of the Cluster object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"cluster_uid": schema.StringAttribute{
+													Description:         "Reference to the UID of the Cluster object.",
+													MarkdownDescription: "Reference to the UID of the Cluster object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"namespace": schema.StringAttribute{
+													Description:         "Reference to the namespace of the Cluster object.",
+													MarkdownDescription: "Reference to the namespace of the Cluster object.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"component_var_ref": schema.SingleNestedAttribute{
 											Description:         "Selects a defined var of a Component.",
 											MarkdownDescription: "Selects a defined var of a Component.",
@@ -15075,17 +15132,6 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 												"component_name": schema.StringAttribute{
 													Description:         "Reference to the name of the Component object.",
 													MarkdownDescription: "Reference to the name of the Component object.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-													Validators: []validator.String{
-														stringvalidator.OneOf("Required", "Optional"),
-													},
-												},
-
-												"instance_names": schema.StringAttribute{
-													Description:         "Reference to the instanceName list of the component.and the value will be presented in the following format: instanceName1,instanceName2,...",
-													MarkdownDescription: "Reference to the instanceName list of the component.and the value will be presented in the following format: instanceName1,instanceName2,...",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15191,9 +15237,87 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													},
 												},
 
+												"pod_fqd_ns_for_role": schema.SingleNestedAttribute{
+													Description:         "Reference to the pod FQDN list of the component that have a specific role.The value will be presented in the following format: FQDN1,FQDN2,...",
+													MarkdownDescription: "Reference to the pod FQDN list of the component that have a specific role.The value will be presented in the following format: FQDN1,FQDN2,...",
+													Attributes: map[string]schema.Attribute{
+														"option": schema.StringAttribute{
+															Description:         "VarOption defines whether a variable is required or optional.",
+															MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Required", "Optional"),
+															},
+														},
+
+														"role": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"pod_names": schema.StringAttribute{
+													Description:         "Reference to the pod name list of the component.and the value will be presented in the following format: name1,name2,...",
+													MarkdownDescription: "Reference to the pod name list of the component.and the value will be presented in the following format: name1,name2,...",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"pod_names_for_role": schema.SingleNestedAttribute{
+													Description:         "Reference to the pod name list of the component that have a specific role.The value will be presented in the following format: name1,name2,...",
+													MarkdownDescription: "Reference to the pod name list of the component that have a specific role.The value will be presented in the following format: name1,name2,...",
+													Attributes: map[string]schema.Attribute{
+														"option": schema.StringAttribute{
+															Description:         "VarOption defines whether a variable is required or optional.",
+															MarkdownDescription: "VarOption defines whether a variable is required or optional.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+															Validators: []validator.String{
+																stringvalidator.OneOf("Required", "Optional"),
+															},
+														},
+
+														"role": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
 												"replicas": schema.StringAttribute{
 													Description:         "Reference to the replicas of the component.",
 													MarkdownDescription: "Reference to the replicas of the component.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
+												},
+
+												"short_name": schema.StringAttribute{
+													Description:         "Reference to the short name of the Component object.",
+													MarkdownDescription: "Reference to the short name of the Component object.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -15850,6 +15974,17 @@ func (r *AppsKubeblocksIoComponentDefinitionV1Alpha1Manifest) Schema(_ context.C
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"service_type": schema.StringAttribute{
+													Description:         "ServiceType references the type of the service.",
+													MarkdownDescription: "ServiceType references the type of the service.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("Required", "Optional"),
+													},
 												},
 											},
 											Required: false,

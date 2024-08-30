@@ -68,6 +68,7 @@ Optional:
 Optional:
 
 - `backend_refs` (Attributes List) BackendRefs defines the backend(s) where matching requests should besent. If unspecified or invalid (refers to a non-existent resource ora Service with no endpoints), the rule performs no forwarding; if nofilters are specified that would result in a response being sent, theunderlying implementation must actively reject request attempts to thisbackend, by rejecting the connection or returning a 500 status code.Request rejections must respect weight; if an invalid backend isrequested to have 80% of requests, then 80% of requests must be rejectedinstead.Support: Core for Kubernetes ServiceSupport: Extended for Kubernetes ServiceImportSupport: Implementation-specific for any other resourceSupport for weight: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs))
+- `name` (String) Name is the name of the route rule. This name MUST be unique within a Route if it is set.Support: Extended
 
 <a id="nestedatt--spec--rules--backend_refs"></a>
 ### Nested Schema for `spec.rules.backend_refs`

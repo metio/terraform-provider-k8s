@@ -189,8 +189,8 @@ func (r *KarpenterShNodePoolV1Manifest) Schema(_ context.Context, _ datasource.S
 										},
 
 										"reasons": schema.ListAttribute{
-											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted.",
-											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted.",
+											Description:         "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted and additional CloudProvider-specific reasons.",
+											MarkdownDescription: "Reasons is a list of disruption methods that this budget applies to. If Reasons is not set, this budget applies to all methods.Otherwise, this will apply to each reason defined.allowed reasons are Underutilized, Empty, and Drifted and additional CloudProvider-specific reasons.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,

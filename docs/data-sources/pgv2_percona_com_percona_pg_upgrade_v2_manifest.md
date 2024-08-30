@@ -61,6 +61,9 @@ Required:
 - `from_postgres_version` (Number) The major version of PostgreSQL before the upgrade.
 - `image` (String) The image name to use for major PostgreSQL upgrades.
 - `postgres_cluster_name` (String) The name of the cluster to be updated
+- `to_pg_back_rest_image` (String) The image to use for PgBackRest containers after upgrade.
+- `to_pg_bouncer_image` (String) The image to use for PgBouncer containers after upgrade.
+- `to_postgres_image` (String) The image to use for PostgreSQL containers after upgrade.
 - `to_postgres_version` (Number) The major version of PostgreSQL to be upgraded to.
 
 Optional:
@@ -72,7 +75,6 @@ Optional:
 - `metadata` (Attributes) Metadata contains metadata for custom resources (see [below for nested schema](#nestedatt--spec--metadata))
 - `priority_class_name` (String) Priority class name for the PGUpgrade pod. Changing thisvalue causes PGUpgrade pod to restart.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/
 - `resources` (Attributes) Resource requirements for the PGUpgrade container. (see [below for nested schema](#nestedatt--spec--resources))
-- `to_postgres_image` (String) The image name to use for PostgreSQL containers after upgrade.When omitted, the value comes from an operator environment variable.
 - `tolerations` (Attributes List) Tolerations of the PGUpgrade pod.More info: https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration (see [below for nested schema](#nestedatt--spec--tolerations))
 - `volume_mounts` (Attributes List) The list of volume mounts to mount to upgrade pod. (see [below for nested schema](#nestedatt--spec--volume_mounts))
 

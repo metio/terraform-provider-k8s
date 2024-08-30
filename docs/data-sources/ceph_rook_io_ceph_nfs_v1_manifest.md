@@ -616,6 +616,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+
 
 
 
@@ -1195,7 +1199,7 @@ Required:
 
 Optional:
 
-- `additional_files` (Attributes List) AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar. These files may be referenced by the sssd.conf config file. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files))
+- `additional_files` (Attributes List) AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar with a directory root of '/etc/sssd/rook-additional/'.These files may be referenced by the sssd.conf config file. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files))
 - `debug_level` (Number) DebugLevel sets the debug level for SSSD. If unset or set to 0, Rook does nothing. Otherwise,this may be a value between 1 and 10. See SSSD docs for more info:https://sssd.io/troubleshooting/basics.html#sssd-debug-logs
 - `resources` (Attributes) Resources allow specifying resource requests/limits on the SSSD sidecar container. (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--resources))
 - `sssd_config_file` (Attributes) SSSDConfigFile defines where the SSSD configuration should be sourced from. The config filewill be placed into '/etc/sssd/sssd.conf'. If this is left empty, Rook will not add the file.This allows you to manage the 'sssd.conf' file yourself however you wish. For example, youmay build it into your custom Ceph container image or use the Vault agent injector tosecurely add the file via annotations on the CephNFS spec (passed to the NFS server pods). (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--sssd_config_file))
@@ -1205,7 +1209,7 @@ Optional:
 
 Required:
 
-- `sub_path` (String) SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s)will be placed. Each subPath definition must be unique and must not contain ':'.
+- `sub_path` (String) SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.
 - `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--security--sssd--sidecar--additional_files--volume_source))
 
 <a id="nestedatt--spec--security--sssd--sidecar--additional_files--volume_source"></a>
@@ -1482,6 +1486,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
 
 
 

@@ -2203,8 +2203,8 @@ func (r *ChainsawKyvernoIoTestV1Alpha2Manifest) Schema(_ context.Context, _ data
 																"value": schema.StringAttribute{
 																	Description:         "Value defines the expected value to wait for, e.g., 'Running'.",
 																	MarkdownDescription: "Value defines the expected value to wait for, e.g., 'Running'.",
-																	Required:            true,
-																	Optional:            false,
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
 																},
 															},

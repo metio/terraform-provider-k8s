@@ -66,13 +66,13 @@ Optional:
 Required:
 
 - `destination` (Attributes) Destination is a reference to the target Kubernetes server and namespace (see [below for nested schema](#nestedatt--spec--destination))
-- `project` (String) Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
+- `project` (String) Project is a reference to the project this application belongs to.The empty string means that application belongs to the 'default' project.
 
 Optional:
 
 - `ignore_differences` (Attributes List) IgnoreDifferences is a list of resources and their fields which should be ignored during comparison (see [below for nested schema](#nestedatt--spec--ignore_differences))
 - `info` (Attributes List) Info contains a list of information (URLs, email addresses, and plain text) that relates to the application (see [below for nested schema](#nestedatt--spec--info))
-- `revision_history_limit` (Number) RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
+- `revision_history_limit` (Number) RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions.This should only be changed in exceptional circumstances.Setting to zero will store no history. This will reduce storage used.Increasing will increase the space used to store the history, so we do not recommend increasing it.Default is 10.
 - `source` (Attributes) Source is a reference to the location of the application's manifests or chart (see [below for nested schema](#nestedatt--spec--source))
 - `sources` (Attributes List) Sources is a reference to the location of the application's manifests or chart (see [below for nested schema](#nestedatt--spec--sources))
 - `sync_policy` (Attributes) SyncPolicy controls when and how a sync will be performed (see [below for nested schema](#nestedatt--spec--sync_policy))
@@ -83,7 +83,7 @@ Optional:
 Optional:
 
 - `name` (String) Name is an alternate way of specifying the target cluster by its symbolic name. This must be set if Server is not set.
-- `namespace` (String) Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+- `namespace` (String) Namespace specifies the target namespace for the application's resources.The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
 - `server` (String) Server specifies the URL of the target cluster's Kubernetes control plane API. This must be set if Name is not set.
 
 
@@ -99,7 +99,7 @@ Optional:
 - `group` (String)
 - `jq_path_expressions` (List of String)
 - `json_pointers` (List of String)
-- `managed_fields_managers` (List of String) ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs
+- `managed_fields_managers` (List of String) ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over thedesired state defined in the SCM and won't be displayed in diffs
 - `name` (String)
 - `namespace` (String)
 
@@ -129,7 +129,7 @@ Optional:
 - `path` (String) Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
 - `plugin` (Attributes) Plugin holds config management plugin specific options (see [below for nested schema](#nestedatt--spec--source--plugin))
 - `ref` (String) Ref is reference to another source within sources field. This field will not be used if used with a 'source' tag.
-- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--spec--source--directory"></a>
 ### Nested Schema for `spec.source.directory`
@@ -316,7 +316,7 @@ Optional:
 - `path` (String) Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
 - `plugin` (Attributes) Plugin holds config management plugin specific options (see [below for nested schema](#nestedatt--spec--sources--plugin))
 - `ref` (String) Ref is reference to another source within sources field. This field will not be used if used with a 'source' tag.
-- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--spec--sources--directory"></a>
 ### Nested Schema for `spec.sources.directory`
@@ -593,10 +593,10 @@ Optional:
 - `manifests` (List of String) Manifests is an optional field that overrides sync source with a local directory for development
 - `prune` (Boolean) Prune specifies to delete resources from the cluster that are no longer tracked in git
 - `resources` (Attributes List) Resources describes which resources shall be part of the sync (see [below for nested schema](#nestedatt--operation--sync--resources))
-- `revision` (String) Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
-- `revisions` (List of String) Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application to If omitted, will use the revision specified in app spec.
-- `source` (Attributes) Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation (see [below for nested schema](#nestedatt--operation--sync--source))
-- `sources` (Attributes List) Sources overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation (see [below for nested schema](#nestedatt--operation--sync--sources))
+- `revision` (String) Revision is the revision (Git) or chart version (Helm) which to sync the application toIf omitted, will use the revision specified in app spec.
+- `revisions` (List of String) Revisions is the list of revision (Git) or chart version (Helm) which to sync each source in sources field for the application toIf omitted, will use the revision specified in app spec.
+- `source` (Attributes) Source overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation (see [below for nested schema](#nestedatt--operation--sync--source))
+- `sources` (Attributes List) Sources overrides the source definition set in the application.This is typically set in a Rollback operation and is nil during a Sync operation (see [below for nested schema](#nestedatt--operation--sync--sources))
 - `sync_options` (List of String) SyncOptions provide per-sync sync-options, e.g. Validate=false
 - `sync_strategy` (Attributes) SyncStrategy describes how to perform the sync (see [below for nested schema](#nestedatt--operation--sync--sync_strategy))
 
@@ -630,7 +630,7 @@ Optional:
 - `path` (String) Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
 - `plugin` (Attributes) Plugin holds config management plugin specific options (see [below for nested schema](#nestedatt--operation--sync--source--plugin))
 - `ref` (String) Ref is reference to another source within sources field. This field will not be used if used with a 'source' tag.
-- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--operation--sync--source--directory"></a>
 ### Nested Schema for `operation.sync.source.directory`
@@ -817,7 +817,7 @@ Optional:
 - `path` (String) Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
 - `plugin` (Attributes) Plugin holds config management plugin specific options (see [below for nested schema](#nestedatt--operation--sync--sources--plugin))
 - `ref` (String) Ref is reference to another source within sources field. This field will not be used if used with a 'source' tag.
-- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+- `target_revision` (String) TargetRevision defines the revision of the source to sync the application to.In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD.In case of Helm, this is a semver tag for the Chart's version.
 
 <a id="nestedatt--operation--sync--sources--directory"></a>
 ### Nested Schema for `operation.sync.sources.directory`
@@ -1001,7 +1001,7 @@ Optional:
 
 Optional:
 
-- `force` (Boolean) Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+- `force` (Boolean) Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.
 
 
 <a id="nestedatt--operation--sync--sync_strategy--hook"></a>
@@ -1009,4 +1009,4 @@ Optional:
 
 Optional:
 
-- `force` (Boolean) Force indicates whether or not to supply the --force flag to 'kubectl apply'. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+- `force` (Boolean) Force indicates whether or not to supply the --force flag to 'kubectl apply'.The --force flag deletes and re-create the resource, when PATCH encounters conflict and hasretried for 5 times.

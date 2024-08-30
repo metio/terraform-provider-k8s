@@ -271,6 +271,7 @@ type ResourcesTeleportDevTeleportRoleV5ManifestData struct {
 			Max_kubernetes_connections *int64  `tfsdk:"max_kubernetes_connections" json:"max_kubernetes_connections,omitempty"`
 			Max_session_ttl            *string `tfsdk:"max_session_ttl" json:"max_session_ttl,omitempty"`
 			Max_sessions               *int64  `tfsdk:"max_sessions" json:"max_sessions,omitempty"`
+			Mfa_verification_interval  *string `tfsdk:"mfa_verification_interval" json:"mfa_verification_interval,omitempty"`
 			Permit_x11_forwarding      *bool   `tfsdk:"permit_x11_forwarding" json:"permit_x11_forwarding,omitempty"`
 			Pin_source_ip              *bool   `tfsdk:"pin_source_ip" json:"pin_source_ip,omitempty"`
 			Port_forwarding            *bool   `tfsdk:"port_forwarding" json:"port_forwarding,omitempty"`
@@ -2103,6 +2104,14 @@ func (r *ResourcesTeleportDevTeleportRoleV5Manifest) Schema(_ context.Context, _
 							"max_sessions": schema.Int64Attribute{
 								Description:         "MaxSessions defines the maximum number of concurrent sessions per connection.",
 								MarkdownDescription: "MaxSessions defines the maximum number of concurrent sessions per connection.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"mfa_verification_interval": schema.StringAttribute{
+								Description:         "MFAVerificationInterval optionally defines the maximum duration that can elapse between successive MFA verifications. This variable is used to ensure that users are periodically prompted to verify their identity, enhancing security by preventing prolonged sessions without re-authentication when using tsh proxy * derivatives. It's only effective if the session requires MFA. If not set, defaults to 'max_session_ttl'.",
+								MarkdownDescription: "MFAVerificationInterval optionally defines the maximum duration that can elapse between successive MFA verifications. This variable is used to ensure that users are periodically prompted to verify their identity, enhancing security by preventing prolonged sessions without re-authentication when using tsh proxy * derivatives. It's only effective if the session requires MFA. If not set, defaults to 'max_session_ttl'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

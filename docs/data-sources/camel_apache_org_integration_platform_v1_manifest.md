@@ -73,7 +73,7 @@ Optional:
 - `maven` (Attributes) Maven configuration used to build the Camel/Camel-Quarkus applications (see [below for nested schema](#nestedatt--spec--build--maven))
 - `max_running_builds` (Number) the maximum amount of parallel running pipelines started by this operator instance
 - `publish_strategy` (String) the strategy to adopt for publishing an Integration container image
-- `publish_strategy_options` (Map of String) Generic options that can used by any publish strategy
+- `publish_strategy_options` (Map of String) Deprecated: no longer in use
 - `registry` (Attributes) the image registry used to push/pull Integration images (see [below for nested schema](#nestedatt--spec--build--registry))
 - `runtime_provider` (String) the runtime used. Likely Camel Quarkus (we used to have main runtime which has been discontinued since version 1.5)
 - `runtime_version` (String) the Camel K Runtime dependency version
@@ -538,6 +538,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters.Deprecated: for backward compatibility.
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
 - `host` (String) To configure the host exposed by the ingress.
+- `ingress_class_name` (String) The Ingress class name as defined by the Ingress specSee https://kubernetes.io/docs/concepts/services-networking/ingress/
 - `path` (String) To configure the path exposed by the ingress (default '/').
 - `path_type` (String) To configure the path type exposed by the ingress.One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').
 - `tls_hosts` (List of String) To configure tls hosts

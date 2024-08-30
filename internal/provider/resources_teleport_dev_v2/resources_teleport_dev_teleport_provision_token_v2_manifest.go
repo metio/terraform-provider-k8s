@@ -128,7 +128,19 @@ type ResourcesTeleportDevTeleportProvisionTokenV2ManifestData struct {
 		} `tfsdk:"spacelift" json:"spacelift,omitempty"`
 		Suggested_agent_matcher_labels *map[string]string `tfsdk:"suggested_agent_matcher_labels" json:"suggested_agent_matcher_labels,omitempty"`
 		Suggested_labels               *map[string]string `tfsdk:"suggested_labels" json:"suggested_labels,omitempty"`
-		Tpm                            *struct {
+		Terraform_cloud                *struct {
+			Allow *[]struct {
+				Organization_id   *string `tfsdk:"organization_id" json:"organization_id,omitempty"`
+				Organization_name *string `tfsdk:"organization_name" json:"organization_name,omitempty"`
+				Project_id        *string `tfsdk:"project_id" json:"project_id,omitempty"`
+				Project_name      *string `tfsdk:"project_name" json:"project_name,omitempty"`
+				Run_phase         *string `tfsdk:"run_phase" json:"run_phase,omitempty"`
+				Workspace_id      *string `tfsdk:"workspace_id" json:"workspace_id,omitempty"`
+				Workspace_name    *string `tfsdk:"workspace_name" json:"workspace_name,omitempty"`
+			} `tfsdk:"allow" json:"allow,omitempty"`
+			Audience *string `tfsdk:"audience" json:"audience,omitempty"`
+		} `tfsdk:"terraform_cloud" json:"terraform_cloud,omitempty"`
+		Tpm *struct {
 			Allow *[]struct {
 				Description           *string `tfsdk:"description" json:"description,omitempty"`
 				Ek_certificate_serial *string `tfsdk:"ek_certificate_serial" json:"ek_certificate_serial,omitempty"`
@@ -806,6 +818,90 @@ func (r *ResourcesTeleportDevTeleportProvisionTokenV2Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"terraform_cloud": schema.SingleNestedAttribute{
+						Description:         "TerraformCloud allows the configuration of options specific to the 'terraform_cloud' join method.",
+						MarkdownDescription: "TerraformCloud allows the configuration of options specific to the 'terraform_cloud' join method.",
+						Attributes: map[string]schema.Attribute{
+							"allow": schema.ListNestedAttribute{
+								Description:         "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								MarkdownDescription: "Allow is a list of Rules, nodes using this token must match one allow rule to use this token.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"organization_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"organization_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"project_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"project_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"run_phase": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"workspace_id": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"workspace_name": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"audience": schema.StringAttribute{
+								Description:         "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
+								MarkdownDescription: "Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"tpm": schema.SingleNestedAttribute{

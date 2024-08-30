@@ -83,6 +83,7 @@ Optional:
 - `backend_refs` (Attributes List) BackendRefs defines the backend(s) where matching requests should besent.Failure behavior here depends on how many BackendRefs are specified andhow many are invalid.If *all* entries in BackendRefs are invalid, and there are also no filtersspecified in this route rule, *all* traffic which matches this rule MUSTreceive an 'UNAVAILABLE' status.See the GRPCBackendRef definition for the rules about what makes a singleGRPCBackendRef invalid.When a GRPCBackendRef is invalid, 'UNAVAILABLE' statuses MUST be returned forrequests that would have otherwise been routed to an invalid backend. Ifmultiple backends are specified, and some are invalid, the proportion ofrequests that would otherwise have been routed to an invalid backendMUST receive an 'UNAVAILABLE' status.For example, if two backends are specified with equal weights, and one isinvalid, 50 percent of traffic MUST receive an 'UNAVAILABLE' status.Implementations may choose how that 50 percent is determined.Support: Core for Kubernetes ServiceSupport: Implementation-specific for any other resourceSupport for weight: Core (see [below for nested schema](#nestedatt--spec--rules--backend_refs))
 - `filters` (Attributes List) Filters define the filters that are applied to requests that matchthis rule.The effects of ordering of multiple behaviors are currently unspecified.This can change in the future based on feedback during the alpha stage.Conformance-levels at this level are defined based on the type of filter:- ALL core filters MUST be supported by all implementations that support  GRPCRoute.- Implementers are encouraged to support extended filters.- Implementation-specific custom filters have no API guarantees across  implementations.Specifying the same filter multiple times is not supported unless explicitlyindicated in the filter.If an implementation can not support a combination of filters, it must clearlydocument that limitation. In cases where incompatible or unsupportedfilters are specified and cause the 'Accepted' condition to be set to status'False', implementations may use the 'IncompatibleFilters' reason to specifythis configuration error.Support: Core (see [below for nested schema](#nestedatt--spec--rules--filters))
 - `matches` (Attributes List) Matches define conditions used for matching the rule against incominggRPC requests. Each match is independent, i.e. this rule will be matchedif **any** one of the matches is satisfied.For example, take the following matches configuration:'''matches:- method:    service: foo.bar  headers:    values:      version: 2- method:    service: foo.bar.v2'''For a request to match against this rule, it MUST satisfyEITHER of the two conditions:- service of foo.bar AND contains the header 'version: 2'- service of foo.bar.v2See the documentation for GRPCRouteMatch on how to specify multiplematch conditions to be ANDed together.If no matches are specified, the implementation MUST match every gRPC request.Proxy or Load Balancer routing configuration generated from GRPCRoutesMUST prioritize rules based on the following criteria, continuing onties. Merging MUST not be done between GRPCRoutes and HTTPRoutes.Precedence MUST be given to the rule with the largest number of:* Characters in a matching non-wildcard hostname.* Characters in a matching hostname.* Characters in a matching service.* Characters in a matching method.* Header matches.If ties still exist across multiple Routes, matching precedence MUST bedetermined in order of the following criteria, continuing on ties:* The oldest Route based on creation timestamp.* The Route appearing first in alphabetical order by  '{namespace}/{name}'.If ties still exist within the Route that has been given precedence,matching precedence MUST be granted to the first matching rule meetingthe above criteria. (see [below for nested schema](#nestedatt--spec--rules--matches))
+- `name` (String) Name is the name of the route rule. This name MUST be unique within a Route if it is set.Support: Extended
 - `session_persistence` (Attributes) SessionPersistence defines and configures session persistencefor the route rule.Support: Extended (see [below for nested schema](#nestedatt--spec--rules--session_persistence))
 
 <a id="nestedatt--spec--rules--backend_refs"></a>
@@ -160,6 +161,11 @@ Required:
 
 - `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_mirror--backend_ref))
 
+Optional:
+
+- `fraction` (Attributes) Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored. (see [below for nested schema](#nestedatt--spec--rules--backend_refs--filters--request_mirror--fraction))
+- `percent` (Number) Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.
+
 <a id="nestedatt--spec--rules--backend_refs--filters--request_mirror--backend_ref"></a>
 ### Nested Schema for `spec.rules.backend_refs.filters.request_mirror.backend_ref`
 
@@ -173,6 +179,18 @@ Optional:
 - `kind` (String) Kind is the Kubernetes resource kind of the referent. For example'Service'.Defaults to 'Service' when not specified.ExternalName services can refer to CNAME DNS records that may liveoutside of the cluster and as such are difficult to reason about interms of conformance. They also may not be safe to forward to (seeCVE-2021-25740 for more information). Implementations SHOULD NOTsupport ExternalName Services.Support: Core (Services with a type other than ExternalName)Support: Implementation-specific (Services with type ExternalName)
 - `namespace` (String) Namespace is the namespace of the backend. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core
 - `port` (Number) Port specifies the destination port number to use for this resource.Port is required when the referent is a Kubernetes Service. In thiscase, the port number is the service port number, not the target port.For other resources, destination port might be derived from the referentresource or this field.
+
+
+<a id="nestedatt--spec--rules--backend_refs--filters--request_mirror--fraction"></a>
+### Nested Schema for `spec.rules.backend_refs.filters.request_mirror.fraction`
+
+Required:
+
+- `numerator` (Number)
+
+Optional:
+
+- `denominator` (Number)
 
 
 
@@ -265,6 +283,11 @@ Required:
 
 - `backend_ref` (Attributes) BackendRef references a resource where mirrored requests are sent.Mirrored requests must be sent only to a single destination endpointwithin this BackendRef, irrespective of how many endpoints are presentwithin this BackendRef.If the referent cannot be found, this BackendRef is invalid and must bedropped from the Gateway. The controller must ensure the 'ResolvedRefs'condition on the Route status is set to 'status: False' and not configurethis backend in the underlying implementation.If there is a cross-namespace reference to an *existing* objectthat is not allowed by a ReferenceGrant, the controller must ensure the'ResolvedRefs'  condition on the Route is set to 'status: False',with the 'RefNotPermitted' reason and not configure this backend in theunderlying implementation.In either error case, the Message of the 'ResolvedRefs' Conditionshould be used to provide more detail about the problem.Support: Extended for Kubernetes ServiceSupport: Implementation-specific for any other resource (see [below for nested schema](#nestedatt--spec--rules--filters--request_mirror--backend_ref))
 
+Optional:
+
+- `fraction` (Attributes) Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored. (see [below for nested schema](#nestedatt--spec--rules--filters--request_mirror--fraction))
+- `percent` (Number) Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.
+
 <a id="nestedatt--spec--rules--filters--request_mirror--backend_ref"></a>
 ### Nested Schema for `spec.rules.filters.request_mirror.backend_ref`
 
@@ -278,6 +301,18 @@ Optional:
 - `kind` (String) Kind is the Kubernetes resource kind of the referent. For example'Service'.Defaults to 'Service' when not specified.ExternalName services can refer to CNAME DNS records that may liveoutside of the cluster and as such are difficult to reason about interms of conformance. They also may not be safe to forward to (seeCVE-2021-25740 for more information). Implementations SHOULD NOTsupport ExternalName Services.Support: Core (Services with a type other than ExternalName)Support: Implementation-specific (Services with type ExternalName)
 - `namespace` (String) Namespace is the namespace of the backend. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core
 - `port` (Number) Port specifies the destination port number to use for this resource.Port is required when the referent is a Kubernetes Service. In thiscase, the port number is the service port number, not the target port.For other resources, destination port might be derived from the referentresource or this field.
+
+
+<a id="nestedatt--spec--rules--filters--request_mirror--fraction"></a>
+### Nested Schema for `spec.rules.filters.request_mirror.fraction`
+
+Required:
+
+- `numerator` (Number)
+
+Optional:
+
+- `denominator` (Number)
 
 
 

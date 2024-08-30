@@ -55,7 +55,7 @@ Optional:
 
 Required:
 
-- `managed_zone` (Attributes) managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints. (see [below for nested schema](#nestedatt--spec--managed_zone))
+- `provider_ref` (Attributes) providerRef is a reference to a provider secret. (see [below for nested schema](#nestedatt--spec--provider_ref))
 - `root_host` (String) rootHost is the single root for all endpoints in a DNSRecord.it is expected all defined endpoints are children of or equal to this rootHostMust contain at least two groups of valid URL characters separated by a '.'
 
 Optional:
@@ -64,12 +64,12 @@ Optional:
 - `health_check` (Attributes) HealthCheckSpec configures health checks in the DNS provider.By default this health check will be applied to each unique DNS A Record forthe listeners assigned to the target gateway (see [below for nested schema](#nestedatt--spec--health_check))
 - `owner_id` (String) ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.
 
-<a id="nestedatt--spec--managed_zone"></a>
-### Nested Schema for `spec.managed_zone`
+<a id="nestedatt--spec--provider_ref"></a>
+### Nested Schema for `spec.provider_ref`
 
 Required:
 
-- `name` (String) 'name' is the name of the managed zone.Required
+- `name` (String)
 
 
 <a id="nestedatt--spec--endpoints"></a>

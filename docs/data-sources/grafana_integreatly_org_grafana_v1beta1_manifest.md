@@ -3480,6 +3480,7 @@ Optional:
 - `admin_password` (Attributes) AdminPassword key to talk to the external grafana instance. (see [below for nested schema](#nestedatt--spec--external--admin_password))
 - `admin_user` (Attributes) AdminUser key to talk to the external grafana instance. (see [below for nested schema](#nestedatt--spec--external--admin_user))
 - `api_key` (Attributes) The API key to talk to the external grafana instance, you need to define ether apiKey or adminUser/adminPassword. (see [below for nested schema](#nestedatt--spec--external--api_key))
+- `tls` (Attributes) TLS Configuration used to talk with the external grafana instance. (see [below for nested schema](#nestedatt--spec--external--tls))
 
 <a id="nestedatt--spec--external--admin_password"></a>
 ### Nested Schema for `spec.external.admin_password`
@@ -3518,6 +3519,24 @@ Optional:
 
 - `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--external--tls"></a>
+### Nested Schema for `spec.external.tls`
+
+Optional:
+
+- `cert_secret_ref` (Attributes) Use a secret as a reference to give TLS Certificate information (see [below for nested schema](#nestedatt--spec--external--tls--cert_secret_ref))
+- `insecure_skip_verify` (Boolean) Disable the CA check of the server
+
+<a id="nestedatt--spec--external--tls--cert_secret_ref"></a>
+### Nested Schema for `spec.external.tls.cert_secret_ref`
+
+Optional:
+
+- `name` (String) name is unique within a namespace to reference a secret resource.
+- `namespace` (String) namespace defines the space within which the secret name must be unique.
+
 
 
 

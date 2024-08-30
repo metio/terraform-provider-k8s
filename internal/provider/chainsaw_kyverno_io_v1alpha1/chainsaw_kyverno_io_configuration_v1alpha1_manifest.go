@@ -1352,8 +1352,8 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 														"value": schema.StringAttribute{
 															Description:         "Value defines the expected value to wait for, e.g., 'Running'.",
 															MarkdownDescription: "Value defines the expected value to wait for, e.g., 'Running'.",
-															Required:            true,
-															Optional:            false,
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},

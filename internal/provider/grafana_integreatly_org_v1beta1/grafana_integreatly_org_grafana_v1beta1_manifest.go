@@ -1377,6 +1377,13 @@ type GrafanaIntegreatlyOrgGrafanaV1Beta1ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"api_key" json:"apiKey,omitempty"`
+			Tls *struct {
+				CertSecretRef *struct {
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
+				InsecureSkipVerify *bool `tfsdk:"insecure_skip_verify" json:"insecureSkipVerify,omitempty"`
+			} `tfsdk:"tls" json:"tls,omitempty"`
 			Url *string `tfsdk:"url" json:"url,omitempty"`
 		} `tfsdk:"external" json:"external,omitempty"`
 		Ingress *struct {
@@ -10554,6 +10561,48 @@ func (r *GrafanaIntegreatlyOrgGrafanaV1Beta1Manifest) Schema(_ context.Context, 
 									"optional": schema.BoolAttribute{
 										Description:         "Specify whether the Secret or its key must be defined",
 										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"tls": schema.SingleNestedAttribute{
+								Description:         "TLS Configuration used to talk with the external grafana instance.",
+								MarkdownDescription: "TLS Configuration used to talk with the external grafana instance.",
+								Attributes: map[string]schema.Attribute{
+									"cert_secret_ref": schema.SingleNestedAttribute{
+										Description:         "Use a secret as a reference to give TLS Certificate information",
+										MarkdownDescription: "Use a secret as a reference to give TLS Certificate information",
+										Attributes: map[string]schema.Attribute{
+											"name": schema.StringAttribute{
+												Description:         "name is unique within a namespace to reference a secret resource.",
+												MarkdownDescription: "name is unique within a namespace to reference a secret resource.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "namespace defines the space within which the secret name must be unique.",
+												MarkdownDescription: "namespace defines the space within which the secret name must be unique.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"insecure_skip_verify": schema.BoolAttribute{
+										Description:         "Disable the CA check of the server",
+										MarkdownDescription: "Disable the CA check of the server",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,

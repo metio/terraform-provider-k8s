@@ -190,7 +190,18 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 			} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		} `tfsdk:"deployment" json:"deployment,omitempty"`
 		DisableServiceLinks *bool `tfsdk:"disable_service_links" json:"disableServiceLinks,omitempty"`
-		Env                 *[]struct {
+		Dns                 *struct {
+			Config *struct {
+				Nameservers *[]string `tfsdk:"nameservers" json:"nameservers,omitempty"`
+				Options     *[]struct {
+					Name  *string `tfsdk:"name" json:"name,omitempty"`
+					Value *string `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"options" json:"options,omitempty"`
+				Searches *[]string `tfsdk:"searches" json:"searches,omitempty"`
+			} `tfsdk:"config" json:"config,omitempty"`
+			Policy *string `tfsdk:"policy" json:"policy,omitempty"`
+		} `tfsdk:"dns" json:"dns,omitempty"`
+		Env *[]struct {
 			Name      *string `tfsdk:"name" json:"name,omitempty"`
 			Value     *string `tfsdk:"value" json:"value,omitempty"`
 			ValueFrom *struct {
@@ -374,6 +385,10 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -381,6 +396,7 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -576,6 +592,7 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 					} `tfsdk:"key_secret" json:"keySecret,omitempty"`
 					ServerName *string `tfsdk:"server_name" json:"serverName,omitempty"`
 				} `tfsdk:"tls_config" json:"tlsConfig,omitempty"`
+				TrackTimestampsStaleness *bool `tfsdk:"track_timestamps_staleness" json:"trackTimestampsStaleness,omitempty"`
 			} `tfsdk:"endpoints" json:"endpoints,omitempty"`
 			Labels *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
 		} `tfsdk:"monitoring" json:"monitoring,omitempty"`
@@ -894,6 +911,10 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 				TerminationGracePeriodSeconds *int64 `tfsdk:"termination_grace_period_seconds" json:"terminationGracePeriodSeconds,omitempty"`
 				TimeoutSeconds                *int64 `tfsdk:"timeout_seconds" json:"timeoutSeconds,omitempty"`
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
+			ResizePolicy *[]struct {
+				ResourceName  *string `tfsdk:"resource_name" json:"resourceName,omitempty"`
+				RestartPolicy *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
+			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
@@ -901,6 +922,7 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 			} `tfsdk:"resources" json:"resources,omitempty"`
+			RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 			SecurityContext *struct {
 				AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
 				Capabilities             *struct {
@@ -1027,10 +1049,11 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 						VolumeName       *string `tfsdk:"volume_name" json:"volumeName,omitempty"`
 					} `tfsdk:"spec" json:"spec,omitempty"`
 					Status *struct {
-						AccessModes        *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
-						AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
-						Capacity           *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
-						Conditions         *[]struct {
+						AccessModes               *[]string          `tfsdk:"access_modes" json:"accessModes,omitempty"`
+						AllocatedResourceStatuses *map[string]string `tfsdk:"allocated_resource_statuses" json:"allocatedResourceStatuses,omitempty"`
+						AllocatedResources        *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
+						Capacity                  *map[string]string `tfsdk:"capacity" json:"capacity,omitempty"`
+						Conditions                *[]struct {
 							LastProbeTime      *string `tfsdk:"last_probe_time" json:"lastProbeTime,omitempty"`
 							LastTransitionTime *string `tfsdk:"last_transition_time" json:"lastTransitionTime,omitempty"`
 							Message            *string `tfsdk:"message" json:"message,omitempty"`
@@ -1038,8 +1061,7 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 							Status             *string `tfsdk:"status" json:"status,omitempty"`
 							Type               *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"conditions" json:"conditions,omitempty"`
-						Phase        *string `tfsdk:"phase" json:"phase,omitempty"`
-						ResizeStatus *string `tfsdk:"resize_status" json:"resizeStatus,omitempty"`
+						Phase *string `tfsdk:"phase" json:"phase,omitempty"`
 					} `tfsdk:"status" json:"status,omitempty"`
 				} `tfsdk:"volume_claim_template" json:"volumeClaimTemplate,omitempty"`
 			} `tfsdk:"storage" json:"storage,omitempty"`
@@ -1051,6 +1073,13 @@ type RcAppStacksRuntimeComponentV1ManifestData struct {
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"update_strategy" json:"updateStrategy,omitempty"`
 		} `tfsdk:"stateful_set" json:"statefulSet,omitempty"`
+		Tolerations *[]struct {
+			Effect            *string `tfsdk:"effect" json:"effect,omitempty"`
+			Key               *string `tfsdk:"key" json:"key,omitempty"`
+			Operator          *string `tfsdk:"operator" json:"operator,omitempty"`
+			TolerationSeconds *int64  `tfsdk:"toleration_seconds" json:"tolerationSeconds,omitempty"`
+			Value             *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"tolerations" json:"tolerations,omitempty"`
 		TopologySpreadConstraints *struct {
 			Constraints *[]struct {
 				LabelSelector *struct {
@@ -2416,6 +2445,77 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 						Computed:            false,
 					},
 
+					"dns": schema.SingleNestedAttribute{
+						Description:         "DNS settings for the pod.",
+						MarkdownDescription: "DNS settings for the pod.",
+						Attributes: map[string]schema.Attribute{
+							"config": schema.SingleNestedAttribute{
+								Description:         "The DNS Config for the application pod.",
+								MarkdownDescription: "The DNS Config for the application pod.",
+								Attributes: map[string]schema.Attribute{
+									"nameservers": schema.ListAttribute{
+										Description:         "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
+										MarkdownDescription: "A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"options": schema.ListNestedAttribute{
+										Description:         "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
+										MarkdownDescription: "A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"name": schema.StringAttribute{
+													Description:         "Required.",
+													MarkdownDescription: "Required.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"value": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"searches": schema.ListAttribute{
+										Description:         "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
+										MarkdownDescription: "A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"policy": schema.StringAttribute{
+								Description:         "The DNS Policy for the application pod.",
+								MarkdownDescription: "The DNS Policy for the application pod.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"env": schema.ListNestedAttribute{
 						Description:         "An array of environment variables for the application container.",
 						MarkdownDescription: "An array of environment variables for the application container.",
@@ -3201,8 +3301,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3453,8 +3553,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -3615,6 +3715,33 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "Resources resize policy for the container.",
+									MarkdownDescription: "Resources resize policy for the container.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+												MarkdownDescription: "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+												MarkdownDescription: "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 									MarkdownDescription: "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -3648,8 +3775,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -3659,6 +3786,14 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -3794,8 +3929,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3835,8 +3970,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -3891,8 +4026,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -4211,12 +4346,12 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authorization": schema.SingleNestedAttribute{
-											Description:         "Authorization section for this endpoint",
-											MarkdownDescription: "Authorization section for this endpoint",
+											Description:         "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
+											MarkdownDescription: "'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'.",
 											Attributes: map[string]schema.Attribute{
 												"credentials": schema.SingleNestedAttribute{
-													Description:         "The secret's key that contains the credentials of the request",
-													MarkdownDescription: "The secret's key that contains the credentials of the request",
+													Description:         "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
+													MarkdownDescription: "Selects a key of a Secret in the namespace that contains the credentials for authentication.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
 															Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4248,8 +4383,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"type": schema.StringAttribute{
-													Description:         "Set the authentication type. Defaults to Bearer, Basic will cause anerror",
-													MarkdownDescription: "Set the authentication type. Defaults to Bearer, Basic will cause anerror",
+													Description:         "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
+													MarkdownDescription: "Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -4261,12 +4396,12 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"basic_auth": schema.SingleNestedAttribute{
-											Description:         "BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints",
-											MarkdownDescription: "BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints",
+											Description:         "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
+											MarkdownDescription: "'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'.",
 											Attributes: map[string]schema.Attribute{
 												"password": schema.SingleNestedAttribute{
-													Description:         "The secret in the service monitor namespace that contains the passwordfor authentication.",
-													MarkdownDescription: "The secret in the service monitor namespace that contains the passwordfor authentication.",
+													Description:         "'password' specifies a key of a Secret containing the password forauthentication.",
+													MarkdownDescription: "'password' specifies a key of a Secret containing the password forauthentication.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
 															Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4298,8 +4433,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"username": schema.SingleNestedAttribute{
-													Description:         "The secret in the service monitor namespace that contains the usernamefor authentication.",
-													MarkdownDescription: "The secret in the service monitor namespace that contains the usernamefor authentication.",
+													Description:         "'username' specifies a key of a Secret containing the username forauthentication.",
+													MarkdownDescription: "'username' specifies a key of a Secret containing the username forauthentication.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
 															Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4336,16 +4471,16 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"bearer_token_file": schema.StringAttribute{
-											Description:         "File to read bearer token for scraping targets.",
-											MarkdownDescription: "File to read bearer token for scraping targets.",
+											Description:         "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
+											MarkdownDescription: "File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"bearer_token_secret": schema.SingleNestedAttribute{
-											Description:         "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service monitor and accessible bythe Prometheus Operator.",
-											MarkdownDescription: "Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service monitor and accessible bythe Prometheus Operator.",
+											Description:         "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
+											MarkdownDescription: "'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead.",
 											Attributes: map[string]schema.Attribute{
 												"key": schema.StringAttribute{
 													Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4377,48 +4512,48 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"enable_http2": schema.BoolAttribute{
-											Description:         "Whether to enable HTTP2.",
-											MarkdownDescription: "Whether to enable HTTP2.",
+											Description:         "'enableHttp2' can be used to disable HTTP2 when scraping the target.",
+											MarkdownDescription: "'enableHttp2' can be used to disable HTTP2 when scraping the target.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"filter_running": schema.BoolAttribute{
-											Description:         "Drop pods that are not running. (Failed, Succeeded). Enabled by default.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
-											MarkdownDescription: "Drop pods that are not running. (Failed, Succeeded). Enabled by default.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+											Description:         "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
+											MarkdownDescription: "When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"follow_redirects": schema.BoolAttribute{
-											Description:         "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
-											MarkdownDescription: "FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.",
+											Description:         "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
+											MarkdownDescription: "'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"honor_labels": schema.BoolAttribute{
-											Description:         "HonorLabels chooses the metric's labels on collisions with target labels.",
-											MarkdownDescription: "HonorLabels chooses the metric's labels on collisions with target labels.",
+											Description:         "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
+											MarkdownDescription: "When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"honor_timestamps": schema.BoolAttribute{
-											Description:         "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
-											MarkdownDescription: "HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.",
+											Description:         "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
+											MarkdownDescription: "'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"interval": schema.StringAttribute{
-											Description:         "Interval at which metrics should be scrapedIf not specified Prometheus' global scrape interval is used.",
-											MarkdownDescription: "Interval at which metrics should be scrapedIf not specified Prometheus' global scrape interval is used.",
+											Description:         "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
+											MarkdownDescription: "Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4428,13 +4563,13 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"metric_relabelings": schema.ListNestedAttribute{
-											Description:         "MetricRelabelConfigs to apply to samples before ingestion.",
-											MarkdownDescription: "MetricRelabelConfigs to apply to samples before ingestion.",
+											Description:         "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
+											MarkdownDescription: "'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion.",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"action": schema.StringAttribute{
-														Description:         "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
-														MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
+														Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4444,40 +4579,40 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"modulus": schema.Int64Attribute{
-														Description:         "Modulus to take of the hash of the source label values.",
-														MarkdownDescription: "Modulus to take of the hash of the source label values.",
+														Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-														MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+														Description:         "Regular expression against which the extracted value is matched.",
+														MarkdownDescription: "Regular expression against which the extracted value is matched.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"replacement": schema.StringAttribute{
-														Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-														MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+														Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"separator": schema.StringAttribute{
-														Description:         "Separator placed between concatenated source label values. default is ';'.",
-														MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+														Description:         "Separator is the string between concatenated SourceLabels.",
+														MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_labels": schema.ListAttribute{
-														Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-														MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+														Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -4485,8 +4620,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"target_label": schema.StringAttribute{
-														Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-														MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+														Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4499,12 +4634,12 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"oauth2": schema.SingleNestedAttribute{
-											Description:         "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
-											MarkdownDescription: "OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer.",
+											Description:         "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
+											MarkdownDescription: "'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'.",
 											Attributes: map[string]schema.Attribute{
 												"client_id": schema.SingleNestedAttribute{
-													Description:         "The secret or configmap containing the OAuth2 client id",
-													MarkdownDescription: "The secret or configmap containing the OAuth2 client id",
+													Description:         "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
+													MarkdownDescription: "'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID.",
 													Attributes: map[string]schema.Attribute{
 														"config_map": schema.SingleNestedAttribute{
 															Description:         "ConfigMap containing data to use for the targets.",
@@ -4578,8 +4713,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"client_secret": schema.SingleNestedAttribute{
-													Description:         "The secret containing the OAuth2 client secret",
-													MarkdownDescription: "The secret containing the OAuth2 client secret",
+													Description:         "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
+													MarkdownDescription: "'clientSecret' specifies a key of a Secret containing the OAuth2client's secret.",
 													Attributes: map[string]schema.Attribute{
 														"key": schema.StringAttribute{
 															Description:         "The key of the secret to select from.  Must be a valid secret key.",
@@ -4611,8 +4746,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"endpoint_params": schema.MapAttribute{
-													Description:         "Parameters to append to the token URL",
-													MarkdownDescription: "Parameters to append to the token URL",
+													Description:         "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
+													MarkdownDescription: "'endpointParams' configures the HTTP parameters to append to the tokenURL.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4620,8 +4755,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"scopes": schema.ListAttribute{
-													Description:         "OAuth2 scopes used for the token request",
-													MarkdownDescription: "OAuth2 scopes used for the token request",
+													Description:         "'scopes' defines the OAuth2 scopes used for the token request.",
+													MarkdownDescription: "'scopes' defines the OAuth2 scopes used for the token request.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -4629,8 +4764,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"token_url": schema.StringAttribute{
-													Description:         "The URL to fetch the token from",
-													MarkdownDescription: "The URL to fetch the token from",
+													Description:         "'tokenURL' configures the URL to fetch the token from.",
+													MarkdownDescription: "'tokenURL' configures the URL to fetch the token from.",
 													Required:            true,
 													Optional:            false,
 													Computed:            false,
@@ -4645,8 +4780,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"params": schema.MapAttribute{
-											Description:         "Optional HTTP URL parameters",
-											MarkdownDescription: "Optional HTTP URL parameters",
+											Description:         "params define optional HTTP URL parameters.",
+											MarkdownDescription: "params define optional HTTP URL parameters.",
 											ElementType:         types.ListType{ElemType: types.StringType},
 											Required:            false,
 											Optional:            true,
@@ -4654,37 +4789,37 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"path": schema.StringAttribute{
-											Description:         "HTTP path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
-											MarkdownDescription: "HTTP path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
+											Description:         "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
+											MarkdownDescription: "HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"port": schema.StringAttribute{
-											Description:         "Name of the service port this endpoint refers to. Mutually exclusive with targetPort.",
-											MarkdownDescription: "Name of the service port this endpoint refers to. Mutually exclusive with targetPort.",
+											Description:         "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
+											MarkdownDescription: "Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"proxy_url": schema.StringAttribute{
-											Description:         "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
-											MarkdownDescription: "ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.",
+											Description:         "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
+											MarkdownDescription: "'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"relabelings": schema.ListNestedAttribute{
-											Description:         "RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
-											MarkdownDescription: "RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+											Description:         "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+											MarkdownDescription: "'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
 											NestedObject: schema.NestedAttributeObject{
 												Attributes: map[string]schema.Attribute{
 													"action": schema.StringAttribute{
-														Description:         "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
-														MarkdownDescription: "Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.",
+														Description:         "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
+														MarkdownDescription: "Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4694,40 +4829,40 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"modulus": schema.Int64Attribute{
-														Description:         "Modulus to take of the hash of the source label values.",
-														MarkdownDescription: "Modulus to take of the hash of the source label values.",
+														Description:         "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
+														MarkdownDescription: "Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"regex": schema.StringAttribute{
-														Description:         "Regular expression against which the extracted value is matched. Default is '(.*)'",
-														MarkdownDescription: "Regular expression against which the extracted value is matched. Default is '(.*)'",
+														Description:         "Regular expression against which the extracted value is matched.",
+														MarkdownDescription: "Regular expression against which the extracted value is matched.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"replacement": schema.StringAttribute{
-														Description:         "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
-														MarkdownDescription: "Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'",
+														Description:         "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
+														MarkdownDescription: "Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"separator": schema.StringAttribute{
-														Description:         "Separator placed between concatenated source label values. default is ';'.",
-														MarkdownDescription: "Separator placed between concatenated source label values. default is ';'.",
+														Description:         "Separator is the string between concatenated SourceLabels.",
+														MarkdownDescription: "Separator is the string between concatenated SourceLabels.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
 													},
 
 													"source_labels": schema.ListAttribute{
-														Description:         "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
-														MarkdownDescription: "The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.",
+														Description:         "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
+														MarkdownDescription: "The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -4735,8 +4870,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 													},
 
 													"target_label": schema.StringAttribute{
-														Description:         "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
-														MarkdownDescription: "Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.",
+														Description:         "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
+														MarkdownDescription: "Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4749,16 +4884,19 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"scheme": schema.StringAttribute{
-											Description:         "HTTP scheme to use for scraping.",
-											MarkdownDescription: "HTTP scheme to use for scraping.",
+											Description:         "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
+											MarkdownDescription: "HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "https"),
+											},
 										},
 
 										"scrape_timeout": schema.StringAttribute{
-											Description:         "Timeout after which the scrape is endedIf not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
-											MarkdownDescription: "Timeout after which the scrape is endedIf not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.",
+											Description:         "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
+											MarkdownDescription: "Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -4768,16 +4906,16 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"target_port": schema.StringAttribute{
-											Description:         "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
-											MarkdownDescription: "Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.",
+											Description:         "Name or number of the target port of the 'Pod' object behind the Service, theport must be specified with container port property.Deprecated: use 'port' instead.",
+											MarkdownDescription: "Name or number of the target port of the 'Pod' object behind the Service, theport must be specified with container port property.Deprecated: use 'port' instead.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"tls_config": schema.SingleNestedAttribute{
-											Description:         "TLS configuration to use when scraping the endpoint",
-											MarkdownDescription: "TLS configuration to use when scraping the endpoint",
+											Description:         "TLS configuration to use when scraping the target.",
+											MarkdownDescription: "TLS configuration to use when scraping the target.",
 											Attributes: map[string]schema.Attribute{
 												"ca": schema.SingleNestedAttribute{
 													Description:         "Certificate authority used when verifying server certificates.",
@@ -5006,6 +5144,14 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 											Optional: true,
 											Computed: false,
 										},
+
+										"track_timestamps_staleness": schema.BoolAttribute{
+											Description:         "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
+											MarkdownDescription: "'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 								},
 								Required: false,
@@ -5097,8 +5243,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"grpc": schema.SingleNestedAttribute{
-										Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+										Description:         "GRPC specifies an action involving a GRPC port.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 										Attributes: map[string]schema.Attribute{
 											"port": schema.Int64Attribute{
 												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5290,8 +5436,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"grpc": schema.SingleNestedAttribute{
-										Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+										Description:         "GRPC specifies an action involving a GRPC port.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 										Attributes: map[string]schema.Attribute{
 											"port": schema.Int64Attribute{
 												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5483,8 +5629,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"grpc": schema.SingleNestedAttribute{
-										Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-										MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+										Description:         "GRPC specifies an action involving a GRPC port.",
+										MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 										Attributes: map[string]schema.Attribute{
 											"port": schema.Int64Attribute{
 												Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -5707,8 +5853,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"requests": schema.MapAttribute{
-								Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-								MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+								MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -5919,8 +6065,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 								MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 								Attributes: map[string]schema.Attribute{
 									"localhost_profile": schema.StringAttribute{
-										Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
-										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
+										Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+										MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -5960,8 +6106,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									},
 
 									"host_process": schema.BoolAttribute{
-										Description:         "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
-										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
+										Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+										MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6070,8 +6216,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"app_protocol": schema.StringAttribute{
-											Description:         "The application protocol for this port.This field follows standard Kubernetes label syntax.Un-prefixed names are reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).Non-standard protocols should use prefixed names such asmycompany.com/my-custom-protocol.",
-											MarkdownDescription: "The application protocol for this port.This field follows standard Kubernetes label syntax.Un-prefixed names are reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).Non-standard protocols should use prefixed names such asmycompany.com/my-custom-protocol.",
+											Description:         "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
+											MarkdownDescription: "The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -6729,8 +6875,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -6981,8 +7127,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7143,6 +7289,33 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									Computed: false,
 								},
 
+								"resize_policy": schema.ListNestedAttribute{
+									Description:         "Resources resize policy for the container.",
+									MarkdownDescription: "Resources resize policy for the container.",
+									NestedObject: schema.NestedAttributeObject{
+										Attributes: map[string]schema.Attribute{
+											"resource_name": schema.StringAttribute{
+												Description:         "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+												MarkdownDescription: "Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"restart_policy": schema.StringAttribute{
+												Description:         "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+												MarkdownDescription: "Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"resources": schema.SingleNestedAttribute{
 									Description:         "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 									MarkdownDescription: "Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
@@ -7176,8 +7349,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"requests": schema.MapAttribute{
-											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+											MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -7187,6 +7360,14 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"restart_policy": schema.StringAttribute{
+									Description:         "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+									MarkdownDescription: "RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"security_context": schema.SingleNestedAttribute{
@@ -7322,8 +7503,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 											MarkdownDescription: "The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows.",
 											Attributes: map[string]schema.Attribute{
 												"localhost_profile": schema.StringAttribute{
-													Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
-													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.",
+													Description:         "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
+													MarkdownDescription: "localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7363,8 +7544,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 												},
 
 												"host_process": schema.BoolAttribute{
-													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
-													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.",
+													Description:         "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
+													MarkdownDescription: "HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -7419,8 +7600,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"grpc": schema.SingleNestedAttribute{
-											Description:         "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
-											MarkdownDescription: "GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate.",
+											Description:         "GRPC specifies an action involving a GRPC port.",
+											MarkdownDescription: "GRPC specifies an action involving a GRPC port.",
 											Attributes: map[string]schema.Attribute{
 												"port": schema.Int64Attribute{
 													Description:         "Port number of the gRPC service. Number must be in the range 1 to 65535.",
@@ -7960,8 +8141,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 															},
 
 															"requests": schema.MapAttribute{
-																Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																ElementType:         types.StringType,
 																Required:            false,
 																Optional:            true,
@@ -8069,9 +8250,18 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 														Computed:            false,
 													},
 
+													"allocated_resource_statuses": schema.MapAttribute{
+														Description:         "allocatedResourceStatuses stores status of resource being resized for the given PVC.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.ClaimResourceStatus can be in any of following states:	- ControllerResizeInProgress:		State set when resize controller starts resizing the volume in control-plane.	- ControllerResizeFailed:		State set when resize has failed in resize controller with a terminal error.	- NodeResizePending:		State set when resize controller has finished resizing the volume but further resizing of		volume is needed on the node.	- NodeResizeInProgress:		State set when kubelet starts resizing the volume.	- NodeResizeFailed:		State set when resizing has failed in kubelet with a terminal error. Transient errors don't set		NodeResizeFailed.For example: if expanding a PVC for more capacity - this field can be one of the following states:	- pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed'When this field is not set, it means that no resize operation is in progress for the given PVC.A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatusshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+														MarkdownDescription: "allocatedResourceStatuses stores status of resource being resized for the given PVC.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.ClaimResourceStatus can be in any of following states:	- ControllerResizeInProgress:		State set when resize controller starts resizing the volume in control-plane.	- ControllerResizeFailed:		State set when resize has failed in resize controller with a terminal error.	- NodeResizePending:		State set when resize controller has finished resizing the volume but further resizing of		volume is needed on the node.	- NodeResizeInProgress:		State set when kubelet starts resizing the volume.	- NodeResizeFailed:		State set when resizing has failed in kubelet with a terminal error. Transient errors don't set		NodeResizeFailed.For example: if expanding a PVC for more capacity - this field can be one of the following states:	- pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed'When this field is not set, it means that no resize operation is in progress for the given PVC.A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatusshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"allocated_resources": schema.MapAttribute{
-														Description:         "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It maybe larger than the actual capacity when a volume expansion operation is requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-														MarkdownDescription: "allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It maybe larger than the actual capacity when a volume expansion operation is requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+														Description:         "allocatedResources tracks the resources allocated to a PVC including its capacity.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.Capacity reported here may be larger than the actual capacity when a volume expansion operationis requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.A controller that receives PVC update with previously unknown resourceNameshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
+														MarkdownDescription: "allocatedResources tracks the resources allocated to a PVC including its capacity.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.Capacity reported here may be larger than the actual capacity when a volume expansion operationis requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.A controller that receives PVC update with previously unknown resourceNameshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
 														ElementType:         types.StringType,
 														Required:            false,
 														Optional:            true,
@@ -8159,14 +8349,6 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 														Optional:            true,
 														Computed:            false,
 													},
-
-													"resize_status": schema.StringAttribute{
-														Description:         "resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-														MarkdownDescription: "resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
 												},
 												Required: false,
 												Optional: true,
@@ -8223,6 +8405,57 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"tolerations": schema.ListNestedAttribute{
+						Description:         "Tolerations to be added to application pods. Tolerations allow the scheduler to schedule pods on nodes with matching taints.",
+						MarkdownDescription: "Tolerations to be added to application pods. Tolerations allow the scheduler to schedule pods on nodes with matching taints.",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"effect": schema.StringAttribute{
+									Description:         "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"key": schema.StringAttribute{
+									Description:         "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									MarkdownDescription: "Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"operator": schema.StringAttribute{
+									Description:         "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+									MarkdownDescription: "Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"toleration_seconds": schema.Int64Attribute{
+									Description:         "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+									MarkdownDescription: "TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									MarkdownDescription: "Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
 							},
 						},
 						Required: false,
@@ -8294,8 +8527,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"match_label_keys": schema.ListAttribute{
-											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.",
-											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.",
+											Description:         "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
+											MarkdownDescription: "MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -8923,8 +9156,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"size_limit": schema.StringAttribute{
-											Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
-											MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: http://kubernetes.io/docs/user-guide/volumes#emptydir",
+											Description:         "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+											MarkdownDescription: "sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -9115,8 +9348,8 @@ func (r *RcAppStacksRuntimeComponentV1Manifest) Schema(_ context.Context, _ data
 																},
 
 																"requests": schema.MapAttribute{
-																	Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
-																	MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																	MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
 																	ElementType:         types.StringType,
 																	Required:            false,
 																	Optional:            true,

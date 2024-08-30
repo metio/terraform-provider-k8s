@@ -57,12 +57,13 @@ Required:
 
 - `cluster_deployment_ref` (Attributes) ClusterDeploymentRef references the cluster deployment to which this machine pool belongs. (see [below for nested schema](#nestedatt--spec--cluster_deployment_ref))
 - `name` (String) Name is the name of the machine pool.
-- `platform` (Attributes) Platform is configuration for machine pool specific to the platform. (see [below for nested schema](#nestedatt--spec--platform))
+- `platform` (Attributes) Platform is configuration for machine pool specific to the platform. When using a MachinePool to control the default worker machines created by installer, these must match the values provided in the install-config. (see [below for nested schema](#nestedatt--spec--platform))
 
 Optional:
 
 - `autoscaling` (Attributes) Autoscaling is the details for auto-scaling the machine pool. Replicas and autoscaling cannot be used together. (see [below for nested schema](#nestedatt--spec--autoscaling))
-- `labels` (Map of String) Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This list will overwrite any modifications made to Node labels on an ongoing basis.
+- `labels` (Map of String) Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This affects the labels that will end up on the *Nodes* (in contrast with the MachineLabels field). This list will overwrite any modifications made to Node labels on an ongoing basis.
+- `machine_labels` (Map of String) Map of label string keys and values that will be applied to the created MachineSet's MachineTemplateSpec. This affects the labels that will end up on the *Machines* (in contrast with the Labels field). This list will overwrite any modifications made to Machine labels on an ongoing basis. Note: We ignore entries that conflict with generated labels.
 - `replicas` (Number) Replicas is the count of machines for this machine pool. Replicas and autoscaling cannot be used together. Default is 1, if autoscaling is not used.
 - `taints` (Attributes List) List of taints that will be applied to the created MachineSet's MachineSpec. This list will overwrite any modifications made to Node taints on an ongoing basis. In case of duplicate entries, first encountered taint Value will be preserved, and the rest collapsed on the corresponding MachineSets. Note that taints are uniquely identified based on key+effect, not just key. (see [below for nested schema](#nestedatt--spec--taints))
 
@@ -145,7 +146,10 @@ Required:
 
 Optional:
 
+- `compute_subnet` (String) ComputeSubnet specifies an existing subnet for use by compute nodes. If omitted, the default (${infraID}-worker-subnet) will be used.
+- `network_resource_group_name` (String) NetworkResourceGroupName specifies the network resource group that contains an existing VNet. Ignored unless VirtualNetwork is also specified.
 - `os_image` (Attributes) OSImage defines the image to use for the OS. (see [below for nested schema](#nestedatt--spec--platform--azure--os_image))
+- `virtual_network` (String) VirtualNetwork specifies the name of an existing VNet for the Machines to use If omitted, the default (${infraID}-vnet) will be used.
 - `zones` (List of String) Zones is list of availability zones that can be used. eg. ['1', '2', '3']
 
 <a id="nestedatt--spec--platform--azure--os_disk"></a>

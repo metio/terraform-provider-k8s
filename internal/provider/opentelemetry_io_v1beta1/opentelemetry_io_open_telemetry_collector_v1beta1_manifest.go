@@ -203,7 +203,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -714,7 +715,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -900,8 +902,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 				Type             *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-			SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-			Sysctls            *[]struct {
+			SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+			SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+			Sysctls                  *[]struct {
 				Name  *string `tfsdk:"name" json:"name,omitempty"`
 				Value *string `tfsdk:"value" json:"value,omitempty"`
 			} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -933,7 +936,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 		Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 		Resources *struct {
 			Claims *[]struct {
-				Name *string `tfsdk:"name" json:"name,omitempty"`
+				Name    *string `tfsdk:"name" json:"name,omitempty"`
+				Request *string `tfsdk:"request" json:"request,omitempty"`
 			} `tfsdk:"claims" json:"claims,omitempty"`
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1165,8 +1169,9 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1200,7 +1205,8 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 			Replicas  *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1518,6 +1524,10 @@ type OpentelemetryIoOpenTelemetryCollectorV1Beta1ManifestData struct {
 				Path *string `tfsdk:"path" json:"path,omitempty"`
 				Type *string `tfsdk:"type" json:"type,omitempty"`
 			} `tfsdk:"host_path" json:"hostPath,omitempty"`
+			Image *struct {
+				PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+				Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+			} `tfsdk:"image" json:"image,omitempty"`
 			Iscsi *struct {
 				ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 				ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -2786,6 +2796,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 														MarkdownDescription: "",
 														Required:            true,
 														Optional:            false,
+														Computed:            false,
+													},
+
+													"request": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
 														Computed:            false,
 													},
 												},
@@ -6196,6 +6214,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 														Optional:            false,
 														Computed:            false,
 													},
+
+													"request": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -7159,8 +7185,8 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 					"management_state": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 						Validators: []validator.String{
 							stringvalidator.OneOf("managed", "unmanaged"),
@@ -7453,6 +7479,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 								Computed:            false,
 							},
 
+							"supplemental_groups_policy": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"sysctls": schema.ListNestedAttribute{
 								Description:         "",
 								MarkdownDescription: "",
@@ -7680,6 +7714,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 											MarkdownDescription: "",
 											Required:            true,
 											Optional:            false,
+											Computed:            false,
+										},
+
+										"request": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 									},
@@ -9244,6 +9286,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 										Computed:            false,
 									},
 
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"sysctls": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -9472,6 +9522,14 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -11645,6 +11703,31 @@ func (r *OpentelemetryIoOpenTelemetryCollectorV1Beta1Manifest) Schema(_ context.
 										},
 
 										"type": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"image": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"pull_policy": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"reference": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
 											Required:            false,

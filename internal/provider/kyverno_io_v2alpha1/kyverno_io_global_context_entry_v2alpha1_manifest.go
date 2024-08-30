@@ -7,6 +7,7 @@ package kyverno_io_v2alpha1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -49,6 +50,7 @@ type KyvernoIoGlobalContextEntryV2Alpha1ManifestData struct {
 			} `tfsdk:"data" json:"data,omitempty"`
 			Method          *string `tfsdk:"method" json:"method,omitempty"`
 			RefreshInterval *string `tfsdk:"refresh_interval" json:"refreshInterval,omitempty"`
+			RetryLimit      *int64  `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 			Service         *struct {
 				CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 				Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -178,6 +180,17 @@ func (r *KyvernoIoGlobalContextEntryV2Alpha1Manifest) Schema(_ context.Context, 
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"retry_limit": schema.Int64Attribute{
+								Description:         "RetryLimit defines the number of times the APICall should be retried in case of failure.",
+								MarkdownDescription: "RetryLimit defines the number of times the APICall should be retried in case of failure.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
+								},
 							},
 
 							"service": schema.SingleNestedAttribute{

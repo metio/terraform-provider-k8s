@@ -27,9 +27,6 @@ data "k8s_kmm_sigs_x_k8s_io_preflight_validation_v1beta1_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-
-### Optional
-
 - `spec` (Attributes) PreflightValidationSpec describes the desired state of the resource, such as the kernel versionthat Module CRs need to be verified against as well as the debug configuration of the logsMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only

@@ -340,7 +340,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 					Image      *string `tfsdk:"image" json:"image,omitempty"`
 					Resources  *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -637,7 +638,8 @@ type CephRookIoCephNfsV1ManifestData struct {
 			PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 			Resources         *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1984,13 +1986,13 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 										MarkdownDescription: "Sidecar tells Rook to run SSSD in a sidecar alongside the NFS-Ganesha server in each NFS pod.",
 										Attributes: map[string]schema.Attribute{
 											"additional_files": schema.ListNestedAttribute{
-												Description:         "AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar. These files may be referenced by the sssd.conf config file.",
-												MarkdownDescription: "AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar. These files may be referenced by the sssd.conf config file.",
+												Description:         "AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar with a directory root of '/etc/sssd/rook-additional/'.These files may be referenced by the sssd.conf config file.",
+												MarkdownDescription: "AdditionalFiles defines any number of additional files that should be mounted into the SSSDsidecar with a directory root of '/etc/sssd/rook-additional/'.These files may be referenced by the sssd.conf config file.",
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"sub_path": schema.StringAttribute{
-															Description:         "SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s)will be placed. Each subPath definition must be unique and must not contain ':'.",
-															MarkdownDescription: "SubPath defines the sub-path in '/etc/sssd/rook-additional/' where the additional file(s)will be placed. Each subPath definition must be unique and must not contain ':'.",
+															Description:         "SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.",
+															MarkdownDescription: "SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.",
 															Required:            true,
 															Optional:            false,
 															Computed:            false,
@@ -2633,6 +2635,14 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 																	MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 																	Required:            true,
 																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+																	MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
 																},
 															},
@@ -4608,6 +4618,14 @@ func (r *CephRookIoCephNfsV1Manifest) Schema(_ context.Context, _ datasource.Sch
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

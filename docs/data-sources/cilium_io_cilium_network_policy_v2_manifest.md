@@ -297,7 +297,7 @@ Optional:
 
 - `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--egress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
-- `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
+- `host` (String) Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
@@ -921,7 +921,7 @@ Optional:
 
 - `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--spec--ingress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
-- `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
+- `host` (String) Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
@@ -1427,7 +1427,7 @@ Optional:
 
 - `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--egress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
-- `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
+- `host` (String) Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 
@@ -2051,7 +2051,7 @@ Optional:
 
 - `header_matches` (Attributes List) HeaderMatches is a list of HTTP headers which must be present and match against the given values. Mismatch field can be used to specify what to do when there is no match. (see [below for nested schema](#nestedatt--specs--ingress--to_ports--rules--http--header_matches))
 - `headers` (List of String) Headers is a list of HTTP headers which must be present in the request. If omitted or empty, requests are allowed regardless of headers present.
-- `host` (String) Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.
+- `host` (String) Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.
 - `method` (String) Method is an extended POSIX regex matched against the method of a request, e.g. 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', ...  If omitted or empty, all methods are allowed.
 - `path` (String) Path is an extended POSIX regex matched against the path of a request. Currently it can contain characters disallowed from the conventional 'path' part of a URL as defined by RFC 3986.  If omitted or empty, all paths are all allowed.
 

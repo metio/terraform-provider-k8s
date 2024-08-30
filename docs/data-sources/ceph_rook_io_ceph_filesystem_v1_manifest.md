@@ -853,6 +853,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+
 
 
 <a id="nestedatt--spec--metadata_server--startup_probe"></a>

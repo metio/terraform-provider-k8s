@@ -668,6 +668,9 @@ type PostgresOperatorCrunchydataComPostgresClusterV1Beta1ManifestData struct {
 					} `tfsdk:"pgbackrest_config" json:"pgbackrestConfig,omitempty"`
 				} `tfsdk:"sidecars" json:"sidecars,omitempty"`
 			} `tfsdk:"pgbackrest" json:"pgbackrest,omitempty"`
+			Snapshots *struct {
+				VolumeSnapshotClassName *string `tfsdk:"volume_snapshot_class_name" json:"volumeSnapshotClassName,omitempty"`
+			} `tfsdk:"snapshots" json:"snapshots,omitempty"`
 		} `tfsdk:"backups" json:"backups,omitempty"`
 		Config *struct {
 			Files *[]struct {
@@ -6870,13 +6873,30 @@ func (r *PostgresOperatorCrunchydataComPostgresClusterV1Beta1Manifest) Schema(_ 
 										Computed: false,
 									},
 								},
-								Required: true,
-								Optional: false,
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"snapshots": schema.SingleNestedAttribute{
+								Description:         "VolumeSnapshot configuration",
+								MarkdownDescription: "VolumeSnapshot configuration",
+								Attributes: map[string]schema.Attribute{
+									"volume_snapshot_class_name": schema.StringAttribute{
+										Description:         "Name of the VolumeSnapshotClass that should be used by VolumeSnapshots",
+										MarkdownDescription: "Name of the VolumeSnapshotClass that should be used by VolumeSnapshots",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
 								Computed: false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

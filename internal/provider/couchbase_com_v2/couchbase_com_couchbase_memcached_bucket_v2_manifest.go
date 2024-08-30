@@ -56,8 +56,8 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Metadata(_ context.Cont
 
 func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
-		MarkdownDescription: "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
+		Description:         "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
+		MarkdownDescription: "The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -124,20 +124,20 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Schema(_ context.Contex
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CouchbaseMemcachedBucketSpec is the specification for a Memcached bucket resource, and allows the bucket to be customized.",
-				MarkdownDescription: "CouchbaseMemcachedBucketSpec is the specification for a Memcached bucket resource, and allows the bucket to be customized.",
+				Description:         "CouchbaseMemcachedBucketSpec is the specification for a Memcached bucketresource, and allows the bucket to be customized.",
+				MarkdownDescription: "CouchbaseMemcachedBucketSpec is the specification for a Memcached bucketresource, and allows the bucket to be customized.",
 				Attributes: map[string]schema.Attribute{
 					"enable_flush": schema.BoolAttribute{
-						Description:         "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
-						MarkdownDescription: "EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.",
+						Description:         "EnableFlush defines whether a client can delete all documents in a bucket.This field defaults to false.",
+						MarkdownDescription: "EnableFlush defines whether a client can delete all documents in a bucket.This field defaults to false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"memory_quota": schema.StringAttribute{
-						Description:         "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
-						MarkdownDescription: "MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+						Description:         "MemoryQuota is a memory limit to the size of a bucket. The memory quotais defined per Couchbase pod running the data service.  This field defaults to, and mustbe greater than or equal to 100Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
+						MarkdownDescription: "MemoryQuota is a memory limit to the size of a bucket. The memory quotais defined per Couchbase pod running the data service.  This field defaults to, and mustbe greater than or equal to 100Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -147,8 +147,8 @@ func (r *CouchbaseComCouchbaseMemcachedBucketV2Manifest) Schema(_ context.Contex
 					},
 
 					"name": schema.StringAttribute{
-						Description:         "Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
-						MarkdownDescription: "Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+						Description:         "Name is the name of the bucket within Couchbase server.  By default the Operatorwill use the 'metadata.name' field to define the bucket name.  The 'metadata.name'field only supports a subset of the supported character set.  When specified, thisfield overrides 'metadata.name'.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
+						MarkdownDescription: "Name is the name of the bucket within Couchbase server.  By default the Operatorwill use the 'metadata.name' field to define the bucket name.  The 'metadata.name'field only supports a subset of the supported character set.  When specified, thisfield overrides 'metadata.name'.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

@@ -62,10 +62,10 @@ type KuadrantIoDnsrecordV1Alpha1ManifestData struct {
 			Port             *int64  `tfsdk:"port" json:"port,omitempty"`
 			Protocol         *string `tfsdk:"protocol" json:"protocol,omitempty"`
 		} `tfsdk:"health_check" json:"healthCheck,omitempty"`
-		ManagedZone *struct {
+		OwnerID     *string `tfsdk:"owner_id" json:"ownerID,omitempty"`
+		ProviderRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
-		} `tfsdk:"managed_zone" json:"managedZone,omitempty"`
-		OwnerID  *string `tfsdk:"owner_id" json:"ownerID,omitempty"`
+		} `tfsdk:"provider_ref" json:"providerRef,omitempty"`
 		RootHost *string `tfsdk:"root_host" json:"rootHost,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -279,23 +279,6 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 						Computed: false,
 					},
 
-					"managed_zone": schema.SingleNestedAttribute{
-						Description:         "managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints.",
-						MarkdownDescription: "managedZone is a reference to a ManagedZone instance to which this record will publish its endpoints.",
-						Attributes: map[string]schema.Attribute{
-							"name": schema.StringAttribute{
-								Description:         "'name' is the name of the managed zone.Required",
-								MarkdownDescription: "'name' is the name of the managed zone.Required",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-							},
-						},
-						Required: true,
-						Optional: false,
-						Computed: false,
-					},
-
 					"owner_id": schema.StringAttribute{
 						Description:         "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
 						MarkdownDescription: "ownerID is a unique string used to identify the owner of this record.If unset or set to an empty string the record UID will be used.",
@@ -306,6 +289,26 @@ func (r *KuadrantIoDnsrecordV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 							stringvalidator.LengthAtLeast(6),
 							stringvalidator.LengthAtMost(36),
 						},
+					},
+
+					"provider_ref": schema.SingleNestedAttribute{
+						Description:         "providerRef is a reference to a provider secret.",
+						MarkdownDescription: "providerRef is a reference to a provider secret.",
+						Attributes: map[string]schema.Attribute{
+							"name": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+								},
+							},
+						},
+						Required: true,
+						Optional: false,
+						Computed: false,
 					},
 
 					"root_host": schema.StringAttribute{

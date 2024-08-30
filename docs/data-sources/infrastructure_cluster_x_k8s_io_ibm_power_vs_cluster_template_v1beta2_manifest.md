@@ -146,9 +146,12 @@ Optional:
 Optional:
 
 - `additional_listeners` (Attributes List) AdditionalListeners sets the additional listeners for the control plane load balancer. (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--additional_listeners))
+- `backend_pools` (Attributes List) backendPools defines the load balancer's backend pools. (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--backend_pools))
 - `id` (String) id of the loadbalancer
 - `name` (String) Name sets the name of the VPC load balancer.
 - `public` (Boolean) public indicates that load balancer is public or private
+- `security_groups` (Attributes List) securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--security_groups))
+- `subnets` (Attributes List) subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer). (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--subnets))
 
 <a id="nestedatt--spec--template--spec--load_balancers--additional_listeners"></a>
 ### Nested Schema for `spec.template.spec.load_balancers.additional_listeners`
@@ -156,6 +159,59 @@ Optional:
 Required:
 
 - `port` (Number) Port sets the port for the additional listener.
+
+Optional:
+
+- `default_pool_name` (String) defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.
+- `protocol` (String) protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.
+
+
+<a id="nestedatt--spec--template--spec--load_balancers--backend_pools"></a>
+### Nested Schema for `spec.template.spec.load_balancers.backend_pools`
+
+Required:
+
+- `algorithm` (String) algorithm defines the load balancing algorithm to use.
+- `health_monitor` (Attributes) healthMonitor defines the backend pool's health monitor. (see [below for nested schema](#nestedatt--spec--template--spec--load_balancers--backend_pools--health_monitor))
+- `protocol` (String) protocol defines the protocol to use for the Backend Pool.
+
+Optional:
+
+- `name` (String) name defines the name of the Backend Pool.
+
+<a id="nestedatt--spec--template--spec--load_balancers--backend_pools--health_monitor"></a>
+### Nested Schema for `spec.template.spec.load_balancers.backend_pools.health_monitor`
+
+Required:
+
+- `delay` (Number) delay defines the seconds to wait between health checks.
+- `retries` (Number) retries defines the max retries for health check.
+- `timeout` (Number) timeout defines the seconds to wait for a health check response.
+- `type` (String) type defines the protocol used for health checks.
+
+Optional:
+
+- `port` (Number) port defines the port to perform health monitoring on.
+- `url_path` (String) urlPath defines the URL to use for health monitoring.
+
+
+
+<a id="nestedatt--spec--template--spec--load_balancers--security_groups"></a>
+### Nested Schema for `spec.template.spec.load_balancers.security_groups`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
+
+
+<a id="nestedatt--spec--template--spec--load_balancers--subnets"></a>
+### Nested Schema for `spec.template.spec.load_balancers.subnets`
+
+Optional:
+
+- `id` (String) id of the resource.
+- `name` (String) name of the resource.
 
 
 

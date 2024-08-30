@@ -616,6 +616,7 @@ Optional:
 - `validation_server_grpc_max_size_bytes` (Number)
 - `validation_webhook_tls_cert` (String)
 - `validation_webhook_tls_key` (String)
+- `warn_missing_tls_secret` (Boolean)
 - `warn_route_short_circuiting` (Boolean)
 
 

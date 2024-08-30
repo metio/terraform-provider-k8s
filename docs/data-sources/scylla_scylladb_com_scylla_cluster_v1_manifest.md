@@ -60,11 +60,11 @@ Optional:
 - `alternator` (Attributes) alternator designates this cluster an Alternator cluster. (see [below for nested schema](#nestedatt--spec--alternator))
 - `automatic_orphaned_node_cleanup` (Boolean) automaticOrphanedNodeCleanup controls if automatic orphan node cleanup should be performed.
 - `backups` (Attributes List) backups specifies backup tasks in Scylla Manager. When Scylla Manager is not installed, these will be ignored. (see [below for nested schema](#nestedatt--spec--backups))
-- `cpuset` (Boolean) cpuset determines if the cluster will use cpu-pinning for max performance.
+- `cpuset` (Boolean) cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.
 - `datacenter` (Attributes) datacenter holds a specification of a datacenter. (see [below for nested schema](#nestedatt--spec--datacenter))
 - `developer_mode` (Boolean) developerMode determines if the cluster runs in developer-mode.
 - `dns_domains` (List of String) dnsDomains is a list of DNS domains this cluster is reachable by. These domains are used when setting up the infrastructure, like certificates. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.
-- `expose_options` (Attributes) exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field. (see [below for nested schema](#nestedatt--spec--expose_options))
+- `expose_options` (Attributes) exposeOptions specifies options for exposing ScyllaCluster services. This field is immutable. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field. (see [below for nested schema](#nestedatt--spec--expose_options))
 - `external_seeds` (List of String) externalSeeds specifies the external seeds to propagate to ScyllaDB binary on startup as 'seeds' parameter of seed-provider.
 - `force_redeployment_reason` (String) forceRedeploymentReason can be used to force a rolling update of all racks by providing a unique string.
 - `generic_upgrade` (Attributes) genericUpgrade allows to configure behavior of generic upgrade logic. (see [below for nested schema](#nestedatt--spec--generic_upgrade))

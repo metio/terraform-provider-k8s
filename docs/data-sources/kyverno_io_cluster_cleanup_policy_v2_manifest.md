@@ -151,10 +151,13 @@ Optional:
 <a id="nestedatt--spec--context--global_reference"></a>
 ### Nested Schema for `spec.context.global_reference`
 
+Required:
+
+- `name` (String) Name of the global context entry
+
 Optional:
 
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
-- `name` (String) Name of the global context entry
 
 
 <a id="nestedatt--spec--context--image_registry"></a>

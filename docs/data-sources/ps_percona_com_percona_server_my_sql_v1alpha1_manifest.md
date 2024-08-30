@@ -912,6 +912,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--pitr--binlog_server--pod_security_context--windows_options))
 
@@ -1059,6 +1060,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -1310,17 +1315,24 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--backup--schedule"></a>
 ### Nested Schema for `spec.backup.schedule`
 
-Optional:
+Required:
 
-- `keep` (Number)
 - `name` (String)
 - `schedule` (String)
 - `storage_name` (String)
+
+Optional:
+
+- `keep` (Number)
 
 
 <a id="nestedatt--spec--backup--storages"></a>
@@ -1850,6 +1862,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup--storages--pod_security_context--windows_options))
 
@@ -1924,6 +1937,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -2821,6 +2838,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--pod_security_context--windows_options))
 
@@ -2969,6 +2987,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--mysql--sidecar_pv_cs"></a>
@@ -3080,6 +3102,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--mysql--sidecar_volumes--persistent_volume_claim))
@@ -3474,6 +3497,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--mysql--sidecar_volumes--image"></a>
+### Nested Schema for `spec.mysql.sidecar_volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--mysql--sidecar_volumes--iscsi"></a>
@@ -4304,6 +4336,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -5426,6 +5462,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--orchestrator--pod_security_context--windows_options))
 
@@ -5573,6 +5610,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -5913,6 +5954,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -6639,6 +6684,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--haproxy--pod_security_context--windows_options))
 
@@ -6786,6 +6832,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -7734,6 +7784,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--proxy--router--pod_security_context--windows_options))
 
@@ -7881,6 +7932,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -8503,6 +8558,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 

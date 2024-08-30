@@ -207,14 +207,15 @@ type OperatorTigeraIoInstallationV1ManifestData struct {
 			ContainerIPForwarding *string `tfsdk:"container_ip_forwarding" json:"containerIPForwarding,omitempty"`
 			HostPorts             *string `tfsdk:"host_ports" json:"hostPorts,omitempty"`
 			IpPools               *[]struct {
-				AllowedUses      *[]string `tfsdk:"allowed_uses" json:"allowedUses,omitempty"`
-				BlockSize        *int64    `tfsdk:"block_size" json:"blockSize,omitempty"`
-				Cidr             *string   `tfsdk:"cidr" json:"cidr,omitempty"`
-				DisableBGPExport *bool     `tfsdk:"disable_bgp_export" json:"disableBGPExport,omitempty"`
-				Encapsulation    *string   `tfsdk:"encapsulation" json:"encapsulation,omitempty"`
-				Name             *string   `tfsdk:"name" json:"name,omitempty"`
-				NatOutgoing      *string   `tfsdk:"nat_outgoing" json:"natOutgoing,omitempty"`
-				NodeSelector     *string   `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+				AllowedUses           *[]string `tfsdk:"allowed_uses" json:"allowedUses,omitempty"`
+				BlockSize             *int64    `tfsdk:"block_size" json:"blockSize,omitempty"`
+				Cidr                  *string   `tfsdk:"cidr" json:"cidr,omitempty"`
+				DisableBGPExport      *bool     `tfsdk:"disable_bgp_export" json:"disableBGPExport,omitempty"`
+				DisableNewAllocations *bool     `tfsdk:"disable_new_allocations" json:"disableNewAllocations,omitempty"`
+				Encapsulation         *string   `tfsdk:"encapsulation" json:"encapsulation,omitempty"`
+				Name                  *string   `tfsdk:"name" json:"name,omitempty"`
+				NatOutgoing           *string   `tfsdk:"nat_outgoing" json:"natOutgoing,omitempty"`
+				NodeSelector          *string   `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
 			} `tfsdk:"ip_pools" json:"ipPools,omitempty"`
 			LinuxDataplane                 *string `tfsdk:"linux_dataplane" json:"linuxDataplane,omitempty"`
 			LinuxPolicySetupTimeoutSeconds *int64  `tfsdk:"linux_policy_setup_timeout_seconds" json:"linuxPolicySetupTimeoutSeconds,omitempty"`
@@ -2361,6 +2362,14 @@ func (r *OperatorTigeraIoInstallationV1Manifest) Schema(_ context.Context, _ dat
 										"disable_bgp_export": schema.BoolAttribute{
 											Description:         "DisableBGPExport specifies whether routes from this IP pool's CIDR are exported over BGP.Default: false",
 											MarkdownDescription: "DisableBGPExport specifies whether routes from this IP pool's CIDR are exported over BGP.Default: false",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"disable_new_allocations": schema.BoolAttribute{
+											Description:         "DisableNewAllocations specifies whether or not new IP allocations are allowed from this pool.This is useful when you want to prevent new pods from receiving IP addresses from this pool, withoutimpacting any existing pods that have already been assigned addresses from this pool.",
+											MarkdownDescription: "DisableNewAllocations specifies whether or not new IP allocations are allowed from this pool.This is useful when you want to prevent new pods from receiving IP addresses from this pool, withoutimpacting any existing pods that have already been assigned addresses from this pool.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

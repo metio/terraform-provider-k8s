@@ -214,6 +214,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key" json:"accessKey,omitempty"`
 			AggregatorName *string `tfsdk:"aggregator_name" json:"aggregatorName,omitempty"`
+			AssumeRole     *string `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 			Connection     *string `tfsdk:"connection" json:"connection,omitempty"`
 			Description    *string `tfsdk:"description" json:"description,omitempty"`
 			Display        *struct {
@@ -382,6 +383,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key" json:"accessKey,omitempty"`
+			AssumeRole      *string   `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 			ComplianceTypes *[]string `tfsdk:"compliance_types" json:"complianceTypes,omitempty"`
 			Connection      *string   `tfsdk:"connection" json:"connection,omitempty"`
 			Description     *string   `tfsdk:"description" json:"description,omitempty"`
@@ -808,6 +810,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 			ActionPrefix *string   `tfsdk:"action_prefix" json:"actionPrefix,omitempty"`
 			AlarmPrefix  *string   `tfsdk:"alarm_prefix" json:"alarmPrefix,omitempty"`
 			Alarms       *[]string `tfsdk:"alarms" json:"alarms,omitempty"`
+			AssumeRole   *string   `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 			Connection   *string   `tfsdk:"connection" json:"connection,omitempty"`
 			Description  *string   `tfsdk:"description" json:"description,omitempty"`
 			Display      *struct {
@@ -2049,6 +2052,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 							ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 					} `tfsdk:"access_key" json:"accessKey,omitempty"`
+					AssumeRole *string `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 					Connection *string `tfsdk:"connection" json:"connection,omitempty"`
 					Endpoint   *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
 					Region     *string `tfsdk:"region" json:"region,omitempty"`
@@ -2305,6 +2309,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"access_key" json:"accessKey,omitempty"`
+				AssumeRole *string `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 				Bucket     *string `tfsdk:"bucket" json:"bucket,omitempty"`
 				Connection *string `tfsdk:"connection" json:"connection,omitempty"`
 				Endpoint   *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
@@ -2547,7 +2552,8 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 						ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 					} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 				} `tfsdk:"password" json:"password,omitempty"`
-				Port     *int64 `tfsdk:"port" json:"port,omitempty"`
+				Port     *int64  `tfsdk:"port" json:"port,omitempty"`
+				Share    *string `tfsdk:"share" json:"share,omitempty"`
 				Username *struct {
 					Name      *string `tfsdk:"name" json:"name,omitempty"`
 					Value     *string `tfsdk:"value" json:"value,omitempty"`
@@ -5412,6 +5418,7 @@ type CanariesFlanksourceComCanaryV1ManifestData struct {
 					ServiceAccount *string `tfsdk:"service_account" json:"serviceAccount,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"access_key" json:"accessKey,omitempty"`
+			AssumeRole  *string            `tfsdk:"assume_role" json:"assumeRole,omitempty"`
 			Bucket      *string            `tfsdk:"bucket" json:"bucket,omitempty"`
 			BucketName  *string            `tfsdk:"bucket_name" json:"bucketName,omitempty"`
 			Connection  *string            `tfsdk:"connection" json:"connection,omitempty"`
@@ -6971,6 +6978,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"assume_role": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"connection": schema.StringAttribute{
 									Description:         "ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.",
 									MarkdownDescription: "ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.",
@@ -8065,6 +8080,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"assume_role": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"compliance_types": schema.ListAttribute{
@@ -10904,6 +10927,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Description:         "",
 									MarkdownDescription: "",
 									ElementType:         types.StringType,
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"assume_role": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
@@ -19013,6 +19044,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 													Computed: false,
 												},
 
+												"assume_role": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"connection": schema.StringAttribute{
 													Description:         "ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.",
 													MarkdownDescription: "ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.",
@@ -20651,6 +20690,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 											Computed: false,
 										},
 
+										"assume_role": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"bucket": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
@@ -21836,8 +21883,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										"host": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            true,
-											Optional:            false,
+											Required:            false,
+											Optional:            true,
 											Computed:            false,
 										},
 
@@ -22101,8 +22148,8 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										},
 
 										"domain": schema.StringAttribute{
-											Description:         "Domain...",
-											MarkdownDescription: "Domain...",
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -22228,6 +22275,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 										"port": schema.Int64Attribute{
 											Description:         "Port on which smb server is running. Defaults to 445",
 											MarkdownDescription: "Port on which smb server is running. Defaults to 445",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"share": schema.StringAttribute{
+											Description:         "",
+											MarkdownDescription: "",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -41038,6 +41093,14 @@ func (r *CanariesFlanksourceComCanaryV1Manifest) Schema(_ context.Context, _ dat
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"assume_role": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
 								},
 
 								"bucket": schema.StringAttribute{

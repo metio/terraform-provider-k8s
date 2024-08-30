@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_replication_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replication stream from a source bucket to a destination bucket.  This provides off-site backup, migration, and disaster recovery.
+  The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replicationstream from a source bucket to a destination bucket.  This provides off-site backup,migration, and disaster recovery.
 ---
 
 # k8s_couchbase_com_couchbase_replication_v2_manifest (Data Source)
 
-The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replication stream from a source bucket to a destination bucket.  This provides off-site backup, migration, and disaster recovery.
+The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replicationstream from a source bucket to a destination bucket.  This provides off-site backup,migration, and disaster recovery.
 
 ## Example Usage
 
@@ -35,7 +35,7 @@ data "k8s_couchbase_com_couchbase_replication_v2_manifest" "example" {
 
 ### Optional
 
-- `explicit_mapping` (Attributes) The explicit mappings to use for replication which are optional. For Scopes and Collection replication support we can specify a set of implicit and explicit mappings to use. If none is specified then it is assumed to be existing bucket level replication. https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#explicit-mapping (see [below for nested schema](#nestedatt--explicit_mapping))
+- `explicit_mapping` (Attributes) The explicit mappings to use for replication which are optional.For Scopes and Collection replication support we can specify a set of implicit andexplicit mappings to use. If none is specified then it is assumed to be existingbucket level replication.https://docs.couchbase.com/server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html#explicit-mapping (see [below for nested schema](#nestedatt--explicit_mapping))
 
 ### Read-Only
 
@@ -60,14 +60,14 @@ Optional:
 
 Required:
 
-- `bucket` (String) Bucket is the source bucket to replicate from.  This refers to the Couchbase bucket name, not the resource name of the bucket.  A bucket with this name must be defined on this cluster.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
-- `remote_bucket` (String) RemoteBucket is the remote bucket name to synchronize to.  This refers to the Couchbase bucket name, not the resource name of the bucket.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
+- `bucket` (String) Bucket is the source bucket to replicate from.  This refers to the Couchbasebucket name, not the resource name of the bucket.  A bucket with this name mustbe defined on this cluster.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
+- `remote_bucket` (String) RemoteBucket is the remote bucket name to synchronize to.  This refers to theCouchbase bucket name, not the resource name of the bucket.  Legal bucket nameshave a maximum length of 100 characters and may be composed of any character from'a-z', 'A-Z', '0-9' and '-_%.'.
 
 Optional:
 
-- `compression_type` (String) CompressionType is the type of compression to apply to the replication. When None, no compression will be applied to documents as they are transferred between clusters.  When Auto, Couchbase server will automatically compress documents as they are transferred to reduce bandwidth requirements. This field must be one of 'None' or 'Auto', defaulting to 'Auto'.
+- `compression_type` (String) CompressionType is the type of compression to apply to the replication.When None, no compression will be applied to documents as they aretransferred between clusters.  When Auto, Couchbase server will automaticallycompress documents as they are transferred to reduce bandwidth requirements.This field must be one of 'None' or 'Auto', defaulting to 'Auto'.
 - `filter_expression` (String) FilterExpression allows certain documents to be filtered out of the replication.
-- `paused` (Boolean) Paused allows a replication to be stopped and restarted without having to restart the replication from the beginning.
+- `paused` (Boolean) Paused allows a replication to be stopped and restarted without having torestart the replication from the beginning.
 
 
 <a id="nestedatt--explicit_mapping"></a>
@@ -75,16 +75,16 @@ Optional:
 
 Optional:
 
-- `allow_rules` (Attributes List) The list of explicit replications to carry out including any nested implicit replications: specifying a scope implicitly replicates all collections within it. There should be no duplicates, including more-specific duplicates, e.g. if you specify replication of a scope then you can only deny replication of collections within it. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules))
-- `deny_rules` (Attributes List) The list of explicit replications to prevent including any nested implicit denials: specifying a scope implicitly denies all collections within it. There should be no duplicates, including more-specific duplicates, e.g. if you specify denial of replication of a scope then you can only specify replication of collections within it. (see [below for nested schema](#nestedatt--explicit_mapping--deny_rules))
+- `allow_rules` (Attributes List) The list of explicit replications to carry out including any nested implicit replications:specifying a scope implicitly replicates all collections within it.There should be no duplicates, including more-specific duplicates, e.g. if you specify replicationof a scope then you can only deny replication of collections within it. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules))
+- `deny_rules` (Attributes List) The list of explicit replications to prevent including any nested implicit denials:specifying a scope implicitly denies all collections within it.There should be no duplicates, including more-specific duplicates, e.g. if you specify denial ofreplication of a scope then you can only specify replication of collections within it. (see [below for nested schema](#nestedatt--explicit_mapping--deny_rules))
 
 <a id="nestedatt--explicit_mapping--allow_rules"></a>
 ### Nested Schema for `explicit_mapping.allow_rules`
 
 Required:
 
-- `source_keyspace` (Attributes) The source keyspace: where to replicate from. Source and target must match whether they have a collection or not, i.e. you cannot replicate from a scope to a collection. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules--source_keyspace))
-- `target_keyspace` (Attributes) The target keyspace: where to replicate to. Source and target must match whether they have a collection or not, i.e. you cannot replicate from a scope to a collection. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules--target_keyspace))
+- `source_keyspace` (Attributes) The source keyspace: where to replicate from.Source and target must match whether they have a collection or not, i.e. you cannotreplicate from a scope to a collection. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules--source_keyspace))
+- `target_keyspace` (Attributes) The target keyspace: where to replicate to.Source and target must match whether they have a collection or not, i.e. you cannotreplicate from a scope to a collection. (see [below for nested schema](#nestedatt--explicit_mapping--allow_rules--target_keyspace))
 
 <a id="nestedatt--explicit_mapping--allow_rules--source_keyspace"></a>
 ### Nested Schema for `explicit_mapping.allow_rules.source_keyspace`

@@ -555,8 +555,8 @@ func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 										"name": schema.StringAttribute{
 											Description:         "Name of the global context entry",
 											MarkdownDescription: "Name of the global context entry",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},

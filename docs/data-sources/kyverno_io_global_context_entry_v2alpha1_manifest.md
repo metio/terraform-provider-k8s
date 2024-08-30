@@ -62,6 +62,7 @@ Optional:
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--api_call--data))
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `refresh_interval` (String) RefreshInterval defines the interval in duration at which to poll the APICall.The duration is a sequence of decimal numbers, each with optional fraction and a unit suffix,such as '300ms', '1.5h' or '2h45m'. Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+- `retry_limit` (Number) RetryLimit defines the number of times the APICall should be retried in case of failure.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--api_call--service))
 - `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
 

@@ -116,7 +116,8 @@ type SonataflowOrgSonataFlowV1Alpha08ManifestData struct {
 			} `tfsdk:"timeouts" json:"timeouts,omitempty"`
 		} `tfsdk:"flow" json:"flow,omitempty"`
 		Persistence *struct {
-			Postgresql *struct {
+			MigrateDBOnStartUp *bool `tfsdk:"migrate_db_on_start_up" json:"migrateDBOnStartUp,omitempty"`
+			Postgresql         *struct {
 				JdbcUrl   *string `tfsdk:"jdbc_url" json:"jdbcUrl,omitempty"`
 				SecretRef *struct {
 					Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -1964,6 +1965,14 @@ func (r *SonataflowOrgSonataFlowV1Alpha08Manifest) Schema(_ context.Context, _ d
 						Description:         "Persistence defines the database persistence configuration for the workflow",
 						MarkdownDescription: "Persistence defines the database persistence configuration for the workflow",
 						Attributes: map[string]schema.Attribute{
+							"migrate_db_on_start_up": schema.BoolAttribute{
+								Description:         "Whether to migrate database on service startup?",
+								MarkdownDescription: "Whether to migrate database on service startup?",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
 							"postgresql": schema.SingleNestedAttribute{
 								Description:         "Connect configured services to a postgresql database.",
 								MarkdownDescription: "Connect configured services to a postgresql database.",

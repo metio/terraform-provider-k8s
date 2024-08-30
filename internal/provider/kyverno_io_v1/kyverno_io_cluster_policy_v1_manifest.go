@@ -213,14 +213,91 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
 					} `tfsdk:"selector" json:"selector,omitempty"`
 				} `tfsdk:"clone_list" json:"cloneList,omitempty"`
-				Data                           *map[string]string `tfsdk:"data" json:"data,omitempty"`
-				GenerateExisting               *bool              `tfsdk:"generate_existing" json:"generateExisting,omitempty"`
-				Kind                           *string            `tfsdk:"kind" json:"kind,omitempty"`
-				Name                           *string            `tfsdk:"name" json:"name,omitempty"`
-				Namespace                      *string            `tfsdk:"namespace" json:"namespace,omitempty"`
-				OrphanDownstreamOnPolicyDelete *bool              `tfsdk:"orphan_downstream_on_policy_delete" json:"orphanDownstreamOnPolicyDelete,omitempty"`
-				Synchronize                    *bool              `tfsdk:"synchronize" json:"synchronize,omitempty"`
-				Uid                            *string            `tfsdk:"uid" json:"uid,omitempty"`
+				Data    *map[string]string `tfsdk:"data" json:"data,omitempty"`
+				Foreach *[]struct {
+					ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+					Clone      *struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					} `tfsdk:"clone" json:"clone,omitempty"`
+					CloneList *struct {
+						Kinds     *[]string `tfsdk:"kinds" json:"kinds,omitempty"`
+						Namespace *string   `tfsdk:"namespace" json:"namespace,omitempty"`
+						Selector  *struct {
+							MatchExpressions *[]struct {
+								Key      *string   `tfsdk:"key" json:"key,omitempty"`
+								Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+								Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+							} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+							MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+						} `tfsdk:"selector" json:"selector,omitempty"`
+					} `tfsdk:"clone_list" json:"cloneList,omitempty"`
+					Context *[]struct {
+						ApiCall *struct {
+							Data *[]struct {
+								Key   *string            `tfsdk:"key" json:"key,omitempty"`
+								Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+							} `tfsdk:"data" json:"data,omitempty"`
+							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Method   *string `tfsdk:"method" json:"method,omitempty"`
+							Service  *struct {
+								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
+								Url      *string `tfsdk:"url" json:"url,omitempty"`
+							} `tfsdk:"service" json:"service,omitempty"`
+							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
+						} `tfsdk:"api_call" json:"apiCall,omitempty"`
+						ConfigMap *struct {
+							Name      *string `tfsdk:"name" json:"name,omitempty"`
+							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						GlobalReference *struct {
+							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+						} `tfsdk:"global_reference" json:"globalReference,omitempty"`
+						ImageRegistry *struct {
+							ImageRegistryCredentials *struct {
+								AllowInsecureRegistry *bool     `tfsdk:"allow_insecure_registry" json:"allowInsecureRegistry,omitempty"`
+								Providers             *[]string `tfsdk:"providers" json:"providers,omitempty"`
+								Secrets               *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
+							} `tfsdk:"image_registry_credentials" json:"imageRegistryCredentials,omitempty"`
+							JmesPath  *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Reference *string `tfsdk:"reference" json:"reference,omitempty"`
+						} `tfsdk:"image_registry" json:"imageRegistry,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Variable *struct {
+							Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+							JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"variable" json:"variable,omitempty"`
+					} `tfsdk:"context" json:"context,omitempty"`
+					Data          *map[string]string `tfsdk:"data" json:"data,omitempty"`
+					Kind          *string            `tfsdk:"kind" json:"kind,omitempty"`
+					List          *string            `tfsdk:"list" json:"list,omitempty"`
+					Name          *string            `tfsdk:"name" json:"name,omitempty"`
+					Namespace     *string            `tfsdk:"namespace" json:"namespace,omitempty"`
+					Preconditions *struct {
+						All *[]struct {
+							Key      *map[string]string `tfsdk:"key" json:"key,omitempty"`
+							Message  *string            `tfsdk:"message" json:"message,omitempty"`
+							Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+							Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"all" json:"all,omitempty"`
+						Any *[]struct {
+							Key      *map[string]string `tfsdk:"key" json:"key,omitempty"`
+							Message  *string            `tfsdk:"message" json:"message,omitempty"`
+							Operator *string            `tfsdk:"operator" json:"operator,omitempty"`
+							Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						} `tfsdk:"any" json:"any,omitempty"`
+					} `tfsdk:"preconditions" json:"preconditions,omitempty"`
+					Uid *string `tfsdk:"uid" json:"uid,omitempty"`
+				} `tfsdk:"foreach" json:"foreach,omitempty"`
+				GenerateExisting               *bool   `tfsdk:"generate_existing" json:"generateExisting,omitempty"`
+				Kind                           *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name                           *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace                      *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				OrphanDownstreamOnPolicyDelete *bool   `tfsdk:"orphan_downstream_on_policy_delete" json:"orphanDownstreamOnPolicyDelete,omitempty"`
+				Synchronize                    *bool   `tfsdk:"synchronize" json:"synchronize,omitempty"`
+				Uid                            *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"generate" json:"generate,omitempty"`
 			ImageExtractors *map[string]string `tfsdk:"image_extractors" json:"imageExtractors,omitempty"`
 			Match           *struct {
@@ -477,6 +554,19 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 				Deny *struct {
 					Conditions *map[string]string `tfsdk:"conditions" json:"conditions,omitempty"`
 				} `tfsdk:"deny" json:"deny,omitempty"`
+				FailureAction          *string `tfsdk:"failure_action" json:"failureAction,omitempty"`
+				FailureActionOverrides *[]struct {
+					Action            *string `tfsdk:"action" json:"action,omitempty"`
+					NamespaceSelector *struct {
+						MatchExpressions *[]struct {
+							Key      *string   `tfsdk:"key" json:"key,omitempty"`
+							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+					} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
+					Namespaces *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
+				} `tfsdk:"failure_action_overrides" json:"failureActionOverrides,omitempty"`
 				Foreach *[]struct {
 					AnyPattern *map[string]string `tfsdk:"any_pattern" json:"anyPattern,omitempty"`
 					Context    *[]struct {
@@ -628,19 +718,6 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 					Level   *string `tfsdk:"level" json:"level,omitempty"`
 					Version *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"pod_security" json:"podSecurity,omitempty"`
-				ValidationFailureAction          *string `tfsdk:"validation_failure_action" json:"validationFailureAction,omitempty"`
-				ValidationFailureActionOverrides *[]struct {
-					Action            *string `tfsdk:"action" json:"action,omitempty"`
-					NamespaceSelector *struct {
-						MatchExpressions *[]struct {
-							Key      *string   `tfsdk:"key" json:"key,omitempty"`
-							Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
-							Values   *[]string `tfsdk:"values" json:"values,omitempty"`
-						} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
-						MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
-					} `tfsdk:"namespace_selector" json:"namespaceSelector,omitempty"`
-					Namespaces *[]string `tfsdk:"namespaces" json:"namespaces,omitempty"`
-				} `tfsdk:"validation_failure_action_overrides" json:"validationFailureActionOverrides,omitempty"`
 			} `tfsdk:"validate" json:"validate,omitempty"`
 			VerifyImages *[]struct {
 				AdditionalExtensions *map[string]string `tfsdk:"additional_extensions" json:"additionalExtensions,omitempty"`
@@ -782,6 +859,7 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 					} `tfsdk:"entries" json:"entries,omitempty"`
 				} `tfsdk:"attestors" json:"attestors,omitempty"`
 				CosignOCI11              *bool     `tfsdk:"cosign_oci11" json:"cosignOCI11,omitempty"`
+				FailureAction            *string   `tfsdk:"failure_action" json:"failureAction,omitempty"`
 				Image                    *string   `tfsdk:"image" json:"image,omitempty"`
 				ImageReferences          *[]string `tfsdk:"image_references" json:"imageReferences,omitempty"`
 				ImageRegistryCredentials *struct {
@@ -789,18 +867,17 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 					Providers             *[]string `tfsdk:"providers" json:"providers,omitempty"`
 					Secrets               *[]string `tfsdk:"secrets" json:"secrets,omitempty"`
 				} `tfsdk:"image_registry_credentials" json:"imageRegistryCredentials,omitempty"`
-				Issuer                  *string   `tfsdk:"issuer" json:"issuer,omitempty"`
-				Key                     *string   `tfsdk:"key" json:"key,omitempty"`
-				MutateDigest            *bool     `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
-				Repository              *string   `tfsdk:"repository" json:"repository,omitempty"`
-				Required                *bool     `tfsdk:"required" json:"required,omitempty"`
-				Roots                   *string   `tfsdk:"roots" json:"roots,omitempty"`
-				SkipImageReferences     *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
-				Subject                 *string   `tfsdk:"subject" json:"subject,omitempty"`
-				Type                    *string   `tfsdk:"type" json:"type,omitempty"`
-				UseCache                *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
-				ValidationFailureAction *string   `tfsdk:"validation_failure_action" json:"validationFailureAction,omitempty"`
-				VerifyDigest            *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
+				Issuer              *string   `tfsdk:"issuer" json:"issuer,omitempty"`
+				Key                 *string   `tfsdk:"key" json:"key,omitempty"`
+				MutateDigest        *bool     `tfsdk:"mutate_digest" json:"mutateDigest,omitempty"`
+				Repository          *string   `tfsdk:"repository" json:"repository,omitempty"`
+				Required            *bool     `tfsdk:"required" json:"required,omitempty"`
+				Roots               *string   `tfsdk:"roots" json:"roots,omitempty"`
+				SkipImageReferences *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
+				Subject             *string   `tfsdk:"subject" json:"subject,omitempty"`
+				Type                *string   `tfsdk:"type" json:"type,omitempty"`
+				UseCache            *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
+				VerifyDigest        *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
 			} `tfsdk:"verify_images" json:"verifyImages,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 		SchemaValidation                 *bool   `tfsdk:"schema_validation" json:"schemaValidation,omitempty"`
@@ -1123,8 +1200,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 													"name": schema.StringAttribute{
 														Description:         "Name of the global context entry",
 														MarkdownDescription: "Name of the global context entry",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 												},
@@ -2092,6 +2169,537 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 											Computed:            false,
 										},
 
+										"foreach": schema.ListNestedAttribute{
+											Description:         "ForEach applies generate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic.",
+											MarkdownDescription: "ForEach applies generate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"api_version": schema.StringAttribute{
+														Description:         "APIVersion specifies resource apiVersion.",
+														MarkdownDescription: "APIVersion specifies resource apiVersion.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"clone": schema.SingleNestedAttribute{
+														Description:         "Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only.",
+														MarkdownDescription: "Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only.",
+														Attributes: map[string]schema.Attribute{
+															"name": schema.StringAttribute{
+																Description:         "Name specifies name of the resource.",
+																MarkdownDescription: "Name specifies name of the resource.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace specifies source resource namespace.",
+																MarkdownDescription: "Namespace specifies source resource namespace.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"clone_list": schema.SingleNestedAttribute{
+														Description:         "CloneList specifies the list of source resource used to populate each generated resource.",
+														MarkdownDescription: "CloneList specifies the list of source resource used to populate each generated resource.",
+														Attributes: map[string]schema.Attribute{
+															"kinds": schema.ListAttribute{
+																Description:         "Kinds is a list of resource kinds.",
+																MarkdownDescription: "Kinds is a list of resource kinds.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"namespace": schema.StringAttribute{
+																Description:         "Namespace specifies source resource namespace.",
+																MarkdownDescription: "Namespace specifies source resource namespace.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"selector": schema.SingleNestedAttribute{
+																Description:         "Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported.",
+																MarkdownDescription: "Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported.",
+																Attributes: map[string]schema.Attribute{
+																	"match_expressions": schema.ListNestedAttribute{
+																		Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																		NestedObject: schema.NestedAttributeObject{
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "key is the label key that the selector applies to.",
+																					MarkdownDescription: "key is the label key that the selector applies to.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"operator": schema.StringAttribute{
+																					Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"values": schema.ListAttribute{
+																					Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"match_labels": schema.MapAttribute{
+																		Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																		ElementType:         types.StringType,
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"context": schema.ListNestedAttribute{
+														Description:         "Context defines variables and data sources that can be used during rule execution.",
+														MarkdownDescription: "Context defines variables and data sources that can be used during rule execution.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"api_call": schema.SingleNestedAttribute{
+																	Description:         "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+																	MarkdownDescription: "APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry.",
+																	Attributes: map[string]schema.Attribute{
+																		"data": schema.ListNestedAttribute{
+																			Description:         "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+																			MarkdownDescription: "The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST.",
+																			NestedObject: schema.NestedAttributeObject{
+																				Attributes: map[string]schema.Attribute{
+																					"key": schema.StringAttribute{
+																						Description:         "Key is a unique identifier for the data value",
+																						MarkdownDescription: "Key is a unique identifier for the data value",
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+
+																					"value": schema.MapAttribute{
+																						Description:         "Value is the data value",
+																						MarkdownDescription: "Value is the data value",
+																						ElementType:         types.StringType,
+																						Required:            true,
+																						Optional:            false,
+																						Computed:            false,
+																					},
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"method": schema.StringAttribute{
+																			Description:         "Method is the HTTP request type (GET or POST). Defaults to GET.",
+																			MarkdownDescription: "Method is the HTTP request type (GET or POST). Defaults to GET.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("GET", "POST"),
+																			},
+																		},
+
+																		"service": schema.SingleNestedAttribute{
+																			Description:         "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+																			MarkdownDescription: "Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field.",
+																			Attributes: map[string]schema.Attribute{
+																				"ca_bundle": schema.StringAttribute{
+																					Description:         "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																					MarkdownDescription: "CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"url": schema.StringAttribute{
+																					Description:         "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																					MarkdownDescription: "URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"url_path": schema.StringAttribute{
+																			Description:         "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+																			MarkdownDescription: "URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"config_map": schema.SingleNestedAttribute{
+																	Description:         "ConfigMap is the ConfigMap reference.",
+																	MarkdownDescription: "ConfigMap is the ConfigMap reference.",
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name is the ConfigMap name.",
+																			MarkdownDescription: "Name is the ConfigMap name.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"namespace": schema.StringAttribute{
+																			Description:         "Namespace is the ConfigMap namespace.",
+																			MarkdownDescription: "Namespace is the ConfigMap namespace.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"global_reference": schema.SingleNestedAttribute{
+																	Description:         "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	MarkdownDescription: "GlobalContextEntryReference is a reference to a cached global context entry.",
+																	Attributes: map[string]schema.Attribute{
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"name": schema.StringAttribute{
+																			Description:         "Name of the global context entry",
+																			MarkdownDescription: "Name of the global context entry",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"image_registry": schema.SingleNestedAttribute{
+																	Description:         "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+																	MarkdownDescription: "ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails.",
+																	Attributes: map[string]schema.Attribute{
+																		"image_registry_credentials": schema.SingleNestedAttribute{
+																			Description:         "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
+																			MarkdownDescription: "ImageRegistryCredentials provides credentials that will be used for authentication with registry",
+																			Attributes: map[string]schema.Attribute{
+																				"allow_insecure_registry": schema.BoolAttribute{
+																					Description:         "AllowInsecureRegistry allows insecure access to a registry.",
+																					MarkdownDescription: "AllowInsecureRegistry allows insecure access to a registry.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"providers": schema.ListAttribute{
+																					Description:         "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																					MarkdownDescription: "Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"secrets": schema.ListAttribute{
+																					Description:         "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																					MarkdownDescription: "Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.",
+																					ElementType:         types.StringType,
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"reference": schema.StringAttribute{
+																			Description:         "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+																			MarkdownDescription: "Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "Name is the variable name.",
+																	MarkdownDescription: "Name is the variable name.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"variable": schema.SingleNestedAttribute{
+																	Description:         "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
+																	MarkdownDescription: "Variable defines an arbitrary JMESPath context variable that can be defined inline.",
+																	Attributes: map[string]schema.Attribute{
+																		"default": schema.MapAttribute{
+																			Description:         "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"jmes_path": schema.StringAttribute{
+																			Description:         "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+																			MarkdownDescription: "JMESPath is an optional JMESPath Expression that can be used totransform the variable.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"value": schema.MapAttribute{
+																			Description:         "Value is any arbitrary JSON object representable in YAML or JSON form.",
+																			MarkdownDescription: "Value is any arbitrary JSON object representable in YAML or JSON form.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"data": schema.MapAttribute{
+														Description:         "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
+														MarkdownDescription: "Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"kind": schema.StringAttribute{
+														Description:         "Kind specifies resource kind.",
+														MarkdownDescription: "Kind specifies resource kind.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"list": schema.StringAttribute{
+														Description:         "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
+														MarkdownDescription: "List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "Name specifies the resource name.",
+														MarkdownDescription: "Name specifies the resource name.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"namespace": schema.StringAttribute{
+														Description:         "Namespace specifies resource namespace.",
+														MarkdownDescription: "Namespace specifies resource namespace.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"preconditions": schema.SingleNestedAttribute{
+														Description:         "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
+														MarkdownDescription: "AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/",
+														Attributes: map[string]schema.Attribute{
+															"all": schema.ListNestedAttribute{
+																Description:         "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
+																MarkdownDescription: "AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.MapAttribute{
+																			Description:         "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+																			MarkdownDescription: "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"message": schema.StringAttribute{
+																			Description:         "Message is an optional display message",
+																			MarkdownDescription: "Message is an optional display message",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("Equals", "NotEquals", "In", "AnyIn", "AllIn", "NotIn", "AnyNotIn", "AllNotIn", "GreaterThanOrEquals", "GreaterThan", "LessThanOrEquals", "LessThan", "DurationGreaterThanOrEquals", "DurationGreaterThan", "DurationLessThanOrEquals", "DurationLessThan"),
+																			},
+																		},
+
+																		"value": schema.MapAttribute{
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"any": schema.ListNestedAttribute{
+																Description:         "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
+																MarkdownDescription: "AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.MapAttribute{
+																			Description:         "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+																			MarkdownDescription: "Key is the context entry (using JMESPath) for conditional rule evaluation.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"message": schema.StringAttribute{
+																			Description:         "Message is an optional display message",
+																			MarkdownDescription: "Message is an optional display message",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			MarkdownDescription: "Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("Equals", "NotEquals", "In", "AnyIn", "AllIn", "NotIn", "AnyNotIn", "AllNotIn", "GreaterThanOrEquals", "GreaterThan", "LessThanOrEquals", "LessThan", "DurationGreaterThanOrEquals", "DurationGreaterThan", "DurationLessThanOrEquals", "DurationLessThan"),
+																			},
+																		},
+
+																		"value": schema.MapAttribute{
+																			Description:         "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			MarkdownDescription: "Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"uid": schema.StringAttribute{
+														Description:         "UID specifies the resource uid.",
+														MarkdownDescription: "UID specifies the resource uid.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
 										"generate_existing": schema.BoolAttribute{
 											Description:         "GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.",
 											MarkdownDescription: "GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.",
@@ -3029,8 +3637,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 																		"name": schema.StringAttribute{
 																			Description:         "Name of the global context entry",
 																			MarkdownDescription: "Name of the global context entry",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -3476,8 +4084,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 																		"name": schema.StringAttribute{
 																			Description:         "Name of the global context entry",
 																			MarkdownDescription: "Name of the global context entry",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -3801,8 +4409,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 													MarkdownDescription: "ParamRef references a parameter resource.",
 													Attributes: map[string]schema.Attribute{
 														"name": schema.StringAttribute{
-															Description:         "'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.",
-															MarkdownDescription: "'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.",
+															Description:         "name is the name of the resource being referenced.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset.A single parameter used for all admission requests can be configuredby setting the 'name' field, leaving 'selector' blank, and setting namespaceif 'paramKind' is namespace-scoped.",
+															MarkdownDescription: "name is the name of the resource being referenced.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset.A single parameter used for all admission requests can be configuredby setting the 'name' field, leaving 'selector' blank, and setting namespaceif 'paramKind' is namespace-scoped.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3817,8 +4425,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 														},
 
 														"parameter_not_found_action": schema.StringAttribute{
-															Description:         "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'",
-															MarkdownDescription: "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'",
+															Description:         "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Required",
+															MarkdownDescription: "'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Required",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -3926,6 +4534,102 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"failure_action": schema.StringAttribute{
+											Description:         "FailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
+											MarkdownDescription: "FailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("Audit", "Enforce"),
+											},
+										},
+
+										"failure_action_overrides": schema.ListNestedAttribute{
+											Description:         "FailureActionOverrides is a Cluster Policy attribute that specifies FailureActionnamespace-wise. It overrides FailureAction for the specified namespaces.",
+											MarkdownDescription: "FailureActionOverrides is a Cluster Policy attribute that specifies FailureActionnamespace-wise. It overrides FailureAction for the specified namespaces.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"action": schema.StringAttribute{
+														Description:         "ValidationFailureAction defines the policy validation failure action",
+														MarkdownDescription: "ValidationFailureAction defines the policy validation failure action",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
+														},
+													},
+
+													"namespace_selector": schema.SingleNestedAttribute{
+														Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+														MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
+														Attributes: map[string]schema.Attribute{
+															"match_expressions": schema.ListNestedAttribute{
+																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"key": schema.StringAttribute{
+																			Description:         "key is the label key that the selector applies to.",
+																			MarkdownDescription: "key is the label key that the selector applies to.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"operator": schema.StringAttribute{
+																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+
+																		"values": schema.ListAttribute{
+																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"match_labels": schema.MapAttribute{
+																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"namespaces": schema.ListAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 											},
 											Required: false,
@@ -4081,8 +4785,8 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 																		"name": schema.StringAttribute{
 																			Description:         "Name of the global context entry",
 																			MarkdownDescription: "Name of the global context entry",
-																			Required:            false,
-																			Optional:            true,
+																			Required:            true,
+																			Optional:            false,
 																			Computed:            false,
 																		},
 																	},
@@ -4970,102 +5674,6 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 													Computed:            false,
 													Validators: []validator.String{
 														stringvalidator.OneOf("v1.19", "v1.20", "v1.21", "v1.22", "v1.23", "v1.24", "v1.25", "v1.26", "v1.27", "v1.28", "v1.29", "latest"),
-													},
-												},
-											},
-											Required: false,
-											Optional: true,
-											Computed: false,
-										},
-
-										"validation_failure_action": schema.StringAttribute{
-											Description:         "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
-											MarkdownDescription: "ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.",
-											Required:            false,
-											Optional:            true,
-											Computed:            false,
-											Validators: []validator.String{
-												stringvalidator.OneOf("Audit", "Enforce"),
-											},
-										},
-
-										"validation_failure_action_overrides": schema.ListNestedAttribute{
-											Description:         "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
-											MarkdownDescription: "ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces.",
-											NestedObject: schema.NestedAttributeObject{
-												Attributes: map[string]schema.Attribute{
-													"action": schema.StringAttribute{
-														Description:         "ValidationFailureAction defines the policy validation failure action",
-														MarkdownDescription: "ValidationFailureAction defines the policy validation failure action",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-														Validators: []validator.String{
-															stringvalidator.OneOf("audit", "enforce", "Audit", "Enforce"),
-														},
-													},
-
-													"namespace_selector": schema.SingleNestedAttribute{
-														Description:         "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
-														MarkdownDescription: "A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects.",
-														Attributes: map[string]schema.Attribute{
-															"match_expressions": schema.ListNestedAttribute{
-																Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																MarkdownDescription: "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
-																NestedObject: schema.NestedAttributeObject{
-																	Attributes: map[string]schema.Attribute{
-																		"key": schema.StringAttribute{
-																			Description:         "key is the label key that the selector applies to.",
-																			MarkdownDescription: "key is the label key that the selector applies to.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"operator": schema.StringAttribute{
-																			Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-																			Required:            true,
-																			Optional:            false,
-																			Computed:            false,
-																		},
-
-																		"values": schema.ListAttribute{
-																			Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-																			ElementType:         types.StringType,
-																			Required:            false,
-																			Optional:            true,
-																			Computed:            false,
-																		},
-																	},
-																},
-																Required: false,
-																Optional: true,
-																Computed: false,
-															},
-
-															"match_labels": schema.MapAttribute{
-																Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-																ElementType:         types.StringType,
-																Required:            false,
-																Optional:            true,
-																Computed:            false,
-															},
-														},
-														Required: false,
-														Optional: true,
-														Computed: false,
-													},
-
-													"namespaces": schema.ListAttribute{
-														Description:         "",
-														MarkdownDescription: "",
-														ElementType:         types.StringType,
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
 													},
 												},
 											},
@@ -6040,6 +6648,17 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 												Computed:            false,
 											},
 
+											"failure_action": schema.StringAttribute{
+												Description:         "Allowed values are Audit or Enforce.",
+												MarkdownDescription: "Allowed values are Audit or Enforce.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Audit", "Enforce"),
+												},
+											},
+
 											"image": schema.StringAttribute{
 												Description:         "Deprecated. Use ImageReferences instead.",
 												MarkdownDescription: "Deprecated. Use ImageReferences instead.",
@@ -6158,13 +6777,13 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 											},
 
 											"type": schema.StringAttribute{
-												Description:         "Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.",
-												MarkdownDescription: "Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.",
+												Description:         "Type specifies the method of signature validation. The allowed optionsare Cosign, Sigstore Bundle and Notary. By default Cosign is used if a type is not specified.",
+												MarkdownDescription: "Type specifies the method of signature validation. The allowed optionsare Cosign, Sigstore Bundle and Notary. By default Cosign is used if a type is not specified.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
 												Validators: []validator.String{
-													stringvalidator.OneOf("Cosign", "Notary"),
+													stringvalidator.OneOf("Cosign", "SigstoreBundle", "Notary"),
 												},
 											},
 
@@ -6174,17 +6793,6 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
-											},
-
-											"validation_failure_action": schema.StringAttribute{
-												Description:         "Allowed values are Audit or Enforce.",
-												MarkdownDescription: "Allowed values are Audit or Enforce.",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.String{
-													stringvalidator.OneOf("Audit", "Enforce"),
-												},
 											},
 
 											"verify_digest": schema.BoolAttribute{

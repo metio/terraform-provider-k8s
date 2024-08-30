@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_cluster_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  The CouchbaseCluster resource represents a Couchbase cluster.  It allows configuration of cluster topology, networking, storage and security options.
+  The CouchbaseCluster resource represents a Couchbase cluster.  It allows configurationof cluster topology, networking, storage and security options.
 ---
 
 # k8s_couchbase_com_couchbase_cluster_v2_manifest (Data Source)
 
-The CouchbaseCluster resource represents a Couchbase cluster.  It allows configuration of cluster topology, networking, storage and security options.
+The CouchbaseCluster resource represents a Couchbase cluster.  It allows configurationof cluster topology, networking, storage and security options.
 
 ## Example Usage
 
@@ -34,7 +34,7 @@ data "k8s_couchbase_com_couchbase_cluster_v2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) ClusterSpec is the specification for a CouchbaseCluster resources, and allows the cluster to be customized. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) ClusterSpec is the specification for a CouchbaseCluster resources, and allowsthe cluster to be customized. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -59,75 +59,78 @@ Optional:
 
 Required:
 
-- `image` (String) Image is the container image name that will be used to launch Couchbase server instances.  Updating this field will cause an automatic upgrade of the cluster.
-- `security` (Attributes) Security defines Couchbase cluster security options such as the administrator account username and password, and user RBAC settings. (see [below for nested schema](#nestedatt--spec--security))
-- `servers` (Attributes List) Servers defines server classes for the Operator to provision and manage. A server class defines what services are running and how many members make up that class.  Specifying multiple server classes allows the Operator to provision clusters with Multi-Dimensional Scaling (MDS).  At least one server class must be defined, and at least one server class must be running the data service. (see [below for nested schema](#nestedatt--spec--servers))
+- `image` (String) Image is the container image name that will be used to launch Couchbaseserver instances.  Updating this field will cause an automatic upgrade ofthe cluster. Explicitly specifying the image for a server class will overridethis value for the server class.
+- `security` (Attributes) Security defines Couchbase cluster security options such as the administratoraccount username and password, and user RBAC settings. (see [below for nested schema](#nestedatt--spec--security))
+- `servers` (Attributes List) Servers defines server classes for the Operator to provision and manage.A server class defines what services are running and how many members makeup that class.  Specifying multiple server classes allows the Operator toprovision clusters with Multi-Dimensional Scaling (MDS).  At least one serverclass must be defined, and at least one server class must be running the dataservice. (see [below for nested schema](#nestedatt--spec--servers))
 
 Optional:
 
-- `anti_affinity` (Boolean) AntiAffinity forces the Operator to schedule different Couchbase server pods on different Kubernetes nodes.  Anti-affinity reduces the likelihood of unrecoverable failure in the event of a node issue.  Use of anti-affinity is highly recommended for production clusters.
-- `auto_resource_allocation` (Attributes) AutoResourceAllocation populates pod resource requests based on the services running on that pod.  When enabled, this feature will calculate the memory request as the total of service allocations defined in 'spec.cluster', plus an overhead defined by 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations for a service will cause a cluster upgrade as allocations are modified in the underlying pods.  This field also allows default pod CPU requests and limits to be applied. All resource allocations can be overridden by explicitly configuring them in the 'spec.servers.resources' field. (see [below for nested schema](#nestedatt--spec--auto_resource_allocation))
-- `autoscale_stabilization_period` (String) AutoscaleStabilizationPeriod defines how long after a rebalance the corresponding HorizontalPodAutoscaler should remain in maintenance mode. During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscaler associated with the cluster becomes inactive. Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading, setting a stabilization period helps to prevent scaling recommendations from the HorizontalPodAutoscaler for a provided period of time.  Values must be a valid Kubernetes duration of 0s or higher: https://golang.org/pkg/time/#ParseDuration A value of 0, puts the cluster in maintenance mode during rebalance but immediately exits this mode once the rebalance has completed. When undefined, the HPA is never put into maintenance mode during rebalance.
-- `backup` (Attributes) Backup defines whether the Operator should manage automated backups, and how to lookup backup resources. (see [below for nested schema](#nestedatt--spec--backup))
-- `buckets` (Attributes) Buckets defines whether the Operator should manage buckets, and how to lookup bucket resources. (see [below for nested schema](#nestedatt--spec--buckets))
-- `cluster` (Attributes) ClusterSettings define Couchbase cluster-wide settings such as memory allocation, failover characteristics and index settings. (see [below for nested schema](#nestedatt--spec--cluster))
-- `enable_online_volume_expansion` (Boolean) EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes. You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true. Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order to expand the volumes which are actively bound to Pods. Volumes can only be expanded and not reduced to a smaller size. See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaim  If 'EnableOnlineVolumeExpansion' is enabled for use within an environment that does not actually support online volume and file system expansion then the cluster will fallback to rolling upgrade procedure to create a new set of Pods for use with resized Volumes. More info:  https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims
-- `enable_preview_scaling` (Boolean) DEPRECATED - This option only exists for backwards compatibility and no longer restricts autoscaling to ephemeral services. EnablePreviewScaling enables autoscaling for stateful services and buckets.
-- `env_image_precedence` (Boolean) EnvImagePrecedence gives precedence over the default container image name in 'spec.Image' to an image name provided through Operator environment variables. For more info on using Operator environment variables: https://docs.couchbase.com/operator/current/reference-operator-configuration.html
+- `anti_affinity` (Boolean) AntiAffinity forces the Operator to schedule different Couchbase server pods ondifferent Kubernetes nodes.  Anti-affinity reduces the likelihood of unrecoverablefailure in the event of a node issue.  Use of anti-affinity is highly recommended forproduction clusters.
+- `auto_resource_allocation` (Attributes) AutoResourceAllocation populates pod resource requests based on the services runningon that pod.  When enabled, this feature will calculate the memory request as thetotal of service allocations defined in 'spec.cluster', plus an overhead definedby 'spec.autoResourceAllocation.overheadPercent'.Changing individual allocations fora service will cause a cluster upgrade as allocations are modified in the underlyingpods.  This field also allows default pod CPU requests and limits to be applied.All resource allocations can be overridden by explicitly configuring them in the'spec.servers.resources' field. (see [below for nested schema](#nestedatt--spec--auto_resource_allocation))
+- `autoscale_stabilization_period` (String) AutoscaleStabilizationPeriod defines how long after a rebalance thecorresponding HorizontalPodAutoscaler should remain in maintenance mode.During maintenance mode all autoscaling is disabled since every HorizontalPodAutoscalerassociated with the cluster becomes inactive.Since certain metrics can be unpredictable when Couchbase is rebalancing or upgrading,setting a stabilization period helps to prevent scaling recommendations from theHorizontalPodAutoscaler for a provided period of time.Values must be a valid Kubernetes duration of 0s or higher:https://golang.org/pkg/time/#ParseDurationA value of 0, puts the cluster in maintenance mode during rebalance butimmediately exits this mode once the rebalance has completed.When undefined, the HPA is never put into maintenance mode during rebalance.
+- `backup` (Attributes) Backup defines whether the Operator should manage automated backups, and howto lookup backup resources. (see [below for nested schema](#nestedatt--spec--backup))
+- `buckets` (Attributes) Buckets defines whether the Operator should manage buckets, and how to lookupbucket resources. (see [below for nested schema](#nestedatt--spec--buckets))
+- `cluster` (Attributes) ClusterSettings define Couchbase cluster-wide settings such as memory allocation,failover characteristics and index settings. (see [below for nested schema](#nestedatt--spec--cluster))
+- `enable_online_volume_expansion` (Boolean) EnableOnlineVolumeExpansion enables online expansion of Persistent Volumes.You can only expand a PVC if its storage class's 'allowVolumeExpansion' field is set to true.Additionally, Kubernetes feature 'ExpandInUsePersistentVolumes' must be enabled in order toexpand the volumes which are actively bound to Pods.Volumes can only be expanded and not reduced to a smaller size.See: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#resizing-an-in-use-persistentvolumeclaimIf 'EnableOnlineVolumeExpansion' is enabled for use within an environment that doesnot actually support online volume and file system expansion then the cluster will fallback torolling upgrade procedure to create a new set of Pods for use with resized Volumes.More info:  https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims
+- `enable_preview_scaling` (Boolean) DEPRECATED - This option only exists for backwards compatibility and no longerrestricts autoscaling to ephemeral services.EnablePreviewScaling enables autoscaling for stateful services and buckets.
+- `env_image_precedence` (Boolean) EnvImagePrecedence gives precedence over the default container image name in'spec.Image' to an image name provided through Operator environment variables.For more info on using Operator environment variables:https://docs.couchbase.com/operator/current/reference-operator-configuration.html
 - `hibernate` (Boolean) Hibernate is whether to hibernate the cluster.
-- `hibernation_strategy` (String) HibernationStrategy defines how to hibernate the cluster.  When Immediate the Operator will immediately delete all pods and take no further action until the hibernate field is set to false.
+- `hibernation_strategy` (String) HibernationStrategy defines how to hibernate the cluster.  When Immediatethe Operator will immediately delete all pods and take no further action untilthe hibernate field is set to false.
 - `logging` (Attributes) Logging defines Operator logging options. (see [below for nested schema](#nestedatt--spec--logging))
-- `monitoring` (Attributes) Monitoring defines any Operator managed integration into 3rd party monitoring infrastructure. (see [below for nested schema](#nestedatt--spec--monitoring))
-- `networking` (Attributes) Networking defines Couchbase cluster networking options such as network topology, TLS and DDNS settings. (see [below for nested schema](#nestedatt--spec--networking))
-- `paused` (Boolean) Paused is to pause the control of the operator for the Couchbase cluster. This does not pause the cluster itself, instead stopping the operator from taking any action.
-- `platform` (String) Platform gives a hint as to what platform we are running on and how to configure services.  This field must be one of 'aws', 'gke' or 'azure'.
-- `recovery_policy` (String) RecoveryPolicy controls how aggressive the Operator is when recovering cluster topology.  When PrioritizeDataIntegrity, the Operator will delegate failover exclusively to Couchbase server, relying on it to only allow recovery when safe to do so.  When PrioritizeUptime, the Operator will wait for a period after the expected auto-failover of the cluster, before forcefully failing-over the pods. This may cause data loss, and is only expected to be used on clusters with ephemeral data, where the loss of the pod means that the data is known to be unrecoverable. This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaulting to 'PrioritizeDataIntegrity'.
-- `rolling_upgrade` (Attributes) When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one pod at a time.  If this field is specified then that number can be increased. (see [below for nested schema](#nestedatt--spec--rolling_upgrade))
-- `security_context` (Attributes) DEPRECATED - by spec.security.securityContext SecurityContext allows the configuration of the security context for all Couchbase server pods.  When using persistent volumes you may need to set the fsGroup field in order to write to the volume.  For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images.  More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security_context))
-- `server_groups` (List of String) ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for.  By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator.  You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you.  Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.
-- `software_update_notifications` (Boolean) SoftwareUpdateNotifications enables software update notifications in the UI. When enabled, the UI will alert when a Couchbase server upgrade is available.
-- `upgrade_strategy` (String) UpgradeStrategy controls how aggressive the Operator is when performing a cluster upgrade.  When a rolling upgrade is requested, pods are upgraded one at a time.  This strategy is slower, however less disruptive.  When an immediate upgrade strategy is requested, all pods are upgraded at the same time.  This strategy is faster, but more disruptive.  This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaulting to 'RollingUpgrade'.
-- `volume_claim_templates` (Attributes List) VolumeClaimTemplates define the desired characteristics of a volume that can be requested/claimed by a pod, for example the storage class to use and the volume size.  Volume claim templates are referred to by name by server class volume mount configuration. (see [below for nested schema](#nestedatt--spec--volume_claim_templates))
-- `xdcr` (Attributes) XDCR defines whether the Operator should manage XDCR, remote clusters and how to lookup replication resources. (see [below for nested schema](#nestedatt--spec--xdcr))
+- `monitoring` (Attributes) DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Monitoring defines any Operator managed integration into 3rd party monitoringinfrastructure. (see [below for nested schema](#nestedatt--spec--monitoring))
+- `networking` (Attributes) Networking defines Couchbase cluster networking options such as networktopology, TLS and DDNS settings. (see [below for nested schema](#nestedatt--spec--networking))
+- `online_volume_expansion_timeout_in_mins` (Number) OnlineVolumeExpansionTimeoutInMins must be provided as a retry mechanism with a timeout in minutesfor expanding volumes. This must only be provided, if EnableOnlineVolumeExpansion is set to true.Value must be between 0 and 30.If no value is provided, then it defaults to 10 minutes.
+- `paused` (Boolean) Paused is to pause the control of the operator for the Couchbase cluster.This does not pause the cluster itself, instead stopping the operator fromtaking any action.
+- `platform` (String) Platform gives a hint as to what platform we are running on and howto configure services.  This field must be one of 'aws', 'gke' or 'azure'.
+- `recovery_policy` (String) RecoveryPolicy controls how aggressive the Operator is when recovering clustertopology.  When PrioritizeDataIntegrity, the Operator will delegate failoverexclusively to Couchbase server, relying on it to only allow recovery when safe todo so.  When PrioritizeUptime, the Operator will wait for a period after theexpected auto-failover of the cluster, before forcefully failing-over the pods.This may cause data loss, and is only expected to be used on clusters with ephemeraldata, where the loss of the pod means that the data is known to be unrecoverable.This field must be either 'PrioritizeDataIntegrity' or 'PrioritizeUptime', defaultingto 'PrioritizeDataIntegrity'.
+- `rolling_upgrade` (Attributes) When 'spec.upgradeStrategy' is set to 'RollingUpgrade' it will, by default, upgrade one podat a time.  If this field is specified then that number can be increased. (see [below for nested schema](#nestedatt--spec--rolling_upgrade))
+- `security_context` (Attributes) DEPRECATED - by spec.security.securityContextSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security_context))
+- `server_groups` (List of String) ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.
+- `software_update_notifications` (Boolean) SoftwareUpdateNotifications enables software update notifications in the UI.When enabled, the UI will alert when a Couchbase server upgrade is available.
+- `upgrade_process` (String) UpgradeProcess defines the process that will be used when performing a couchbase cluster upgrade.When SwapRebalance is requested (default), pods will be upgraded using either a RollingUpgrade orImmediateUpgrade (determined by UpgradeStrategy). When InPlaceUpgrade is requested, the operator willperform an in-place upgrade on a best effort basis. InPlaceUpgrade cannot be used if the UpgradeStrategyis set to ImmediateUpgrade.
+- `upgrade_strategy` (String) UpgradeStrategy controls how aggressive the Operator is when performing a clusterupgrade.  When a rolling upgrade is requested, pods are upgraded one at a time.  Thisstrategy is slower, however less disruptive.  When an immediate upgrade strategy isrequested, all pods are upgraded at the same time.  This strategy is faster, but moredisruptive.  This field must be either 'RollingUpgrade' or 'ImmediateUpgrade', defaultingto 'RollingUpgrade'.
+- `volume_claim_templates` (Attributes List) VolumeClaimTemplates define the desired characteristics of a volumethat can be requested/claimed by a pod, for example the storage class touse and the volume size.  Volume claim templates are referred to by nameby server class volume mount configuration. (see [below for nested schema](#nestedatt--spec--volume_claim_templates))
+- `xdcr` (Attributes) XDCR defines whether the Operator should manage XDCR, remote clusters and howto lookup replication resources. (see [below for nested schema](#nestedatt--spec--xdcr))
 
 <a id="nestedatt--spec--security"></a>
 ### Nested Schema for `spec.security`
 
 Required:
 
-- `admin_secret` (String) AdminSecret is the name of a Kubernetes secret to use for administrator authentication. The admin secret must contain the keys 'username' and 'password'.  The password data must be at least 6 characters in length, and not contain the any of the characters '()<>,;:'/[]?={}'.
+- `admin_secret` (String) AdminSecret is the name of a Kubernetes secret to use for administrator authentication.The admin secret must contain the keys 'username' and 'password'.  The password datamust be at least 6 characters in length, and not contain the any of the characters'()<>,;:'/[]?={}'.
 
 Optional:
 
-- `ldap` (Attributes) LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server. When specified, the Operator keeps these settings in sync with Cocuhbase Server's LDAP configuration. Leave empty to manually manage LDAP configuration. (see [below for nested schema](#nestedatt--spec--security--ldap))
-- `pod_security_context` (Attributes) PodSecurityContext allows the configuration of the security context for all Couchbase server pods.  When using persistent volumes you may need to set the fsGroup field in order to write to the volume.  For non-root clusters you must also set runAsUser to 1000, corresponding to the Couchbase user in official container images.  More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--pod_security_context))
+- `ldap` (Attributes) LDAP provides settings to authenticate and authorize LDAP users with Couchbase Server.When specified, the Operator keeps these settings in sync with Cocuhbase Server'sLDAP configuration. Leave empty to manually manage LDAP configuration. (see [below for nested schema](#nestedatt--spec--security--ldap))
+- `pod_security_context` (Attributes) PodSecurityContext allows the configuration of the security context for allCouchbase server pods.  When using persistent volumes you may need to setthe fsGroup field in order to write to the volume.  For non-root clustersyou must also set runAsUser to 1000, corresponding to the Couchbase userin official container images.  More info:https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--pod_security_context))
 - `rbac` (Attributes) RBAC is the options provided for enabling and selecting RBAC User resources to manage. (see [below for nested schema](#nestedatt--spec--security--rbac))
-- `security_context` (Attributes) SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--security_context))
-- `ui_session_timeout` (Number) UISessionTimeout sets how long, in minutes, before a user is declared inactive and signed out from the Couchbase Server UI. 0 represents no time out.
+- `security_context` (Attributes) SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.Use securityContext.allowPrivilegeEscalation field to grant more privileges than its parent process.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--security--security_context))
+- `ui_session_timeout` (Number) UISessionTimeout sets how long, in minutes, before a user is declared inactiveand signed out from the Couchbase Server UI.0 represents no time out.
 
 <a id="nestedatt--spec--security--ldap"></a>
 ### Nested Schema for `spec.security.ldap`
 
 Required:
 
-- `bind_secret` (String) BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding. The bindSecret must have a key with the name 'password' and a value which corresponds to the password of the binding LDAP user.
-- `hosts` (List of String) List of LDAP hosts to provide authentication-support for Couchbase Server. Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.
-- `port` (Number) LDAP port. This is typically 389 for LDAP, and 636 for LDAPS.
+- `bind_secret` (String) BindSecret is the name of a Kubernetes secret to use containing password for LDAP user binding.The bindSecret must have a key with the name 'password' and a value which corresponds to thepassword of the binding LDAP user.
+- `hosts` (List of String) List of LDAP hosts to provide authentication-support for Couchbase Server.Host name must be a valid IP address or DNS Name e.g openldap.default.svc, 10.0.92.147.
+- `port` (Number) LDAP port.This is typically 389 for LDAP, and 636 for LDAPS.
 
 Optional:
 
-- `authentication_enabled` (Boolean) AuthenticationEnabled allows users who attempt to access Couchbase Server without having been added as local users to be authenticated against the specified LDAP Host(s).
-- `authorization_enabled` (Boolean) AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted to any Couchbase Server group associated with the user.
-- `bind_dn` (String) DN to use for searching users and groups synchronization. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
-- `cacert` (String) DEPRECATED - Field is ignored, use tlsSecret. CA Certificate in PEM format to be used in LDAP server certificate validation. This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.
-- `cache_value_lifetime` (Number) Lifetime of values in cache in milliseconds. Default 300000 ms.  More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
-- `encryption` (String) Encryption determines how the connection with the LDAP server should be encrypted. Encryption may set as either StartTLSExtension, TLS, or false. When set to 'false' then no verification of the LDAP hostname is performed. When Encryption is StartTLSExtension, or TLS is set then the default behavior is to use the certificate already loaded into the Couchbase Cluster for certificate validation, otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.
-- `groups_query` (String) LDAP query, to get the users' groups by username in RFC4516 format.  More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
-- `nested_groups_enabled` (Boolean) If enabled Couchbase server will try to recursively search for groups for every discovered ldap group. groups_query will be user for the search. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
-- `nested_groups_max_depth` (Number) Maximum number of recursive groups requests the server is allowed to perform. Requires NestedGroupsEnabled.  Values between 1 and 100: the default is 10. More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
+- `authentication_enabled` (Boolean) AuthenticationEnabled allows users who attempt to access Couchbase Server without having beenadded as local users to be authenticated against the specified LDAP Host(s).
+- `authorization_enabled` (Boolean) AuthorizationEnabled allows authenticated LDAP users to be authorized with RBAC roles granted toany Couchbase Server group associated with the user.
+- `bind_dn` (String) DN to use for searching users and groups synchronization. More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
+- `cacert` (String) DEPRECATED - Field is ignored, use tlsSecret.CA Certificate in PEM format to be used in LDAP server certificate validation.This cert is the string form of the secret provided to 'spec.tls.tlsSecret'.
+- `cache_value_lifetime` (Number) Lifetime of values in cache in milliseconds. Default 300000 ms.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
+- `encryption` (String) Encryption determines how the connection with the LDAP server should be encrypted.Encryption may set as either StartTLSExtension, TLS, or false.When set to 'false' then no verification of the LDAP hostname is performed.When Encryption is StartTLSExtension, or TLS is set then the default behavior is touse the certificate already loaded into the Couchbase Cluster for certificate validation,otherwise 'ldap.tlsSecret' may be set to override The Couchbase certificate.
+- `groups_query` (String) LDAP query, to get the users' groups by username in RFC4516 format.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
+- `middlebox_comp_mode` (Boolean) Sets middlebox compatibility mode for LDAP. This option is only available onCouchbase Server 7.6.0+.
+- `nested_groups_enabled` (Boolean) If enabled Couchbase server will try to recursively search for groupsfor every discovered ldap group. groups_query will be user for the search.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
+- `nested_groups_max_depth` (Number) Maximum number of recursive groups requests the server is allowed to perform.Requires NestedGroupsEnabled.  Values between 1 and 100: the default is 10.More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html
 - `server_cert_validation` (Boolean) Whether server certificate validation be enabled.
-- `tls_secret` (String) TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert. If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs' will be used instead. If provided, the secret must contain the ca to be used under the name 'ca.crt'.
-- `user_dn_mapping` (Attributes) User to distinguished name (DN) mapping. If none is specified, the username is used as the user’s distinguished name.  More info: https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html (see [below for nested schema](#nestedatt--spec--security--ldap--user_dn_mapping))
+- `tls_secret` (String) TLSSecret is the name of a Kubernetes secret to use explcitly for LDAP ca cert.If TLSSecret is not provided, certificates found in 'couchbaseclusters.spec.networking.tls.rootCAs'will be used instead.If provided, the secret must contain the ca to be used under the name 'ca.crt'.
+- `user_dn_mapping` (Attributes) User to distinguished name (DN) mapping. If none is specified,the username is used as the user’s distinguished name.  More info:https://docs.couchbase.com/server/current/manage/manage-security/configure-ldap.html (see [below for nested schema](#nestedatt--spec--security--ldap--user_dn_mapping))
 
 <a id="nestedatt--spec--security--ldap--user_dn_mapping"></a>
 ### Nested Schema for `spec.security.ldap.user_dn_mapping`
@@ -135,7 +138,7 @@ Optional:
 Optional:
 
 - `query` (String) Query is the LDAP query to run to map from Couchbase user to LDAP distinguished name.
-- `template` (String) This field specifies list of templates to use for providing username to DN mapping. The template may contain a placeholder specified as '%u' to represent the Couchbase user who is attempting to gain access.
+- `template` (String) This field specifies list of templates to use for providing username to DN mapping.The template may contain a placeholder specified as '%u' to represent the Couchbaseuser who is attempting to gain access.
 
 
 
@@ -144,16 +147,16 @@ Optional:
 
 Optional:
 
-- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
-- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--windows_options))
+- `fs_group` (Number) A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.
+- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.
+- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--sysctls))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--pod_security_context--windows_options))
 
 <a id="nestedatt--spec--security--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.security.pod_security_context.se_linux_options`
@@ -171,11 +174,11 @@ Optional:
 
 Required:
 
-- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+- `type` (String) type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--security--pod_security_context--sysctls"></a>
@@ -192,10 +195,10 @@ Required:
 
 Optional:
 
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
 
@@ -205,7 +208,7 @@ Optional:
 Optional:
 
 - `managed` (Boolean) Managed defines whether RBAC is managed by us or the clients.
-- `selector` (Attributes) Selector is a label selector used to list RBAC resources in the namespace that are managed by the Operator. (see [below for nested schema](#nestedatt--spec--security--rbac--selector))
+- `selector` (Attributes) Selector is a label selector used to list RBAC resources in the namespacethat are managed by the Operator. (see [below for nested schema](#nestedatt--spec--security--rbac--selector))
 
 <a id="nestedatt--spec--security--rbac--selector"></a>
 ### Nested Schema for `spec.security.rbac.selector`
@@ -213,7 +216,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--security--rbac--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--security--rbac--selector--match_expressions"></a>
 ### Nested Schema for `spec.security.rbac.selector.match_expressions`
@@ -221,11 +224,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -235,17 +238,17 @@ Optional:
 
 Optional:
 
-- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows.
-- `capabilities` (Attributes) The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--capabilities))
-- `privileged` (Boolean) Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows.
-- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows.
-- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--seccomp_profile))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--security_context--windows_options))
+- `allow_privilege_escalation` (Boolean) AllowPrivilegeEscalation controls whether a process can gain moreprivileges than its parent process. This bool directly controls ifthe no_new_privs flag will be set on the container process.AllowPrivilegeEscalation is true always when the container is:1) run as Privileged2) has CAP_SYS_ADMINNote that this field cannot be set when spec.os.name is windows.
+- `capabilities` (Attributes) The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--capabilities))
+- `privileged` (Boolean) Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
+- `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to the container.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by this container. If seccomp options areprovided at both the pod & container level, the container optionsoverride the pod options.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security--security_context--seccomp_profile))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options from the PodSecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security--security_context--windows_options))
 
 <a id="nestedatt--spec--security--security_context--capabilities"></a>
 ### Nested Schema for `spec.security.security_context.capabilities`
@@ -272,11 +275,11 @@ Optional:
 
 Required:
 
-- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+- `type` (String) type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--security--security_context--windows_options"></a>
@@ -284,10 +287,10 @@ Optional:
 
 Optional:
 
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
 
@@ -297,18 +300,19 @@ Optional:
 
 Required:
 
-- `name` (String) Name is a textual name for the server configuration and must be unique. The name is used by the operator to uniquely identify a server class, and map pods back to an intended configuration.
-- `services` (List of String) Services is the set of Couchbase services to run on this server class. At least one class must contain the data service.  The field may contain any of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'. Each service may only be specified once.
-- `size` (Number) Size is the expected requested of the server class.  This field must be greater than or equal to 1.
+- `name` (String) Name is a textual name for the server configuration and must be unique.The name is used by the operator to uniquely identify a server class,and map pods back to an intended configuration.
+- `services` (List of String) Services is the set of Couchbase services to run on this server class.At least one class must contain the data service.  The field may containany of 'data', 'index', 'query', 'search', 'eventing' or 'analytics'.Each service may only be specified once.
+- `size` (Number) Size is the expected requested of the server class.  This fieldmust be greater than or equal to 1.
 
 Optional:
 
-- `autoscale_enabled` (Boolean) AutoscaledEnabled defines whether the autoscaling feature is enabled for this class. When true, the Operator will create a CouchbaseAutoscaler resource for this server class.  The CouchbaseAutoscaler implements the Kubernetes scale API and can be controlled by the Kubernetes horizontal pod autoscaler (HPA).
+- `autoscale_enabled` (Boolean) AutoscaledEnabled defines whether the autoscaling feature is enabled for this class.When true, the Operator will create a CouchbaseAutoscaler resource for thisserver class.  The CouchbaseAutoscaler implements the Kubernetes scale API andcan be controlled by the Kubernetes horizontal pod autoscaler (HPA).
 - `env` (Attributes List) Env allows the setting of environment variables in the Couchbase server container. (see [below for nested schema](#nestedatt--spec--servers--env))
 - `env_from` (Attributes List) EnvFrom allows the setting of environment variables in the Couchbase server container. (see [below for nested schema](#nestedatt--spec--servers--env_from))
-- `pod` (Attributes) Pod defines a template used to create pod for each Couchbase server instance.  Modifying pod metadata such as labels and annotations will update the pod in-place.  Any other modification will result in a cluster upgrade in order to fulfill the request. The Operator reserves the right to modify or replace any field.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#pod-v1-core (see [below for nested schema](#nestedatt--spec--servers--pod))
-- `resources` (Attributes) Resources are the resource requirements for the Couchbase server container. This field overrides any automatic allocation as defined by 'spec.autoResourceAllocation'. (see [below for nested schema](#nestedatt--spec--servers--resources))
-- `server_groups` (List of String) ServerGroups define the set of availability zones you want to distribute pods over, and construct Couchbase server groups for.  By default, most cloud providers will label nodes with the key 'topology.kubernetes.io/zone', the values associated with that key are used here to provide explicit scheduling by the Operator.  You may manually label nodes using the 'topology.kubernetes.io/zone' key, to provide failure-domain aware scheduling when none is provided for you.  Global server groups are applied to all server classes, and may be overridden on a per-server class basis to give more control over scheduling and server groups.
+- `image` (String) Image is the container image name that will be used to launch Couchbaseserver instances in this server class. You cannot downgrade the Couchbaseversion. Across spec.image and all server classes there can only be twodifferent Couchbase images. Updating this field to a value different thanspec.image will cause an automatic upgrade of the server class. If it isn'tspecified then the cluster image will be used.
+- `pod` (Attributes) Pod defines a template used to create pod for each Couchbase serverinstance.  Modifying pod metadata such as labels and annotations willupdate the pod in-place.  Any other modification will result in a clusterupgrade in order to fulfill the request. The Operator reserves the rightto modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#pod-v1-core (see [below for nested schema](#nestedatt--spec--servers--pod))
+- `resources` (Attributes) Resources are the resource requirements for the Couchbase server container.This field overrides any automatic allocation as defined by'spec.autoResourceAllocation'. (see [below for nested schema](#nestedatt--spec--servers--resources))
+- `server_groups` (List of String) ServerGroups define the set of availability zones you want to distributepods over, and construct Couchbase server groups for.  By default, mostcloud providers will label nodes with the key 'topology.kubernetes.io/zone',the values associated with that key are used here to provide explicitscheduling by the Operator.  You may manually label nodes using the'topology.kubernetes.io/zone' key, to provide failure-domainaware scheduling when none is provided for you.  Global server groups areapplied to all server classes, and may be overridden on a per-server classbasis to give more control over scheduling and server groups.
 - `volume_mounts` (Attributes) VolumeMounts define persistent volume claims to attach to pod. (see [below for nested schema](#nestedatt--spec--servers--volume_mounts))
 
 <a id="nestedatt--spec--servers--env"></a>
@@ -320,7 +324,7 @@ Required:
 
 Optional:
 
-- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value` (String) Variable references $(VAR_NAME) are expandedusing the previously defined environment variables in the container andany service environment variables. If a variable cannot be resolved,the reference in the input string will be unchanged. Double $$ are reducedto a single $, which allows for escaping the $(VAR_NAME) syntax: i.e.'$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'.Escaped references will never be expanded, regardless of whether the variableexists or not.Defaults to ''.
 - `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--servers--env--value_from))
 
 <a id="nestedatt--spec--servers--env--value_from"></a>
@@ -329,8 +333,8 @@ Optional:
 Optional:
 
 - `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--servers--env--value_from--config_map_key_ref))
-- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--servers--env--value_from--field_ref))
-- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--servers--env--value_from--resource_field_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']',spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--servers--env--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests(limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--servers--env--value_from--resource_field_ref))
 - `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--servers--env--value_from--secret_key_ref))
 
 <a id="nestedatt--spec--servers--env--value_from--config_map_key_ref"></a>
@@ -342,7 +346,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -380,7 +384,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -400,7 +404,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
@@ -409,7 +413,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 - `optional` (Boolean) Specify whether the Secret must be defined
 
 
@@ -419,7 +423,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbase resource templates. (see [below for nested schema](#nestedatt--spec--servers--pod--metadata))
+- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbaseresource templates. (see [below for nested schema](#nestedatt--spec--servers--pod--metadata))
 - `spec` (Attributes) PodSpec is a description of a pod. (see [below for nested schema](#nestedatt--spec--servers--pod--spec))
 
 <a id="nestedatt--spec--servers--pod--metadata"></a>
@@ -427,8 +431,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--servers--pod--spec"></a>
@@ -436,33 +440,35 @@ Optional:
 
 Optional:
 
-- `active_deadline_seconds` (Number) Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.
+- `active_deadline_seconds` (Number) Optional duration in seconds the pod may be active on the node relative toStartTime before the system will actively try to mark it failed and kill associated containers.Value must be a positive integer.
 - `affinity` (Attributes) If specified, the pod's scheduling constraints (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity))
 - `automount_service_account_token` (Boolean) AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.
-- `dns_config` (Attributes) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--dns_config))
-- `dns_policy` (String) Set DNS policy for the pod. Defaults to 'ClusterFirst'. Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
-- `enable_service_links` (Boolean) EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
-- `host_ipc` (Boolean) Use the host's ipc namespace. Optional: Default to false.
-- `host_network` (Boolean) Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
-- `host_pid` (Boolean) Use the host's pid namespace. Optional: Default to false.
-- `host_users` (Boolean) Use the host's user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.
-- `image_pull_secrets` (Attributes List) ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--servers--pod--spec--image_pull_secrets))
-- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
-- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `os` (Attributes) Specifies the OS of the containers in the pod. Some pod and container fields are restricted if this is set.  If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions  If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.hostUsers - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup (see [below for nested schema](#nestedatt--spec--servers--pod--spec--os))
-- `overhead` (Map of String) Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
-- `preemption_policy` (String) PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
-- `priority` (Number) The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
-- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
-- `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
-- `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
-- `service_account` (String) DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
-- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
-- `set_hostname_as_fqdn` (Boolean) If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
-- `share_process_namespace` (Boolean) Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
-- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
+- `dns_config` (Attributes) Specifies the DNS parameters of a pod.Parameters specified here will be merged to the generated DNSconfiguration based on DNSPolicy. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--dns_config))
+- `dns_policy` (String) Set DNS policy for the pod.Defaults to 'ClusterFirst'.Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'.DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy.To have DNS options set along with hostNetwork, you have to specify DNS policyexplicitly to 'ClusterFirstWithHostNet'.
+- `enable_service_links` (Boolean) EnableServiceLinks indicates whether information about services should be injected into pod'senvironment variables, matching the syntax of Docker links.Optional: Defaults to true.
+- `host_ipc` (Boolean) Use the host's ipc namespace.Optional: Default to false.
+- `host_network` (Boolean) Host networking requested for this pod. Use the host's network namespace.If this option is set, the ports that will be used must be specified.Default to false.
+- `host_pid` (Boolean) Use the host's pid namespace.Optional: Default to false.
+- `host_users` (Boolean) Use the host's user namespace.Optional: Default to true.If set to true or not present, the pod will be run in the host user namespace, usefulfor when the pod needs a feature only available to the host user namespace, such asloading a kernel module with CAP_SYS_MODULE.When set to false, a new userns is created for the pod. Setting false is useful formitigating container breakout vulnerabilities even allowing users to run theircontainers as root without actually having root privileges on the host.This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.
+- `image_pull_secrets` (Attributes List) ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--servers--pod--spec--image_pull_secrets))
+- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.
+- `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+- `os` (Attributes) Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup (see [below for nested schema](#nestedatt--spec--servers--pod--spec--os))
+- `overhead` (Map of String) Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
+- `preemption_policy` (String) PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.
+- `priority` (Number) The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.
+- `priority_class_name` (String) If specified, indicates the pod's priority. 'system-node-critical' and'system-cluster-critical' are two special keywords which indicate thehighest priorities with the former being the highest priority. Any othername must be defined by creating a PriorityClass object with that name.If not specified, the pod priority will be default or zero if there is nodefault.
+- `resource_claims` (Attributes List) ResourceClaims defines which ResourceClaims must be allocatedand reserved before the Pod is allowed to start. The resourceswill be made available to those containers which consume themby name.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--resource_claims))
+- `runtime_class_name` (String) RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be usedto run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run.If unset or empty, the 'legacy' RuntimeClass will be used, which is an implicit class with anempty definition that uses the default runtime handler.More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
+- `scheduler_name` (String) If specified, the pod will be dispatched by specified scheduler.If not specified, the pod will be dispatched by default scheduler.
+- `scheduling_gates` (Attributes List) SchedulingGates is an opaque list of values that if specified will block scheduling the pod.If schedulingGates is not empty, the pod will stay in the SchedulingGated state and thescheduler will not attempt to schedule the pod.SchedulingGates can only be set at pod creation time, and be removed only afterwards.This is a beta feature enabled by the PodSchedulingReadiness feature gate. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--scheduling_gates))
+- `service_account` (String) DeprecatedServiceAccount is a depreciated alias for ServiceAccountName.Deprecated: Use serviceAccountName instead.
+- `service_account_name` (String) ServiceAccountName is the name of the ServiceAccount to use to run this pod.More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+- `set_hostname_as_fqdn` (Boolean) If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default).In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname).In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesTcpipParameters to FQDN.If a pod does not have FQDN, this has no effect.Default to false.
+- `share_process_namespace` (Boolean) Share a single process namespace between all of the containers in a pod.When this is set containers will be able to view and signal processes from other containersin the same pod, and the first process in each container will not be assigned PID 1.HostPID and ShareProcessNamespace cannot both be set.Optional: Default to false.
+- `termination_grace_period_seconds` (Number) Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request.Value must be non-negative integer. The value zero indicates stop immediately viathe kill signal (no opportunity to shut down).If this value is nil, the default grace period will be used instead.The grace period is the duration in seconds after the processes running in the pod are senta termination signal and the time when the processes are forcibly halted with a kill signal.Set this value longer than the expected cleanup time for your process.Defaults to 30 seconds.
 - `tolerations` (Attributes List) If specified, the pod's tolerations. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--tolerations))
-- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--topology_spread_constraints))
+- `topology_spread_constraints` (Attributes List) TopologySpreadConstraints describes how a group of pods ought to spread across topologydomains. Scheduler will schedule pods in a way which abides by the constraints.All topologySpreadConstraints are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--topology_spread_constraints))
 
 <a id="nestedatt--spec--servers--pod--spec--affinity"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity`
@@ -478,8 +484,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node matches the corresponding matchExpressions; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to an update), the systemmay or may not try to eventually evict the pod from its node. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.node_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -503,11 +509,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--node_affinity--preferred_during_scheduling_ignored_during_execution--preference--match_fields"></a>
@@ -516,11 +522,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -546,11 +552,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--node_affinity--required_during_scheduling_ignored_during_execution--node_selector_terms--match_fields"></a>
@@ -559,11 +565,11 @@ Optional:
 Required:
 
 - `key` (String) The label key that the selector applies to.
-- `operator` (String) Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+- `operator` (String) Represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
 
 Optional:
 
-- `values` (List of String) An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+- `values` (List of String) An array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. If the operator is Gt or Lt, the valuesarray must have a single element, which will be interpreted as an integer.This array is replaced during a strategic merge patch.
 
 
 
@@ -574,8 +580,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -583,20 +589,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -604,7 +610,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -612,11 +618,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -626,7 +632,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -634,11 +640,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -649,13 +655,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -663,7 +669,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -671,11 +677,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -685,7 +691,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -693,11 +699,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -708,8 +714,8 @@ Optional:
 
 Optional:
 
-- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding 'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
-- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
+- `preferred_during_scheduling_ignored_during_execution` (Attributes List) The scheduler will prefer to schedule pods to nodes that satisfythe anti-affinity expressions specified by this field, but it may choosea node that violates one or more of the expressions. The node that ismost preferred is the one with the greatest sum of weights, i.e.for each node that meets all of the scheduling requirements (resourcerequest, requiredDuringScheduling anti-affinity expressions, etc.),compute a sum by iterating through the elements of this field and adding'weight' to the sum if the node has pods which matches the corresponding podAffinityTerm; thenode(s) with the highest sum are the most preferred. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution))
+- `required_during_scheduling_ignored_during_execution` (Attributes List) If the anti-affinity requirements specified by this field are not met atscheduling time, the pod will not be scheduled onto the node.If the anti-affinity requirements specified by this field cease to be metat some point during pod execution (e.g. due to a pod label update), thesystem may or may not try to eventually evict the pod from its node.When there are multiple elements, the lists of nodes corresponding to eachpodAffinityTerm are intersected, i.e. all terms must be satisfied. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution))
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution`
@@ -717,20 +723,20 @@ Optional:
 Required:
 
 - `pod_affinity_term` (Attributes) Required. A pod affinity term, associated with the corresponding weight. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term))
-- `weight` (Number) weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+- `weight` (Number) weight associated with matching the corresponding podAffinityTerm,in the range 1-100.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term`
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector`
@@ -738,7 +744,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.label_selector.match_expressions`
@@ -746,11 +752,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -760,7 +766,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.preferred_during_scheduling_ignored_during_execution.pod_affinity_term.namespace_selector.match_expressions`
@@ -768,11 +774,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -783,13 +789,13 @@ Optional:
 
 Required:
 
-- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+- `topology_key` (String) This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matchingthe labelSelector in the specified namespaces, where co-located is defined as running on a nodewhose value of the label with key topologyKey matches that of any node on which any of theselected pods is running.Empty topologyKey is not allowed.
 
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means 'this pod's namespace'. An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
-- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
+- `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
+- `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector`
@@ -797,7 +803,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.label_selector.match_expressions`
@@ -805,11 +811,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -819,7 +825,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.affinity.pod_anti_affinity.required_during_scheduling_ignored_during_execution.namespace_selector.match_expressions`
@@ -827,11 +833,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -843,9 +849,9 @@ Optional:
 
 Optional:
 
-- `nameservers` (List of String) A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
-- `options` (Attributes List) A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--dns_config--options))
-- `searches` (List of String) A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
+- `nameservers` (List of String) A list of DNS name server IP addresses.This will be appended to the base nameservers generated from DNSPolicy.Duplicated nameservers will be removed.
+- `options` (Attributes List) A list of DNS resolver options.This will be merged with the base options generated from DNSPolicy.Duplicated entries will be removed. Resolution options given in Optionswill override those that appear in the base DNSPolicy. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--dns_config--options))
+- `searches` (List of String) A list of DNS search domains for host-name lookup.This will be appended to the base search paths generated from DNSPolicy.Duplicated search paths will be removed.
 
 <a id="nestedatt--spec--servers--pod--spec--dns_config--options"></a>
 ### Nested Schema for `spec.servers.pod.spec.dns_config.options`
@@ -862,7 +868,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--servers--pod--spec--os"></a>
@@ -870,7 +876,36 @@ Optional:
 
 Required:
 
-- `name` (String) Name is the name of the operating system. The currently supported values are linux and windows. Additional value may be defined in future and can be one of: https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configuration Clients should expect to handle additional values and treat unrecognized values in this field as os: null
+- `name` (String) Name is the name of the operating system. The currently supported values are linux and windows.Additional value may be defined in future and can be one of:https://github.com/opencontainers/runtime-spec/blob/master/config.md#platform-specific-configurationClients should expect to handle additional values and treat unrecognized values in this field as os: null
+
+
+<a id="nestedatt--spec--servers--pod--spec--resource_claims"></a>
+### Nested Schema for `spec.servers.pod.spec.resource_claims`
+
+Required:
+
+- `name` (String) Name uniquely identifies this resource claim inside the pod.This must be a DNS_LABEL.
+
+Optional:
+
+- `source` (Attributes) Source describes where to find the ResourceClaim. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--resource_claims--source))
+
+<a id="nestedatt--spec--servers--pod--spec--resource_claims--source"></a>
+### Nested Schema for `spec.servers.pod.spec.resource_claims.source`
+
+Optional:
+
+- `resource_claim_name` (String) ResourceClaimName is the name of a ResourceClaim object in the samenamespace as this pod.
+- `resource_claim_template_name` (String) ResourceClaimTemplateName is the name of a ResourceClaimTemplateobject in the same namespace as this pod.The template will be used to create a new ResourceClaim, which willbe bound to this pod. When this pod is deleted, the ResourceClaimwill also be deleted. The pod name and resource name, along with agenerated component, will be used to form a unique name for theResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to thecorresponding ResourceClaim by the control plane after creating theResourceClaim.
+
+
+
+<a id="nestedatt--spec--servers--pod--spec--scheduling_gates"></a>
+### Nested Schema for `spec.servers.pod.spec.scheduling_gates`
+
+Required:
+
+- `name` (String) Name of the scheduling gate.Each scheduling gate must have a unique name field.
 
 
 <a id="nestedatt--spec--servers--pod--spec--tolerations"></a>
@@ -878,11 +913,11 @@ Required:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 <a id="nestedatt--spec--servers--pod--spec--topology_spread_constraints"></a>
@@ -890,17 +925,17 @@ Optional:
 
 Required:
 
-- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed. When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a 'bucket', and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes meet the requirements of nodeAffinityPolicy and nodeTaintsPolicy. e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology. And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology. It's a required field.
-- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location, but giving higher precedence to topologies that would help reduce the skew. A constraint is considered 'Unsatisfiable' for an incoming pod if and only if every possible node assignment for that pod would violate 'MaxSkew' on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+- `max_skew` (Number) MaxSkew describes the degree to which pods may be unevenly distributed.When 'whenUnsatisfiable=DoNotSchedule', it is the maximum permitted differencebetween the number of matching pods in the target topology and the global minimum.The global minimum is the minimum number of matching pods in an eligible domainor zero if the number of eligible domains is less than MinDomains.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 2/2/1:In this case, the global minimum is 1.| zone1 | zone2 | zone3 ||  P P  |  P P  |   P   |- if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2;scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2)violate MaxSkew(1).- if MaxSkew is 2, incoming pod can be scheduled onto any zone.When 'whenUnsatisfiable=ScheduleAnyway', it is used to give higher precedenceto topologies that satisfy it.It's a required field. Default value is 1 and 0 is not allowed.
+- `topology_key` (String) TopologyKey is the key of node labels. Nodes that have a label with this keyand identical values are considered to be in the same topology.We consider each <key, value> as a 'bucket', and try to put balanced numberof pods into each bucket.We define a domain as a particular instance of a topology.Also, we define an eligible domain as a domain whose nodes meet the requirements ofnodeAffinityPolicy and nodeTaintsPolicy.e.g. If TopologyKey is 'kubernetes.io/hostname', each Node is a domain of that topology.And, if TopologyKey is 'topology.kubernetes.io/zone', each zone is a domain of that topology.It's a required field.
+- `when_unsatisfiable` (String) WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfythe spread constraint.- DoNotSchedule (default) tells the scheduler not to schedule it.- ScheduleAnyway tells the scheduler to schedule the pod in any location,  but giving higher precedence to topologies that would help reduce the  skew.A constraint is considered 'Unsatisfiable' for an incoming podif and only if every possible node assignment for that pod would violate'MaxSkew' on some topology.For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the samelabelSelector spread as 3/1/1:| zone1 | zone2 | zone3 || P P P |   P   |   P   |If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduledto zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfiesMaxSkew(1). In other words, the cluster can still be imbalanced, but schedulerwon't make it *more* imbalanced.It's a required field.
 
 Optional:
 
-- `label_selector` (Attributes) LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--topology_spread_constraints--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over which spreading will be calculated. The keys are used to lookup values from the incoming pod labels, those key-value labels are ANDed with labelSelector to select the group of existing pods over which spreading will be calculated for the incoming pod. Keys that don't exist in the incoming pod labels will be ignored. A null or empty list means only match against labelSelector.
-- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.  For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.  This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
-- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelector when calculating pod topology spread skew. Options are: - Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations. - Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.  If this value is nil, the behavior is equivalent to the Honor policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
-- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculating pod topology spread skew. Options are: - Honor: nodes without taints, along with tainted nodes for which the incoming pod has a toleration, are included. - Ignore: node taints are ignored. All nodes are included.  If this value is nil, the behavior is equivalent to the Ignore policy. This is a alpha-level feature enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `label_selector` (Attributes) LabelSelector is used to find matching pods.Pods that match this label selector are counted to determine the number of podsin their corresponding topology domain. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--topology_spread_constraints--label_selector))
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select the pods over whichspreading will be calculated. The keys are used to lookup values from theincoming pod labels, those key-value labels are ANDed with labelSelectorto select the group of existing pods over which spreading will be calculatedfor the incoming pod. The same key is forbidden to exist in both MatchLabelKeys and LabelSelector.MatchLabelKeys cannot be set when LabelSelector isn't set.Keys that don't exist in the incoming pod labels willbe ignored. A null or empty list means only match against labelSelector.This is a beta field and requires the MatchLabelKeysInPodTopologySpread feature gate to be enabled (enabled by default).
+- `min_domains` (Number) MinDomains indicates a minimum number of eligible domains.When the number of eligible domains with matching topology keys is less than minDomains,Pod Topology Spread treats 'global minimum' as 0, and then the calculation of Skew is performed.And when the number of eligible domains with matching topology keys equals or greater than minDomains,this value has no effect on scheduling.As a result, when the number of eligible domains is less than minDomains,scheduler won't schedule more than maxSkew Pods to those domains.If value is nil, the constraint behaves as if MinDomains is equal to 1.Valid values are integers greater than 0.When value is not nil, WhenUnsatisfiable must be DoNotSchedule.For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the samelabelSelector spread as 2/2/2:| zone1 | zone2 | zone3 ||  P P  |  P P  |  P P  |The number of domains is less than 5(MinDomains), so 'global minimum' is treated as 0.In this situation, new pod with the same labelSelector cannot be scheduled,because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones,it will violate MaxSkew.This is a beta field and requires the MinDomainsInPodTopologySpread feature gate to be enabled (enabled by default).
+- `node_affinity_policy` (String) NodeAffinityPolicy indicates how we will treat Pod's nodeAffinity/nodeSelectorwhen calculating pod topology spread skew. Options are:- Honor: only nodes matching nodeAffinity/nodeSelector are included in the calculations.- Ignore: nodeAffinity/nodeSelector are ignored. All nodes are included in the calculations.If this value is nil, the behavior is equivalent to the Honor policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
+- `node_taints_policy` (String) NodeTaintsPolicy indicates how we will treat node taints when calculatingpod topology spread skew. Options are:- Honor: nodes without taints, along with tainted nodes for which the incoming podhas a toleration, are included.- Ignore: node taints are ignored. All nodes are included.If this value is nil, the behavior is equivalent to the Ignore policy.This is a beta-level feature default enabled by the NodeInclusionPolicyInPodTopologySpread feature flag.
 
 <a id="nestedatt--spec--servers--pod--spec--topology_spread_constraints--label_selector"></a>
 ### Nested Schema for `spec.servers.pod.spec.topology_spread_constraints.label_selector`
@@ -908,7 +943,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--servers--pod--spec--topology_spread_constraints--label_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--servers--pod--spec--topology_spread_constraints--label_selector--match_expressions"></a>
 ### Nested Schema for `spec.servers.pod.spec.topology_spread_constraints.label_selector.match_expressions`
@@ -916,11 +951,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -932,8 +967,17 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--servers--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--servers--resources--claims"></a>
+### Nested Schema for `spec.servers.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 <a id="nestedatt--spec--servers--volume_mounts"></a>
@@ -941,11 +985,11 @@ Optional:
 
 Optional:
 
-- `analytics` (List of String) AnalyticsClaims are persistent volumes that encompass analytics storage associated with the analytics service.  Analytics claims can only be used on server classes running the analytics service, and must be used in conjunction with the default claim. This field allows the analytics service to use different storage media (e.g. SSD), and scale horizontally, to improve performance of this service.  This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.
-- `data` (String) DataClaim is a persistent volume that encompasses key/value storage associated with the data service.  The data claim can only be used on server classes running the data service, and must be used in conjunction with the default claim.  This field allows the data service to use different storage media (e.g. SSD) to improve performance of this service.  This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.
-- `default` (String) DefaultClaim is a persistent volume that encompasses all Couchbase persistent data, including document storage, indexes and logs.  The default volume can be used with any server class.  Use of the default claim allows the Operator to recover failed pods from the persistent volume far quicker than if the pod were using ephemeral storage.  The default claim cannot be used at the same time as the logs claim within the same server class.  This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'.
-- `index` (String) IndexClaim s a persistent volume that encompasses index storage associated with the index and search services.  The index claim can only be used on server classes running the index or search services, and must be used in conjunction with the default claim.  This field allows the index and/or search service to use different storage media (e.g. SSD) to improve performance of this service. This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst this references index primarily, note that the full text search (FTS) service also uses this same mount.
-- `logs` (String) LogsClaim is a persistent volume that encompasses only Couchbase server logs to aid with supporting the product.  The logs claim can only be used on server classes running the following services: query, search & eventing.  The logs claim cannot be used at the same time as the default claim within the same server class.  This field references a volume claim template name as defined in 'spec.volumeClaimTemplates'. Whilst the logs claim can be used with the search service, the recommendation is to use the default claim for these. The reason for this is that a failure of these nodes will require indexes to be rebuilt and subsequent performance impact.
+- `analytics` (List of String) AnalyticsClaims are persistent volumes that encompass analytics storage associatedwith the analytics service.  Analytics claims can only be used on server classesrunning the analytics service, and must be used in conjunction with the default claim.This field allows the analytics service to use different storage media (e.g. SSD), andscale horizontally, to improve performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.
+- `data` (String) DataClaim is a persistent volume that encompasses key/value storage associatedwith the data service.  The data claim can only be used on server classes runningthe data service, and must be used in conjunction with the default claim.  Thisfield allows the data service to use different storage media (e.g. SSD) toimprove performance of this service.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.
+- `default` (String) DefaultClaim is a persistent volume that encompasses all Couchbase persistentdata, including document storage, indexes and logs.  The default volume can beused with any server class.  Use of the default claim allows the Operator torecover failed pods from the persistent volume far quicker than if the pod wereusing ephemeral storage.  The default claim cannot be used at the same timeas the logs claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.
+- `index` (String) IndexClaim s a persistent volume that encompasses index storage associatedwith the index and search services.  The index claim can only be used on server classes runningthe index or search services, and must be used in conjunction with the default claim.  Thisfield allows the index and/or search service to use different storage media (e.g. SSD) toimprove performance of this service. This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst this references index primarily, note that the full text search (FTS) servicealso uses this same mount.
+- `logs` (String) LogsClaim is a persistent volume that encompasses only Couchbase server logs to aidwith supporting the product.  The logs claim can only be used on server classes runningthe following services: query, search & eventing.  The logs claim cannot be used at the sametime as the default claim within the same server class.  This field references a volumeclaim template name as defined in 'spec.volumeClaimTemplates'.Whilst the logs claim can be used with the search service, the recommendation is to use thedefault claim for these. The reason for this is that a failure of these nodes will requireindexes to be rebuilt and subsequent performance impact.
 
 
 
@@ -954,10 +998,10 @@ Optional:
 
 Optional:
 
-- `cpu_limits` (String) CPULimits automatically populates the CPU limits across all Couchbase server pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPU limit for a particular server class will override this value.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `cpu_requests` (String) CPURequests automatically populates the CPU requests across all Couchbase server pods.  The default value of '2', is the minimum recommended number of CPUs required to run Couchbase Server.  Explicitly specifying the CPU request for a particular server class will override this value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `cpu_limits` (String) CPULimits automatically populates the CPU limits across all Couchbaseserver pods.  This field defaults to '4' CPUs.  Explicitly specifying the CPUlimit for a particular server class will override this value.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `cpu_requests` (String) CPURequests automatically populates the CPU requests across all Couchbaseserver pods.  The default value of '2', is the minimum recommended number ofCPUs required to run Couchbase Server.  Explicitly specifying the CPU requestfor a particular server class will override this value. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 - `enabled` (Boolean) Enabled defines whether auto-resource allocation is enabled.
-- `overhead_percent` (Number) OverheadPercent defines the amount of memory above that required for individual services on a pod.  For Couchbase Server this should be approximately 25%.
+- `overhead_percent` (Number) OverheadPercent defines the amount of memory above that required for individualservices on a pod.  For Couchbase Server this should be approximately 25%.
 
 
 <a id="nestedatt--spec--backup"></a>
@@ -970,24 +1014,24 @@ Required:
 Optional:
 
 - `annotations` (Map of String) Annotations defines additional annotations to appear on the backup/restore pods.
-- `image_pull_secrets` (Attributes List) ImagePullSecrets allow you to use an image from private repositories and non-dockerhub ones. (see [below for nested schema](#nestedatt--spec--backup--image_pull_secrets))
+- `image_pull_secrets` (Attributes List) ImagePullSecrets allow you to use an image from privaterepositories and non-dockerhub ones. (see [below for nested schema](#nestedatt--spec--backup--image_pull_secrets))
 - `labels` (Map of String) Labels defines additional labels to appear on the backup/restore pods.
 - `managed` (Boolean) Managed defines whether backups are managed by us or the clients.
-- `node_selector` (Map of String) NodeSelector defines which nodes to constrain the pods that run any backup and restore operations to.
-- `object_endpoint` (Attributes) Deprecated: by CouchbaseBackup.spec.objectStore.Endpoint ObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store. (see [below for nested schema](#nestedatt--spec--backup--object_endpoint))
-- `resources` (Attributes) Resources is the resource requirements for the backup and restore containers.  Will be populated by defaults if not specified. (see [below for nested schema](#nestedatt--spec--backup--resources))
-- `s3_secret` (String) Deprecated: by CouchbaseBackup.spec.objectStore.secret S3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3. This field must be popluated when the 'spec.s3bucket' field is specified for a backup or restore resource.
-- `selector` (Attributes) Selector allows CouchbaseBackup and CouchbaseBackupRestore resources to be filtered based on labels. (see [below for nested schema](#nestedatt--spec--backup--selector))
-- `service_account_name` (String) The Service Account to run backup (and restore) pods under. Without this backup pods will not be able to update status.
+- `node_selector` (Map of String) NodeSelector defines which nodes to constrain the pods thatrun any backup and restore operations to.
+- `object_endpoint` (Attributes) Deprecated: by CouchbaseBackup.spec.objectStore.EndpointObjectEndpoint contains the configuration for connecting to a custom S3 compliant object store. (see [below for nested schema](#nestedatt--spec--backup--object_endpoint))
+- `resources` (Attributes) Resources is the resource requirements for the backup and restorecontainers.  Will be populated by defaults if not specified. (see [below for nested schema](#nestedatt--spec--backup--resources))
+- `s3_secret` (String) Deprecated: by CouchbaseBackup.spec.objectStore.secretS3Secret contains the key region and optionally access-key-id and secret-access-key for operating backups in S3.This field must be popluated when the 'spec.s3bucket' field is specifiedfor a backup or restore resource.
+- `selector` (Attributes) Selector allows CouchbaseBackup and CouchbaseBackupRestoreresources to be filtered based on labels. (see [below for nested schema](#nestedatt--spec--backup--selector))
+- `service_account_name` (String) The Service Account to run backup (and restore) pods under.Without this backup pods will not be able to update status.
 - `tolerations` (Attributes List) Tolerations specifies all backup and restore pod tolerations. (see [below for nested schema](#nestedatt--spec--backup--tolerations))
-- `use_iam_role` (Boolean) Deprecated: by CouchbaseBackup.spec.objectStore.useIAM UseIAMRole enables backup to fetch EC2 instance metadata. This allows the AWS SDK to use the EC2's IAM Role for S3 access. UseIAMRole will ignore credentials in s3Secret.
+- `use_iam_role` (Boolean) Deprecated: by CouchbaseBackup.spec.objectStore.useIAMUseIAMRole enables backup to fetch EC2 instance metadata.This allows the AWS SDK to use the EC2's IAM Role for S3 access.UseIAMRole will ignore credentials in s3Secret.
 
 <a id="nestedatt--spec--backup--image_pull_secrets"></a>
 ### Nested Schema for `spec.backup.image_pull_secrets`
 
 Optional:
 
-- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Add other useful fields. apiVersion, kind, uid?
 
 
 <a id="nestedatt--spec--backup--object_endpoint"></a>
@@ -995,9 +1039,9 @@ Optional:
 
 Optional:
 
-- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'
+- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'
 - `url` (String) The host/address of the custom object endpoint.
-- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.
+- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.
 
 
 <a id="nestedatt--spec--backup--resources"></a>
@@ -1005,8 +1049,17 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--backup--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--backup--resources--claims"></a>
+### Nested Schema for `spec.backup.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 <a id="nestedatt--spec--backup--selector"></a>
@@ -1015,7 +1068,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--backup--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--backup--selector--match_expressions"></a>
 ### Nested Schema for `spec.backup.selector.match_expressions`
@@ -1023,11 +1076,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1036,11 +1089,11 @@ Optional:
 
 Optional:
 
-- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
-- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
-- `operator` (String) Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
-- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
-- `value` (String) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+- `effect` (String) Effect indicates the taint effect to match. Empty means match all taint effects.When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Key is the taint key that the toleration applies to. Empty means match all taint keys.If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+- `operator` (String) Operator represents a key's relationship to the value.Valid operators are Exists and Equal. Defaults to Equal.Exists is equivalent to wildcard for value, so that a pod cantolerate all taints of a particular category.
+- `toleration_seconds` (Number) TolerationSeconds represents the period of time the toleration (which must beof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,it is not set, which means tolerate the taint forever (do not evict). Zero andnegative values will be treated as 0 (evict immediately) by the system.
+- `value` (String) Value is the taint value the toleration matches to.If the operator is Exists, the value should be empty, otherwise just a regular string.
 
 
 
@@ -1049,9 +1102,9 @@ Optional:
 
 Optional:
 
-- `managed` (Boolean) Managed defines whether buckets are managed by the Operator (true), or user managed (false). When Operator managed, all buckets must be defined with either CouchbaseBucket, CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources.  Manual addition of buckets will be reverted by the Operator.  When user managed, the Operator will not interrogate buckets at all.  This field defaults to false.
-- `selector` (Attributes) Selector is a label selector used to list buckets in the namespace that are managed by the Operator. (see [below for nested schema](#nestedatt--spec--buckets--selector))
-- `synchronize` (Boolean) Synchronize allows unmanaged buckets, scopes, and collections to be synchronized as Kubernetes resources by the Operator.  This feature is intended for development only and should not be used for production workloads.  The synchronization workflow starts with 'spec.buckets.managed' being set to false, the user can manually create buckets, scopes, and collections using the Couchbase UI, or other tooling.  When you wish to commit to Kubernetes resources, you must specify a unique label selector in the 'spec.buckets.selector' field, and this field is set to true.  The Operator will create Kubernetes resources for you, and upon completion set the cluster's 'Synchronized' status condition.  You may then safely set 'spec.buckets.managed' to true and the Operator will manage these resources as per usual.  To update an already managed data topology, you must first set it to unmanaged, make any changes, and delete any old resources, then follow the standard synchronization workflow.  The Operator can not, and will not, ever delete, or make modifications to resource specifications that are intended to be user managed, or managed by a life cycle management tool. These actions must be instigated by an end user.  For a more complete experience, refer to the documentation for the 'cao save' and 'cao restore' CLI commands.
+- `managed` (Boolean) Managed defines whether buckets are managed by the Operator (true), or user managed (false).When Operator managed, all buckets must be defined with either CouchbaseBucket,CouchbaseEphemeralBucket or CouchbaseMemcachedBucket resources.  Manual additionof buckets will be reverted by the Operator.  When user managed, the Operatorwill not interrogate buckets at all.  This field defaults to false.
+- `selector` (Attributes) Selector is a label selector used to list buckets in the namespacethat are managed by the Operator. (see [below for nested schema](#nestedatt--spec--buckets--selector))
+- `synchronize` (Boolean) Synchronize allows unmanaged buckets, scopes, and collections to be synchronized asKubernetes resources by the Operator.  This feature is intended for development onlyand should not be used for production workloads.  The synchronization workflow startswith 'spec.buckets.managed' being set to false, the user can manually create buckets,scopes, and collections using the Couchbase UI, or other tooling.  When you wish tocommit to Kubernetes resources, you must specify a unique label selector in the'spec.buckets.selector' field, and this field is set to true.  The Operator willcreate Kubernetes resources for you, and upon completion set the cluster's 'Synchronized'status condition. Synchronizing will not create a Kubernetes resource for the CouchbaseServer maintained _system scope. You may then safely set 'spec.buckets.managed' totrue and the Operator will manage these resources as per usual.  To update an alreadymanaged data topology, you must first set it to unmanaged, make any changes, and deleteany old resources, then follow the standard synchronization workflow.  The Operatorcan not, and will not, ever delete, or make modifications to resource specificationsthat are intended to be user managed, or managed by a life cycle management tool. Theseactions must be instigated by an end user.  For a more complete experience, refer tothe documentation for the 'cao save' and 'cao restore' CLI commands.
 
 <a id="nestedatt--spec--buckets--selector"></a>
 ### Nested Schema for `spec.buckets.selector`
@@ -1059,7 +1112,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--buckets--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--buckets--selector--match_expressions"></a>
 ### Nested Schema for `spec.buckets.selector.match_expressions`
@@ -1067,11 +1120,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1081,23 +1134,23 @@ Optional:
 
 Optional:
 
-- `analytics_service_memory_quota` (String) AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service. This value is per-pod, and only applicable to pods belonging to server classes running the analytics service.  This field must be a quantity greater than or equal to 1Gi.  This field defaults to 1Gi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `auto_compaction` (Attributes) AutoCompaction allows the configuration of auto-compaction, including on what conditions disk space is reclaimed and when it is allowed to run. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction))
-- `auto_failover_max_count` (Number) AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase server will allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0 default is 1.
-- `auto_failover_on_data_disk_issues` (Boolean) AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a pod if a disk issue was detected.
-- `auto_failover_on_data_disk_issues_time_period` (String) AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errors before failing over a faulty disk.  This field must be in the range 5-3600s, defaulting to 120s.  More info:  https://golang.org/pkg/time/#ParseDuration
-- `auto_failover_server_group` (Boolean) AutoFailoverServerGroup whether to enable failing over a server group. This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API
-- `auto_failover_timeout` (String) AutoFailoverTimeout defines how long Couchbase server will wait between a pod being witnessed as down, until when it will failover the pod.  Couchbase server will only failover pods if it deems it safe to do so, and not result in data loss.  This field must be in the range 5-3600s, defaulting to 120s. More info:  https://golang.org/pkg/time/#ParseDuration
-- `cluster_name` (String) ClusterName defines the name of the cluster, as displayed in the Couchbase UI. By default, the cluster name is that specified in the CouchbaseCluster resource's metadata.
+- `analytics_service_memory_quota` (String) AnalyticsServiceMemQuota is the amount of memory that should be allocated to the analytics service.This value is per-pod, and only applicable to pods belonging to server classes runningthe analytics service.  This field must be a quantity greater than or equal to 1Gi.  Thisfield defaults to 1Gi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `auto_compaction` (Attributes) AutoCompaction allows the configuration of auto-compaction, including on whatconditions disk space is reclaimed and when it is allowed to run. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction))
+- `auto_failover_max_count` (Number) AutoFailoverMaxCount is the maximum number of automatic failovers Couchbase serverwill allow before not allowing any more.  This field must be between 1-3 for server versions prior to 7.1.0default is 1.
+- `auto_failover_on_data_disk_issues` (Boolean) AutoFailoverOnDataDiskIssues defines whether Couchbase server should failover a podif a disk issue was detected.
+- `auto_failover_on_data_disk_issues_time_period` (String) AutoFailoverOnDataDiskIssuesTimePeriod defines how long to wait for transient errorsbefore failing over a faulty disk.  This field must be in the range 5-3600s, defaultingto 120s.  More info:  https://golang.org/pkg/time/#ParseDuration
+- `auto_failover_server_group` (Boolean) AutoFailoverServerGroup whether to enable failing over a server group.This field is ignored in server versions 7.1+ as it has been removed from the Couchbase API
+- `auto_failover_timeout` (String) AutoFailoverTimeout defines how long Couchbase server will wait between a podbeing witnessed as down, until when it will failover the pod.  Couchbase serverwill only failover pods if it deems it safe to do so, and not result in dataloss.  This field must be in the range 5-3600s, defaulting to 120s.More info:  https://golang.org/pkg/time/#ParseDuration
+- `cluster_name` (String) ClusterName defines the name of the cluster, as displayed in the Couchbase UI.By default, the cluster name is that specified in the CouchbaseCluster resource'smetadata.
 - `data` (Attributes) Data allows the data service to be configured. (see [below for nested schema](#nestedatt--spec--cluster--data))
-- `data_service_memory_quota` (String) DataServiceMemQuota is the amount of memory that should be allocated to the data service. This value is per-pod, and only applicable to pods belonging to server classes running the data service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `eventing_service_memory_quota` (String) EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service. This value is per-pod, and only applicable to pods belonging to server classes running the eventing service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `index_service_memory_quota` (String) IndexServiceMemQuota is the amount of memory that should be allocated to the index service. This value is per-pod, and only applicable to pods belonging to server classes running the index service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `index_storage_setting` (String) DEPRECATED - by indexer. The index storage mode to use for secondary indexing.  This field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.  This field is immutable and cannot be changed unless there are no server classes running the index service in the cluster.
+- `data_service_memory_quota` (String) DataServiceMemQuota is the amount of memory that should be allocated to the data service.This value is per-pod, and only applicable to pods belonging to server classes runningthe data service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `eventing_service_memory_quota` (String) EventingServiceMemQuota is the amount of memory that should be allocated to the eventing service.This value is per-pod, and only applicable to pods belonging to server classes runningthe eventing service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `index_service_memory_quota` (String) IndexServiceMemQuota is the amount of memory that should be allocated to the index service.This value is per-pod, and only applicable to pods belonging to server classes runningthe index service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `index_storage_setting` (String) DEPRECATED - by indexer.The index storage mode to use for secondary indexing.  This field must be one of'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.  This field isimmutable and cannot be changed unless there are no server classes running theindex service in the cluster.
 - `indexer` (Attributes) Indexer allows the indexer to be configured. (see [below for nested schema](#nestedatt--spec--cluster--indexer))
 - `query` (Attributes) Query allows the query service to be configured. (see [below for nested schema](#nestedatt--spec--cluster--query))
-- `query_service_memory_quota` (String) QueryServiceMemQuota is a dummy field.  By default, Couchbase server provides no memory resource constraints for the query service, so this has no effect on Couchbase server.  It is, however, used when the spec.autoResourceAllocation feature is enabled, and is used to define the amount of memory reserved by the query service for use with Kubernetes resource scheduling. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `search_service_memory_quota` (String) SearchServiceMemQuota is the amount of memory that should be allocated to the search service. This value is per-pod, and only applicable to pods belonging to server classes running the search service.  This field must be a quantity greater than or equal to 256Mi.  This field defaults to 256Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `query_service_memory_quota` (String) QueryServiceMemQuota is used when the spec.autoResourceAllocation feature is enabled,and is used to define the amount of memory reserved by the query service for use withKubernetes resource scheduling. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesIn CB Server 7.6.0+ QueryServiceMemQuota also sets a soft memory limit for every Query node in the cluster.The garbage collector tries to keep below this target. It is not a hard, absolute limit, and memoryusage may exceed this value.
+- `search_service_memory_quota` (String) SearchServiceMemQuota is the amount of memory that should be allocated to the search service.This value is per-pod, and only applicable to pods belonging to server classes runningthe search service.  This field must be a quantity greater than or equal to 256Mi.  Thisfield defaults to 256Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 <a id="nestedatt--spec--cluster--auto_compaction"></a>
 ### Nested Schema for `spec.cluster.auto_compaction`
@@ -1105,9 +1158,9 @@ Optional:
 Optional:
 
 - `database_fragmentation_threshold` (Attributes) DatabaseFragmentationThreshold defines triggers for when database compaction should start. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction--database_fragmentation_threshold))
-- `parallel_compaction` (Boolean) ParallelCompaction controls whether database and view compactions can happen in parallel.
+- `parallel_compaction` (Boolean) ParallelCompaction controls whether database and view compactions can happenin parallel.
 - `time_window` (Attributes) TimeWindow allows restriction of when compaction can occur. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction--time_window))
-- `tombstone_purge_interval` (String) TombstonePurgeInterval controls how long to wait before purging tombstones. This field must be in the range 1h-1440h, defaulting to 72h. More info:  https://golang.org/pkg/time/#ParseDuration
+- `tombstone_purge_interval` (String) TombstonePurgeInterval controls how long to wait before purging tombstones.This field must be in the range 1h-1440h, defaulting to 72h.More info:  https://golang.org/pkg/time/#ParseDuration
 - `view_fragmentation_threshold` (Attributes) ViewFragmentationThreshold defines triggers for when view compaction should start. (see [below for nested schema](#nestedatt--spec--cluster--auto_compaction--view_fragmentation_threshold))
 
 <a id="nestedatt--spec--cluster--auto_compaction--database_fragmentation_threshold"></a>
@@ -1115,8 +1168,8 @@ Optional:
 
 Optional:
 
-- `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.
-- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.
+- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 <a id="nestedatt--spec--cluster--auto_compaction--time_window"></a>
@@ -1124,7 +1177,7 @@ Optional:
 
 Optional:
 
-- `abort_compaction_outside_window` (Boolean) AbortCompactionOutsideWindow stops compaction processes when the process moves outside the window.
+- `abort_compaction_outside_window` (Boolean) AbortCompactionOutsideWindow stops compaction processes when theprocess moves outside the window.
 - `end` (String) End is a wallclock time, in the form HH:MM, when a compaction should stop.
 - `start` (String) Start is a wallclock time, in the form HH:MM, when a compaction is permitted to start.
 
@@ -1134,8 +1187,8 @@ Optional:
 
 Optional:
 
-- `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will be triggered. This field must be in the range 2-100, defaulting to 30.
-- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `percent` (Number) Percent is the percentage of disk fragmentation after which to decompaction will betriggered. This field must be in the range 2-100, defaulting to 30.
+- `size` (String) Size is the amount of disk framentation, that once exceeded, will trigger decompaction.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 
@@ -1144,10 +1197,11 @@ Optional:
 
 Optional:
 
-- `aux_io_threads` (Number) AuxIOThreads allows the number of threads used by the data service, per pod, to be altered.  This indicates the number of threads that are to be used in the AuxIO thread pool to run auxiliary I/O tasks. This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
-- `non_io_threads` (Number) NonIOThreads allows the number of threads used by the data service, per pod, to be altered.  This indicates the number of threads that are to be used in the NonIO thread pool to run in memory tasks. This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
-- `reader_threads` (Number) ReaderThreads allows the number of threads used by the data service, per pod, to be altered.  This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use.  If not specified, this defaults to the default value set by Couchbase Server.
-- `writer_threads` (Number) WriterThreads allows the number of threads used by the data service, per pod, to be altered.  This setting is especially relevant when using 'durable writes', increasing this field will have a large impact on performance.  This value must be between 4 and 64 threads, and should only be increased where there are sufficient CPU resources allocated for their use. If not specified, this defaults to the default value set by Couchbase Server.
+- `aux_io_threads` (Number) AuxIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the AuxIO thread pool to run auxiliary I/O tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.
+- `min_replicas_count` (Number) MinReplicasCount allows the minimum number of replicas required forbuckets to be set. New buckets cannot be created with less than this minimum.Defaults to 0.
+- `non_io_threads` (Number) NonIOThreads allows the number of threads used by the data service,per pod, to be altered.  This indicates the number of threads that areto be used in the NonIO thread pool to run in memory tasks.This value must be between 1 and 64 threads and is only supported on CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.
+- `reader_threads` (Number) ReaderThreads allows the number of threads used by the data service,per pod, to be altered.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use.  If not specified, this defaults to thedefault value set by Couchbase Server.
+- `writer_threads` (Number) WriterThreads allows the number of threads used by the data service,per pod, to be altered.  This setting is especially relevant whenusing 'durable writes', increasing this field will have a largeimpact on performance.  This value must be between 4 and 64 threads for CB versions below 7.1.0 and,	// or 1 and 64 for CB versions 7.1.0+.and should only be increased where there are sufficient CPU resourcesallocated for their use. If not specified, this defaults to thedefault value set by Couchbase Server.
 
 
 <a id="nestedatt--spec--cluster--indexer"></a>
@@ -1155,24 +1209,50 @@ Optional:
 
 Optional:
 
-- `log_level` (String) LogLevel controls the verbosity of indexer logs.  This field must be one of 'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or 'trace', defaulting to 'info'.
-- `max_rollback_points` (Number) MaxRollbackPoints controls the number of checkpoints that can be rolled back to.  The default is 2, with a minimum of 1.
-- `memory_snapshot_interval` (String) MemorySnapshotInterval controls when memory indexes should be snapshotted. This defaults to 200ms, and must be greater than or equal to 1ms.
-- `num_replica` (Number) NumberOfReplica specifies number of secondary index replicas to be created by the Index Service whenever CREATE INDEX is invoked, which ensures high availability and high performance. Note, if nodes and num_replica are both specified in the WITH clause, the specified number of nodes must be one greater than num_replica This defaults to 0, which means no index replicas to be created by default. Minimum must be 0.
-- `redistribute_indexes` (Boolean) RedistributeIndexes when true, Couchbase Server redistributes indexes when rebalance occurs, in order to optimize performance. If false (the default), such redistribution does not occur.
-- `stable_snapshot_interval` (String) StableSnapshotInterval controls when disk indexes should be snapshotted. This defaults to 5s, and must be greater than or equal to 1ms.
-- `storage_mode` (String) StorageMode controls the underlying storage engine for indexes.  Once set it can only be modified if there are no nodes in the cluster running the index service.  The field must be one of 'memory_optimized' or 'plasma', defaulting to 'memory_optimized'.
-- `threads` (Number) Threads controls the number of processor threads to use for indexing. A value of 0 means 1 per CPU.  This attribute must be greater than or equal to 0, defaulting to 0.
+- `enable_shard_affinity` (Boolean) EnableShardAffinity when false Index Servers rebuild any index thatare newly assigned to them during a rebalance. When set to true,Couchbase Server moves a reassigned index’s files between Index Servers.This field is only supported on CB versions 7.6.0+.
+- `log_level` (String) LogLevel controls the verbosity of indexer logs.  This field must be one of'silent', 'fatal', 'error', 'warn', 'info', 'verbose', 'timing', 'debug' or'trace', defaulting to 'info'.
+- `max_rollback_points` (Number) MaxRollbackPoints controls the number of checkpoints that can be rolledback to.  The default is 2, with a minimum of 1.
+- `memory_snapshot_interval` (String) MemorySnapshotInterval controls when memory indexes should be snapshotted.This defaults to 200ms, and must be greater than or equal to 1ms.
+- `num_replica` (Number) NumberOfReplica specifies number of secondary index replicas to be createdby the Index Service whenever CREATE INDEX is invoked, which ensureshigh availability and high performance.Note, if nodes and num_replica are both specified in the WITH clause,the specified number of nodes must be one greater than num_replicaThis defaults to 0, which means no index replicas to be created by default.Minimum must be 0.
+- `redistribute_indexes` (Boolean) RedistributeIndexes when true, Couchbase Server redistributes indexeswhen rebalance occurs, in order to optimize performance.If false (the default), such redistribution does not occur.
+- `stable_snapshot_interval` (String) StableSnapshotInterval controls when disk indexes should be snapshotted.This defaults to 5s, and must be greater than or equal to 1ms.
+- `storage_mode` (String) StorageMode controls the underlying storage engine for indexes.  Once setit can only be modified if there are no nodes in the cluster running theindex service.  The field must be one of 'memory_optimized' or 'plasma',defaulting to 'memory_optimized'.
+- `threads` (Number) Threads controls the number of processor threads to use for indexing.A value of 0 means 1 per CPU.  This attribute must be greaterthan or equal to 0, defaulting to 0.
 
 
 <a id="nestedatt--spec--cluster--query"></a>
 ### Nested Schema for `spec.cluster.query`
 
+Required:
+
+- `cbo_enabled` (Boolean) CBOEnabled specifies whether the cost-based optimizer is enabled.Defaults to true.
+- `cleanup_client_attempts_enabled` (Boolean) CleanupClientAttemptsEnabled specifies whether the Query service preferentially aims to clean up justtransactions that it has created, leaving transactions for the distributed cleanup process onlywhen it is forced to.Defaults to true.
+- `cleanup_lost_attempts_enabled` (Boolean) CleanupLostAttemptsEnabled specifies the Query service takes part in the distributed cleanupprocess, and cleans up expired transactions created by any client.Defaults to true.
+- `cleanup_window` (String) CleanupWindow specifies how frequently the Query service checks its subset of activetransaction records for cleanup.Defaults to 60s
+- `completed_limit` (Number) CompletedLimit sets the number of requests to be logged in the completedrequests catalog. As new completed requests are added, old ones are removed.
+- `completed_max_plan_size` (String) CompletedMaxPlanSize limits the size of query execution plans that can be logged in thecompleted requests catalog. Queries with plans larger than this are not logged.This field is only supported on CB versions 7.6.0+.Defaults to 262144, maximum value is 20840448, and minimum value is 0.
+- `completed_tracking_all_requests` (Boolean) CompletedTrackingAllRequests allows all requests to be tracked regardless of theirtime. This field requires 'completedTrackingEnabled' to be true.
+- `completed_tracking_enabled` (Boolean) CompletedTrackingEnabled allows completed requests to be tracked in the requestscatalog.
+- `max_parallelism` (Number) MaxParallelism specifies the maximum parallelism for queries on all Query nodes in the cluster.If the value is zero, negative, or larger than the number of allowed cored the maximum parallelismis restricted to the number of allowed cores.Defaults to 1.
+- `node_quota_val_percent` (Number) NodeQuotaValPercent sets the  percentage of the 'useReplica' that is dedicated to trackedvalue content memory across all active requests for every Query node in the cluster.This field is only supported on CB versions 7.6.0+.Defaults to 67.
+- `num_active_transaction_records` (Number) NumActiveTransactionRecords specifies the total number of active transaction records forall Query nodes in the cluster.Default to 1024 and has a minimum of 1.
+- `num_cpus` (Number) NumCpus is the number of CPUs the Query service can use on any Query node in the cluster.When set to 0 (the default), the Query service can use all available CPUs, up to the limits described below.The number of CPUs can never be greater than the number of logical CPUs.In Community Edition, the number of allowed CPUs cannot be greater than 4.In Enterprise Edition, there is no limit to the number of allowed CPUs.This field is only supported on CB versions 7.6.0+.NOTE: This change requires a restart of the Query service to take effect which can be done by reschedulingnodes that are running the query service.Defaults to 0
+- `pipeline_batch` (Number) PipelineBatch controls the number of items execution operators can batch forFetch from the KV. Defaults to 16.
+- `pipeline_cap` (Number) PipelineCap controls the maximum number of items each executionoperator can buffer between various operators. Defaults to 512.
+- `prepared_limit` (Number) PreparedLimit is the maximum number of prepared statements in the cache.When this cache reaches the limit, the least recently used preparedstatements will be discarded as new prepared statements are created.
+- `scan_cap` (Number) ScapCan sets the maximum buffered channel size between the indexer clientand the query service for index scans.Defaults to 512.
+
 Optional:
 
 - `backfill_enabled` (Boolean) BackfillEnabled allows the query service to backfill.
-- `temporary_space` (String) TemporarySpace allows the temporary storage used by the query service backfill, per-pod, to be modified.  This field requires 'backfillEnabled' to be set to true in order to have any effect. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `temporary_space_unlimited` (Boolean) TemporarySpaceUnlimited allows the temporary storage used by the query service backfill, per-pod, to be unconstrained.  This field requires 'backfillEnabled' to be set to true in order to have any effect. This field overrides 'temporarySpace'.
+- `completed_tracking_threshold` (String) CompletedThreshold is a trigger for queries to be logged in the completedrequests catalog. All completed queries lasting longer than this thresholdare logged in the completed requests catalog. This field requires 'completedTrackingEnabled'to be set to true and 'completedTrackingAllRequests' to be false to have any effect.
+- `log_level` (String) LogLevel controls the verbosity of query logs. This field must be one of'debug', 'trace', 'info', 'warn', 'error', 'severe', or 'none', defaulting to 'info'.
+- `memory_quota` (String) MemoryQuota specifies the maximum amount of memory a request may use on any Query node in the cluster.This parameter enforces a ceiling on the memory used for the tracked documents required for processinga request. It does not take into account any other memory that might be used to process a request,such as the stack, the operators, or some intermediate values.Defaults to 0.
+- `temporary_space` (String) TemporarySpace allows the temporary storage used by the queryservice backfill, per-pod, to be modified.  This field requires'backfillEnabled' to be set to true in order to have any effect.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `temporary_space_unlimited` (Boolean) TemporarySpaceUnlimited allows the temporary storage used bythe query service backfill, per-pod, to be unconstrained.  This fieldrequires 'backfillEnabled' to be set to true in order to have any effect.This field overrides 'temporarySpace'.
+- `timeout` (String) Timeout is the maximum time to spend on the request before timing out.If this field is not set then there will be no timeout.
+- `tx_timeout` (String) TxTimeout is the maximum time to spend on a transaction before timing out. This settingonly applies to requests containing the BEGIN TRANSACTION statement, or to requests wherethe tximplicit parameter is set. For all other requests, it is ignored.Defaults to 0ms (no timeout).
+- `use_replica` (Boolean) UseReplica specifies whether a query can fetch data from a replica vBucket if active vBucketsare inaccessible. If set to true then read from replica is enabled for all queries, but canbe disabled at request level. If set to false read from replica is disabled for all queriesand cannot be overridden at request level. If this field is unset then it is enabled/disabledat the request level.This field is only supported on CB versions 7.6.0+.
 
 
 
@@ -1191,18 +1271,18 @@ Optional:
 
 Optional:
 
-- `disabled_events` (List of String) The list of event ids to disable for auditing purposes. This is passed to the REST API with no verification by the operator. Refer to the documentation for details: https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html
-- `disabled_users` (List of String) The list of users to ignore for auditing purposes. This is passed to the REST API with minimal validation it meets an acceptable regex pattern. Refer to the documentation for full details on how to configure this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user
+- `disabled_events` (List of String) The list of event ids to disable for auditing purposes.This is passed to the REST API with no verification by the operator.Refer to the documentation for details:https://docs.couchbase.com/server/current/audit-event-reference/audit-event-reference.html
+- `disabled_users` (List of String) The list of users to ignore for auditing purposes.This is passed to the REST API with minimal validation it meets an acceptable regex pattern.Refer to the documentation for full details on how to configure this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html#ignoring-events-by-user
 - `enabled` (Boolean) Enabled is a boolean that enables the audit capabilities.
-- `garbage_collection` (Attributes) Handle all optional garbage collection (GC) configuration for the audit functionality. This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs. By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs. This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection))
-- `rotation` (Attributes) The interval to optionally rotate the audit log. This is passed to the REST API, see here for details: https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html (see [below for nested schema](#nestedatt--spec--logging--audit--rotation))
+- `garbage_collection` (Attributes) Handle all optional garbage collection (GC) configuration for the audit functionality.This is not part of the audit REST API, it is intended to handle GC automatically for the audit logs.By default the Couchbase Server rotates the audit logs but does not clean up the rotated logs.This is left as an operation for the cluster administrator to manage, the operator allows for us to automate this:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection))
+- `rotation` (Attributes) The interval to optionally rotate the audit log.This is passed to the REST API, see here for details:https://docs.couchbase.com/server/current/manage/manage-security/manage-auditing.html (see [below for nested schema](#nestedatt--spec--logging--audit--rotation))
 
 <a id="nestedatt--spec--logging--audit--garbage_collection"></a>
 ### Nested Schema for `spec.logging.audit.garbage_collection`
 
 Optional:
 
-- `sidecar` (Attributes) Provide the sidecar configuration required (if so desired) to automatically clean up audit logs. (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection--sidecar))
+- `sidecar` (Attributes) DEPRECATED - by spec.logging.audit.nativePruning for Couchbase Server 7.2.4+Provide the sidecar configuration required (if so desired) to automatically clean up audit logs. (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection--sidecar))
 
 <a id="nestedatt--spec--logging--audit--garbage_collection--sidecar"></a>
 ### Nested Schema for `spec.logging.audit.garbage_collection.sidecar`
@@ -1211,17 +1291,26 @@ Optional:
 
 - `age` (String) The minimum age of rotated log files to remove, defaults to one hour.
 - `enabled` (Boolean) Enable this sidecar by setting to true, defaults to being disabled.
-- `image` (String) Image is the image to be used to run the audit sidecar helper. No validation is carried out as this can be any arbitrary repo and tag.
+- `image` (String) Image is the image to be used to run the audit sidecar helper.No validation is carried out as this can be any arbitrary repo and tag.
 - `interval` (String) The interval at which to check for rotated log files to remove, defaults to 20 minutes.
-- `resources` (Attributes) Resources is the resource requirements for the cleanup container. Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection--sidecar--resources))
+- `resources` (Attributes) Resources is the resource requirements for the cleanup container.Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection--sidecar--resources))
 
 <a id="nestedatt--spec--logging--audit--garbage_collection--sidecar--resources"></a>
 ### Nested Schema for `spec.logging.audit.garbage_collection.sidecar.resources`
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--logging--audit--garbage_collection--sidecar--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--logging--audit--garbage_collection--sidecar--resources--claims"></a>
+### Nested Schema for `spec.logging.audit.garbage_collection.sidecar.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 
@@ -1232,7 +1321,8 @@ Optional:
 Optional:
 
 - `interval` (String) The interval at which to rotate log files, defaults to 15 minutes.
-- `size` (String) Size allows the specification of a rotation size for the log, defaults to 20Mi. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `prune_age` (String) How long Couchbase Server keeps rotated audit logs.If set to 0 (the default) then audit logs won't be pruned.Has a maximum of 35791394 seconds.
+- `size` (String) Size allows the specification of a rotation size for the log, defaults to 20Mi.More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
 
 
 
@@ -1241,9 +1331,9 @@ Optional:
 
 Optional:
 
-- `configuration_name` (String) ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace. A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too. If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running. Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each, otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster is removed. If running clusters in separate namespaces then they will be separate Secrets anyway.
+- `configuration_name` (String) ConfigurationName is the name of the Secret to use holding the logging configuration in the namespace.A Secret is used to ensure we can safely store credentials but this can be populated from plaintext if acceptable too.If it does not exist then one will be created with defaults in the namespace so it can be easily updated whilst running.Note that if running multiple clusters in the same kubernetes namespace then you should use a separate Secret for each,otherwise the first cluster will take ownership (if created) and the Secret will be cleaned up when that cluster isremoved. If running clusters in separate namespaces then they will be separate Secrets anyway.
 - `enabled` (Boolean) Enabled is a boolean that enables the logging sidecar container.
-- `manage_configuration` (Boolean) A boolean which indicates whether the operator should manage the configuration or not. If omitted then this defaults to true which means the operator will attempt to reconcile it to default values. To use a custom configuration make sure to set this to false. Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated by the operator but it's ownership stays the same so it will be cleaned up when it's owner is.
+- `manage_configuration` (Boolean) A boolean which indicates whether the operator should manage the configuration or not.If omitted then this defaults to true which means the operator will attempt to reconcile it to default values.To use a custom configuration make sure to set this to false.Note that the ownership of any Secret is not changed so if a Secret is created externally it can be updated bythe operator but it's ownership stays the same so it will be cleaned up when it's owner is.
 - `sidecar` (Attributes) Any specific logging sidecar container configuration. (see [below for nested schema](#nestedatt--spec--logging--server--sidecar))
 
 <a id="nestedatt--spec--logging--server--sidecar"></a>
@@ -1251,17 +1341,26 @@ Optional:
 
 Optional:
 
-- `configuration_mount_path` (String) ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image. If another log shipping image is used that needs a different mount then modify this. Note that the configuration file must be called 'fluent-bit.conf' at the root of this path, there is no provision for overriding the name of the config file passed as the COUCHBASE_LOGS_CONFIG_FILE environment variable.
-- `image` (String) Image is the image to be used to deal with logging as a sidecar. No validation is carried out as this can be any arbitrary repo and tag. It will default to the latest supported version of Fluent Bit.
-- `resources` (Attributes) Resources is the resource requirements for the sidecar container. Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--logging--server--sidecar--resources))
+- `configuration_mount_path` (String) ConfigurationMountPath is the location to mount the ConfigurationName Secret into the image.If another log shipping image is used that needs a different mount then modify this.Note that the configuration file must be called 'fluent-bit.conf' at the root of this path,there is no provision for overriding the name of the config file passed as theCOUCHBASE_LOGS_CONFIG_FILE environment variable.
+- `image` (String) Image is the image to be used to deal with logging as a sidecar.No validation is carried out as this can be any arbitrary repo and tag.It will default to the latest supported version of Fluent Bit.
+- `resources` (Attributes) Resources is the resource requirements for the sidecar container.Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--logging--server--sidecar--resources))
 
 <a id="nestedatt--spec--logging--server--sidecar--resources"></a>
 ### Nested Schema for `spec.logging.server.sidecar.resources`
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--logging--server--sidecar--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--logging--server--sidecar--resources--claims"></a>
+### Nested Schema for `spec.logging.server.sidecar.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 
@@ -1272,29 +1371,38 @@ Optional:
 
 Optional:
 
-- `prometheus` (Attributes) Prometheus provides integration with Prometheus monitoring. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus))
+- `prometheus` (Attributes) DEPRECATED - By Couchbase Server metrics endpoint on version 7.0+Prometheus provides integration with Prometheus monitoring. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus))
 
 <a id="nestedatt--spec--monitoring--prometheus"></a>
 ### Nested Schema for `spec.monitoring.prometheus`
 
 Required:
 
-- `image` (String) Image is the metrics image to be used to collect metrics. No validation is carried out as this can be any arbitrary repo and tag. enabled must be set to true, when image is provided.
+- `image` (String) Image is the metrics image to be used to collect metrics.No validation is carried out as this can be any arbitrary repo and tag.enabled must be set to true, when image is provided.
 
 Optional:
 
-- `authorization_secret` (String) AuthorizationSecret is the name of a Kubernetes secret that contains a bearer token to authorize GET requests to the metrics endpoint
-- `enabled` (Boolean) Enabled is a boolean that enables/disables the metrics sidecar container. This must be set to true, when image is provided.
-- `refresh_rate` (Number) RefreshRate is the frequency in which cached statistics are updated in seconds. Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+ Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.
-- `resources` (Attributes) Resources is the resource requirements for the metrics container. Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus--resources))
+- `authorization_secret` (String) AuthorizationSecret is the name of a Kubernetes secret that contains abearer token to authorize GET requests to the metrics endpoint
+- `enabled` (Boolean) Enabled is a boolean that enables/disables the metrics sidecar container.This must be set to true, when image is provided.
+- `refresh_rate` (Number) RefreshRate is the frequency in which cached statistics are updated in seconds.Shorter intervals will add additional resource overhead to clusters running Couchbase Server 7.0+Default is 60 seconds, Maximum value is 600 seconds, and minimum value is 1 second.
+- `resources` (Attributes) Resources is the resource requirements for the metrics container.Will be populated by Kubernetes defaults if not specified. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus--resources))
 
 <a id="nestedatt--spec--monitoring--prometheus--resources"></a>
 ### Nested Schema for `spec.monitoring.prometheus.resources`
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--monitoring--prometheus--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--monitoring--prometheus--resources--claims"></a>
+### Nested Schema for `spec.monitoring.prometheus.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 
@@ -1304,32 +1412,32 @@ Optional:
 
 Optional:
 
-- `address_family` (String) AddressFamily allows the manual selection of the address family to use. When this field is not set, Couchbase server will default to using IPv4 for internal communication and also support IPv6 on dual stack systems. Setting this field to either IPv4 or IPv6 will force Couchbase to use the selected protocol for internal communication, and also disable all other protocols to provide added security and simplicty when defining firewall rules.  Disabling of address families is only supported in Couchbase Server 7.0.2+.
-- `admin_console_service_template` (Attributes) AdminConsoleServiceTemplate provides a template used by the Operator to create and manage the admin console service.  This allows services to be annotated, the service type defined and any other options that Kubernetes provides.  When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template))
-- `admin_console_service_type` (String) DEPRECATED - by adminConsoleServiceTemplate. AdminConsoleServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.
-- `admin_console_services` (List of String) DEPRECATED - not required by Couchbase Server. AdminConsoleServices is a selector to choose specific services to expose via the admin console. This field may contain any of 'data', 'index', 'query', 'search', 'eventing' and 'analytics'.  Each service may only be included once.
-- `cloud_native_gateway` (Attributes) DEVELOPER PREVIEW - This feature is in developer preview. CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbase cluster. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway))
-- `disable_ui_over_http` (Boolean) DisableUIOverHTTP is used to explicitly enable and disable UI access over the HTTP protocol.  If not specified, this field defaults to false.
-- `disable_ui_over_https` (Boolean) DisableUIOverHTTPS is used to explicitly enable and disable UI access over the HTTPS protocol.  If not specified, this field defaults to false.
+- `address_family` (String) AddressFamily allows the manual selection of the address family to use.When this field is not set, Couchbase server will default to using IPv4for internal communication and also support IPv6 on dual stack systems.Setting this field to either IPv4 or IPv6 will force Couchbase to use theselected protocol for internal communication, and also disable all otherprotocols to provide added security and simplicty when defining firewallrules.  Disabling of address families is only supported in CouchbaseServer 7.0.2+.
+- `admin_console_service_template` (Attributes) AdminConsoleServiceTemplate provides a template used by the Operator to createand manage the admin console service.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template))
+- `admin_console_service_type` (String) DEPRECATED - by adminConsoleServiceTemplate.AdminConsoleServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.
+- `admin_console_services` (List of String) DEPRECATED - not required by Couchbase Server.AdminConsoleServices is a selector to choose specific services to expose via the adminconsole. This field may contain any of 'data', 'index', 'query', 'search', 'eventing'and 'analytics'.  Each service may only be included once.
+- `cloud_native_gateway` (Attributes) CloudNativeGateway is used to provision a gRPC gateway proxying a Couchbasecluster. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway))
+- `disable_ui_over_http` (Boolean) DisableUIOverHTTP is used to explicitly enable and disable UI access overthe HTTP protocol.  If not specified, this field defaults to false.
+- `disable_ui_over_https` (Boolean) DisableUIOverHTTPS is used to explicitly enable and disable UI access overthe HTTPS protocol.  If not specified, this field defaults to false.
 - `dns` (Attributes) DNS defines information required for Dynamic DNS support. (see [below for nested schema](#nestedatt--spec--networking--dns))
-- `expose_admin_console` (Boolean) ExposeAdminConsole creates a service referencing the admin console. The service is configured by the adminConsoleServiceTemplate field.
-- `exposed_feature_service_template` (Attributes) ExposedFeatureServiceTemplate provides a template used by the Operator to create and manage per-pod services.  This allows services to be annotated, the service type defined and any other options that Kubernetes provides.  When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operator reserves the right to modify or replace any field.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#service-v1-core (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template))
-- `exposed_feature_service_type` (String) DEPRECATED - by exposedFeatureServiceTemplate. ExposedFeatureServiceType defines whether to create a node port or load balancer service. When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled. This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.
-- `exposed_feature_traffic_policy` (String) DEPRECATED  - by exposedFeatureServiceTemplate. ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancer service to a Couchbase pod.  When local, traffic is routed directly to the pod.  When cluster, traffic is routed to any node, then forwarded on.  While cluster routing may be slower, there are some situations where it is required for connectivity.  This field must be either 'Cluster' or 'Local', defaulting to 'Local',
-- `exposed_features` (List of String) ExposedFeatures is a list of Couchbase features to expose when using a networking model that exposes the Couchbase cluster externally to Kubernetes.  This field also triggers the creation of per-pod services used by clients to connect to the Couchbase cluster.  When admin, only the administrator port is exposed, allowing remote administration.  When xdcr, only the services required for remote replication are exposed. The xdcr feature is only required when the cluster is the destination of an XDCR replication.  When client, all services are exposed as required for client SDK operation. This field may contain any of 'admin', 'xdcr' and 'client'.  Each feature may only be included once.
-- `load_balancer_source_ranges` (List of String) DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. LoadBalancerSourceRanges applies only when an exposed service is of type LoadBalancer and limits the source IP ranges that are allowed to use the service.  Items must use IPv4 class-less interdomain routing (CIDR) notation e.g. 10.0.0.0/16.
-- `network_platform` (String) NetworkPlatform is used to enable support for various networking technologies.  This field must be one of 'Istio'.
-- `service_annotations` (Map of String) DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate. ServiceAnnotations allows services to be annotated with custom labels. Operator annotations are merged on top of these so have precedence as they are required for correct operation.
-- `tls` (Attributes) TLS defines the TLS configuration for the cluster including server and client certificate configuration, and TLS security policies. (see [below for nested schema](#nestedatt--spec--networking--tls))
-- `wait_for_address_reachable` (String) WaitForAddressReachable is used to set the timeout between when polling of external addresses is started, and when it is deemed a failure.  Polling of DNS name availability inherently dangerous due to negative caching, so prefer the use of an initial 'waitForAddressReachableDelay' to allow propagation.
-- `wait_for_address_reachable_delay` (String) WaitForAddressReachableDelay is used to defer operator checks that ensure external addresses are reachable before new nodes are balanced in to the cluster.  This prevents negative DNS caching while waiting for external-DDNS controllers to propagate addresses.
+- `expose_admin_console` (Boolean) ExposeAdminConsole creates a service referencing the admin console.The service is configured by the adminConsoleServiceTemplate field.
+- `exposed_feature_service_template` (Attributes) ExposedFeatureServiceTemplate provides a template used by the Operator to createand manage per-pod services.  This allows services to be annotated, theservice type defined and any other options that Kubernetes provides.  When usinga LoadBalancer service type, TLS and dynamic DNS must also be enabled. The Operatorreserves the right to modify or replace any field.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#service-v1-core (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template))
+- `exposed_feature_service_type` (String) DEPRECATED - by exposedFeatureServiceTemplate.ExposedFeatureServiceType defines whether to create a node port or load balancer service.When using a LoadBalancer service type, TLS and dynamic DNS must also be enabled.This field must be one of 'NodePort' or 'LoadBalancer', defaulting to 'NodePort'.
+- `exposed_feature_traffic_policy` (String) DEPRECATED  - by exposedFeatureServiceTemplate.ExposedFeatureTrafficPolicy defines how packets should be routed from a load balancerservice to a Couchbase pod.  When local, traffic is routed directly to the pod.  Whencluster, traffic is routed to any node, then forwarded on.  While cluster routing may beslower, there are some situations where it is required for connectivity.  This fieldmust be either 'Cluster' or 'Local', defaulting to 'Local',
+- `exposed_features` (List of String) ExposedFeatures is a list of Couchbase features to expose when using a networkingmodel that exposes the Couchbase cluster externally to Kubernetes.  This field alsotriggers the creation of per-pod services used by clients to connect to the Couchbasecluster.  When admin, only the administrator port is exposed, allowing remoteadministration.  When xdcr, only the services required for remote replication are exposed.The xdcr feature is only required when the cluster is the destination of an XDCRreplication.  When client, all services are exposed as required for client SDK operation.This field may contain any of 'admin', 'xdcr' and 'client'.  Each feature may only beincluded once.
+- `load_balancer_source_ranges` (List of String) DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.LoadBalancerSourceRanges applies only when an exposed service is of typeLoadBalancer and limits the source IP ranges that are allowed to use theservice.  Items must use IPv4 class-less interdomain routing (CIDR) notatione.g. 10.0.0.0/16.
+- `network_platform` (String) NetworkPlatform is used to enable support for various networkingtechnologies.  This field must be one of 'Istio'.
+- `service_annotations` (Map of String) DEPRECATED - by adminConsoleServiceTemplate and exposedFeatureServiceTemplate.ServiceAnnotations allows services to be annotated with custom labels.Operator annotations are merged on top of these so have precedence asthey are required for correct operation.
+- `tls` (Attributes) TLS defines the TLS configuration for the cluster includingserver and client certificate configuration, and TLS security policies. (see [below for nested schema](#nestedatt--spec--networking--tls))
+- `wait_for_address_reachable` (String) WaitForAddressReachable is used to set the timeout between when polling ofexternal addresses is started, and when it is deemed a failure.  Polling ofDNS name availability inherently dangerous due to negative caching, so preferthe use of an initial 'waitForAddressReachableDelay' to allow propagation.
+- `wait_for_address_reachable_delay` (String) WaitForAddressReachableDelay is used to defer operator checks thatensure external addresses are reachable before new nodes are balancedin to the cluster.  This prevents negative DNS caching while waitingfor external-DDNS controllers to propagate addresses.
 
 <a id="nestedatt--spec--networking--admin_console_service_template"></a>
 ### Nested Schema for `spec.networking.admin_console_service_template`
 
 Optional:
 
-- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbase resource templates. (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template--metadata))
+- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbaseresource templates. (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template--metadata))
 - `spec` (Attributes) ServiceSpec describes the attributes that a user creates on a service. (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template--spec))
 
 <a id="nestedatt--spec--networking--admin_console_service_template--metadata"></a>
@@ -1337,8 +1445,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--networking--admin_console_service_template--spec"></a>
@@ -1346,22 +1454,22 @@ Optional:
 
 Optional:
 
-- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.
-- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address.  Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value.  This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.
-- `external_name` (String) externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved.  Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
-- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.
-- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used.  If not specified, a value will be automatically allocated.  External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.
-- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).
-- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
-- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
-- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
-- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
-- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
-- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.
+- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.
+- `external_name` (String) externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
+- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.
+- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.
+- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.
+- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
+- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.
+- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains the configurations of session affinity. (see [below for nested schema](#nestedatt--spec--networking--admin_console_service_template--spec--session_affinity_config))
-- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 <a id="nestedatt--spec--networking--admin_console_service_template--spec--session_affinity_config"></a>
 ### Nested Schema for `spec.networking.admin_console_service_template.spec.session_affinity_config`
@@ -1375,7 +1483,7 @@ Optional:
 
 Optional:
 
-- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).
 
 
 
@@ -1386,18 +1494,20 @@ Optional:
 
 Required:
 
-- `image` (String) DEVELOPER PREVIEW - This feature is in developer preview. Image is the Cloud Native Gateway image to be used to run the sidecar container. No validation is carried out as this can be any arbitrary repo and tag. TODO: provide a default kubebuilder default image tag as field is mandatory.
+- `image` (String) Image is the Cloud Native Gateway image to be used to run the sidecar container.No validation is carried out as this can be any arbitrary repo and tag.TODO: provide a default kubebuilder default image tag as field is mandatory.
+- `log_level` (String) DEVELOPER PREVIEW - This feature is in developer preview.LogLevel controls the verbosity of cloud native logs.  This field must be one of'fatal', 'panic', 'dpanic', 'error', 'warn', 'info', 'debug' defaulting to 'info'.
 
 Optional:
 
-- `tls` (Attributes) DEVELOPER PREVIEW - This feature is in developer preview. TLS defines the TLS configuration for the Cloud Native Gateway server including server and client certificate configuration, and TLS security policies. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway--tls))
+- `termination_grace_period_seconds` (Number) TerminationGracePeriodSeconds specifies the grace period for the container toterminate. Defaults to 75 seconds.
+- `tls` (Attributes) TLS defines the TLS configuration for the Cloud Native Gateway server includingserver and client certificate configuration, and TLS security policies.If no TLS config are explicitly provided, the operator generates/manages self-signed certs/keysand creates a k8s secret named 'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>'unique to a Couchbase cluster, which is volume mounted to the cb k8s pod.This action could be overidden at the outset or later, by using the belowTLS config or generating the secret of same name as'couchbase-cloud-native-gateway-self-signed-secret-<cluster-name>' with certificatesconforming to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'.N.B. The secret is on per cluster basis so it's advised to use the unique cluster name elsewould be ignored. (see [below for nested schema](#nestedatt--spec--networking--cloud_native_gateway--tls))
 
 <a id="nestedatt--spec--networking--cloud_native_gateway--tls"></a>
 ### Nested Schema for `spec.networking.cloud_native_gateway.tls`
 
 Optional:
 
-- `server_secret_name` (String) DEVELOPER PREVIEW - This feature is in developer preview. ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains Cloud Native Gateway gRPC server TLS data. The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type.
+- `server_secret_name` (String) ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains Cloud Native Gateway gRPC server TLS data.The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.
 
 
 
@@ -1406,7 +1516,7 @@ Optional:
 
 Optional:
 
-- `domain` (String) Domain is the domain to create pods in.  When populated the Operator will annotate the admin console and per-pod services with the key 'external-dns.alpha.kubernetes.io/hostname'.  These annotations can be used directly by a Kubernetes External-DNS controller to replicate load balancer service IP addresses into a public DNS server.
+- `domain` (String) Domain is the domain to create pods in.  When populated the Operatorwill annotate the admin console and per-pod services with the key'external-dns.alpha.kubernetes.io/hostname'.  These annotations canbe used directly by a Kubernetes External-DNS controller to replicateload balancer service IP addresses into a public DNS server.
 
 
 <a id="nestedatt--spec--networking--exposed_feature_service_template"></a>
@@ -1414,7 +1524,7 @@ Optional:
 
 Optional:
 
-- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbase resource templates. (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template--metadata))
+- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbaseresource templates. (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template--metadata))
 - `spec` (Attributes) ServiceSpec describes the attributes that a user creates on a service. (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template--spec))
 
 <a id="nestedatt--spec--networking--exposed_feature_service_template--metadata"></a>
@@ -1422,8 +1532,8 @@ Optional:
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--networking--exposed_feature_service_template--spec"></a>
@@ -1431,22 +1541,22 @@ Optional:
 
 Optional:
 
-- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is 'true'. It may be set to 'false' if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.
-- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address.  Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value.  This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are 'None', empty string (''), or a valid IP address. Setting this to 'None' makes a 'headless service' (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
-- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.
-- `external_name` (String) externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved.  Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
-- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service's 'externally-facing' addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get 'Cluster' semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.
-- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service. This only applies when type is set to LoadBalancer and externalTrafficPolicy is set to Local. If a value is specified, is in-range, and is not in use, it will be used.  If not specified, a value will be automatically allocated.  External systems (e.g. load-balancers) can use this port to determine if a given node holds endpoints for this service or not.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type). This field cannot be updated once set.
-- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic they receive on the ClusterIP. If set to 'Local', the proxy will assume that pods only want to talk to endpoints of the service on the same node as the pod, dropping the traffic if there are no local endpoints. The default value, 'Cluster', uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features).
-- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ipFamilyPolicy field. If this field is specified manually, the requested family is available in the cluster, and ipFamilyPolicy allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. Valid values are 'IPv4' and 'IPv6'.  This field only applies to Services of types ClusterIP, NodePort, and LoadBalancer, and does apply to 'headless' services. This field will be wiped when updating a Service to type ExternalName.  This field may hold a maximum of two entries (dual-stack families, in either order).  These families must correspond to the values of the clusterIPs field, if specified. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field.
-- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to SingleStack. Services can be 'SingleStack' (a single IP family), 'PreferDualStack' (two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or 'RequireDualStack' (two IP families on dual-stack configured clusters, otherwise fail). The ipFamilies and clusterIPs fields depend on the value of this field. This field will be wiped when updating a service to type ExternalName.
-- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix, e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users. This field can only be set when the Service type is 'LoadBalancer'. If not set, the default load balancer implementation is used, today this is typically done through the cloud provider integration, but should apply for any default implementation. If set, it is assumed that a load balancer implementation is watching for Services with a matching class. Any default load balancer implementation (e.g. cloud providers) should ignore Services that set this field. This field can only be set when creating or updating a Service to type 'LoadBalancer'. Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
-- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
-- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature.' More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
-- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `allocate_load_balancer_node_ports` (Boolean) allocateLoadBalancerNodePorts defines if NodePorts will be automaticallyallocated for services with type LoadBalancer.  Default is 'true'. Itmay be set to 'false' if the cluster load-balancer does not rely onNodePorts.  If the caller requests specific NodePorts (by specifying avalue), those requests will be respected, regardless of this field.This field may only be set for services with type LoadBalancer and willbe cleared if the type is changed to any other type.
+- `cluster_i_ps` (List of String) ClusterIPs is a list of IP addresses assigned to this service, and areusually assigned randomly.  If an address is specified manually, isin-range (as per system configuration), and is not in use, it will beallocated to the service; otherwise creation of the service will fail.This field may not be changed through updates unless the type field isalso being changed to ExternalName (which requires this field to beempty) or the type field is being changed from ExternalName (in whichcase this field may optionally be specified, as describe above).  Validvalues are 'None', empty string (''), or a valid IP address.  Settingthis to 'None' makes a 'headless service' (no virtual IP), which isuseful when direct endpoint connections are preferred and proxying isnot required.  Only applies to types ClusterIP, NodePort, andLoadBalancer. If this field is specified when creating a Service of typeExternalName, creation will fail. This field will be wiped when updatinga Service to type ExternalName.  If this field is not specified, it willbe initialized from the clusterIP field.  If this field is specified,clients must ensure that clusterIPs[0] and clusterIP have the samevalue.This field may hold a maximum of two entries (dual-stack IPs, in either order).These IPs must correspond to the values of the ipFamilies field. BothclusterIPs and ipFamilies are governed by the ipFamilyPolicy field.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `cluster_ip` (String) clusterIP is the IP address of the service and is usually assignedrandomly. If an address is specified manually, is in-range (as persystem configuration), and is not in use, it will be allocated to theservice; otherwise creation of the service will fail. This field may notbe changed through updates unless the type field is also being changedto ExternalName (which requires this field to be blank) or the typefield is being changed from ExternalName (in which case this field mayoptionally be specified, as describe above).  Valid values are 'None',empty string (''), or a valid IP address. Setting this to 'None' makes a'headless service' (no virtual IP), which is useful when direct endpointconnections are preferred and proxying is not required.  Only applies totypes ClusterIP, NodePort, and LoadBalancer. If this field is specifiedwhen creating a Service of type ExternalName, creation will fail. Thisfield will be wiped when updating a Service to type ExternalName.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+- `external_i_ps` (List of String) externalIPs is a list of IP addresses for which nodes in the clusterwill also accept traffic for this service.  These IPs are not managed byKubernetes.  The user is responsible for ensuring that traffic arrivesat a node with this IP.  A common example is external load-balancersthat are not part of the Kubernetes system.
+- `external_name` (String) externalName is the external reference that discovery mechanisms willreturn as an alias for this service (e.g. a DNS CNAME record). Noproxying will be involved.  Must be a lowercase RFC-1123 hostname(https://tools.ietf.org/html/rfc1123) and requires 'type' to be 'ExternalName'.
+- `external_traffic_policy` (String) externalTrafficPolicy describes how nodes distribute service traffic theyreceive on one of the Service's 'externally-facing' addresses (NodePorts,ExternalIPs, and LoadBalancer IPs). If set to 'Local', the proxy will configurethe service in a way that assumes that external load balancers will take careof balancing the service traffic between nodes, and so each node will delivertraffic only to the node-local endpoints of the service, without masqueradingthe client source IP. (Traffic mistakenly sent to a node with no endpoints willbe dropped.) The default value, 'Cluster', uses the standard behavior ofrouting to all endpoints evenly (possibly modified by topology and otherfeatures). Note that traffic sent to an External IP or LoadBalancer IP fromwithin the cluster will always get 'Cluster' semantics, but clients sending toa NodePort from within the cluster may need to take traffic policy into accountwhen picking a node.
+- `health_check_node_port` (Number) healthCheckNodePort specifies the healthcheck nodePort for the service.This only applies when type is set to LoadBalancer andexternalTrafficPolicy is set to Local. If a value is specified, isin-range, and is not in use, it will be used.  If not specified, a valuewill be automatically allocated.  External systems (e.g. load-balancers)can use this port to determine if a given node holds endpoints for thisservice or not.  If this field is specified when creating a Servicewhich does not need it, creation will fail. This field will be wipedwhen updating a Service to no longer need it (e.g. changing type).This field cannot be updated once set.
+- `internal_traffic_policy` (String) InternalTrafficPolicy describes how nodes distribute service traffic theyreceive on the ClusterIP. If set to 'Local', the proxy will assume that podsonly want to talk to endpoints of the service on the same node as the pod,dropping the traffic if there are no local endpoints. The default value,'Cluster', uses the standard behavior of routing to all endpoints evenly(possibly modified by topology and other features).
+- `ip_families` (List of String) IPFamilies is a list of IP families (e.g. IPv4, IPv6) assigned to thisservice. This field is usually assigned automatically based on clusterconfiguration and the ipFamilyPolicy field. If this field is specifiedmanually, the requested family is available in the cluster,and ipFamilyPolicy allows it, it will be used; otherwise creation ofthe service will fail. This field is conditionally mutable: it allowsfor adding or removing a secondary IP family, but it does not allowchanging the primary IP family of the Service. Valid values are 'IPv4'and 'IPv6'.  This field only applies to Services of types ClusterIP,NodePort, and LoadBalancer, and does apply to 'headless' services.This field will be wiped when updating a Service to type ExternalName.This field may hold a maximum of two entries (dual-stack families, ineither order).  These families must correspond to the values of theclusterIPs field, if specified. Both clusterIPs and ipFamilies aregoverned by the ipFamilyPolicy field.
+- `ip_family_policy` (String) IPFamilyPolicy represents the dual-stack-ness requested or required bythis Service. If there is no value provided, then this field will be setto SingleStack. Services can be 'SingleStack' (a single IP family),'PreferDualStack' (two IP families on dual-stack configured clusters ora single IP family on single-stack clusters), or 'RequireDualStack'(two IP families on dual-stack configured clusters, otherwise fail). TheipFamilies and clusterIPs fields depend on the value of this field. Thisfield will be wiped when updating a service to type ExternalName.
+- `load_balancer_class` (String) loadBalancerClass is the class of the load balancer implementation this Service belongs to.If specified, the value of this field must be a label-style identifier, with an optional prefix,e.g. 'internal-vip' or 'example.com/internal-vip'. Unprefixed names are reserved for end-users.This field can only be set when the Service type is 'LoadBalancer'. If not set, the default loadbalancer implementation is used, today this is typically done through the cloud provider integration,but should apply for any default implementation. If set, it is assumed that a load balancerimplementation is watching for Services with a matching class. Any default load balancerimplementation (e.g. cloud providers) should ignore Services that set this field.This field can only be set when creating or updating a Service to type 'LoadBalancer'.Once set, it can not be changed. This field will be wiped when a service is updated to a non 'LoadBalancer' type.
+- `load_balancer_ip` (String) Only applies to Service Type: LoadBalancer.This feature depends on whether the underlying cloud-provider supports specifyingthe loadBalancerIP when a load balancer is created.This field will be ignored if the cloud-provider does not support the feature.Deprecated: This field was under-specified and its meaning varies across implementations.Using it is non-portable and it may not support dual-stack.Users are encouraged to use implementation-specific annotations when available.
+- `load_balancer_source_ranges` (List of String) If specified and supported by the platform, this will restrict traffic through the cloud-providerload-balancer will be restricted to the specified client IPs. This field will be ignored if thecloud-provider does not support the feature.'More info: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/
+- `session_affinity` (String) Supports 'ClientIP' and 'None'. Used to maintain session affinity.Enable client IP based session affinity.Must be ClientIP or None.Defaults to None.More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 - `session_affinity_config` (Attributes) sessionAffinityConfig contains the configurations of session affinity. (see [below for nested schema](#nestedatt--spec--networking--exposed_feature_service_template--spec--session_affinity_config))
-- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. 'ClusterIP' allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object or EndpointSlice objects. If clusterIP is 'None', no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a virtual IP. 'NodePort' builds on ClusterIP and allocates a port on every node which routes to the same endpoints as the clusterIP. 'LoadBalancer' builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. 'ExternalName' aliases this service to the specified externalName. Several other fields do not apply to ExternalName services. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+- `type` (String) type determines how the Service is exposed. Defaults to ClusterIP. Validoptions are ExternalName, ClusterIP, NodePort, and LoadBalancer.'ClusterIP' allocates a cluster-internal IP address for load-balancingto endpoints. Endpoints are determined by the selector or if that is notspecified, by manual construction of an Endpoints object orEndpointSlice objects. If clusterIP is 'None', no virtual IP isallocated and the endpoints are published as a set of endpoints ratherthan a virtual IP.'NodePort' builds on ClusterIP and allocates a port on every node whichroutes to the same endpoints as the clusterIP.'LoadBalancer' builds on NodePort and creates an external load-balancer(if supported in the current cloud) which routes to the same endpointsas the clusterIP.'ExternalName' aliases this service to the specified externalName.Several other fields do not apply to ExternalName services.More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
 
 <a id="nestedatt--spec--networking--exposed_feature_service_template--spec--session_affinity_config"></a>
 ### Nested Schema for `spec.networking.exposed_feature_service_template.spec.session_affinity_config`
@@ -1460,7 +1570,7 @@ Optional:
 
 Optional:
 
-- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'. Default value is 10800(for 3 hours).
+- `timeout_seconds` (Number) timeoutSeconds specifies the seconds of ClientIP type session sticky time.The value must be >0 && <=86400(for 1 day) if ServiceAffinity == 'ClientIP'.Default value is 10800(for 3 hours).
 
 
 
@@ -1471,28 +1581,28 @@ Optional:
 
 Optional:
 
-- `allow_plain_text_cert_reload` (Boolean) AllowPlainTextCertReload allows the reload of TLS certificates in plain text. This option should only be enabled as a means to recover connectivity with server in the event that any of the server certificates expire. When enabled the Operator only attempts plain text cert reloading when expired certificates are detected.
-- `cipher_suites` (List of String) CipherSuites specifies a list of cipher suites for Couchbase server to select from when negotiating TLS handshakes with a client.  Suites are not validated by the Operator.  Run 'openssl ciphers -v' in a Couchbase server pod to interrogate supported values.
-- `client_certificate_paths` (Attributes List) ClientCertificatePaths defines where to look in client certificates in order to extract the user name. (see [below for nested schema](#nestedatt--spec--networking--tls--client_certificate_paths))
-- `client_certificate_policy` (String) ClientCertificatePolicy defines the client authentication policy to use. If set, the Operator expects TLS configuration to contain a valid certificate/key pair for the Administrator account.
-- `node_to_node_encryption` (String) NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodes within the same cluster.  This may come at the expense of performance.  When control plane only encryption is used, only cluster management traffic is encrypted between nodes.  When all, all traffic is encrypted, including database documents. When strict mode is used, it is the same as all, but also disables all plaintext ports.  Strict mode is only available on Couchbase Server versions 7.1 and greater. Node to node encryption can only be used when TLS certificates are managed by the Operator.  This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.
-- `passphrase` (Attributes) PassphraseConfig configures the passphrase key to use with encrypted certificates. The passphrase may be registered with Couchbase Server using a local script or a rest endpoint. Private key encryption is only available on Couchbase Server versions 7.1 and greater. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase))
-- `root_c_as` (List of String) RootCAs defines a set of secrets that reside in this namespace that contain additional CA certificates that should be installed in Couchbase.  The CA certificates that are defined here are in addition to those defined for the cluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, and thus should not be duplicated.  Each Secret referred to must be of well-known type 'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater, and not with legacy couchbaseclusters.spec.networking.tls.static configuration.
-- `secret_source` (Attributes) SecretSource enables the user to specify a secret conforming to the Kubernetes TLS secret specification that is used for the Couchbase server certificate, and optionally the Operator's client certificate, providing cert-manager compatibility without having to specify a separate root CA.  A server CA certificate must be supplied by one of the provided methods. Certificates referred to must conform to the keys of well-known type 'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encrypted private key then the secret type can be the generic Opaque type since 'kubernetes.io/tls' type secrets cannot verify encrypted keys. (see [below for nested schema](#nestedatt--spec--networking--tls--secret_source))
-- `static` (Attributes) DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource. Static enables user to generate static x509 certificates and keys, put them into Kubernetes secrets, and specify them here.  Static secrets are Couchbase specific, and follow no well-known standards. (see [below for nested schema](#nestedatt--spec--networking--tls--static))
-- `tls_minimum_version` (String) TLSMinimumVersion specifies the minimum TLS version the Couchbase server can negotiate with a client.  Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3, defaulting to TLS1.2.  TLS1.3 is only valid for Couchbase Server 7.1.0 onward.
+- `allow_plain_text_cert_reload` (Boolean) AllowPlainTextCertReload allows the reload of TLS certificates in plain text.This option should only be enabled as a means to recover connectivity withserver in the event that any of the server certificates expire. When enabledthe Operator only attempts plain text cert reloading when expired certificatesare detected.
+- `cipher_suites` (List of String) CipherSuites specifies a list of cipher suites for Couchbase server to selectfrom when negotiating TLS handshakes with a client.  Suites are not validatedby the Operator.  Run 'openssl ciphers -v' in a Couchbase server pod tointerrogate supported values.
+- `client_certificate_paths` (Attributes List) ClientCertificatePaths defines where to look in client certificates in orderto extract the user name. (see [below for nested schema](#nestedatt--spec--networking--tls--client_certificate_paths))
+- `client_certificate_policy` (String) ClientCertificatePolicy defines the client authentication policy to use.If set, the Operator expects TLS configuration to contain a valid certificate/key pairfor the Administrator account.
+- `node_to_node_encryption` (String) NodeToNodeEncryption specifies whether to encrypt data between Couchbase nodeswithin the same cluster.  This may come at the expense of performance.  Whencontrol plane only encryption is used, only cluster management traffic is encryptedbetween nodes.  When all, all traffic is encrypted, including database documents.When strict mode is used, it is the same as all, but also disables all plaintextports.  Strict mode is only available on Couchbase Server versions 7.1 and greater.Node to node encryption can only be used when TLS certificates are managed by theOperator.  This field must be either 'ControlPlaneOnly', 'All', or 'Strict'.
+- `passphrase` (Attributes) PassphraseConfig configures the passphrase key to use with encrypted certificates.The passphrase may be registered with Couchbase Server using a local script or arest endpoint. Private key encryption is only available on Couchbase Serverversions 7.1 and greater. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase))
+- `root_c_as` (List of String) RootCAs defines a set of secrets that reside in this namespace that containadditional CA certificates that should be installed in Couchbase.  The CAcertificates that are defined here are in addition to those defined for thecluster, optionally by couchbaseclusters.spec.networking.tls.secretSource, andthus should not be duplicated.  Each Secret referred to must be of well-known type'kubernetes.io/tls' and must contain one or more CA certificates under the key 'tls.crt'.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater,and not with legacy couchbaseclusters.spec.networking.tls.static configuration.
+- `secret_source` (Attributes) SecretSource enables the user to specify a secret conforming to the Kubernetes TLSsecret specification that is used for the Couchbase server certificate, and optionallythe Operator's client certificate, providing cert-manager compatibility without havingto specify a separate root CA.  A server CA certificate must be supplied by one of theprovided methods. Certificates referred to must conform to the keys of well-known type'kubernetes.io/tls' with 'tls.crt' and 'tls.key'. If the 'tls.key' is an encryptedprivate key then the secret type can be the generic Opaque type since 'kubernetes.io/tls'type secrets cannot verify encrypted keys. (see [below for nested schema](#nestedatt--spec--networking--tls--secret_source))
+- `static` (Attributes) DEPRECATED - by couchbaseclusters.spec.networking.tls.secretSource.Static enables user to generate static x509 certificates and keys,put them into Kubernetes secrets, and specify them here.  Static secretsare Couchbase specific, and follow no well-known standards. (see [below for nested schema](#nestedatt--spec--networking--tls--static))
+- `tls_minimum_version` (String) TLSMinimumVersion specifies the minimum TLS version the Couchbase server cannegotiate with a client.  Must be one of TLS1.0, TLS1.1 TLS1.2 or TLS1.3,defaulting to TLS1.2.  TLS1.3 is only valid for Couchbase Server 7.1.0 onward.TLS1.0 and TLS1.1 are not valid for Couchbase Server 7.6.0 onward.
 
 <a id="nestedatt--spec--networking--tls--client_certificate_paths"></a>
 ### Nested Schema for `spec.networking.tls.client_certificate_paths`
 
 Required:
 
-- `path` (String) Path defines where in the X.509 specification to extract the username from. This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or  'san.email'.
+- `path` (String) Path defines where in the X.509 specification to extract the username from.This field must be either 'subject.cn', 'san.uri', 'san.dnsname' or  'san.email'.
 
 Optional:
 
-- `delimiter` (String) Delimiter if specified allows a suffix to be stripped from the username, once extracted from the certificate path.
-- `prefix` (String) Prefix allows a prefix to be stripped from the username, once extracted from the certificate path.
+- `delimiter` (String) Delimiter if specified allows a suffix to be stripped from the username, onceextracted from the certificate path.
+- `prefix` (String) Prefix allows a prefix to be stripped from the username, once extracted from thecertificate path.
 
 
 <a id="nestedatt--spec--networking--tls--passphrase"></a>
@@ -1500,15 +1610,15 @@ Optional:
 
 Optional:
 
-- `rest` (Attributes) PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint. When the private key is accessed, Couchbase Server attempts to extract the password by means of the specified endpoint. The response status must be 200 and the response text must be the exact passphrase excluding newlines and extraneous spaces. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase--rest))
-- `script` (Attributes) PassphraseScriptConfig is the configuration to register a private key passphrase with a script. The Operator auto-provisions the underlying script so this config simply provides a mechanism to perform the decryption of the Couchbase Private Key using a local script. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase--script))
+- `rest` (Attributes) PassphraseRestConfig is the configuration to register a private key passphrase with a rest endpoint.When the private key is accessed, Couchbase Server attempts to extract the password by means of thespecified endpoint. The response status must be 200 and the response text must be the exact passphraseexcluding newlines and extraneous spaces. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase--rest))
+- `script` (Attributes) PassphraseScriptConfig is the configuration to register a private key passphrase with a script.The Operator auto-provisions the underlying script so this config simply provides a mechanismto perform the decryption of the Couchbase Private Key using a local script. (see [below for nested schema](#nestedatt--spec--networking--tls--passphrase--script))
 
 <a id="nestedatt--spec--networking--tls--passphrase--rest"></a>
 ### Nested Schema for `spec.networking.tls.passphrase.rest`
 
 Required:
 
-- `url` (String) URL is the endpoint to be called to retrieve the passphrase. URL will be called using the GET method and may use http/https protocol.
+- `url` (String) URL is the endpoint to be called to retrieve the passphrase.URL will be called using the GET method and may use http/https protocol.
 
 Optional:
 
@@ -1523,7 +1633,7 @@ Optional:
 
 Required:
 
-- `secret` (String) Secret is the secret containing the passphrase string. The secret is expected to contain 'passphrase' key with the passphrase string as a value.
+- `secret` (String) Secret is the secret containing the passphrase string. The secret is expectedto contain 'passphrase' key with the passphrase string as a value.
 
 
 
@@ -1532,11 +1642,11 @@ Required:
 
 Required:
 
-- `server_secret_name` (String) ServerSecretName specifies the secret name, in the same namespace as the cluster, that contains server TLS data.  The secret is expected to contain 'tls.crt' and 'tls.key' as per the kubernetes.io/tls secret type.  It may also contain 'ca.crt'. Only a single PEM formated x509 certificate can be provided to 'ca.crt'. The single certificate may also bundle together multiple root CA certificates. Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.
+- `server_secret_name` (String) ServerSecretName specifies the secret name, in the same namespace as the cluster,that contains server TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the kubernetes.io/tls secret type.  It may also contain 'ca.crt'.Only a single PEM formated x509 certificate can be provided to 'ca.crt'.The single certificate may also bundle together multiple root CA certificates.Multiple root CA certificates are only supported on Couchbase Server 7.1 and greater.
 
 Optional:
 
-- `client_secret_name` (String) ClientSecretName specifies the secret name, in the same namespace as the cluster, the contains client TLS data.  The secret is expected to contain 'tls.crt' and 'tls.key' as per the Kubernetes.io/tls secret type.
+- `client_secret_name` (String) ClientSecretName specifies the secret name, in the same namespace as the cluster,the contains client TLS data.  The secret is expected to contain 'tls.crt' and'tls.key' as per the Kubernetes.io/tls secret type.
 
 
 <a id="nestedatt--spec--networking--tls--static"></a>
@@ -1544,8 +1654,8 @@ Optional:
 
 Optional:
 
-- `operator_secret` (String) OperatorSecret is a secret name containing TLS certs used by operator to talk securely to this cluster.  The secret must contain a CA certificate (data key ca.crt).  If client authentication is enabled, then the secret must also contain a client certificate chain (data key 'couchbase-operator.crt') and private key (data key 'couchbase-operator.key').
-- `server_secret` (String) ServerSecret is a secret name containing TLS certs used by each Couchbase member pod for the communication between Couchbase server and its clients.  The secret must contain a certificate chain (data key 'chain.pem') and a private key (data key 'pkey.key').  The private key must be in the PKCS#1 RSA format.  The certificate chain must have a required set of X.509v3 subject alternative names for all cluster addressing modes.  See the Operator TLS documentation for more information.
+- `operator_secret` (String) OperatorSecret is a secret name containing TLS certs used by operator totalk securely to this cluster.  The secret must contain a CA certificate (data keyca.crt).  If client authentication is enabled, then the secret must also containa client certificate chain (data key 'couchbase-operator.crt') and private key(data key 'couchbase-operator.key').
+- `server_secret` (String) ServerSecret is a secret name containing TLS certs used by each Couchbase member podfor the communication between Couchbase server and its clients.  The secret mustcontain a certificate chain (data key 'chain.pem') and a privatekey (data key 'pkey.key').  The private key must be in the PKCS#1 RSAformat.  The certificate chain must have a required set of X.509v3 subject alternativenames for all cluster addressing modes.  See the Operator TLS documentation for moreinformation.
 
 
 
@@ -1555,8 +1665,8 @@ Optional:
 
 Optional:
 
-- `max_upgradable` (Number) MaxUpgradable allows the number of pods affected by an upgrade at any one time to be increased.  By default a rolling upgrade will upgrade one pod at a time.  This field allows that limit to be removed. This field must be greater than zero. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.
-- `max_upgradable_percent` (String) MaxUpgradablePercent allows the number of pods affected by an upgrade at any one time to be increased.  By default a rolling upgrade will upgrade one pod at a time.  This field allows that limit to be removed. This field must be an integer percentage, e.g. '10%', in the range 1% to 100%. Percentages are relative to the total cluster size, and rounded down to the nearest whole number, with a minimum of 1.  For example, a 10 pod cluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration, rounded down to 2. The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence if both are defined.
+- `max_upgradable` (Number) MaxUpgradable allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be greater than zero.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.
+- `max_upgradable_percent` (String) MaxUpgradablePercent allows the number of pods affected by an upgrade at anyone time to be increased.  By default a rolling upgrade willupgrade one pod at a time.  This field allows that limit to be removed.This field must be an integer percentage, e.g. '10%', in the range 1% to 100%.Percentages are relative to the total cluster size, and rounded down tothe nearest whole number, with a minimum of 1.  For example, a 10 podcluster, and 25% allowed to upgrade, would yield 2.5 pods per iteration,rounded down to 2.The smallest of 'maxUpgradable' and 'maxUpgradablePercent' takes precedence ifboth are defined.
 
 
 <a id="nestedatt--spec--security_context"></a>
@@ -1564,16 +1674,16 @@ Optional:
 
 Optional:
 
-- `fs_group` (Number) A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows.
-- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_group` (Number) The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
-- `run_as_user` (Number) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows.
-- `se_linux_options` (Attributes) The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
-- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows.
-- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--sysctls))
-- `windows_options` (Attributes) The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
+- `fs_group` (Number) A special supplemental group that applies to all containers in a pod.Some volume types allow the Kubelet to change the ownership of that volumeto be owned by the pod:1. The owning GID will be the FSGroup2. The setgid bit is set (new files created in the volume will be owned by FSGroup)3. The permission bits are OR'd with rw-rw----If unset, the Kubelet will not modify the ownership and permissions of any volume.Note that this field cannot be set when spec.os.name is windows.
+- `fs_group_change_policy` (String) fsGroupChangePolicy defines behavior of changing ownership and permission of the volumebefore being exposed inside Pod. This field will only apply tovolume types which support fsGroup based ownership(and permissions).It will have no effect on ephemeral volume types such as: secret, configmapsand emptydir.Valid values are 'OnRootMismatch' and 'Always'. If not specified, 'Always' is used.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.
+- `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
+- `run_as_user` (Number) The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.
+- `se_linux_options` (Attributes) The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--se_linux_options))
+- `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--seccomp_profile))
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.
+- `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--security_context--sysctls))
+- `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--security_context--windows_options))
 
 <a id="nestedatt--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.security_context.se_linux_options`
@@ -1591,11 +1701,11 @@ Optional:
 
 Required:
 
-- `type` (String) type indicates which kind of seccomp profile will be applied. Valid options are:  Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+- `type` (String) type indicates which kind of seccomp profile will be applied.Valid options are:Localhost - a profile defined in a file on the node should be used.RuntimeDefault - the container runtime default profile should be used.Unconfined - no profile should be applied.
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--security_context--sysctls"></a>
@@ -1612,10 +1722,10 @@ Required:
 
 Optional:
 
-- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
+- `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true.
-- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.
+- `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
 
@@ -1624,20 +1734,20 @@ Optional:
 
 Required:
 
-- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbase resource templates. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--metadata))
-- `spec` (Attributes) PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec))
+- `metadata` (Attributes) Standard objects metadata.  This is a curated version for use with Couchbaseresource templates. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--metadata))
+- `spec` (Attributes) PersistentVolumeClaimSpec describes the common attributes of storage devicesand allows a Source for provider-specific attributes (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec))
 
 <a id="nestedatt--spec--volume_claim_templates--metadata"></a>
 ### Nested Schema for `spec.volume_claim_templates.metadata`
 
 Required:
 
-- `name` (String) Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
+- `name` (String) Name must be unique within a namespace. Is required when creatingresources, although some resources may allow a client to request thegeneration of an appropriate name automatically. Name is primarily intendedfor creation idempotence and configuration definition. Cannot be updated.More info: http://kubernetes.io/docs/user-guide/identifiers#names
 
 Optional:
 
-- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
-- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
+- `annotations` (Map of String) Annotations is an unstructured key value map stored with a resource thatmay be set by external tools to store and retrieve arbitrary metadata. Theyare not queryable and should be preserved when modifying objects. Moreinfo: http://kubernetes.io/docs/user-guide/annotations
+- `labels` (Map of String) Map of string keys and values that can be used to organize and categorize(scope and select) objects. May match selectors of replication controllersand services. More info: http://kubernetes.io/docs/user-guide/labels
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec"></a>
@@ -1645,12 +1755,12 @@ Optional:
 
 Optional:
 
-- `access_modes` (List of String) accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef preserves all values, and generates an error if a disallowed value is specified. (Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--data_source_ref))
-- `resources` (Attributes) resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--resources))
+- `access_modes` (List of String) accessModes contains the desired access modes the volume should have.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+- `data_source_ref` (Attributes) dataSourceRef specifies the object from which to populate the volume with data, if a non-emptyvolume is desired. This may be any object from a non-empty API group (noncore object) or a PersistentVolumeClaim object.When this field is specified, volume binding will only succeed if the type ofthe specified object matches some installed volume populator or dynamicprovisioner.This field will replace the functionality of the dataSource field and as suchif both fields are non-empty, they must have the same value. For backwardscompatibility, when namespace isn't specified in dataSourceRef,both fields (dataSource and dataSourceRef) will be set to the samevalue automatically if one of them is empty and the other is non-empty.When namespace is specified in dataSourceRef,dataSource isn't set to the same value and must be empty.There are three important differences between dataSource and dataSourceRef:* While dataSource only allows two specific types of objects, dataSourceRef  allows any non-core object, as well as PersistentVolumeClaim objects.* While dataSource ignores disallowed values (dropping them), dataSourceRef  preserves all values, and generates an error if a disallowed value is  specified.* While dataSource only allows local objects, dataSourceRef allows objects  in any namespaces.(Beta) Using this field requires the AnyVolumeDataSource feature gate to be enabled.(Alpha) Using the namespace field of dataSourceRef requires the CrossNamespaceVolumeDataSource feature gate to be enabled. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--data_source_ref))
+- `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--selector))
-- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_mode` (String) volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
+- `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+- `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
 <a id="nestedatt--spec--volume_claim_templates--spec--data_source_ref"></a>
@@ -1663,7 +1773,8 @@ Required:
 
 Optional:
 
-- `api_group` (String) APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
+- `api_group` (String) APIGroup is the group for the resource being referenced.If APIGroup is not specified, the specified Kind must be in the core API group.For any other third-party types, APIGroup is required.
+- `namespace` (String) Namespace is the namespace of resource being referencedNote that when a namespace is specified, a gateway.networking.k8s.io/ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.(Alpha) This field requires the CrossNamespaceVolumeDataSource feature gate to be enabled.
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--resources"></a>
@@ -1671,8 +1782,17 @@ Optional:
 
 Optional:
 
-- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--volume_claim_templates--spec--resources--claims"></a>
+### Nested Schema for `spec.volume_claim_templates.spec.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 <a id="nestedatt--spec--volume_claim_templates--spec--selector"></a>
@@ -1681,7 +1801,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--volume_claim_templates--spec--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--volume_claim_templates--spec--selector--match_expressions"></a>
 ### Nested Schema for `spec.volume_claim_templates.spec.selector.match_expressions`
@@ -1689,11 +1809,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1713,21 +1833,21 @@ Optional:
 Required:
 
 - `hostname` (String) Hostname is the connection string to use to connect the remote cluster.  To use IPv6, place brackets ('[', ']') around the IPv6 value.
-- `name` (String) Name of the remote cluster. Note that, -operator-managed is added as suffix by operator automatically to the name in order to diffrentiate from non operator managed remote clusters.
-- `uuid` (String) UUID of the remote cluster.  The UUID of a CouchbaseCluster resource is advertised in the status.clusterId field of the resource.
+- `name` (String) Name of the remote cluster.Note that, -operator-managed is added as suffix by operator automaticallyto the name in order to diffrentiate from non operator managed remote clusters.
+- `uuid` (String) UUID of the remote cluster.  The UUID of a CouchbaseCluster resourceis advertised in the status.clusterId field of the resource.
 
 Optional:
 
-- `authentication_secret` (String) AuthenticationSecret is a secret used to authenticate when establishing a remote connection.  It is only required when not using mTLS.  The secret must contain a username (secret key 'username') and password (secret key 'password').
-- `replications` (Attributes) Replications are replication streams from this cluster to the remote one. This field defines how to look up CouchbaseReplication resources.  By default any CouchbaseReplication resources in the namespace will be considered. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--replications))
-- `tls` (Attributes) TLS if specified references a resource containing the necessary certificate data for an encrypted connection. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--tls))
+- `authentication_secret` (String) AuthenticationSecret is a secret used to authenticate when establishing aremote connection.  It is only required when not using mTLS.  The secretmust contain a username (secret key 'username') and password (secret key'password').
+- `replications` (Attributes) Replications are replication streams from this cluster to the remote one.This field defines how to look up CouchbaseReplication resources.  By defaultany CouchbaseReplication resources in the namespace will be considered. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--replications))
+- `tls` (Attributes) TLS if specified references a resource containing the necessary certificatedata for an encrypted connection. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--tls))
 
 <a id="nestedatt--spec--xdcr--remote_clusters--replications"></a>
 ### Nested Schema for `spec.xdcr.remote_clusters.replications`
 
 Optional:
 
-- `selector` (Attributes) Selector allows CouchbaseReplication resources to be filtered based on labels. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--replications--selector))
+- `selector` (Attributes) Selector allows CouchbaseReplication resources to be filteredbased on labels. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--replications--selector))
 
 <a id="nestedatt--spec--xdcr--remote_clusters--replications--selector"></a>
 ### Nested Schema for `spec.xdcr.remote_clusters.replications.selector`
@@ -1735,7 +1855,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--xdcr--remote_clusters--replications--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--xdcr--remote_clusters--replications--selector--match_expressions"></a>
 ### Nested Schema for `spec.xdcr.remote_clusters.replications.selector.match_expressions`
@@ -1743,11 +1863,11 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1757,4 +1877,4 @@ Optional:
 
 Required:
 
-- `secret` (String) Secret references a secret containing the CA certificate (data key 'ca'), and optionally a client certificate (data key 'certificate') and key (data key 'key').
+- `secret` (String) Secret references a secret containing the CA certificate (data key 'ca'),and optionally a client certificate (data key 'certificate') and key(data key 'key').

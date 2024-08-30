@@ -986,8 +986,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 					},
 
 					"mode": schema.StringAttribute{
-						Description:         "Mode controls what type or 'mode' of Composition will be used.'Resources' (the default) indicates that a Composition uses what iscommonly referred to as 'Patch & Transform' or P&T composition. This modeof Composition uses an array of resources, each a template for a composedresource.'Pipeline' indicates that a Composition specifies a pipelineof Composition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update. THE PIPELINEMODE IS A BETA FEATURE. It is not honored if the relevant Crossplanefeature flag is disabled.",
-						MarkdownDescription: "Mode controls what type or 'mode' of Composition will be used.'Resources' (the default) indicates that a Composition uses what iscommonly referred to as 'Patch & Transform' or P&T composition. This modeof Composition uses an array of resources, each a template for a composedresource.'Pipeline' indicates that a Composition specifies a pipelineof Composition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update. THE PIPELINEMODE IS A BETA FEATURE. It is not honored if the relevant Crossplanefeature flag is disabled.",
+						Description:         "Mode controls what type or 'mode' of Composition will be used.'Pipeline' indicates that a Composition specifies a pipeline ofComposition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update.'Resources' indicates that a Composition uses what is commonly referredto as 'Patch & Transform' or P&T composition. This mode of Compositionuses an array of resources, each a template for a composed resource.All Compositions should use Pipeline mode. Resources mode is deprecated.Resources mode won't be removed in Crossplane 1.x, and will remain thedefault to avoid breaking legacy Compositions. However, it's no longeraccepting new features, and only accepting security related bug fixes.",
+						MarkdownDescription: "Mode controls what type or 'mode' of Composition will be used.'Pipeline' indicates that a Composition specifies a pipeline ofComposition Functions, each of which is responsible for producingcomposed resources that Crossplane should create or update.'Resources' indicates that a Composition uses what is commonly referredto as 'Patch & Transform' or P&T composition. This mode of Compositionuses an array of resources, each a template for a composed resource.All Compositions should use Pipeline mode. Resources mode is deprecated.Resources mode won't be removed in Crossplane 1.x, and will remain thedefault to avoid breaking legacy Compositions. However, it's no longeraccepting new features, and only accepting security related bug fixes.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -997,8 +997,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 					},
 
 					"patch_sets": schema.ListNestedAttribute{
-						Description:         "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.",
-						MarkdownDescription: "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.",
+						Description:         "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.Deprecated: Use Composition Functions instead.",
+						MarkdownDescription: "PatchSets define a named set of patches that may be included by anyresource in this Composition. PatchSets cannot themselves refer to otherPatchSets.PatchSets are only used by the 'Resources' mode of Composition. Theyare ignored by other modes.Deprecated: Use Composition Functions instead.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
@@ -1434,8 +1434,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 					},
 
 					"pipeline": schema.ListNestedAttribute{
-						Description:         "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.THIS IS A BETA FIELD. It is not honored if the relevant Crossplanefeature flag is disabled.",
-						MarkdownDescription: "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.THIS IS A BETA FIELD. It is not honored if the relevant Crossplanefeature flag is disabled.",
+						Description:         "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.",
+						MarkdownDescription: "Pipeline is a list of composition function steps that will be used when acomposite resource referring to this composition is created. One ofresources and pipeline must be specified - you cannot specify both.The Pipeline is only used by the 'Pipeline' mode of Composition. It isignored by other modes.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"credentials": schema.ListNestedAttribute{
@@ -1551,8 +1551,8 @@ func (r *ApiextensionsCrossplaneIoCompositionRevisionV1Beta1Manifest) Schema(_ c
 					},
 
 					"resources": schema.ListNestedAttribute{
-						Description:         "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.",
-						MarkdownDescription: "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.",
+						Description:         "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.Deprecated: Use Composition Functions instead.",
+						MarkdownDescription: "Resources is a list of resource templates that will be used when acomposite resource referring to this composition is created.Resources are only used by the 'Resources' mode of Composition. They areignored by other modes.Deprecated: Use Composition Functions instead.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"base": schema.MapAttribute{

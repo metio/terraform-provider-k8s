@@ -3161,6 +3161,7 @@ Optional:
 - `configuration` (Map of String) Legacy trait configuration parameters.Deprecated: for backward compatibility.
 - `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
 - `host` (String) To configure the host exposed by the ingress.
+- `ingress_class_name` (String) The Ingress class name as defined by the Ingress specSee https://kubernetes.io/docs/concepts/services-networking/ingress/
 - `path` (String) To configure the path exposed by the ingress (default '/').
 - `path_type` (String) To configure the path type exposed by the ingress.One of 'Exact', 'Prefix', 'ImplementationSpecific' (default to 'Prefix').
 - `tls_hosts` (List of String) To configure tls hosts

@@ -278,6 +278,7 @@ type GlooSoloIoSettingsV1ManifestData struct {
 				ValidationServerGrpcMaxSizeBytes *int64  `tfsdk:"validation_server_grpc_max_size_bytes" json:"validationServerGrpcMaxSizeBytes,omitempty"`
 				ValidationWebhookTlsCert         *string `tfsdk:"validation_webhook_tls_cert" json:"validationWebhookTlsCert,omitempty"`
 				ValidationWebhookTlsKey          *string `tfsdk:"validation_webhook_tls_key" json:"validationWebhookTlsKey,omitempty"`
+				WarnMissingTlsSecret             *bool   `tfsdk:"warn_missing_tls_secret" json:"warnMissingTlsSecret,omitempty"`
 				WarnRouteShortCircuiting         *bool   `tfsdk:"warn_route_short_circuiting" json:"warnRouteShortCircuiting,omitempty"`
 			} `tfsdk:"validation" json:"validation,omitempty"`
 			ValidationServerAddr  *string `tfsdk:"validation_server_addr" json:"validationServerAddr,omitempty"`
@@ -2165,6 +2166,14 @@ func (r *GlooSoloIoSettingsV1Manifest) Schema(_ context.Context, _ datasource.Sc
 									},
 
 									"validation_webhook_tls_key": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"warn_missing_tls_secret": schema.BoolAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,

@@ -1541,8 +1541,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"host": schema.StringAttribute{
-																	Description:         "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
-																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
+																	Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -3132,8 +3132,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																},
 
 																"host": schema.StringAttribute{
-																	Description:         "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
-																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
+																	Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																	MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																	Required:            false,
 																	Optional:            true,
 																	Computed:            false,
@@ -4446,8 +4446,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"host": schema.StringAttribute{
-																		Description:         "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
-																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
+																		Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6037,8 +6037,8 @@ func (r *CiliumIoCiliumClusterwideNetworkPolicyV2Manifest) Schema(_ context.Cont
 																	},
 
 																	"host": schema.StringAttribute{
-																		Description:         "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
-																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request, e.g. 'foo.com'  If omitted or empty, the value of the host header is ignored.",
+																		Description:         "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
+																		MarkdownDescription: "Host is an extended POSIX regex matched against the host header of a request. Examples:  - foo.bar.com will match the host fooXbar.com or foo-bar.com - foo.bar.com will only match the host foo.bar.com  If omitted or empty, the value of the host header is ignored.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,

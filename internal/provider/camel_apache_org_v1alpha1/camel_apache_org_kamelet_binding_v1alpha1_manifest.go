@@ -1309,15 +1309,16 @@ type CamelApacheOrgKameletBindingV1Alpha1ManifestData struct {
 					StartupTimeout            *int64             `tfsdk:"startup_timeout" json:"startupTimeout,omitempty"`
 				} `tfsdk:"health" json:"health,omitempty"`
 				Ingress *struct {
-					Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
-					Auto          *bool              `tfsdk:"auto" json:"auto,omitempty"`
-					Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
-					Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
-					Host          *string            `tfsdk:"host" json:"host,omitempty"`
-					Path          *string            `tfsdk:"path" json:"path,omitempty"`
-					PathType      *string            `tfsdk:"path_type" json:"pathType,omitempty"`
-					TlsHosts      *[]string          `tfsdk:"tls_hosts" json:"tlsHosts,omitempty"`
-					TlsSecretName *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
+					Annotations      *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
+					Auto             *bool              `tfsdk:"auto" json:"auto,omitempty"`
+					Configuration    *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+					Enabled          *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+					Host             *string            `tfsdk:"host" json:"host,omitempty"`
+					IngressClassName *string            `tfsdk:"ingress_class_name" json:"ingressClassName,omitempty"`
+					Path             *string            `tfsdk:"path" json:"path,omitempty"`
+					PathType         *string            `tfsdk:"path_type" json:"pathType,omitempty"`
+					TlsHosts         *[]string          `tfsdk:"tls_hosts" json:"tlsHosts,omitempty"`
+					TlsSecretName    *string            `tfsdk:"tls_secret_name" json:"tlsSecretName,omitempty"`
 				} `tfsdk:"ingress" json:"ingress,omitempty"`
 				Istio *struct {
 					Allow         *string            `tfsdk:"allow" json:"allow,omitempty"`
@@ -10437,6 +10438,14 @@ func (r *CamelApacheOrgKameletBindingV1Alpha1Manifest) Schema(_ context.Context,
 											"host": schema.StringAttribute{
 												Description:         "To configure the host exposed by the ingress.",
 												MarkdownDescription: "To configure the host exposed by the ingress.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"ingress_class_name": schema.StringAttribute{
+												Description:         "The Ingress class name as defined by the Ingress specSee https://kubernetes.io/docs/concepts/services-networking/ingress/",
+												MarkdownDescription: "The Ingress class name as defined by the Ingress specSee https://kubernetes.io/docs/concepts/services-networking/ingress/",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,

@@ -106,6 +106,26 @@ type FluentbitFluentIoFilterV1Alpha2ManifestData struct {
 				UseJournal                *bool   `tfsdk:"use_journal" json:"useJournal,omitempty"`
 				UseKubelet                *bool   `tfsdk:"use_kubelet" json:"useKubelet,omitempty"`
 			} `tfsdk:"kubernetes" json:"kubernetes,omitempty"`
+			LogToMetrics *struct {
+				AddLabel           *[]string `tfsdk:"add_label" json:"addLabel,omitempty"`
+				Alias              *string   `tfsdk:"alias" json:"alias,omitempty"`
+				Bucket             *[]string `tfsdk:"bucket" json:"bucket,omitempty"`
+				DiscardLogs        *bool     `tfsdk:"discard_logs" json:"discardLogs,omitempty"`
+				EmitterMemBufLimit *string   `tfsdk:"emitter_mem_buf_limit" json:"emitterMemBufLimit,omitempty"`
+				EmitterName        *string   `tfsdk:"emitter_name" json:"emitterName,omitempty"`
+				Exclude            *[]string `tfsdk:"exclude" json:"exclude,omitempty"`
+				KubernetesMode     *bool     `tfsdk:"kubernetes_mode" json:"kubernetesMode,omitempty"`
+				LabelField         *[]string `tfsdk:"label_field" json:"labelField,omitempty"`
+				MetricDescription  *string   `tfsdk:"metric_description" json:"metricDescription,omitempty"`
+				MetricMode         *string   `tfsdk:"metric_mode" json:"metricMode,omitempty"`
+				MetricName         *string   `tfsdk:"metric_name" json:"metricName,omitempty"`
+				MetricNamespace    *string   `tfsdk:"metric_namespace" json:"metricNamespace,omitempty"`
+				MetricSubsystem    *string   `tfsdk:"metric_subsystem" json:"metricSubsystem,omitempty"`
+				Regex              *[]string `tfsdk:"regex" json:"regex,omitempty"`
+				RetryLimit         *string   `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
+				Tag                *string   `tfsdk:"tag" json:"tag,omitempty"`
+				ValueField         *string   `tfsdk:"value_field" json:"valueField,omitempty"`
+			} `tfsdk:"log_to_metrics" json:"logToMetrics,omitempty"`
 			Lua *struct {
 				Alias         *string `tfsdk:"alias" json:"alias,omitempty"`
 				Call          *string `tfsdk:"call" json:"call,omitempty"`
@@ -117,8 +137,9 @@ type FluentbitFluentIoFilterV1Alpha2ManifestData struct {
 					Name     *string `tfsdk:"name" json:"name,omitempty"`
 					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
-				TimeAsTable *bool     `tfsdk:"time_as_table" json:"timeAsTable,omitempty"`
-				TypeIntKey  *[]string `tfsdk:"type_int_key" json:"typeIntKey,omitempty"`
+				TimeAsTable  *bool     `tfsdk:"time_as_table" json:"timeAsTable,omitempty"`
+				TypeArrayKey *[]string `tfsdk:"type_array_key" json:"typeArrayKey,omitempty"`
+				TypeIntKey   *[]string `tfsdk:"type_int_key" json:"typeIntKey,omitempty"`
 			} `tfsdk:"lua" json:"lua,omitempty"`
 			Modify *struct {
 				Alias      *string `tfsdk:"alias" json:"alias,omitempty"`
@@ -203,6 +224,16 @@ type FluentbitFluentIoFilterV1Alpha2ManifestData struct {
 				RetryLimit  *string `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
 				Window      *int64  `tfsdk:"window" json:"window,omitempty"`
 			} `tfsdk:"throttle" json:"throttle,omitempty"`
+			Wasm *struct {
+				AccessiblePaths *[]string `tfsdk:"accessible_paths" json:"accessiblePaths,omitempty"`
+				Alias           *string   `tfsdk:"alias" json:"alias,omitempty"`
+				EventFormat     *string   `tfsdk:"event_format" json:"eventFormat,omitempty"`
+				FunctionName    *string   `tfsdk:"function_name" json:"functionName,omitempty"`
+				RetryLimit      *string   `tfsdk:"retry_limit" json:"retryLimit,omitempty"`
+				WasmHeapSize    *string   `tfsdk:"wasm_heap_size" json:"wasmHeapSize,omitempty"`
+				WasmPath        *string   `tfsdk:"wasm_path" json:"wasmPath,omitempty"`
+				WasmStackSize   *string   `tfsdk:"wasm_stack_size" json:"wasmStackSize,omitempty"`
+			} `tfsdk:"wasm" json:"wasm,omitempty"`
 		} `tfsdk:"filters" json:"filters,omitempty"`
 		LogLevel   *string `tfsdk:"log_level" json:"logLevel,omitempty"`
 		Match      *string `tfsdk:"match" json:"match,omitempty"`
@@ -768,6 +799,167 @@ func (r *FluentbitFluentIoFilterV1Alpha2Manifest) Schema(_ context.Context, _ da
 									Computed: false,
 								},
 
+								"log_to_metrics": schema.SingleNestedAttribute{
+									Description:         "LogToMetrics defines a Log to Metrics Filter configuration.",
+									MarkdownDescription: "LogToMetrics defines a Log to Metrics Filter configuration.",
+									Attributes: map[string]schema.Attribute{
+										"add_label": schema.ListAttribute{
+											Description:         "Add a custom label NAME and set the value to the value of KEY",
+											MarkdownDescription: "Add a custom label NAME and set the value to the value of KEY",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"alias": schema.StringAttribute{
+											Description:         "Alias for the plugin",
+											MarkdownDescription: "Alias for the plugin",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"bucket": schema.ListAttribute{
+											Description:         "Defines a bucket for histogram",
+											MarkdownDescription: "Defines a bucket for histogram",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"discard_logs": schema.BoolAttribute{
+											Description:         "Flag that defines if logs should be discarded after processing. This appliesfor all logs, no matter if they have emitted metrics or not.",
+											MarkdownDescription: "Flag that defines if logs should be discarded after processing. This appliesfor all logs, no matter if they have emitted metrics or not.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_mem_buf_limit": schema.StringAttribute{
+											Description:         "set a buffer limit to restrict memory usage of metrics emitter",
+											MarkdownDescription: "set a buffer limit to restrict memory usage of metrics emitter",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"emitter_name": schema.StringAttribute{
+											Description:         "Name of the emitter (advanced users)",
+											MarkdownDescription: "Name of the emitter (advanced users)",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"exclude": schema.ListAttribute{
+											Description:         "Optional filter for records in which the content of KEY does not matches the regular expression.Value Format: FIELD REGEX",
+											MarkdownDescription: "Optional filter for records in which the content of KEY does not matches the regular expression.Value Format: FIELD REGEX",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"kubernetes_mode": schema.BoolAttribute{
+											Description:         "If enabled, it will automatically put pod_id, pod_name, namespace_name, docker_id and container_nameinto the metric as labels. This option is intended to be used in combination with the kubernetes filter plugin.",
+											MarkdownDescription: "If enabled, it will automatically put pod_id, pod_name, namespace_name, docker_id and container_nameinto the metric as labels. This option is intended to be used in combination with the kubernetes filter plugin.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"label_field": schema.ListAttribute{
+											Description:         "Includes a record field as label dimension in the metric.",
+											MarkdownDescription: "Includes a record field as label dimension in the metric.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metric_description": schema.StringAttribute{
+											Description:         "Sets a help text for the metric.",
+											MarkdownDescription: "Sets a help text for the metric.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metric_mode": schema.StringAttribute{
+											Description:         "Defines the mode for the metric. Valid values are [counter, gauge or histogram]",
+											MarkdownDescription: "Defines the mode for the metric. Valid values are [counter, gauge or histogram]",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metric_name": schema.StringAttribute{
+											Description:         "Sets the name of the metric.",
+											MarkdownDescription: "Sets the name of the metric.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metric_namespace": schema.StringAttribute{
+											Description:         "Namespace of the metric",
+											MarkdownDescription: "Namespace of the metric",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"metric_subsystem": schema.StringAttribute{
+											Description:         "Sets a sub-system for the metric.",
+											MarkdownDescription: "Sets a sub-system for the metric.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"regex": schema.ListAttribute{
+											Description:         "Optional filter for records in which the content of KEY matches the regular expression.Value Format: FIELD REGEX",
+											MarkdownDescription: "Optional filter for records in which the content of KEY matches the regular expression.Value Format: FIELD REGEX",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"retry_limit": schema.StringAttribute{
+											Description:         "RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.",
+											MarkdownDescription: "RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(((f|F)alse)|(no_limits)|(no_retries)|([1-9]+[0-9]*))$`), ""),
+											},
+										},
+
+										"tag": schema.StringAttribute{
+											Description:         "Defines the tag for the generated metrics record",
+											MarkdownDescription: "Defines the tag for the generated metrics record",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"value_field": schema.StringAttribute{
+											Description:         "Specify the record field that holds a numerical value",
+											MarkdownDescription: "Specify the record field that holds a numerical value",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"lua": schema.SingleNestedAttribute{
 									Description:         "Lua defines Lua Filter configuration.",
 									MarkdownDescription: "Lua defines Lua Filter configuration.",
@@ -851,6 +1043,15 @@ func (r *FluentbitFluentIoFilterV1Alpha2Manifest) Schema(_ context.Context, _ da
 										"time_as_table": schema.BoolAttribute{
 											Description:         "By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
 											MarkdownDescription: "By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"type_array_key": schema.ListAttribute{
+											Description:         "If these keys are matched, the fields are handled as array. If more thanone key, delimit by space. It is useful the array can be empty.",
+											MarkdownDescription: "If these keys are matched, the fields are handled as array. If more thanone key, delimit by space. It is useful the array can be empty.",
+											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1521,6 +1722,89 @@ func (r *FluentbitFluentIoFilterV1Alpha2Manifest) Schema(_ context.Context, _ da
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
+								"wasm": schema.SingleNestedAttribute{
+									Description:         "Wasm defines a Wasm configuration.",
+									MarkdownDescription: "Wasm defines a Wasm configuration.",
+									Attributes: map[string]schema.Attribute{
+										"accessible_paths": schema.ListAttribute{
+											Description:         "Specify the whitelist of paths to be able to access paths from WASM programs.",
+											MarkdownDescription: "Specify the whitelist of paths to be able to access paths from WASM programs.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"alias": schema.StringAttribute{
+											Description:         "Alias for the plugin",
+											MarkdownDescription: "Alias for the plugin",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"event_format": schema.StringAttribute{
+											Description:         "Define event format to interact with Wasm programs: msgpack or json. Default: json",
+											MarkdownDescription: "Define event format to interact with Wasm programs: msgpack or json. Default: json",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"function_name": schema.StringAttribute{
+											Description:         "Wasm function name that will be triggered to do filtering. It's assumed that the function is built inside the Wasm program specified above.",
+											MarkdownDescription: "Wasm function name that will be triggered to do filtering. It's assumed that the function is built inside the Wasm program specified above.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"retry_limit": schema.StringAttribute{
+											Description:         "RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.",
+											MarkdownDescription: "RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^(((f|F)alse)|(no_limits)|(no_retries)|([1-9]+[0-9]*))$`), ""),
+											},
+										},
+
+										"wasm_heap_size": schema.StringAttribute{
+											Description:         "Size of the heap size of Wasm execution. Review unit sizes for allowed values.",
+											MarkdownDescription: "Size of the heap size of Wasm execution. Review unit sizes for allowed values.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+											},
+										},
+
+										"wasm_path": schema.StringAttribute{
+											Description:         "Path to the built Wasm program that will be used. This can be a relative path against the main configuration file.",
+											MarkdownDescription: "Path to the built Wasm program that will be used. This can be a relative path against the main configuration file.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"wasm_stack_size": schema.StringAttribute{
+											Description:         "Size of the stack size of Wasm execution. Review unit sizes for allowed values.",
+											MarkdownDescription: "Size of the stack size of Wasm execution. Review unit sizes for allowed values.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+											},
 										},
 									},
 									Required: false,

@@ -583,7 +583,6 @@ Optional:
 Required:
 
 - `auth` (Attributes) Auth configures how secret-manager authenticates with a bitwarden machine account instance.Make sure that the token being used has permissions on the given secret. (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--auth))
-- `ca_bundle` (String) Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.
 - `organization_id` (String) OrganizationID determines which organization this secret store manages.
 - `project_id` (String) ProjectID determines which project this secret store manages.
 
@@ -591,6 +590,8 @@ Optional:
 
 - `api_url` (String)
 - `bitwarden_server_sdk_url` (String)
+- `ca_bundle` (String) Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.
+- `ca_provider` (Attributes) see: https://external-secrets.io/latest/spec/#external-secrets.io/v1alpha1.CAProvider (see [below for nested schema](#nestedatt--spec--provider--bitwardensecretsmanager--ca_provider))
 - `identity_url` (String)
 
 <a id="nestedatt--spec--provider--bitwardensecretsmanager--auth"></a>
@@ -617,6 +618,20 @@ Optional:
 - `namespace` (String) Namespace of the resource being referred to. Ignored if referent is not cluster-scoped. cluster-scoped defaultsto the namespace of the referent.
 
 
+
+
+<a id="nestedatt--spec--provider--bitwardensecretsmanager--ca_provider"></a>
+### Nested Schema for `spec.provider.bitwardensecretsmanager.ca_provider`
+
+Required:
+
+- `name` (String) The name of the object located at the provider type.
+- `type` (String) The type of provider to use such as 'Secret', or 'ConfigMap'.
+
+Optional:
+
+- `key` (String) The key where the CA certificate can be found in the Secret or ConfigMap.
+- `namespace` (String) The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.
 
 
 

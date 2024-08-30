@@ -43,8 +43,9 @@ type K8SMariadbComUserV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Host       *string `tfsdk:"host" json:"host,omitempty"`
-		MariaDbRef *struct {
+		CleanupPolicy *string `tfsdk:"cleanup_policy" json:"cleanupPolicy,omitempty"`
+		Host          *string `tfsdk:"host" json:"host,omitempty"`
+		MariaDbRef    *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -54,8 +55,25 @@ type K8SMariadbComUserV1Alpha1ManifestData struct {
 			Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			WaitForIt       *bool   `tfsdk:"wait_for_it" json:"waitForIt,omitempty"`
 		} `tfsdk:"maria_db_ref" json:"mariaDbRef,omitempty"`
-		MaxUserConnections   *int64  `tfsdk:"max_user_connections" json:"maxUserConnections,omitempty"`
-		Name                 *string `tfsdk:"name" json:"name,omitempty"`
+		MaxUserConnections       *int64  `tfsdk:"max_user_connections" json:"maxUserConnections,omitempty"`
+		Name                     *string `tfsdk:"name" json:"name,omitempty"`
+		PasswordHashSecretKeyRef *struct {
+			Key      *string `tfsdk:"key" json:"key,omitempty"`
+			Name     *string `tfsdk:"name" json:"name,omitempty"`
+			Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+		} `tfsdk:"password_hash_secret_key_ref" json:"passwordHashSecretKeyRef,omitempty"`
+		PasswordPlugin *struct {
+			PluginArgSecretKeyRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"plugin_arg_secret_key_ref" json:"pluginArgSecretKeyRef,omitempty"`
+			PluginNameSecretKeyRef *struct {
+				Key      *string `tfsdk:"key" json:"key,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+			} `tfsdk:"plugin_name_secret_key_ref" json:"pluginNameSecretKeyRef,omitempty"`
+		} `tfsdk:"password_plugin" json:"passwordPlugin,omitempty"`
 		PasswordSecretKeyRef *struct {
 			Key      *string `tfsdk:"key" json:"key,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
@@ -143,6 +161,17 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 				Description:         "UserSpec defines the desired state of User",
 				MarkdownDescription: "UserSpec defines the desired state of User",
 				Attributes: map[string]schema.Attribute{
+					"cleanup_policy": schema.StringAttribute{
+						Description:         "CleanupPolicy defines the behavior for cleaning up a SQL resource.",
+						MarkdownDescription: "CleanupPolicy defines the behavior for cleaning up a SQL resource.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Skip", "Delete"),
+						},
+					},
+
 					"host": schema.StringAttribute{
 						Description:         "Host related to the User.",
 						MarkdownDescription: "Host related to the User.",
@@ -167,8 +196,8 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -246,6 +275,114 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 						},
 					},
 
+					"password_hash_secret_key_ref": schema.SingleNestedAttribute{
+						Description:         "PasswordHashSecretKeyRef is a reference to the password hash to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password hash.",
+						MarkdownDescription: "PasswordHashSecretKeyRef is a reference to the password hash to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password hash.",
+						Attributes: map[string]schema.Attribute{
+							"key": schema.StringAttribute{
+								Description:         "The key of the secret to select from.  Must be a valid secret key.",
+								MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"optional": schema.BoolAttribute{
+								Description:         "Specify whether the Secret or its key must be defined",
+								MarkdownDescription: "Specify whether the Secret or its key must be defined",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"password_plugin": schema.SingleNestedAttribute{
+						Description:         "PasswordPlugin is a reference to the password plugin and arguments to be used by the User.",
+						MarkdownDescription: "PasswordPlugin is a reference to the password plugin and arguments to be used by the User.",
+						Attributes: map[string]schema.Attribute{
+							"plugin_arg_secret_key_ref": schema.SingleNestedAttribute{
+								Description:         "PluginArgSecretKeyRef is a reference to the arguments to be provided to the authentication plugin for the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin arguments.",
+								MarkdownDescription: "PluginArgSecretKeyRef is a reference to the arguments to be provided to the authentication plugin for the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin arguments.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"plugin_name_secret_key_ref": schema.SingleNestedAttribute{
+								Description:         "PluginNameSecretKeyRef is a reference to the authentication plugin to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin.",
+								MarkdownDescription: "PluginNameSecretKeyRef is a reference to the authentication plugin to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin.",
+								Attributes: map[string]schema.Attribute{
+									"key": schema.StringAttribute{
+										Description:         "The key of the secret to select from.  Must be a valid secret key.",
+										MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"optional": schema.BoolAttribute{
+										Description:         "Specify whether the Secret or its key must be defined",
+										MarkdownDescription: "Specify whether the Secret or its key must be defined",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"password_secret_key_ref": schema.SingleNestedAttribute{
 						Description:         "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
 						MarkdownDescription: "PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password.",
@@ -259,8 +396,8 @@ func (r *K8SMariadbComUserV1Alpha1Manifest) Schema(_ context.Context, _ datasour
 							},
 
 							"name": schema.StringAttribute{
-								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+								Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+								MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

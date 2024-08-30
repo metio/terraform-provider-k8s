@@ -65,6 +65,7 @@ Optional:
 - `monitoring` (Attributes) Monitoring is the monitoring configuration (see [below for nested schema](#nestedatt--spec--monitoring))
 - `paused` (Boolean) Paused is a flag to stop the cluster
 - `proxy` (Attributes) Proxy is the proxy specification. If not set, an appropriateproxy specification will be applied for the given engine. Acommon use case for setting this field is to control theexternal access to the database cluster. (see [below for nested schema](#nestedatt--spec--proxy))
+- `sharding` (Attributes) Sharding is the sharding configuration. PSMDB-only (see [below for nested schema](#nestedatt--spec--sharding))
 
 <a id="nestedatt--spec--engine"></a>
 ### Nested Schema for `spec.engine`
@@ -126,7 +127,7 @@ Required:
 
 Optional:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage where the PITR is enabled
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `upload_interval_sec` (Number) UploadIntervalSec number of seconds between the binlogs uploads
 
 
@@ -135,7 +136,7 @@ Optional:
 
 Required:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage CR that defines thestorage location
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `enabled` (Boolean) Enabled is a flag to enable the schedule
 - `name` (String) Name is the name of the schedule
 - `schedule` (String) Schedule is the cron schedule
@@ -160,7 +161,7 @@ Optional:
 
 Required:
 
-- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups.
+- `backup_storage_name` (String) BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.
 - `path` (String) Path is the path to the backup file/directory.
 
 
@@ -179,7 +180,7 @@ Optional:
 
 Optional:
 
-- `monitoring_config_name` (String) MonitoringConfigName is the name of a monitoringConfig CR.
+- `monitoring_config_name` (String) MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.
 - `resources` (Attributes) Resources defines resource limitations for the monitoring. (see [below for nested schema](#nestedatt--spec--monitoring--resources))
 
 <a id="nestedatt--spec--monitoring--resources"></a>
@@ -228,3 +229,21 @@ Optional:
 
 - `cpu` (String) CPU is the CPU resource requirements
 - `memory` (String) Memory is the memory resource requirements
+
+
+
+<a id="nestedatt--spec--sharding"></a>
+### Nested Schema for `spec.sharding`
+
+Required:
+
+- `config_server` (Attributes) ConfigServer represents the sharding configuration server settings (see [below for nested schema](#nestedatt--spec--sharding--config_server))
+- `enabled` (Boolean) Enabled defines if the sharding is enabled
+- `shards` (Number) Shards defines the number of shards
+
+<a id="nestedatt--spec--sharding--config_server"></a>
+### Nested Schema for `spec.sharding.config_server`
+
+Required:
+
+- `replicas` (Number) Replicas is the amount of configServers

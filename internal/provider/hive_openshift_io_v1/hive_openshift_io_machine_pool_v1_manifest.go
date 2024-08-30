@@ -51,9 +51,10 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 		ClusterDeploymentRef *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"cluster_deployment_ref" json:"clusterDeploymentRef,omitempty"`
-		Labels   *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
-		Name     *string            `tfsdk:"name" json:"name,omitempty"`
-		Platform *struct {
+		Labels        *map[string]string `tfsdk:"labels" json:"labels,omitempty"`
+		MachineLabels *map[string]string `tfsdk:"machine_labels" json:"machineLabels,omitempty"`
+		Name          *string            `tfsdk:"name" json:"name,omitempty"`
+		Platform      *struct {
 			Aws *struct {
 				AdditionalSecurityGroupIDs *[]string `tfsdk:"additional_security_group_i_ds" json:"additionalSecurityGroupIDs,omitempty"`
 				MetadataService            *struct {
@@ -74,7 +75,9 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 				Zones    *[]string          `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"aws" json:"aws,omitempty"`
 			Azure *struct {
-				OsDisk *struct {
+				ComputeSubnet            *string `tfsdk:"compute_subnet" json:"computeSubnet,omitempty"`
+				NetworkResourceGroupName *string `tfsdk:"network_resource_group_name" json:"networkResourceGroupName,omitempty"`
+				OsDisk                   *struct {
 					DiskEncryptionSet *struct {
 						Name           *string `tfsdk:"name" json:"name,omitempty"`
 						ResourceGroup  *string `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
@@ -89,8 +92,9 @@ type HiveOpenshiftIoMachinePoolV1ManifestData struct {
 					Sku       *string `tfsdk:"sku" json:"sku,omitempty"`
 					Version   *string `tfsdk:"version" json:"version,omitempty"`
 				} `tfsdk:"os_image" json:"osImage,omitempty"`
-				Type  *string   `tfsdk:"type" json:"type,omitempty"`
-				Zones *[]string `tfsdk:"zones" json:"zones,omitempty"`
+				Type           *string   `tfsdk:"type" json:"type,omitempty"`
+				VirtualNetwork *string   `tfsdk:"virtual_network" json:"virtualNetwork,omitempty"`
+				Zones          *[]string `tfsdk:"zones" json:"zones,omitempty"`
 			} `tfsdk:"azure" json:"azure,omitempty"`
 			Gcp *struct {
 				NetworkProjectID  *string `tfsdk:"network_project_id" json:"networkProjectID,omitempty"`
@@ -281,8 +285,17 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"labels": schema.MapAttribute{
-						Description:         "Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This list will overwrite any modifications made to Node labels on an ongoing basis.",
-						MarkdownDescription: "Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This list will overwrite any modifications made to Node labels on an ongoing basis.",
+						Description:         "Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This affects the labels that will end up on the *Nodes* (in contrast with the MachineLabels field). This list will overwrite any modifications made to Node labels on an ongoing basis.",
+						MarkdownDescription: "Map of label string keys and values that will be applied to the created MachineSet's MachineSpec. This affects the labels that will end up on the *Nodes* (in contrast with the MachineLabels field). This list will overwrite any modifications made to Node labels on an ongoing basis.",
+						ElementType:         types.StringType,
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"machine_labels": schema.MapAttribute{
+						Description:         "Map of label string keys and values that will be applied to the created MachineSet's MachineTemplateSpec. This affects the labels that will end up on the *Machines* (in contrast with the Labels field). This list will overwrite any modifications made to Machine labels on an ongoing basis. Note: We ignore entries that conflict with generated labels.",
+						MarkdownDescription: "Map of label string keys and values that will be applied to the created MachineSet's MachineTemplateSpec. This affects the labels that will end up on the *Machines* (in contrast with the Labels field). This list will overwrite any modifications made to Machine labels on an ongoing basis. Note: We ignore entries that conflict with generated labels.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -298,8 +311,8 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 					},
 
 					"platform": schema.SingleNestedAttribute{
-						Description:         "Platform is configuration for machine pool specific to the platform.",
-						MarkdownDescription: "Platform is configuration for machine pool specific to the platform.",
+						Description:         "Platform is configuration for machine pool specific to the platform. When using a MachinePool to control the default worker machines created by installer, these must match the values provided in the install-config.",
+						MarkdownDescription: "Platform is configuration for machine pool specific to the platform. When using a MachinePool to control the default worker machines created by installer, these must match the values provided in the install-config.",
 						Attributes: map[string]schema.Attribute{
 							"aws": schema.SingleNestedAttribute{
 								Description:         "AWS is the configuration used when installing on AWS.",
@@ -433,6 +446,22 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 								Description:         "Azure is the configuration used when installing on Azure.",
 								MarkdownDescription: "Azure is the configuration used when installing on Azure.",
 								Attributes: map[string]schema.Attribute{
+									"compute_subnet": schema.StringAttribute{
+										Description:         "ComputeSubnet specifies an existing subnet for use by compute nodes. If omitted, the default (${infraID}-worker-subnet) will be used.",
+										MarkdownDescription: "ComputeSubnet specifies an existing subnet for use by compute nodes. If omitted, the default (${infraID}-worker-subnet) will be used.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"network_resource_group_name": schema.StringAttribute{
+										Description:         "NetworkResourceGroupName specifies the network resource group that contains an existing VNet. Ignored unless VirtualNetwork is also specified.",
+										MarkdownDescription: "NetworkResourceGroupName specifies the network resource group that contains an existing VNet. Ignored unless VirtualNetwork is also specified.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"os_disk": schema.SingleNestedAttribute{
 										Description:         "OSDisk defines the storage for instance.",
 										MarkdownDescription: "OSDisk defines the storage for instance.",
@@ -543,6 +572,14 @@ func (r *HiveOpenshiftIoMachinePoolV1Manifest) Schema(_ context.Context, _ datas
 										MarkdownDescription: "InstanceType defines the azure instance type. eg. Standard_DS_V2",
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+
+									"virtual_network": schema.StringAttribute{
+										Description:         "VirtualNetwork specifies the name of an existing VNet for the Machines to use If omitted, the default (${infraID}-vnet) will be used.",
+										MarkdownDescription: "VirtualNetwork specifies the name of an existing VNet for the Machines to use If omitted, the default (${infraID}-vnet) will be used.",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 
