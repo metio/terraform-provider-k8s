@@ -474,6 +474,7 @@ Optional:
 
 - `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--access_key))
 - `aggregator_name` (String)
+- `assume_role` (String)
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config--display))
@@ -889,6 +890,7 @@ Required:
 Optional:
 
 - `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--aws_config_rule--access_key))
+- `assume_role` (String)
 - `compliance_types` (List of String) Filters the results by compliance. The allowed values are INSUFFICIENT_DATA, NON_COMPLIANT, NOT_APPLICABLE, COMPLIANT
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.
 - `description` (String) Description for the check
@@ -1870,6 +1872,7 @@ Optional:
 - `action_prefix` (String)
 - `alarm_prefix` (String)
 - `alarms` (List of String)
+- `assume_role` (String)
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.
 - `description` (String) Description for the check
 - `display` (Attributes) (see [below for nested schema](#nestedatt--spec--cloudwatch--display))
@@ -4927,6 +4930,7 @@ Optional:
 Optional:
 
 - `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--exec--connections--aws--access_key))
+- `assume_role` (String)
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.
 - `endpoint` (String)
 - `region` (String)
@@ -5614,6 +5618,7 @@ Optional:
 Optional:
 
 - `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--aws_connection--access_key))
+- `assume_role` (String)
 - `bucket` (String)
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.
 - `endpoint` (String)
@@ -6074,13 +6079,10 @@ Optional:
 <a id="nestedatt--spec--folder--sftp_connection"></a>
 ### Nested Schema for `spec.folder.sftp_connection`
 
-Required:
-
-- `host` (String)
-
 Optional:
 
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
+- `host` (String)
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--password))
 - `port` (Number) Port for the SSH server. Defaults to 22
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--sftp_connection--username))
@@ -6206,9 +6208,10 @@ Optional:
 Optional:
 
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the connection fields.
-- `domain` (String) Domain...
+- `domain` (String)
 - `password` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--password))
 - `port` (Number) Port on which smb server is running. Defaults to 445
+- `share` (String)
 - `username` (Attributes) (see [below for nested schema](#nestedatt--spec--folder--smb_connection--username))
 
 <a id="nestedatt--spec--folder--smb_connection--password"></a>
@@ -13145,6 +13148,7 @@ Required:
 Optional:
 
 - `access_key` (Attributes) (see [below for nested schema](#nestedatt--spec--s3--access_key))
+- `assume_role` (String)
 - `bucket` (String)
 - `bucket_name` (String)
 - `connection` (String) ConnectionName of the connection. It'll be used to populate the endpoint, accessKey and secretKey.

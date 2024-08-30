@@ -601,6 +601,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--backup_source--storage--pod_security_context--windows_options))
 
@@ -675,6 +676,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 

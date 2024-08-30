@@ -111,6 +111,13 @@ type EverestPerconaComDatabaseClusterV1Alpha1ManifestData struct {
 			} `tfsdk:"resources" json:"resources,omitempty"`
 			Type *string `tfsdk:"type" json:"type,omitempty"`
 		} `tfsdk:"proxy" json:"proxy,omitempty"`
+		Sharding *struct {
+			ConfigServer *struct {
+				Replicas *int64 `tfsdk:"replicas" json:"replicas,omitempty"`
+			} `tfsdk:"config_server" json:"configServer,omitempty"`
+			Enabled *bool  `tfsdk:"enabled" json:"enabled,omitempty"`
+			Shards  *int64 `tfsdk:"shards" json:"shards,omitempty"`
+		} `tfsdk:"sharding" json:"sharding,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -216,8 +223,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "PITR is the configuration of the point in time recovery",
 								Attributes: map[string]schema.Attribute{
 									"backup_storage_name": schema.StringAttribute{
-										Description:         "BackupStorageName is the name of the BackupStorage where the PITR is enabled",
-										MarkdownDescription: "BackupStorageName is the name of the BackupStorage where the PITR is enabled",
+										Description:         "BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										MarkdownDescription: "BackupStorageName is the name of the BackupStorage where the PITR is enabledThe BackupStorage must be created in the same namespace as the DatabaseCluster.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -250,8 +257,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"backup_storage_name": schema.StringAttribute{
-											Description:         "BackupStorageName is the name of the BackupStorage CR that defines thestorage location",
-											MarkdownDescription: "BackupStorageName is the name of the BackupStorage CR that defines thestorage location",
+											Description:         "BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+											MarkdownDescription: "BackupStorageName is the name of the BackupStorage CR that defines thestorage location.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -309,8 +316,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								MarkdownDescription: "BackupSource is the backup source to restore from",
 								Attributes: map[string]schema.Attribute{
 									"backup_storage_name": schema.StringAttribute{
-										Description:         "BackupStorageName is the name of the BackupStorage used for backups.",
-										MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups.",
+										Description:         "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+										MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 										Required:            true,
 										Optional:            false,
 										Computed:            false,
@@ -488,8 +495,8 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 						MarkdownDescription: "Monitoring is the monitoring configuration",
 						Attributes: map[string]schema.Attribute{
 							"monitoring_config_name": schema.StringAttribute{
-								Description:         "MonitoringConfigName is the name of a monitoringConfig CR.",
-								MarkdownDescription: "MonitoringConfigName is the name of a monitoringConfig CR.",
+								Description:         "MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
+								MarkdownDescription: "MonitoringConfigName is the name of a monitoringConfig CR.The MonitoringConfig must be created in the same namespace as the DatabaseCluster.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -639,6 +646,54 @@ func (r *EverestPerconaComDatabaseClusterV1Alpha1Manifest) Schema(_ context.Cont
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.OneOf("mongos", "haproxy", "proxysql", "pgbouncer"),
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"sharding": schema.SingleNestedAttribute{
+						Description:         "Sharding is the sharding configuration. PSMDB-only",
+						MarkdownDescription: "Sharding is the sharding configuration. PSMDB-only",
+						Attributes: map[string]schema.Attribute{
+							"config_server": schema.SingleNestedAttribute{
+								Description:         "ConfigServer represents the sharding configuration server settings",
+								MarkdownDescription: "ConfigServer represents the sharding configuration server settings",
+								Attributes: map[string]schema.Attribute{
+									"replicas": schema.Int64Attribute{
+										Description:         "Replicas is the amount of configServers",
+										MarkdownDescription: "Replicas is the amount of configServers",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.Int64{
+											int64validator.AtLeast(1),
+										},
+									},
+								},
+								Required: true,
+								Optional: false,
+								Computed: false,
+							},
+
+							"enabled": schema.BoolAttribute{
+								Description:         "Enabled defines if the sharding is enabled",
+								MarkdownDescription: "Enabled defines if the sharding is enabled",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"shards": schema.Int64Attribute{
+								Description:         "Shards defines the number of shards",
+								MarkdownDescription: "Shards defines the number of shards",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(1),
 								},
 							},
 						},

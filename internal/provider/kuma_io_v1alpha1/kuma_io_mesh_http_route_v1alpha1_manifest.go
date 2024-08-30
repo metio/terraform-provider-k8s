@@ -252,7 +252,7 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Optional:            true,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
+									stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
 								},
 							},
 
@@ -355,7 +355,7 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																	Optional:            true,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
+																		stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
 																	},
 																},
 
@@ -535,8 +535,8 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																	MarkdownDescription: "",
 																	Attributes: map[string]schema.Attribute{
 																		"backend_ref": schema.SingleNestedAttribute{
-																			Description:         "TODO forbid weight",
-																			MarkdownDescription: "TODO forbid weight",
+																			Description:         "BackendRef defines where to forward traffic.",
+																			MarkdownDescription: "BackendRef defines where to forward traffic.",
 																			Attributes: map[string]schema.Attribute{
 																				"kind": schema.StringAttribute{
 																					Description:         "Kind of the referenced resource",
@@ -545,7 +545,7 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 																					Optional:            true,
 																					Computed:            false,
 																					Validators: []validator.String{
-																						stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
+																						stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
 																					},
 																				},
 
@@ -1061,7 +1061,7 @@ func (r *KumaIoMeshHttprouteV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 											Optional:            true,
 											Computed:            false,
 											Validators: []validator.String{
-												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshServiceSubset", "MeshHTTPRoute"),
+												stringvalidator.OneOf("Mesh", "MeshSubset", "MeshGateway", "MeshService", "MeshExternalService", "MeshMultiZoneService", "MeshServiceSubset", "MeshHTTPRoute"),
 											},
 										},
 

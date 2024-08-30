@@ -128,8 +128,8 @@ func (r *CouchbaseComCouchbaseRoleBindingV2Manifest) Schema(_ context.Context, _
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and the role i.e. group they are a member of.",
-				MarkdownDescription: "CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and the role i.e. group they are a member of.",
+				Description:         "CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and therole i.e. group they are a member of.",
+				MarkdownDescription: "CouchbaseRoleBindingSpec defines the group of subjects i.e. users, and therole i.e. group they are a member of.",
 				Attributes: map[string]schema.Attribute{
 					"role_ref": schema.SingleNestedAttribute{
 						Description:         "CouchbaseGroup being bound to subjects.",

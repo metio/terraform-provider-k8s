@@ -53,15 +53,22 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					Key        *string `tfsdk:"key" json:"key,omitempty"`
 					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"access_token" json:"accessToken,omitempty"`
-				AccessTokenIsJwt  *bool   `tfsdk:"access_token_is_jwt" json:"accessTokenIsJwt,omitempty"`
-				Audience          *string `tfsdk:"audience" json:"audience,omitempty"`
-				CertificateAndKey *struct {
+				AccessTokenIsJwt    *bool   `tfsdk:"access_token_is_jwt" json:"accessTokenIsJwt,omitempty"`
+				AccessTokenLocation *string `tfsdk:"access_token_location" json:"accessTokenLocation,omitempty"`
+				Audience            *string `tfsdk:"audience" json:"audience,omitempty"`
+				CertificateAndKey   *struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
 					Key         *string `tfsdk:"key" json:"key,omitempty"`
 					SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"certificate_and_key" json:"certificateAndKey,omitempty"`
-				ClientId     *string `tfsdk:"client_id" json:"clientId,omitempty"`
-				ClientSecret *struct {
+				ClientAssertion *struct {
+					Key        *string `tfsdk:"key" json:"key,omitempty"`
+					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+				} `tfsdk:"client_assertion" json:"clientAssertion,omitempty"`
+				ClientAssertionLocation *string `tfsdk:"client_assertion_location" json:"clientAssertionLocation,omitempty"`
+				ClientAssertionType     *string `tfsdk:"client_assertion_type" json:"clientAssertionType,omitempty"`
+				ClientId                *string `tfsdk:"client_id" json:"clientId,omitempty"`
+				ClientSecret            *struct {
 					Key        *string `tfsdk:"key" json:"key,omitempty"`
 					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"client_secret" json:"clientSecret,omitempty"`
@@ -81,7 +88,8 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					Key        *string `tfsdk:"key" json:"key,omitempty"`
 					SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 				} `tfsdk:"refresh_token" json:"refreshToken,omitempty"`
-				Scope                  *string `tfsdk:"scope" json:"scope,omitempty"`
+				SaslExtensions         *map[string]string `tfsdk:"sasl_extensions" json:"saslExtensions,omitempty"`
+				Scope                  *string            `tfsdk:"scope" json:"scope,omitempty"`
 				TlsTrustedCertificates *[]struct {
 					Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
 					Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
@@ -298,6 +306,15 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				VolumeMounts *[]struct {
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"build_container" json:"buildContainer,omitempty"`
 			BuildPod *struct {
 				Affinity *struct {
@@ -503,6 +520,40 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+				Volumes *[]struct {
+					ConfigMap *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					EmptyDir *struct {
+						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+						SizeLimit *struct {
+							Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+							Format *string `tfsdk:"format" json:"format,omitempty"`
+						} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					Name                  *string `tfsdk:"name" json:"name,omitempty"`
+					PersistentVolumeClaim *struct {
+						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+					Secret *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"build_pod" json:"buildPod,omitempty"`
 			BuildServiceAccount *struct {
 				Metadata *struct {
@@ -554,6 +605,15 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				VolumeMounts *[]struct {
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"connect_container" json:"connectContainer,omitempty"`
 			Deployment *struct {
 				DeploymentStrategy *string `tfsdk:"deployment_strategy" json:"deploymentStrategy,omitempty"`
@@ -608,6 +668,15 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 						RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 					} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 				} `tfsdk:"security_context" json:"securityContext,omitempty"`
+				VolumeMounts *[]struct {
+					MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+					MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+					Name              *string `tfsdk:"name" json:"name,omitempty"`
+					ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+					SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+				} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 			} `tfsdk:"init_container" json:"initContainer,omitempty"`
 			JmxSecret *struct {
 				Metadata *struct {
@@ -819,6 +888,40 @@ type KafkaStrimziIoKafkaMirrorMaker2V1Beta2ManifestData struct {
 					TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 					WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 				} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+				Volumes *[]struct {
+					ConfigMap *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					EmptyDir *struct {
+						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+						SizeLimit *struct {
+							Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+							Format *string `tfsdk:"format" json:"format,omitempty"`
+						} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					Name                  *string `tfsdk:"name" json:"name,omitempty"`
+					PersistentVolumeClaim *struct {
+						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+					Secret *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"volumes" json:"volumes,omitempty"`
 			} `tfsdk:"pod" json:"pod,omitempty"`
 			PodDisruptionBudget *struct {
 				MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -985,6 +1088,14 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Computed:            false,
 										},
 
+										"access_token_location": schema.StringAttribute{
+											Description:         "Path to the token file containing an access token to be used for authentication.",
+											MarkdownDescription: "Path to the token file containing an access token to be used for authentication.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"audience": schema.StringAttribute{
 											Description:         "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
 											MarkdownDescription: "OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.",
@@ -1024,6 +1135,47 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"client_assertion": schema.SingleNestedAttribute{
+											Description:         "Link to Kubernetes secret containing the client assertion which was manually configured for the client.",
+											MarkdownDescription: "Link to Kubernetes secret containing the client assertion which was manually configured for the client.",
+											Attributes: map[string]schema.Attribute{
+												"key": schema.StringAttribute{
+													Description:         "The key under which the secret value is stored in the Kubernetes Secret.",
+													MarkdownDescription: "The key under which the secret value is stored in the Kubernetes Secret.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+
+												"secret_name": schema.StringAttribute{
+													Description:         "The name of the Kubernetes Secret containing the secret value.",
+													MarkdownDescription: "The name of the Kubernetes Secret containing the secret value.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"client_assertion_location": schema.StringAttribute{
+											Description:         "Path to the file containing the client assertion to be used for authentication.",
+											MarkdownDescription: "Path to the file containing the client assertion to be used for authentication.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"client_assertion_type": schema.StringAttribute{
+											Description:         "The client assertion type. If not set, and either 'clientAssertion' or 'clientAssertionLocation' is configured, this value defaults to 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'.",
+											MarkdownDescription: "The client assertion type. If not set, and either 'clientAssertion' or 'clientAssertionLocation' is configured, this value defaults to 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"client_id": schema.StringAttribute{
@@ -1171,6 +1323,15 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 											Required: false,
 											Optional: true,
 											Computed: false,
+										},
+
+										"sasl_extensions": schema.MapAttribute{
+											Description:         "SASL extensions parameters.",
+											MarkdownDescription: "SASL extensions parameters.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
 										},
 
 										"scope": schema.StringAttribute{
@@ -2320,8 +2481,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 					},
 
 					"template": schema.SingleNestedAttribute{
-						Description:         "Template for Kafka Connect and Kafka Mirror Maker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated.",
-						MarkdownDescription: "Template for Kafka Connect and Kafka Mirror Maker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated.",
+						Description:         "Template for Kafka Connect and Kafka MirrorMaker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated.",
+						MarkdownDescription: "Template for Kafka Connect and Kafka MirrorMaker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated.",
 						Attributes: map[string]schema.Attribute{
 							"api_service": schema.SingleNestedAttribute{
 								Description:         "Template for Kafka Connect API 'Service'.",
@@ -2671,6 +2832,73 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": schema.ListNestedAttribute{
+										Description:         "Additional volume mounts which should be applied to the container.",
+										MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"mount_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mount_propagation": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"read_only": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path_expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -3892,8 +4120,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 									},
 
 									"tmp_dir_size_limit": schema.StringAttribute{
-										Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-										MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+										Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+										MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -4067,6 +4295,228 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volumes": schema.ListNestedAttribute{
+										Description:         "Additional volumes that can be mounted to the pod.",
+										MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap to use to populate the volume.",
+													MarkdownDescription: "ConfigMap to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"empty_dir": schema.SingleNestedAttribute{
+													Description:         "EmptyDir to use to populate the volume.",
+													MarkdownDescription: "EmptyDir to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"medium": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"size_limit": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"amount": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"format": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name to use for the volume. Required.",
+													MarkdownDescription: "Name to use for the volume. Required.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"persistent_volume_claim": schema.SingleNestedAttribute{
+													Description:         "PersistentVolumeClaim object to use to populate the volume.",
+													MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"claim_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret to use populate the volume.",
+													MarkdownDescription: "Secret to use populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"secret_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},
@@ -4400,6 +4850,73 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": schema.ListNestedAttribute{
+										Description:         "Additional volume mounts which should be applied to the container.",
+										MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"mount_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mount_propagation": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"read_only": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path_expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -4763,6 +5280,73 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 												Required: false,
 												Optional: true,
 												Computed: false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volume_mounts": schema.ListNestedAttribute{
+										Description:         "Additional volume mounts which should be applied to the container.",
+										MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"mount_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"mount_propagation": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"read_only": schema.BoolAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"recursive_read_only": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"sub_path_expr": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -6020,8 +6604,8 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 									},
 
 									"tmp_dir_size_limit": schema.StringAttribute{
-										Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-										MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+										Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+										MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -6195,6 +6779,228 @@ func (r *KafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest) Schema(_ context.Contex
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"volumes": schema.ListNestedAttribute{
+										Description:         "Additional volumes that can be mounted to the pod.",
+										MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "ConfigMap to use to populate the volume.",
+													MarkdownDescription: "ConfigMap to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"empty_dir": schema.SingleNestedAttribute{
+													Description:         "EmptyDir to use to populate the volume.",
+													MarkdownDescription: "EmptyDir to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"medium": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"size_limit": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"amount": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"format": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"name": schema.StringAttribute{
+													Description:         "Name to use for the volume. Required.",
+													MarkdownDescription: "Name to use for the volume. Required.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"persistent_volume_claim": schema.SingleNestedAttribute{
+													Description:         "PersistentVolumeClaim object to use to populate the volume.",
+													MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"claim_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "Secret to use populate the volume.",
+													MarkdownDescription: "Secret to use populate the volume.",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"secret_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},

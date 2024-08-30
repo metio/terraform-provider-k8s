@@ -160,7 +160,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 			DataIndex *struct {
 				Enabled     *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				Persistence *struct {
-					Postgresql *struct {
+					MigrateDBOnStartUp *bool `tfsdk:"migrate_db_on_start_up" json:"migrateDBOnStartUp,omitempty"`
+					Postgresql         *struct {
 						JdbcUrl   *string `tfsdk:"jdbc_url" json:"jdbcUrl,omitempty"`
 						SecretRef *struct {
 							Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -1406,7 +1407,8 @@ type SonataflowOrgSonataFlowPlatformV1Alpha08ManifestData struct {
 			JobService *struct {
 				Enabled     *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 				Persistence *struct {
-					Postgresql *struct {
+					MigrateDBOnStartUp *bool `tfsdk:"migrate_db_on_start_up" json:"migrateDBOnStartUp,omitempty"`
+					Postgresql         *struct {
 						JdbcUrl   *string `tfsdk:"jdbc_url" json:"jdbcUrl,omitempty"`
 						SecretRef *struct {
 							Name        *string `tfsdk:"name" json:"name,omitempty"`
@@ -3470,6 +3472,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 										Description:         "Persists service to a datasource of choice. Ephemeral by default.",
 										MarkdownDescription: "Persists service to a datasource of choice. Ephemeral by default.",
 										Attributes: map[string]schema.Attribute{
+											"migrate_db_on_start_up": schema.BoolAttribute{
+												Description:         "Whether to migrate database on service startup?",
+												MarkdownDescription: "Whether to migrate database on service startup?",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
 											"postgresql": schema.SingleNestedAttribute{
 												Description:         "Connect configured services to a postgresql database.",
 												MarkdownDescription: "Connect configured services to a postgresql database.",
@@ -11786,6 +11796,14 @@ func (r *SonataflowOrgSonataFlowPlatformV1Alpha08Manifest) Schema(_ context.Cont
 										Description:         "Persists service to a datasource of choice. Ephemeral by default.",
 										MarkdownDescription: "Persists service to a datasource of choice. Ephemeral by default.",
 										Attributes: map[string]schema.Attribute{
+											"migrate_db_on_start_up": schema.BoolAttribute{
+												Description:         "Whether to migrate database on service startup?",
+												MarkdownDescription: "Whether to migrate database on service startup?",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
 											"postgresql": schema.SingleNestedAttribute{
 												Description:         "Connect configured services to a postgresql database.",
 												MarkdownDescription: "Connect configured services to a postgresql database.",

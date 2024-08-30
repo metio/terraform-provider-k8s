@@ -74,9 +74,10 @@ type CouchbaseComCouchbaseBackupRestoreV2ManifestData struct {
 			Uri    *string `tfsdk:"uri" json:"uri,omitempty"`
 			UseIAM *bool   `tfsdk:"use_iam" json:"useIAM,omitempty"`
 		} `tfsdk:"object_store" json:"objectStore,omitempty"`
-		Repo     *string `tfsdk:"repo" json:"repo,omitempty"`
-		S3bucket *string `tfsdk:"s3bucket" json:"s3bucket,omitempty"`
-		Services *struct {
+		OverwriteUsers *bool   `tfsdk:"overwrite_users" json:"overwriteUsers,omitempty"`
+		Repo           *string `tfsdk:"repo" json:"repo,omitempty"`
+		S3bucket       *string `tfsdk:"s3bucket" json:"s3bucket,omitempty"`
+		Services       *struct {
 			Analytics        *bool `tfsdk:"analytics" json:"analytics,omitempty"`
 			BucketConfig     *bool `tfsdk:"bucket_config" json:"bucketConfig,omitempty"`
 			BucketQuery      *bool `tfsdk:"bucket_query" json:"bucketQuery,omitempty"`
@@ -87,6 +88,7 @@ type CouchbaseComCouchbaseBackupRestoreV2ManifestData struct {
 			FtAlias          *bool `tfsdk:"ft_alias" json:"ftAlias,omitempty"`
 			FtIndex          *bool `tfsdk:"ft_index" json:"ftIndex,omitempty"`
 			GsiIndex         *bool `tfsdk:"gsi_index" json:"gsiIndex,omitempty"`
+			Users            *bool `tfsdk:"users" json:"users,omitempty"`
 			Views            *bool `tfsdk:"views" json:"views,omitempty"`
 		} `tfsdk:"services" json:"services,omitempty"`
 		StagingVolume *struct {
@@ -108,8 +110,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Metadata(_ context.Contex
 
 func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.",
-		MarkdownDescription: "CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.",
+		Description:         "CouchbaseBackupRestore allows the restoration of all Couchbase cluster data froma CouchbaseBackup resource.",
+		MarkdownDescription: "CouchbaseBackupRestore allows the restoration of all Couchbase cluster data froma CouchbaseBackup resource.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -176,8 +178,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "CouchbaseBackupRestoreSpec allows the specification of data restoration to be configured.  This includes the backup and repository to restore data from, and the time range of data to be restored.",
-				MarkdownDescription: "CouchbaseBackupRestoreSpec allows the specification of data restoration to be configured.  This includes the backup and repository to restore data from, and the time range of data to be restored.",
+				Description:         "CouchbaseBackupRestoreSpec allows the specification of data restoration to beconfigured.  This includes the backup and repository to restore data from, andthe time range of data to be restored.",
+				MarkdownDescription: "CouchbaseBackupRestoreSpec allows the specification of data restoration to beconfigured.  This includes the backup and repository to restore data from, andthe time range of data to be restored.",
 				Attributes: map[string]schema.Attribute{
 					"backoff_limit": schema.Int64Attribute{
 						Description:         "Number of times the restore job should try to execute.",
@@ -188,16 +190,16 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"backup": schema.StringAttribute{
-						Description:         "The backup resource name associated with this restore, or the backup PVC name to restore from.",
-						MarkdownDescription: "The backup resource name associated with this restore, or the backup PVC name to restore from.",
-						Required:            true,
-						Optional:            false,
+						Description:         "The backup resource name associated with this restore, or the backup PVCname to restore from.",
+						MarkdownDescription: "The backup resource name associated with this restore, or the backup PVCname to restore from.",
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"buckets": schema.MapAttribute{
-						Description:         "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
-						MarkdownDescription: "DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.",
+						Description:         "DEPRECATED - by spec.data.Specific buckets can be explicitly included or excluded in the restore,as well as bucket mappings.  This field is now ignored.",
+						MarkdownDescription: "DEPRECATED - by spec.data.Specific buckets can be explicitly included or excluded in the restore,as well as bucket mappings.  This field is now ignored.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -205,12 +207,12 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"data": schema.SingleNestedAttribute{
-						Description:         "Data allows control over what key-value/document data is included in the restore.  By default, all data is included.",
-						MarkdownDescription: "Data allows control over what key-value/document data is included in the restore.  By default, all data is included.",
+						Description:         "Data allows control over what key-value/document data is included in therestore.  By default, all data is included.",
+						MarkdownDescription: "Data allows control over what key-value/document data is included in therestore.  By default, all data is included.",
 						Attributes: map[string]schema.Attribute{
 							"exclude": schema.ListAttribute{
-								Description:         "Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.  You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as included items.",
-								MarkdownDescription: "Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.  You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as included items.",
+								Description:         "Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.",
+								MarkdownDescription: "Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -234,8 +236,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 							},
 
 							"include": schema.ListAttribute{
-								Description:         "Include defines the buckets, scopes or collections that are included in the restore. When this field is set, it implies that by default nothing will be restored, and data items must be explicitly included.  You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as excluded items.",
-								MarkdownDescription: "Include defines the buckets, scopes or collections that are included in the restore. When this field is set, it implies that by default nothing will be restored, and data items must be explicitly included.  You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as excluded items.",
+								Description:         "Include defines the buckets, scopes or collections that are included in the restore.When this field is set, it implies that by default nothing will be restored,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.",
+								MarkdownDescription: "Include defines the buckets, scopes or collections that are included in the restore.When this field is set, it implies that by default nothing will be restored,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -243,13 +245,13 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 							},
 
 							"map": schema.ListNestedAttribute{
-								Description:         "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
-								MarkdownDescription: "Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap.",
+								Description:         "Map allows data items in the restore to be remapped to a different named container.Buckets can be remapped to other buckets e.g. 'source=target', scopes and collectionscan be remapped to other scopes and collections within the same bucket only e.g.'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Mapsources may only be specified once, and may not overlap.",
+								MarkdownDescription: "Map allows data items in the restore to be remapped to a different named container.Buckets can be remapped to other buckets e.g. 'source=target', scopes and collectionscan be remapped to other scopes and collections within the same bucket only e.g.'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Mapsources may only be specified once, and may not overlap.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"source": schema.StringAttribute{
-											Description:         "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
-											MarkdownDescription: "Source defines the data source of the mapping, this may be either a bucket, scope or collection.",
+											Description:         "Source defines the data source of the mapping, this may be eithera bucket, scope or collection.",
+											MarkdownDescription: "Source defines the data source of the mapping, this may be eithera bucket, scope or collection.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -259,8 +261,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 										},
 
 										"target": schema.StringAttribute{
-											Description:         "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
-											MarkdownDescription: "Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.",
+											Description:         "Target defines the data target of the mapping, this may be eithera bucket, scope or collection, and must refer to the same typeas the restore source.",
+											MarkdownDescription: "Target defines the data target of the mapping, this may be eithera bucket, scope or collection, and must refer to the same typeas the restore source.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -281,8 +283,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"end": schema.SingleNestedAttribute{
-						Description:         "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
-						MarkdownDescription: "End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						Description:         "End denotes the last backup to restore from.  Omitting this field will onlyrestore the backup referenced by start.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						MarkdownDescription: "End denotes the last backup to restore from.  Omitting this field will onlyrestore the backup referenced by start.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
 						Attributes: map[string]schema.Attribute{
 							"int": schema.Int64Attribute{
 								Description:         "Int references a relative backup by index.",
@@ -309,16 +311,16 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"force_updates": schema.BoolAttribute{
-						Description:         "Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer than the restore",
-						MarkdownDescription: "Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer than the restore",
+						Description:         "Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer.By default, the system does not force updates,and all updates use Couchbase's conflict resolution mechanism to ensurethat if newer data exists on the cluster,older restored data does not overwrite it.However, if 'couchbasebackuprestores.spec.forceUpdates' is true,then the backup record will _always_ overwrite the cluster record,regardless of Couchbase's conflict resolution.",
+						MarkdownDescription: "Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer.By default, the system does not force updates,and all updates use Couchbase's conflict resolution mechanism to ensurethat if newer data exists on the cluster,older restored data does not overwrite it.However, if 'couchbasebackuprestores.spec.forceUpdates' is true,then the backup record will _always_ overwrite the cluster record,regardless of Couchbase's conflict resolution.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"log_retention": schema.StringAttribute{
-						Description:         "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
-						MarkdownDescription: "Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration",
+						Description:         "Number of hours to hold restore script logs for, everything older will be deleted.More info:https://golang.org/pkg/time/#ParseDuration",
+						MarkdownDescription: "Number of hours to hold restore script logs for, everything older will be deleted.More info:https://golang.org/pkg/time/#ParseDuration",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -329,12 +331,12 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "The remote destination for backup.",
 						Attributes: map[string]schema.Attribute{
 							"endpoint": schema.SingleNestedAttribute{
-								Description:         "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
-								MarkdownDescription: "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
+								Description:         "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
+								MarkdownDescription: "Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores",
 								Attributes: map[string]schema.Attribute{
 									"secret": schema.StringAttribute{
-										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
-										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'",
+										Description:         "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
+										MarkdownDescription: "The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -349,8 +351,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 									},
 
 									"use_virtual_path": schema.BoolAttribute{
-										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
-										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.",
+										Description:         "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
+										MarkdownDescription: "UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.",
 										Required:            false,
 										Optional:            true,
 										Computed:            false,
@@ -362,16 +364,16 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 							},
 
 							"secret": schema.StringAttribute{
-								Description:         "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
-								MarkdownDescription: "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
+								Description:         "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
+								MarkdownDescription: "ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"uri": schema.StringAttribute{
-								Description:         "URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.",
-								MarkdownDescription: "URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.",
+								Description:         "URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.",
+								MarkdownDescription: "URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -381,8 +383,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 							},
 
 							"use_iam": schema.BoolAttribute{
-								Description:         "Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
-								MarkdownDescription: "Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
+								Description:         "Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
+								MarkdownDescription: "Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -393,17 +395,25 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"overwrite_users": schema.BoolAttribute{
+						Description:         "Overwrites the already existing users in the cluster when  user restoration is enabled (spec.services.users).The default behavior of backup/restore of users is to skip already existing users.This is only available for Couchbase Server 7.6 and later.This field defaults to 'false'.",
+						MarkdownDescription: "Overwrites the already existing users in the cluster when  user restoration is enabled (spec.services.users).The default behavior of backup/restore of users is to skip already existing users.This is only available for Couchbase Server 7.6 and later.This field defaults to 'false'.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
 					"repo": schema.StringAttribute{
-						Description:         "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
-						MarkdownDescription: "Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.",
+						Description:         "Repo is the backup folder to restore from.  If no repository is specified,the backup container will choose the latest.",
+						MarkdownDescription: "Repo is the backup folder to restore from.  If no repository is specified,the backup container will choose the latest.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"s3bucket": schema.StringAttribute{
-						Description:         "DEPRECATED - by spec.objectStore.uri Name of S3 bucket to restore from. If non-empty this overrides local backup.",
-						MarkdownDescription: "DEPRECATED - by spec.objectStore.uri Name of S3 bucket to restore from. If non-empty this overrides local backup.",
+						Description:         "DEPRECATED - by spec.objectStore.uriName of S3 bucket to restore from. If non-empty this overrides local backup.",
+						MarkdownDescription: "DEPRECATED - by spec.objectStore.uriName of S3 bucket to restore from. If non-empty this overrides local backup.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -417,80 +427,88 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 						MarkdownDescription: "This list accepts a certain set of parameters that will disable that data and prevent it being restored.",
 						Attributes: map[string]schema.Attribute{
 							"analytics": schema.BoolAttribute{
-								Description:         "Analytics restores analytics datasets from the backup.  This field defaults to true.",
-								MarkdownDescription: "Analytics restores analytics datasets from the backup.  This field defaults to true.",
+								Description:         "Analytics restores analytics datasets from the backup.  This fielddefaults to true.",
+								MarkdownDescription: "Analytics restores analytics datasets from the backup.  This fielddefaults to true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bucket_config": schema.BoolAttribute{
-								Description:         "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
-								MarkdownDescription: "BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.",
+								Description:         "BucketConfig restores all bucket configuration settings.If you are restoring to cluster with managed buckets, then thisoption may conflict with existing bucket settings, and the resultsare undefined, so avoid use.  This option is intended for usewith unmanaged buckets.  Note that bucket durability settings arenot restored in versions less than and equal to 1.1.0, and willneed to be manually applied.  This field defaults to false.",
+								MarkdownDescription: "BucketConfig restores all bucket configuration settings.If you are restoring to cluster with managed buckets, then thisoption may conflict with existing bucket settings, and the resultsare undefined, so avoid use.  This option is intended for usewith unmanaged buckets.  Note that bucket durability settings arenot restored in versions less than and equal to 1.1.0, and willneed to be manually applied.  This field defaults to false.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"bucket_query": schema.BoolAttribute{
-								Description:         "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
-								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.",
+								Description:         "BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.",
+								MarkdownDescription: "BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_analytics": schema.BoolAttribute{
-								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
-								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.",
+								Description:         "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.",
+								MarkdownDescription: "ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"cluster_query": schema.BoolAttribute{
-								Description:         "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
-								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.",
+								Description:         "ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.",
+								MarkdownDescription: "ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"data": schema.BoolAttribute{
-								Description:         "Data restores document data from the backup.  This field defaults to true.",
-								MarkdownDescription: "Data restores document data from the backup.  This field defaults to true.",
+								Description:         "Data restores document data from the backup.  This field defaultsto true.",
+								MarkdownDescription: "Data restores document data from the backup.  This field defaultsto true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"eventing": schema.BoolAttribute{
-								Description:         "Eventing restores eventing functions from the backup.  This field defaults to true.",
-								MarkdownDescription: "Eventing restores eventing functions from the backup.  This field defaults to true.",
+								Description:         "Eventing restores eventing functions from the backup.  This fielddefaults to true.",
+								MarkdownDescription: "Eventing restores eventing functions from the backup.  This fielddefaults to true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"ft_alias": schema.BoolAttribute{
-								Description:         "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
-								MarkdownDescription: "FTAlias restores full-text search aliases from the backup.  This field defaults to true.",
+								Description:         "FTAlias restores full-text search aliases from the backup.  Thisfield defaults to true.",
+								MarkdownDescription: "FTAlias restores full-text search aliases from the backup.  Thisfield defaults to true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"ft_index": schema.BoolAttribute{
-								Description:         "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
-								MarkdownDescription: "FTIndex restores full-text search indexes from the backup.  This field defaults to true.",
+								Description:         "FTIndex restores full-text search indexes from the backup.  Thisfield defaults to true.",
+								MarkdownDescription: "FTIndex restores full-text search indexes from the backup.  Thisfield defaults to true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"gsi_index": schema.BoolAttribute{
-								Description:         "GSIIndex restores document indexes from the backup.  This field defaults to true.",
-								MarkdownDescription: "GSIIndex restores document indexes from the backup.  This field defaults to true.",
+								Description:         "GSIIndex restores document indexes from the backup.  This fielddefaults to true.",
+								MarkdownDescription: "GSIIndex restores document indexes from the backup.  This fielddefaults to true.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"users": schema.BoolAttribute{
+								Description:         "Users restores cluster level users, including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
+								MarkdownDescription: "Users restores cluster level users, including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -510,12 +528,12 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"staging_volume": schema.SingleNestedAttribute{
-						Description:         "StagingVolume contains configuration related to the ephemeral volume used as staging when restoring from a cloud backup.",
-						MarkdownDescription: "StagingVolume contains configuration related to the ephemeral volume used as staging when restoring from a cloud backup.",
+						Description:         "StagingVolume contains configuration related to theephemeral volume used as staging when restoring from a cloud backup.",
+						MarkdownDescription: "StagingVolume contains configuration related to theephemeral volume used as staging when restoring from a cloud backup.",
 						Attributes: map[string]schema.Attribute{
 							"size": schema.StringAttribute{
-								Description:         "Size allows the specification of a staging volume. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes The ephemeral volume will only be used when restoring from a cloud provider, if the backup job was created using ephemeral storage. Otherwise the restore job will share a staging volume with the backup job.",
-								MarkdownDescription: "Size allows the specification of a staging volume. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes The ephemeral volume will only be used when restoring from a cloud provider, if the backup job was created using ephemeral storage. Otherwise the restore job will share a staging volume with the backup job.",
+								Description:         "Size allows the specification of a staging volume. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesThe ephemeral volume will only be used when restoring from a cloud provider,if the backup job was created using ephemeral storage.Otherwise the restore job will share a staging volume with the backup job.",
+								MarkdownDescription: "Size allows the specification of a staging volume. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesThe ephemeral volume will only be used when restoring from a cloud provider,if the backup job was created using ephemeral storage.Otherwise the restore job will share a staging volume with the backup job.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -538,8 +556,8 @@ func (r *CouchbaseComCouchbaseBackupRestoreV2Manifest) Schema(_ context.Context,
 					},
 
 					"start": schema.SingleNestedAttribute{
-						Description:         "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
-						MarkdownDescription: "Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						Description:         "Start denotes the first backup to restore from.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
+						MarkdownDescription: "Start denotes the first backup to restore from.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords.",
 						Attributes: map[string]schema.Attribute{
 							"int": schema.Int64Attribute{
 								Description:         "Int references a relative backup by index.",

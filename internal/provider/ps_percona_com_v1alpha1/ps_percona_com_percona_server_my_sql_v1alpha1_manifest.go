@@ -352,8 +352,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 							Type             *string `tfsdk:"type" json:"type,omitempty"`
 						} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-						SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-						Sysctls            *[]struct {
+						SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+						SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+						Sysctls                  *[]struct {
 							Name  *string `tfsdk:"name" json:"name,omitempty"`
 							Value *string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -397,7 +398,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 					Resources *struct {
 						Claims *[]struct {
-							Name *string `tfsdk:"name" json:"name,omitempty"`
+							Name    *string `tfsdk:"name" json:"name,omitempty"`
+							Request *string `tfsdk:"request" json:"request,omitempty"`
 						} `tfsdk:"claims" json:"claims,omitempty"`
 						Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -516,7 +518,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			} `tfsdk:"pitr" json:"pitr,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -730,8 +733,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -745,7 +749,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 				Resources         *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1108,8 +1113,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -1152,7 +1158,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1345,6 +1352,10 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					Path *string `tfsdk:"path" json:"path,omitempty"`
 					Type *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"host_path" json:"hostPath,omitempty"`
+				Image *struct {
+					PullPolicy *string `tfsdk:"pull_policy" json:"pullPolicy,omitempty"`
+					Reference  *string `tfsdk:"reference" json:"reference,omitempty"`
+				} `tfsdk:"image" json:"image,omitempty"`
 				Iscsi *struct {
 					ChapAuthDiscovery *bool     `tfsdk:"chap_auth_discovery" json:"chapAuthDiscovery,omitempty"`
 					ChapAuthSession   *bool     `tfsdk:"chap_auth_session" json:"chapAuthSession,omitempty"`
@@ -1655,7 +1666,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				} `tfsdk:"resize_policy" json:"resizePolicy,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2112,8 +2124,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 					LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 					Type             *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-				SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-				Sysctls            *[]struct {
+				SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+				SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+				Sysctls                  *[]struct {
 					Name  *string `tfsdk:"name" json:"name,omitempty"`
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -2156,7 +2169,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2299,7 +2313,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
 			Resources       *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -2583,8 +2598,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -2627,7 +2643,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -3004,8 +3021,9 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -3048,7 +3066,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 				} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 				Resources *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -3297,7 +3316,8 @@ type PsPerconaComPerconaServerMySqlV1Alpha1ManifestData struct {
 			} `tfsdk:"readiness_probe" json:"readinessProbe,omitempty"`
 			Resources *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -5506,6 +5526,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 														Computed:            false,
 													},
 
+													"supplemental_groups_policy": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"sysctls": schema.ListNestedAttribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -5802,6 +5830,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 																	MarkdownDescription: "",
 																	Required:            true,
 																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"request": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
 																	Computed:            false,
 																},
 															},
@@ -6612,6 +6648,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													Optional:            false,
 													Computed:            false,
 												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
 											},
 										},
 										Required: false,
@@ -6658,24 +6702,24 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										"name": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
 										"schedule": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 
 										"storage_name": schema.StringAttribute{
 											Description:         "",
 											MarkdownDescription: "",
-											Required:            false,
-											Optional:            true,
+											Required:            true,
+											Optional:            false,
 											Computed:            false,
 										},
 									},
@@ -8068,6 +8112,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"sysctls": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -8163,6 +8215,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -10632,6 +10692,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"sysctls": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -10920,6 +10988,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -12194,6 +12270,31 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												},
 
 												"type": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"image": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"pull_policy": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
+												"reference": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,
@@ -14255,6 +14356,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 																MarkdownDescription: "",
 																Required:            true,
 																Optional:            false,
+																Computed:            false,
+															},
+
+															"request": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
 																Computed:            false,
 															},
 														},
@@ -17354,6 +17463,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 										Computed:            false,
 									},
 
+									"supplemental_groups_policy": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
 									"sysctls": schema.ListNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
@@ -17642,6 +17759,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -18615,6 +18740,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},
@@ -20531,6 +20664,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"sysctls": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -20819,6 +20960,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -23369,6 +23518,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 												Computed:            false,
 											},
 
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"sysctls": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -23657,6 +23814,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},
@@ -25320,6 +25485,14 @@ func (r *PsPerconaComPerconaServerMySqlV1Alpha1Manifest) Schema(_ context.Contex
 													MarkdownDescription: "",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

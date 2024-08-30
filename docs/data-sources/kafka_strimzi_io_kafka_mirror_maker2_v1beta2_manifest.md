@@ -73,7 +73,7 @@ Optional:
 - `readiness_probe` (Attributes) Pod readiness checking. (see [below for nested schema](#nestedatt--spec--readiness_probe))
 - `replicas` (Number) The number of pods in the Kafka Connect group. Defaults to '3'.
 - `resources` (Attributes) The maximum limits for CPU and memory resources and the requested initial resources. (see [below for nested schema](#nestedatt--spec--resources))
-- `template` (Attributes) Template for Kafka Connect and Kafka Mirror Maker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated. (see [below for nested schema](#nestedatt--spec--template))
+- `template` (Attributes) Template for Kafka Connect and Kafka MirrorMaker 2 resources. The template allows users to specify how the 'Pods', 'Service', and other services are generated. (see [below for nested schema](#nestedatt--spec--template))
 - `tracing` (Attributes) The configuration of tracing in Kafka Connect. (see [below for nested schema](#nestedatt--spec--tracing))
 - `version` (String) The Kafka Connect version. Defaults to the latest version. Consult the user documentation to understand the process required to upgrade or downgrade the version.
 
@@ -102,8 +102,12 @@ Optional:
 
 - `access_token` (Attributes) Link to Kubernetes Secret containing the access token which was obtained from the authorization server. (see [below for nested schema](#nestedatt--spec--clusters--authentication--access_token))
 - `access_token_is_jwt` (Boolean) Configure whether access token should be treated as JWT. This should be set to 'false' if the authorization server returns opaque tokens. Defaults to 'true'.
+- `access_token_location` (String) Path to the token file containing an access token to be used for authentication.
 - `audience` (String) OAuth audience to use when authenticating against the authorization server. Some authorization servers require the audience to be explicitly set. The possible values depend on how the authorization server is configured. By default, 'audience' is not specified when performing the token endpoint request.
 - `certificate_and_key` (Attributes) Reference to the 'Secret' which holds the certificate and private key pair. (see [below for nested schema](#nestedatt--spec--clusters--authentication--certificate_and_key))
+- `client_assertion` (Attributes) Link to Kubernetes secret containing the client assertion which was manually configured for the client. (see [below for nested schema](#nestedatt--spec--clusters--authentication--client_assertion))
+- `client_assertion_location` (String) Path to the file containing the client assertion to be used for authentication.
+- `client_assertion_type` (String) The client assertion type. If not set, and either 'clientAssertion' or 'clientAssertionLocation' is configured, this value defaults to 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'.
 - `client_id` (String) OAuth Client ID which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI.
 - `client_secret` (Attributes) Link to Kubernetes Secret containing the OAuth client secret which the Kafka client can use to authenticate against the OAuth server and use the token endpoint URI. (see [below for nested schema](#nestedatt--spec--clusters--authentication--client_secret))
 - `connect_timeout_seconds` (Number) The connect timeout in seconds when connecting to authorization server. If not set, the effective connect timeout is 60 seconds.
@@ -116,6 +120,7 @@ Optional:
 - `password_secret` (Attributes) Reference to the 'Secret' which holds the password. (see [below for nested schema](#nestedatt--spec--clusters--authentication--password_secret))
 - `read_timeout_seconds` (Number) The read timeout in seconds when connecting to authorization server. If not set, the effective read timeout is 60 seconds.
 - `refresh_token` (Attributes) Link to Kubernetes Secret containing the refresh token which can be used to obtain access token from the authorization server. (see [below for nested schema](#nestedatt--spec--clusters--authentication--refresh_token))
+- `sasl_extensions` (Map of String) SASL extensions parameters.
 - `scope` (String) OAuth scope to use when authenticating against the authorization server. Some authorization servers require this to be set. The possible values depend on how authorization server is configured. By default 'scope' is not specified when doing the token endpoint request.
 - `tls_trusted_certificates` (Attributes List) Trusted certificates for TLS connection to the OAuth server. (see [below for nested schema](#nestedatt--spec--clusters--authentication--tls_trusted_certificates))
 - `token_endpoint_uri` (String) Authorization server token endpoint URI.
@@ -138,6 +143,15 @@ Required:
 - `certificate` (String) The name of the file certificate in the Secret.
 - `key` (String) The name of the private key in the Secret.
 - `secret_name` (String) The name of the Secret containing the certificate.
+
+
+<a id="nestedatt--spec--clusters--authentication--client_assertion"></a>
+### Nested Schema for `spec.clusters.authentication.client_assertion`
+
+Required:
+
+- `key` (String) The key under which the secret value is stored in the Kubernetes Secret.
+- `secret_name` (String) The name of the Kubernetes Secret containing the secret value.
 
 
 <a id="nestedatt--spec--clusters--authentication--client_secret"></a>
@@ -599,6 +613,7 @@ Optional:
 
 - `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--build_container--env))
 - `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--template--build_container--security_context))
+- `volume_mounts` (Attributes List) Additional volume mounts which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--build_container--volume_mounts))
 
 <a id="nestedatt--spec--template--build_container--env"></a>
 ### Nested Schema for `spec.template.build_container.env`
@@ -677,6 +692,20 @@ Optional:
 
 
 
+<a id="nestedatt--spec--template--build_container--volume_mounts"></a>
+### Nested Schema for `spec.template.build_container.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `mount_propagation` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+- `sub_path` (String)
+- `sub_path_expr` (String)
+
+
 
 <a id="nestedatt--spec--template--build_pod"></a>
 ### Nested Schema for `spec.template.build_pod`
@@ -692,9 +721,10 @@ Optional:
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--template--build_pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
-- `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
+- `tmp_dir_size_limit` (String) Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.
 - `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--template--build_pod--tolerations))
 - `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--template--build_pod--topology_spread_constraints))
+- `volumes` (Attributes List) Additional volumes that can be mounted to the pod. (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes))
 
 <a id="nestedatt--spec--template--build_pod--affinity"></a>
 ### Nested Schema for `spec.template.build_pod.affinity`
@@ -1169,6 +1199,87 @@ Optional:
 
 
 
+<a id="nestedatt--spec--template--build_pod--volumes"></a>
+### Nested Schema for `spec.template.build_pod.volumes`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--config_map))
+- `empty_dir` (Attributes) EmptyDir to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--empty_dir))
+- `name` (String) Name to use for the volume. Required.
+- `persistent_volume_claim` (Attributes) PersistentVolumeClaim object to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--persistent_volume_claim))
+- `secret` (Attributes) Secret to use populate the volume. (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--secret))
+
+<a id="nestedatt--spec--template--build_pod--volumes--config_map"></a>
+### Nested Schema for `spec.template.build_pod.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--template--build_pod--volumes--config_map--items"></a>
+### Nested Schema for `spec.template.build_pod.volumes.config_map.items`
+
+Optional:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--template--build_pod--volumes--empty_dir"></a>
+### Nested Schema for `spec.template.build_pod.volumes.empty_dir`
+
+Optional:
+
+- `medium` (String)
+- `size_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--empty_dir--size_limit))
+
+<a id="nestedatt--spec--template--build_pod--volumes--empty_dir--size_limit"></a>
+### Nested Schema for `spec.template.build_pod.volumes.empty_dir.size_limit`
+
+Optional:
+
+- `amount` (String)
+- `format` (String)
+
+
+
+<a id="nestedatt--spec--template--build_pod--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.template.build_pod.volumes.persistent_volume_claim`
+
+Optional:
+
+- `claim_name` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--template--build_pod--volumes--secret"></a>
+### Nested Schema for `spec.template.build_pod.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--build_pod--volumes--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
+
+<a id="nestedatt--spec--template--build_pod--volumes--secret--items"></a>
+### Nested Schema for `spec.template.build_pod.volumes.secret.items`
+
+Optional:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+
 
 <a id="nestedatt--spec--template--build_service_account"></a>
 ### Nested Schema for `spec.template.build_service_account`
@@ -1211,6 +1322,7 @@ Optional:
 
 - `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--connect_container--env))
 - `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--template--connect_container--security_context))
+- `volume_mounts` (Attributes List) Additional volume mounts which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--connect_container--volume_mounts))
 
 <a id="nestedatt--spec--template--connect_container--env"></a>
 ### Nested Schema for `spec.template.connect_container.env`
@@ -1289,6 +1401,20 @@ Optional:
 
 
 
+<a id="nestedatt--spec--template--connect_container--volume_mounts"></a>
+### Nested Schema for `spec.template.connect_container.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `mount_propagation` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+- `sub_path` (String)
+- `sub_path_expr` (String)
+
+
 
 <a id="nestedatt--spec--template--deployment"></a>
 ### Nested Schema for `spec.template.deployment`
@@ -1334,6 +1460,7 @@ Optional:
 
 - `env` (Attributes List) Environment variables which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--init_container--env))
 - `security_context` (Attributes) Security context for the container. (see [below for nested schema](#nestedatt--spec--template--init_container--security_context))
+- `volume_mounts` (Attributes List) Additional volume mounts which should be applied to the container. (see [below for nested schema](#nestedatt--spec--template--init_container--volume_mounts))
 
 <a id="nestedatt--spec--template--init_container--env"></a>
 ### Nested Schema for `spec.template.init_container.env`
@@ -1412,6 +1539,20 @@ Optional:
 
 
 
+<a id="nestedatt--spec--template--init_container--volume_mounts"></a>
+### Nested Schema for `spec.template.init_container.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `mount_propagation` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+- `sub_path` (String)
+- `sub_path_expr` (String)
+
+
 
 <a id="nestedatt--spec--template--jmx_secret"></a>
 ### Nested Schema for `spec.template.jmx_secret`
@@ -1444,9 +1585,10 @@ Optional:
 - `scheduler_name` (String) The name of the scheduler used to dispatch this 'Pod'. If not specified, the default scheduler will be used.
 - `security_context` (Attributes) Configures pod-level security attributes and common container settings. (see [below for nested schema](#nestedatt--spec--template--pod--security_context))
 - `termination_grace_period_seconds` (Number) The grace period is the duration in seconds after the processes running in the pod are sent a termination signal, and the time when the processes are forcibly halted with a kill signal. Set this value to longer than the expected cleanup time for your process. Value must be a non-negative integer. A zero value indicates delete immediately. You might need to increase the grace period for very large Kafka clusters, so that the Kafka brokers have enough time to transfer their work to another broker before they are terminated. Defaults to 30 seconds.
-- `tmp_dir_size_limit` (String) Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.
+- `tmp_dir_size_limit` (String) Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.
 - `tolerations` (Attributes List) The pod's tolerations. (see [below for nested schema](#nestedatt--spec--template--pod--tolerations))
 - `topology_spread_constraints` (Attributes List) The pod's topology spread constraints. (see [below for nested schema](#nestedatt--spec--template--pod--topology_spread_constraints))
+- `volumes` (Attributes List) Additional volumes that can be mounted to the pod. (see [below for nested schema](#nestedatt--spec--template--pod--volumes))
 
 <a id="nestedatt--spec--template--pod--affinity"></a>
 ### Nested Schema for `spec.template.pod.affinity`
@@ -1917,6 +2059,87 @@ Optional:
 - `key` (String)
 - `operator` (String)
 - `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--template--pod--volumes"></a>
+### Nested Schema for `spec.template.pod.volumes`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--pod--volumes--config_map))
+- `empty_dir` (Attributes) EmptyDir to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--pod--volumes--empty_dir))
+- `name` (String) Name to use for the volume. Required.
+- `persistent_volume_claim` (Attributes) PersistentVolumeClaim object to use to populate the volume. (see [below for nested schema](#nestedatt--spec--template--pod--volumes--persistent_volume_claim))
+- `secret` (Attributes) Secret to use populate the volume. (see [below for nested schema](#nestedatt--spec--template--pod--volumes--secret))
+
+<a id="nestedatt--spec--template--pod--volumes--config_map"></a>
+### Nested Schema for `spec.template.pod.volumes.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--volumes--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--template--pod--volumes--config_map--items"></a>
+### Nested Schema for `spec.template.pod.volumes.config_map.items`
+
+Optional:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
+
+
+
+<a id="nestedatt--spec--template--pod--volumes--empty_dir"></a>
+### Nested Schema for `spec.template.pod.volumes.empty_dir`
+
+Optional:
+
+- `medium` (String)
+- `size_limit` (Attributes) (see [below for nested schema](#nestedatt--spec--template--pod--volumes--empty_dir--size_limit))
+
+<a id="nestedatt--spec--template--pod--volumes--empty_dir--size_limit"></a>
+### Nested Schema for `spec.template.pod.volumes.empty_dir.size_limit`
+
+Optional:
+
+- `amount` (String)
+- `format` (String)
+
+
+
+<a id="nestedatt--spec--template--pod--volumes--persistent_volume_claim"></a>
+### Nested Schema for `spec.template.pod.volumes.persistent_volume_claim`
+
+Optional:
+
+- `claim_name` (String)
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--template--pod--volumes--secret"></a>
+### Nested Schema for `spec.template.pod.volumes.secret`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--template--pod--volumes--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
+
+<a id="nestedatt--spec--template--pod--volumes--secret--items"></a>
+### Nested Schema for `spec.template.pod.volumes.secret.items`
+
+Optional:
+
+- `key` (String)
+- `mode` (Number)
+- `path` (String)
 
 
 

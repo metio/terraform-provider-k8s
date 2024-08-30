@@ -72,11 +72,34 @@ type InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2ManifestData str
 				} `tfsdk:"ignition" json:"ignition,omitempty"`
 				LoadBalancers *[]struct {
 					AdditionalListeners *[]struct {
-						Port *int64 `tfsdk:"port" json:"port,omitempty"`
+						DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
+						Port            *int64  `tfsdk:"port" json:"port,omitempty"`
+						Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
 					} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
-					Id     *string `tfsdk:"id" json:"id,omitempty"`
-					Name   *string `tfsdk:"name" json:"name,omitempty"`
-					Public *bool   `tfsdk:"public" json:"public,omitempty"`
+					BackendPools *[]struct {
+						Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
+						HealthMonitor *struct {
+							Delay   *int64  `tfsdk:"delay" json:"delay,omitempty"`
+							Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+							Retries *int64  `tfsdk:"retries" json:"retries,omitempty"`
+							Timeout *int64  `tfsdk:"timeout" json:"timeout,omitempty"`
+							Type    *string `tfsdk:"type" json:"type,omitempty"`
+							UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
+						} `tfsdk:"health_monitor" json:"healthMonitor,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+					} `tfsdk:"backend_pools" json:"backendPools,omitempty"`
+					Id             *string `tfsdk:"id" json:"id,omitempty"`
+					Name           *string `tfsdk:"name" json:"name,omitempty"`
+					Public         *bool   `tfsdk:"public" json:"public,omitempty"`
+					SecurityGroups *[]struct {
+						Id   *string `tfsdk:"id" json:"id,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"security_groups" json:"securityGroups,omitempty"`
+					Subnets *[]struct {
+						Id   *string `tfsdk:"id" json:"id,omitempty"`
+						Name *string `tfsdk:"name" json:"name,omitempty"`
+					} `tfsdk:"subnets" json:"subnets,omitempty"`
 				} `tfsdk:"load_balancers" json:"loadBalancers,omitempty"`
 				Network *struct {
 					Id    *string `tfsdk:"id" json:"id,omitempty"`
@@ -410,6 +433,19 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													MarkdownDescription: "AdditionalListeners sets the additional listeners for the control plane load balancer.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
+															"default_pool_name": schema.StringAttribute{
+																Description:         "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+																MarkdownDescription: "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+																},
+															},
+
 															"port": schema.Int64Attribute{
 																Description:         "Port sets the port for the additional listener.",
 																MarkdownDescription: "Port sets the port for the additional listener.",
@@ -419,6 +455,142 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 																Validators: []validator.Int64{
 																	int64validator.AtLeast(1),
 																	int64validator.AtMost(65535),
+																},
+															},
+
+															"protocol": schema.StringAttribute{
+																Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+																MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("http", "https", "tcp", "udp"),
+																},
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"backend_pools": schema.ListNestedAttribute{
+													Description:         "backendPools defines the load balancer's backend pools.",
+													MarkdownDescription: "backendPools defines the load balancer's backend pools.",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"algorithm": schema.StringAttribute{
+																Description:         "algorithm defines the load balancing algorithm to use.",
+																MarkdownDescription: "algorithm defines the load balancing algorithm to use.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("least_connections", "round_robin", "weighted_round_robin"),
+																},
+															},
+
+															"health_monitor": schema.SingleNestedAttribute{
+																Description:         "healthMonitor defines the backend pool's health monitor.",
+																MarkdownDescription: "healthMonitor defines the backend pool's health monitor.",
+																Attributes: map[string]schema.Attribute{
+																	"delay": schema.Int64Attribute{
+																		Description:         "delay defines the seconds to wait between health checks.",
+																		MarkdownDescription: "delay defines the seconds to wait between health checks.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(2),
+																			int64validator.AtMost(60),
+																		},
+																	},
+
+																	"port": schema.Int64Attribute{
+																		Description:         "port defines the port to perform health monitoring on.",
+																		MarkdownDescription: "port defines the port to perform health monitoring on.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(65535),
+																		},
+																	},
+
+																	"retries": schema.Int64Attribute{
+																		Description:         "retries defines the max retries for health check.",
+																		MarkdownDescription: "retries defines the max retries for health check.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(10),
+																		},
+																	},
+
+																	"timeout": schema.Int64Attribute{
+																		Description:         "timeout defines the seconds to wait for a health check response.",
+																		MarkdownDescription: "timeout defines the seconds to wait for a health check response.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(59),
+																		},
+																	},
+
+																	"type": schema.StringAttribute{
+																		Description:         "type defines the protocol used for health checks.",
+																		MarkdownDescription: "type defines the protocol used for health checks.",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.OneOf("http", "https", "tcp"),
+																		},
+																	},
+
+																	"url_path": schema.StringAttribute{
+																		Description:         "urlPath defines the URL to use for health monitoring.",
+																		MarkdownDescription: "urlPath defines the URL to use for health monitoring.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.String{
+																			stringvalidator.RegexMatches(regexp.MustCompile(`^\/(([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})+(\/([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})*)*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:@\/?]|%[a-fA-F0-9]{2})*)?$`), ""),
+																		},
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "name defines the name of the Backend Pool.",
+																MarkdownDescription: "name defines the name of the Backend Pool.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																	stringvalidator.LengthAtMost(63),
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+																},
+															},
+
+															"protocol": schema.StringAttribute{
+																Description:         "protocol defines the protocol to use for the Backend Pool.",
+																MarkdownDescription: "protocol defines the protocol to use for the Backend Pool.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("http", "https", "tcp", "udp"),
 																},
 															},
 														},
@@ -460,6 +632,72 @@ func (r *InfrastructureClusterXK8SIoIbmpowerVsclusterTemplateV1Beta2Manifest) Sc
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
+												},
+
+												"security_groups": schema.ListNestedAttribute{
+													Description:         "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+													MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"id": schema.StringAttribute{
+																Description:         "id of the resource.",
+																MarkdownDescription: "id of the resource.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "name of the resource.",
+																MarkdownDescription: "name of the resource.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"subnets": schema.ListNestedAttribute{
+													Description:         "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+													MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"id": schema.StringAttribute{
+																Description:         "id of the resource.",
+																MarkdownDescription: "id of the resource.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "name of the resource.",
+																MarkdownDescription: "name of the resource.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.LengthAtLeast(1),
+																},
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
 												},
 											},
 										},

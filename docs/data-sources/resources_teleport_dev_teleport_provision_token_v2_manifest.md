@@ -69,6 +69,7 @@ Optional:
 - `spacelift` (Attributes) Spacelift allows the configuration of options specific to the 'spacelift' join method. (see [below for nested schema](#nestedatt--spec--spacelift))
 - `suggested_agent_matcher_labels` (Map of String) SuggestedAgentMatcherLabels is a set of labels to be used by agents to match on resources. When an agent uses this token, the agent should monitor resources that match those labels. For databases, this means adding the labels to 'db_service.resources.labels'. Currently, only node-join scripts create a configuration according to the suggestion.
 - `suggested_labels` (Map of String) SuggestedLabels is a set of labels that resources should set when using this token to enroll themselves in the cluster. Currently, only node-join scripts create a configuration according to the suggestion.
+- `terraform_cloud` (Attributes) TerraformCloud allows the configuration of options specific to the 'terraform_cloud' join method. (see [below for nested schema](#nestedatt--spec--terraform_cloud))
 - `tpm` (Attributes) TPM allows the configuration of options specific to the 'tpm' join method. (see [below for nested schema](#nestedatt--spec--tpm))
 
 <a id="nestedatt--spec--allow"></a>
@@ -235,6 +236,29 @@ Optional:
 - `caller_type` (String)
 - `scope` (String)
 - `space_id` (String)
+
+
+
+<a id="nestedatt--spec--terraform_cloud"></a>
+### Nested Schema for `spec.terraform_cloud`
+
+Optional:
+
+- `allow` (Attributes List) Allow is a list of Rules, nodes using this token must match one allow rule to use this token. (see [below for nested schema](#nestedatt--spec--terraform_cloud--allow))
+- `audience` (String) Audience is the JWT audience as configured in the TFC_WORKLOAD_IDENTITY_AUDIENCE(_$TAG) variable in Terraform Cloud. If unset, defaults to the Teleport cluster name. For example, if 'TFC_WORKLOAD_IDENTITY_AUDIENCE_TELEPORT=foo' is set in Terraform Cloud, this value should be 'foo'. If the variable is set to match the cluster name, it does not need to be set here.
+
+<a id="nestedatt--spec--terraform_cloud--allow"></a>
+### Nested Schema for `spec.terraform_cloud.allow`
+
+Optional:
+
+- `organization_id` (String)
+- `organization_name` (String)
+- `project_id` (String)
+- `project_name` (String)
+- `run_phase` (String)
+- `workspace_id` (String)
+- `workspace_name` (String)
 
 
 

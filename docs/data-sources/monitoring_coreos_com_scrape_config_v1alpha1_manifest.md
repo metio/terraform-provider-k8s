@@ -121,7 +121,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -153,7 +153,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -175,7 +175,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -188,7 +188,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -241,7 +241,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -263,7 +263,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -276,7 +276,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -317,7 +317,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -330,7 +330,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -344,7 +344,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -378,7 +378,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -391,7 +391,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -413,7 +413,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -426,7 +426,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -440,7 +440,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -476,7 +476,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -489,7 +489,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -511,7 +511,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -524,7 +524,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -538,7 +538,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -552,7 +552,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -591,7 +591,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -632,7 +632,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -645,7 +645,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -659,7 +659,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -693,7 +693,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -706,7 +706,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -728,7 +728,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -741,7 +741,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -755,7 +755,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -791,7 +791,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -804,7 +804,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -826,7 +826,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -839,7 +839,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -853,7 +853,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -888,6 +888,7 @@ Optional:
 - `filters` (Attributes List) Optional filters to limit the discovery process to a subset of the available resources. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--filters))
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `host_networking_host` (String) The host to use if the container is in host networking mode.
+- `match_first_network` (Boolean) Configure whether to match the first network if the container has multiple networks defined.If unset, Prometheus uses true by default.It requires Prometheus >= v2.54.0.
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
@@ -914,7 +915,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -936,7 +937,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -949,7 +950,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -999,7 +1000,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1012,7 +1013,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1026,7 +1027,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1060,7 +1061,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1073,7 +1074,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1095,7 +1096,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1108,7 +1109,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1122,7 +1123,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1158,7 +1159,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1171,7 +1172,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1193,7 +1194,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1206,7 +1207,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1220,7 +1221,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1267,7 +1268,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1289,7 +1290,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1302,7 +1303,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1352,7 +1353,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1365,7 +1366,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1379,7 +1380,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1413,7 +1414,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1426,7 +1427,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1448,7 +1449,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1461,7 +1462,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1475,7 +1476,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1511,7 +1512,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1524,7 +1525,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1546,7 +1547,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1559,7 +1560,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1573,7 +1574,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1608,7 +1609,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1630,7 +1631,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1664,7 +1665,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1677,7 +1678,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1699,7 +1700,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1712,7 +1713,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1726,7 +1727,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1770,7 +1771,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1792,7 +1793,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1805,7 +1806,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1846,7 +1847,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1859,7 +1860,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1873,7 +1874,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1907,7 +1908,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1920,7 +1921,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1942,7 +1943,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1955,7 +1956,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1969,7 +1970,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2005,7 +2006,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2018,7 +2019,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2040,7 +2041,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2053,7 +2054,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2067,7 +2068,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2140,7 +2141,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2162,7 +2163,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2175,7 +2176,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2216,7 +2217,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2229,7 +2230,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2243,7 +2244,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2277,7 +2278,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2290,7 +2291,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2312,7 +2313,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2325,7 +2326,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2339,7 +2340,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2375,7 +2376,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2388,7 +2389,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2410,7 +2411,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2423,7 +2424,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2437,7 +2438,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2452,9 +2453,12 @@ Required:
 
 Optional:
 
-- `authorization` (Attributes) Authorization header configuration to authenticate against the target HTTP endpoint. (see [below for nested schema](#nestedatt--spec--http_sd_configs--authorization))
-- `basic_auth` (Attributes) BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpoints (see [below for nested schema](#nestedatt--spec--http_sd_configs--basic_auth))
+- `authorization` (Attributes) Authorization header configuration to authenticate against the target HTTP endpoint.Cannot be set at the same time as 'oAuth2', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--http_sd_configs--authorization))
+- `basic_auth` (Attributes) BasicAuth information to authenticate against the target HTTP endpoint.More info: https://prometheus.io/docs/operating/configuration/#endpointsCannot be set at the same time as 'authorization', or 'oAuth2'. (see [below for nested schema](#nestedatt--spec--http_sd_configs--basic_auth))
+- `enable_http2` (Boolean) Whether to enable HTTP2.
+- `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `oauth2` (Attributes) Optional OAuth 2.0 configuration to authenticate against the target HTTP endpoint.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2))
 - `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
 - `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
 - `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
@@ -2478,7 +2482,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2500,7 +2504,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2513,8 +2517,173 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2`
+
+Required:
+
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
+
+Optional:
+
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
+- `tls_config` (Attributes) TLS configuration to use when connecting to the OAuth2 server.It requires Prometheus >= v2.43.0. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config))
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--client_id"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.client_id`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--client_id--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--client_id--secret))
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--client_id--config_map"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.client_id.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--client_id--secret"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.client_id.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--client_secret"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.client_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--ca"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--ca--secret))
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--ca--secret"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--cert"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--http_sd_configs--oauth2--tls_config--cert--secret))
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--cert--secret"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--http_sd_configs--oauth2--tls_config--key_secret"></a>
+### Nested Schema for `spec.http_sd_configs.oauth2.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 
@@ -2548,7 +2717,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2561,7 +2730,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2583,7 +2752,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2596,7 +2765,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2610,7 +2779,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2665,7 +2834,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2687,7 +2856,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2700,7 +2869,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2750,7 +2919,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2763,7 +2932,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2777,7 +2946,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2811,7 +2980,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2824,7 +2993,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2846,7 +3015,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2859,7 +3028,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2873,7 +3042,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2922,7 +3091,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2935,7 +3104,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2957,7 +3126,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2970,7 +3139,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2984,7 +3153,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3030,7 +3199,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3052,7 +3221,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3065,7 +3234,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3106,7 +3275,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3119,7 +3288,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3133,7 +3302,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3167,7 +3336,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3180,7 +3349,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3202,7 +3371,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3215,7 +3384,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3229,7 +3398,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3265,7 +3434,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3278,7 +3447,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3300,7 +3469,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3313,7 +3482,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3327,7 +3496,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3365,7 +3534,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3386,7 +3555,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3408,7 +3577,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3421,7 +3590,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3462,7 +3631,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3475,7 +3644,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3489,7 +3658,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3523,7 +3692,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3536,7 +3705,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3558,7 +3727,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3571,7 +3740,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3585,7 +3754,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3600,7 +3769,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3634,7 +3803,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3647,7 +3816,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3669,7 +3838,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3682,7 +3851,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3696,7 +3865,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3738,7 +3907,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3779,7 +3948,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3792,7 +3961,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3806,7 +3975,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3840,7 +4009,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3853,7 +4022,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3875,7 +4044,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3888,7 +4057,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3902,7 +4071,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3938,7 +4107,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3951,7 +4120,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -3973,7 +4142,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -3986,7 +4155,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4000,7 +4169,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4062,7 +4231,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4084,7 +4253,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4097,7 +4266,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4138,7 +4307,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4151,7 +4320,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4165,7 +4334,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4199,7 +4368,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4212,7 +4381,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4234,7 +4403,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4247,7 +4416,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4261,7 +4430,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4297,7 +4466,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4310,7 +4479,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4332,7 +4501,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4345,7 +4514,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4359,7 +4528,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4401,7 +4570,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4414,7 +4583,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4428,7 +4597,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4462,7 +4631,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4475,7 +4644,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4497,7 +4666,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4510,7 +4679,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4524,7 +4693,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4566,7 +4735,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4579,7 +4748,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4613,7 +4782,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4626,7 +4795,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4648,7 +4817,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4661,7 +4830,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4675,7 +4844,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4705,7 +4874,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4718,7 +4887,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4764,7 +4933,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4786,7 +4955,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4799,7 +4968,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4840,7 +5009,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4853,7 +5022,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4867,7 +5036,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4901,7 +5070,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4914,7 +5083,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4936,7 +5105,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -4949,7 +5118,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4963,7 +5132,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -4999,7 +5168,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5012,7 +5181,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5034,7 +5203,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5047,7 +5216,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5061,7 +5230,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5116,7 +5285,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5150,7 +5319,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5163,7 +5332,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5185,7 +5354,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5198,7 +5367,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5212,7 +5381,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5257,7 +5426,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5270,7 +5439,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5292,7 +5461,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -5305,7 +5474,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -5319,5 +5488,5 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

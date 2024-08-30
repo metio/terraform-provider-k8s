@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_backup_restore_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.
+  CouchbaseBackupRestore allows the restoration of all Couchbase cluster data froma CouchbaseBackup resource.
 ---
 
 # k8s_couchbase_com_couchbase_backup_restore_v2_manifest (Data Source)
 
-CouchbaseBackupRestore allows the restoration of all Couchbase cluster data from a CouchbaseBackup resource.
+CouchbaseBackupRestore allows the restoration of all Couchbase cluster data froma CouchbaseBackup resource.
 
 ## Example Usage
 
@@ -31,7 +31,7 @@ data "k8s_couchbase_com_couchbase_backup_restore_v2_manifest" "example" {
 ### Required
 
 - `metadata` (Attributes) Data that helps uniquely identify this object. See https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata for more details. (see [below for nested schema](#nestedatt--metadata))
-- `spec` (Attributes) CouchbaseBackupRestoreSpec allows the specification of data restoration to be configured.  This includes the backup and repository to restore data from, and the time range of data to be restored. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CouchbaseBackupRestoreSpec allows the specification of data restoration to beconfigured.  This includes the backup and repository to restore data from, andthe time range of data to be restored. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -54,24 +54,22 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `backup` (String) The backup resource name associated with this restore, or the backup PVC name to restore from.
-
 Optional:
 
 - `backoff_limit` (Number) Number of times the restore job should try to execute.
-- `buckets` (Map of String) DEPRECATED - by spec.data. Specific buckets can be explicitly included or excluded in the restore, as well as bucket mappings.  This field is now ignored.
-- `data` (Attributes) Data allows control over what key-value/document data is included in the restore.  By default, all data is included. (see [below for nested schema](#nestedatt--spec--data))
-- `end` (Attributes) End denotes the last backup to restore from.  Omitting this field will only restore the backup referenced by start.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords. (see [below for nested schema](#nestedatt--spec--end))
-- `force_updates` (Boolean) Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer than the restore
-- `log_retention` (String) Number of hours to hold restore script logs for, everything older will be deleted. More info: https://golang.org/pkg/time/#ParseDuration
+- `backup` (String) The backup resource name associated with this restore, or the backup PVCname to restore from.
+- `buckets` (Map of String) DEPRECATED - by spec.data.Specific buckets can be explicitly included or excluded in the restore,as well as bucket mappings.  This field is now ignored.
+- `data` (Attributes) Data allows control over what key-value/document data is included in therestore.  By default, all data is included. (see [below for nested schema](#nestedatt--spec--data))
+- `end` (Attributes) End denotes the last backup to restore from.  Omitting this field will onlyrestore the backup referenced by start.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords. (see [below for nested schema](#nestedatt--spec--end))
+- `force_updates` (Boolean) Forces data in the Couchbase cluster to be overwritten even if the data in the cluster is newer.By default, the system does not force updates,and all updates use Couchbase's conflict resolution mechanism to ensurethat if newer data exists on the cluster,older restored data does not overwrite it.However, if 'couchbasebackuprestores.spec.forceUpdates' is true,then the backup record will _always_ overwrite the cluster record,regardless of Couchbase's conflict resolution.
+- `log_retention` (String) Number of hours to hold restore script logs for, everything older will be deleted.More info:https://golang.org/pkg/time/#ParseDuration
 - `object_store` (Attributes) The remote destination for backup. (see [below for nested schema](#nestedatt--spec--object_store))
-- `repo` (String) Repo is the backup folder to restore from.  If no repository is specified, the backup container will choose the latest.
-- `s3bucket` (String) DEPRECATED - by spec.objectStore.uri Name of S3 bucket to restore from. If non-empty this overrides local backup.
+- `overwrite_users` (Boolean) Overwrites the already existing users in the cluster when  user restoration is enabled (spec.services.users).The default behavior of backup/restore of users is to skip already existing users.This is only available for Couchbase Server 7.6 and later.This field defaults to 'false'.
+- `repo` (String) Repo is the backup folder to restore from.  If no repository is specified,the backup container will choose the latest.
+- `s3bucket` (String) DEPRECATED - by spec.objectStore.uriName of S3 bucket to restore from. If non-empty this overrides local backup.
 - `services` (Attributes) This list accepts a certain set of parameters that will disable that data and prevent it being restored. (see [below for nested schema](#nestedatt--spec--services))
-- `staging_volume` (Attributes) StagingVolume contains configuration related to the ephemeral volume used as staging when restoring from a cloud backup. (see [below for nested schema](#nestedatt--spec--staging_volume))
-- `start` (Attributes) Start denotes the first backup to restore from.  This may be specified as an integer index (starting from 1), a string specifying a short date DD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords. (see [below for nested schema](#nestedatt--spec--start))
+- `staging_volume` (Attributes) StagingVolume contains configuration related to theephemeral volume used as staging when restoring from a cloud backup. (see [below for nested schema](#nestedatt--spec--staging_volume))
+- `start` (Attributes) Start denotes the first backup to restore from.  This may be specified asan integer index (starting from 1), a string specifying a short dateDD-MM-YYYY, the backup name, or one of either 'start' or 'oldest' keywords. (see [below for nested schema](#nestedatt--spec--start))
 - `threads` (Number) How many threads to use during the restore.
 - `ttl_seconds_after_finished` (Number) Number of seconds to elapse before a completed job is deleted.
 
@@ -80,19 +78,19 @@ Optional:
 
 Optional:
 
-- `exclude` (List of String) Exclude defines the buckets, scopes or collections that are excluded from the backup. When this field is set, it implies that by default everything will be backed up, and data items can be explicitly excluded.  You may define an exclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Excluded data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as included items.
+- `exclude` (List of String) Exclude defines the buckets, scopes or collections that are excluded from the backup.When this field is set, it implies that by default everything will be backed up,and data items can be explicitly excluded.  You may define an exclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Excluded data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as included items.
 - `filter_keys` (String) FilterKeys only restores documents whose names match the provided regular expression.
 - `filter_values` (String) FilterValues only restores documents whose values match the provided regular expression.
-- `include` (List of String) Include defines the buckets, scopes or collections that are included in the restore. When this field is set, it implies that by default nothing will be restored, and data items must be explicitly included.  You may define an inclusion as a bucket -- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'. Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', as period is the separator used to delimit scopes and collections.  Included data cannot overlap e.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannot be used at the same time as excluded items.
-- `map` (Attributes List) Map allows data items in the restore to be remapped to a different named container. Buckets can be remapped to other buckets e.g. 'source=target', scopes and collections can be remapped to other scopes and collections within the same bucket only e.g. 'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Map sources may only be specified once, and may not overlap. (see [below for nested schema](#nestedatt--spec--data--map))
+- `include` (List of String) Include defines the buckets, scopes or collections that are included in the restore.When this field is set, it implies that by default nothing will be restored,and data items must be explicitly included.  You may define an inclusion as a bucket-- 'my-bucket', a scope -- 'my-bucket.my-scope', or a collection -- 'my-bucket.my-scope.my-collection'.Buckets may contain periods, and therefore must be escaped -- 'my.bucket.my-scope', asperiod is the separator used to delimit scopes and collections.  Included data cannot overlape.g. specifying 'my-bucket' and 'my-bucket.my-scope' is illegal.  This field cannotbe used at the same time as excluded items.
+- `map` (Attributes List) Map allows data items in the restore to be remapped to a different named container.Buckets can be remapped to other buckets e.g. 'source=target', scopes and collectionscan be remapped to other scopes and collections within the same bucket only e.g.'bucket.scope=bucket.other' or 'bucket.scope.collection=bucket.scope.other'.  Mapsources may only be specified once, and may not overlap. (see [below for nested schema](#nestedatt--spec--data--map))
 
 <a id="nestedatt--spec--data--map"></a>
 ### Nested Schema for `spec.data.map`
 
 Required:
 
-- `source` (String) Source defines the data source of the mapping, this may be either a bucket, scope or collection.
-- `target` (String) Target defines the data target of the mapping, this may be either a bucket, scope or collection, and must refer to the same type as the restore source.
+- `source` (String) Source defines the data source of the mapping, this may be eithera bucket, scope or collection.
+- `target` (String) Target defines the data target of the mapping, this may be eithera bucket, scope or collection, and must refer to the same typeas the restore source.
 
 
 
@@ -110,19 +108,19 @@ Optional:
 
 Optional:
 
-- `endpoint` (Attributes) Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store. If set will override 'CouchbaseCluster.spec.backup.objectEndpoint' See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores (see [below for nested schema](#nestedatt--spec--object_store--endpoint))
-- `secret` (String) ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token. These correspond to the fields used by cbbackupmgr https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2
-- `uri` (String) URI is a reference to a remote object store. This is the prefix of the object store and the bucket name. i.e s3://bucket, az://bucket or gs://bucket.
-- `use_iam` (Boolean) Whether to allow the backup SDK to attempt to authenticate using the instance metadata api. If set, will override 'CouchbaseCluster.spec.backup.useIAM'.
+- `endpoint` (Attributes) Endpoint contains the configuration for connecting to a custom Azure/S3/GCP compliant object store.If set will override 'CouchbaseCluster.spec.backup.objectEndpoint'See https://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-cloud.html#compatible-object-stores (see [below for nested schema](#nestedatt--spec--object_store--endpoint))
+- `secret` (String) ObjStoreSecret must contain two fields, access-key-id, secret-access-key and optionally either region or refresh-token.These correspond to the fields used by cbbackupmgrhttps://docs.couchbase.com/server/current/backup-restore/cbbackupmgr-backup.html#optional-2
+- `uri` (String) URI is a reference to a remote object store.This is the prefix of the object store and the bucket name.i.e s3://bucket, az://bucket or gs://bucket.
+- `use_iam` (Boolean) Whether to allow the backup SDK to attempt to authenticateusing the instance metadata api.If set, will override 'CouchbaseCluster.spec.backup.useIAM'.
 
 <a id="nestedatt--spec--object_store--endpoint"></a>
 ### Nested Schema for `spec.object_store.endpoint`
 
 Optional:
 
-- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpoint The secret must have the key with the name 'tls.crt'
+- `secret` (String) The name of the secret, in this namespace, that contains the CA certificate for verification of a TLS endpointThe secret must have the key with the name 'tls.crt'
 - `url` (String) The host/address of the custom object endpoint.
-- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style paths which are often required by S3 compatible object stores.
+- `use_virtual_path` (Boolean) UseVirtualPath will force the AWS SDK to use the new virtual style pathswhich are often required by S3 compatible object stores.
 
 
 
@@ -131,16 +129,17 @@ Optional:
 
 Optional:
 
-- `analytics` (Boolean) Analytics restores analytics datasets from the backup.  This field defaults to true.
-- `bucket_config` (Boolean) BucketConfig restores all bucket configuration settings. If you are restoring to cluster with managed buckets, then this option may conflict with existing bucket settings, and the results are undefined, so avoid use.  This option is intended for use with unmanaged buckets.  Note that bucket durability settings are not restored in versions less than and equal to 1.1.0, and will need to be manually applied.  This field defaults to false.
-- `bucket_query` (Boolean) BucketQuery enables the backup of query metadata for all buckets. This field defaults to 'true'.
-- `cluster_analytics` (Boolean) ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms. This field defaults to 'true'.
-- `cluster_query` (Boolean) ClusterQuery enables the backup of cluster level query metadata. This field defaults to 'true'.
-- `data` (Boolean) Data restores document data from the backup.  This field defaults to true.
-- `eventing` (Boolean) Eventing restores eventing functions from the backup.  This field defaults to true.
-- `ft_alias` (Boolean) FTAlias restores full-text search aliases from the backup.  This field defaults to true.
-- `ft_index` (Boolean) FTIndex restores full-text search indexes from the backup.  This field defaults to true.
-- `gsi_index` (Boolean) GSIIndex restores document indexes from the backup.  This field defaults to true.
+- `analytics` (Boolean) Analytics restores analytics datasets from the backup.  This fielddefaults to true.
+- `bucket_config` (Boolean) BucketConfig restores all bucket configuration settings.If you are restoring to cluster with managed buckets, then thisoption may conflict with existing bucket settings, and the resultsare undefined, so avoid use.  This option is intended for usewith unmanaged buckets.  Note that bucket durability settings arenot restored in versions less than and equal to 1.1.0, and willneed to be manually applied.  This field defaults to false.
+- `bucket_query` (Boolean) BucketQuery enables the backup of query metadata for all buckets.This field defaults to 'true'.
+- `cluster_analytics` (Boolean) ClusterAnalytics enables the backup of cluster-wide analytics data, for example synonyms.This field defaults to 'true'.
+- `cluster_query` (Boolean) ClusterQuery enables the backup of cluster level query metadata.This field defaults to 'true'.
+- `data` (Boolean) Data restores document data from the backup.  This field defaultsto true.
+- `eventing` (Boolean) Eventing restores eventing functions from the backup.  This fielddefaults to true.
+- `ft_alias` (Boolean) FTAlias restores full-text search aliases from the backup.  Thisfield defaults to true.
+- `ft_index` (Boolean) FTIndex restores full-text search indexes from the backup.  Thisfield defaults to true.
+- `gsi_index` (Boolean) GSIIndex restores document indexes from the backup.  This fielddefaults to true.
+- `users` (Boolean) Users restores cluster level users, including their roles and permissions. This isonly available for Couchbase Server 7.6 and later. This field defaults to 'false'.
 - `views` (Boolean) Views restores views from the backup.  This field defaults to true.
 
 
@@ -149,7 +148,7 @@ Optional:
 
 Optional:
 
-- `size` (String) Size allows the specification of a staging volume. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes The ephemeral volume will only be used when restoring from a cloud provider, if the backup job was created using ephemeral storage. Otherwise the restore job will share a staging volume with the backup job.
+- `size` (String) Size allows the specification of a staging volume. More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetesThe ephemeral volume will only be used when restoring from a cloud provider,if the backup job was created using ephemeral storage.Otherwise the restore job will share a staging volume with the backup job.
 - `storage_class_name` (String) Name of StorageClass to use.
 
 

@@ -61,7 +61,7 @@ Required:
 
 Optional:
 
-- `allowed_namespaces` (List of String) AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.
+- `allowed_namespaces` (List of String) AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.
 - `description` (String) Description stores description of a backup storage.
 - `endpoint_url` (String) EndpointURL is an endpoint URL of backup storage.
 - `force_path_style` (Boolean) ForcePathStyle is set to use path-style URLs.If unspecified, the default value is false.

@@ -252,8 +252,9 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
 						Type             *string `tfsdk:"type" json:"type,omitempty"`
 					} `tfsdk:"seccomp_profile" json:"seccompProfile,omitempty"`
-					SupplementalGroups *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
-					Sysctls            *[]struct {
+					SupplementalGroups       *[]string `tfsdk:"supplemental_groups" json:"supplementalGroups,omitempty"`
+					SupplementalGroupsPolicy *string   `tfsdk:"supplemental_groups_policy" json:"supplementalGroupsPolicy,omitempty"`
+					Sysctls                  *[]struct {
 						Name  *string `tfsdk:"name" json:"name,omitempty"`
 						Value *string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"sysctls" json:"sysctls,omitempty"`
@@ -267,7 +268,8 @@ type PsPerconaComPerconaServerMySqlrestoreV1Alpha1ManifestData struct {
 				PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 				Resources         *struct {
 					Claims *[]struct {
-						Name *string `tfsdk:"name" json:"name,omitempty"`
+						Name    *string `tfsdk:"name" json:"name,omitempty"`
+						Request *string `tfsdk:"request" json:"request,omitempty"`
 					} `tfsdk:"claims" json:"claims,omitempty"`
 					Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 					Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -1861,6 +1863,14 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 												Computed:            false,
 											},
 
+											"supplemental_groups_policy": schema.StringAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
 											"sysctls": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -1956,6 +1966,14 @@ func (r *PsPerconaComPerconaServerMySqlrestoreV1Alpha1Manifest) Schema(_ context
 															MarkdownDescription: "",
 															Required:            true,
 															Optional:            false,
+															Computed:            false,
+														},
+
+														"request": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
 															Computed:            false,
 														},
 													},

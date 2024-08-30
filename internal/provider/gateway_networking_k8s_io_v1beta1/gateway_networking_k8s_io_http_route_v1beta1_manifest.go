@@ -81,6 +81,11 @@ type GatewayNetworkingK8SIoHttprouteV1Beta1ManifestData struct {
 							Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 							Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 						} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
+						Fraction *struct {
+							Denominator *int64 `tfsdk:"denominator" json:"denominator,omitempty"`
+							Numerator   *int64 `tfsdk:"numerator" json:"numerator,omitempty"`
+						} `tfsdk:"fraction" json:"fraction,omitempty"`
+						Percent *int64 `tfsdk:"percent" json:"percent,omitempty"`
 					} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 					RequestRedirect *struct {
 						Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
@@ -146,6 +151,11 @@ type GatewayNetworkingK8SIoHttprouteV1Beta1ManifestData struct {
 						Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 						Port      *int64  `tfsdk:"port" json:"port,omitempty"`
 					} `tfsdk:"backend_ref" json:"backendRef,omitempty"`
+					Fraction *struct {
+						Denominator *int64 `tfsdk:"denominator" json:"denominator,omitempty"`
+						Numerator   *int64 `tfsdk:"numerator" json:"numerator,omitempty"`
+					} `tfsdk:"fraction" json:"fraction,omitempty"`
+					Percent *int64 `tfsdk:"percent" json:"percent,omitempty"`
 				} `tfsdk:"request_mirror" json:"requestMirror,omitempty"`
 				RequestRedirect *struct {
 					Hostname *string `tfsdk:"hostname" json:"hostname,omitempty"`
@@ -196,6 +206,7 @@ type GatewayNetworkingK8SIoHttprouteV1Beta1ManifestData struct {
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"query_params" json:"queryParams,omitempty"`
 			} `tfsdk:"matches" json:"matches,omitempty"`
+			Name               *string `tfsdk:"name" json:"name,omitempty"`
 			SessionPersistence *struct {
 				AbsoluteTimeout *string `tfsdk:"absolute_timeout" json:"absoluteTimeout,omitempty"`
 				CookieConfig    *struct {
@@ -609,6 +620,49 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Schema(_ context.Contex
 																	Required: true,
 																	Optional: false,
 																	Computed: false,
+																},
+
+																"fraction": schema.SingleNestedAttribute{
+																	Description:         "Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+																	MarkdownDescription: "Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+																	Attributes: map[string]schema.Attribute{
+																		"denominator": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(1),
+																			},
+																		},
+
+																		"numerator": schema.Int64Attribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																			Validators: []validator.Int64{
+																				int64validator.AtLeast(0),
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"percent": schema.Int64Attribute{
+																	Description:         "Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+																	MarkdownDescription: "Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																	Validators: []validator.Int64{
+																		int64validator.AtLeast(0),
+																		int64validator.AtMost(100),
+																	},
 																},
 															},
 															Required: false,
@@ -1180,6 +1234,49 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Schema(_ context.Contex
 														Optional: false,
 														Computed: false,
 													},
+
+													"fraction": schema.SingleNestedAttribute{
+														Description:         "Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+														MarkdownDescription: "Fraction represents the fraction of requests that should bemirrored to BackendRef.Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+														Attributes: map[string]schema.Attribute{
+															"denominator": schema.Int64Attribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(1),
+																},
+															},
+
+															"numerator": schema.Int64Attribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(0),
+																},
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"percent": schema.Int64Attribute{
+														Description:         "Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+														MarkdownDescription: "Percent represents the percentage of requests that should bemirrored to BackendRef. Its minimum value is 0 (indicating 0% ofrequests) and its maximum value is 100 (indicating 100% of requests).Only one of Fraction or Percent may be specified. If neither fieldis specified, 100% of requests will be mirrored.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(0),
+															int64validator.AtMost(100),
+														},
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -1600,6 +1697,19 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Schema(_ context.Contex
 									Required: false,
 									Optional: true,
 									Computed: false,
+								},
+
+								"name": schema.StringAttribute{
+									Description:         "Name is the name of the route rule. This name MUST be unique within a Route if it is set.Support: Extended",
+									MarkdownDescription: "Name is the name of the route rule. This name MUST be unique within a Route if it is set.Support: Extended",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										stringvalidator.LengthAtLeast(1),
+										stringvalidator.LengthAtMost(253),
+										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+									},
 								},
 
 								"session_persistence": schema.SingleNestedAttribute{

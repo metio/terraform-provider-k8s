@@ -117,7 +117,7 @@ Optional:
 
 - `host` (String) The host from which the action described in the ACL rule is allowed or denied. If not set, it defaults to '*', allowing or denying the action from any host.
 - `operation` (String) Operation which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.
-- `operations` (List of String) List of operations which will be allowed or denied. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All.
+- `operations` (List of String) List of operations to allow or deny. Supported operations are: Read, Write, Create, Delete, Alter, Describe, ClusterAction, AlterConfigs, DescribeConfigs, IdempotentWrite and All. Only certain operations work with the specified resource.
 - `type` (String) The type of the rule. Currently the only supported type is 'allow'. ACL rules with type 'allow' are used to allow user to execute the specified operations. Default value is 'allow'.
 
 <a id="nestedatt--spec--authorization--acls--resource"></a>

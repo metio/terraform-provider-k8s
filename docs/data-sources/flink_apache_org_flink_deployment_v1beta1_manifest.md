@@ -981,6 +981,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -991,6 +992,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--job_manager--pod_template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.job_manager.pod_template.spec.containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--job_manager--pod_template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.job_manager.pod_template.spec.containers.security_context.capabilities`
@@ -1115,6 +1125,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -1554,6 +1565,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -1564,6 +1576,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.job_manager.pod_template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--job_manager--pod_template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.job_manager.pod_template.spec.ephemeral_containers.security_context.capabilities`
@@ -1688,6 +1709,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -2124,6 +2146,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -2134,6 +2157,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.job_manager.pod_template.spec.init_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--job_manager--pod_template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.job_manager.pod_template.spec.init_containers.security_context.capabilities`
@@ -2258,6 +2290,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -2310,6 +2343,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -2320,6 +2354,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--job_manager--pod_template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.job_manager.pod_template.spec.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--job_manager--pod_template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.job_manager.pod_template.spec.security_context.se_linux_options`
@@ -3189,6 +3232,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--last_state"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.last_state`
@@ -3290,6 +3334,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses`
@@ -3307,6 +3362,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--last_state"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.last_state`
@@ -3408,6 +3464,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--job_manager--pod_template--status--ephemeral_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.ephemeral_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--job_manager--pod_template--status--host_i_ps"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.host_i_ps`
@@ -3433,6 +3500,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--job_manager--pod_template--status--init_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--last_state"></a>
 ### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.last_state`
@@ -3532,6 +3600,17 @@ Optional:
 - `message` (String)
 - `reason` (String)
 
+
+
+<a id="nestedatt--spec--job_manager--pod_template--status--init_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.job_manager.pod_template.status.init_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
 
 
 
@@ -4418,6 +4497,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -4428,6 +4508,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--pod_template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pod_template.spec.containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--pod_template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.pod_template.spec.containers.security_context.capabilities`
@@ -4552,6 +4641,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -4991,6 +5081,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5001,6 +5092,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pod_template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.pod_template.spec.ephemeral_containers.security_context.capabilities`
@@ -5125,6 +5225,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -5561,6 +5662,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -5571,6 +5673,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--pod_template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pod_template.spec.init_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--pod_template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.pod_template.spec.init_containers.security_context.capabilities`
@@ -5695,6 +5806,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -5747,6 +5859,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -5757,6 +5870,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--pod_template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.pod_template.spec.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--pod_template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.pod_template.spec.security_context.se_linux_options`
@@ -6626,6 +6748,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--pod_template--status--container_statuses--last_state"></a>
 ### Nested Schema for `spec.pod_template.status.container_statuses.last_state`
@@ -6727,6 +6850,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_template--status--container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.pod_template.status.container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--pod_template--status--ephemeral_container_statuses"></a>
 ### Nested Schema for `spec.pod_template.status.ephemeral_container_statuses`
@@ -6744,6 +6878,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--ephemeral_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--ephemeral_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--pod_template--status--ephemeral_container_statuses--last_state"></a>
 ### Nested Schema for `spec.pod_template.status.ephemeral_container_statuses.last_state`
@@ -6845,6 +6980,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--pod_template--status--ephemeral_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.pod_template.status.ephemeral_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--pod_template--status--host_i_ps"></a>
 ### Nested Schema for `spec.pod_template.status.host_i_ps`
@@ -6870,6 +7016,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_template--status--init_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_template--status--init_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--pod_template--status--init_container_statuses--last_state"></a>
 ### Nested Schema for `spec.pod_template.status.init_container_statuses.last_state`
@@ -6969,6 +7116,17 @@ Optional:
 - `message` (String)
 - `reason` (String)
 
+
+
+<a id="nestedatt--spec--pod_template--status--init_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.pod_template.status.init_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
 
 
 
@@ -7853,6 +8011,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -7863,6 +8022,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--containers--security_context--windows_options))
+
+<a id="nestedatt--spec--task_manager--pod_template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.task_manager.pod_template.spec.containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--task_manager--pod_template--spec--containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.task_manager.pod_template.spec.containers.security_context.capabilities`
@@ -7987,6 +8155,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -8426,6 +8595,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -8436,6 +8606,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.task_manager.pod_template.spec.ephemeral_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--task_manager--pod_template--spec--ephemeral_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.task_manager.pod_template.spec.ephemeral_containers.security_context.capabilities`
@@ -8560,6 +8739,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -8996,6 +9176,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Boolean)
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean)
 - `proc_mount` (String)
@@ -9006,6 +9187,15 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--seccomp_profile))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--windows_options))
+
+<a id="nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.task_manager.pod_template.spec.init_containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--task_manager--pod_template--spec--init_containers--security_context--capabilities"></a>
 ### Nested Schema for `spec.task_manager.pod_template.spec.init_containers.security_context.capabilities`
@@ -9130,6 +9320,7 @@ Optional:
 - `mount_propagation` (String)
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (String)
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
@@ -9182,6 +9373,7 @@ Optional:
 
 Optional:
 
+- `app_armor_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--security_context--app_armor_profile))
 - `fs_group` (Number)
 - `fs_group_change_policy` (String)
 - `run_as_group` (Number)
@@ -9192,6 +9384,15 @@ Optional:
 - `supplemental_groups` (List of String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--spec--security_context--windows_options))
+
+<a id="nestedatt--spec--task_manager--pod_template--spec--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.task_manager.pod_template.spec.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (String)
+- `type` (String)
+
 
 <a id="nestedatt--spec--task_manager--pod_template--spec--security_context--se_linux_options"></a>
 ### Nested Schema for `spec.task_manager.pod_template.spec.security_context.se_linux_options`
@@ -10061,6 +10262,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--last_state"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.last_state`
@@ -10162,6 +10364,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses`
@@ -10179,6 +10392,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--last_state"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.last_state`
@@ -10280,6 +10494,17 @@ Optional:
 
 
 
+<a id="nestedatt--spec--task_manager--pod_template--status--ephemeral_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.ephemeral_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
+
+
 
 <a id="nestedatt--spec--task_manager--pod_template--status--host_i_ps"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.host_i_ps`
@@ -10305,6 +10530,7 @@ Optional:
 - `restart_count` (Number)
 - `started` (Boolean)
 - `state` (Attributes) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--state))
+- `volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--task_manager--pod_template--status--init_container_statuses--volume_mounts))
 
 <a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--last_state"></a>
 ### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.last_state`
@@ -10404,6 +10630,17 @@ Optional:
 - `message` (String)
 - `reason` (String)
 
+
+
+<a id="nestedatt--spec--task_manager--pod_template--status--init_container_statuses--volume_mounts"></a>
+### Nested Schema for `spec.task_manager.pod_template.status.init_container_statuses.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `name` (String)
+- `read_only` (Boolean)
+- `recursive_read_only` (String)
 
 
 

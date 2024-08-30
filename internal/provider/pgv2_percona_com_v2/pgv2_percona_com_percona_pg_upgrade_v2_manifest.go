@@ -441,6 +441,8 @@ type Pgv2PerconaComPerconaPgupgradeV2ManifestData struct {
 			Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 			Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 		} `tfsdk:"resources" json:"resources,omitempty"`
+		ToPgBackRestImage *string `tfsdk:"to_pg_back_rest_image" json:"toPgBackRestImage,omitempty"`
+		ToPgBouncerImage  *string `tfsdk:"to_pg_bouncer_image" json:"toPgBouncerImage,omitempty"`
 		ToPostgresImage   *string `tfsdk:"to_postgres_image" json:"toPostgresImage,omitempty"`
 		ToPostgresVersion *int64  `tfsdk:"to_postgres_version" json:"toPostgresVersion,omitempty"`
 		Tolerations       *[]struct {
@@ -3201,11 +3203,27 @@ func (r *Pgv2PerconaComPerconaPgupgradeV2Manifest) Schema(_ context.Context, _ d
 						Computed: false,
 					},
 
+					"to_pg_back_rest_image": schema.StringAttribute{
+						Description:         "The image to use for PgBackRest containers after upgrade.",
+						MarkdownDescription: "The image to use for PgBackRest containers after upgrade.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+					},
+
+					"to_pg_bouncer_image": schema.StringAttribute{
+						Description:         "The image to use for PgBouncer containers after upgrade.",
+						MarkdownDescription: "The image to use for PgBouncer containers after upgrade.",
+						Required:            true,
+						Optional:            false,
+						Computed:            false,
+					},
+
 					"to_postgres_image": schema.StringAttribute{
-						Description:         "The image name to use for PostgreSQL containers after upgrade.When omitted, the value comes from an operator environment variable.",
-						MarkdownDescription: "The image name to use for PostgreSQL containers after upgrade.When omitted, the value comes from an operator environment variable.",
-						Required:            false,
-						Optional:            true,
+						Description:         "The image to use for PostgreSQL containers after upgrade.",
+						MarkdownDescription: "The image to use for PostgreSQL containers after upgrade.",
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 

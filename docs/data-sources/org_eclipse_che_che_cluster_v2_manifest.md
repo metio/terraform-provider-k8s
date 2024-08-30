@@ -770,6 +770,7 @@ Optional:
 - `gateway_container` (Attributes) GatewayContainer configuration. (see [below for nested schema](#nestedatt--spec--dev_environments--gateway_container))
 - `ignored_unrecoverable_events` (List of String) IgnoredUnrecoverableEvents defines a list of Kubernetes event names that shouldbe ignored when deciding to fail a workspace that is starting. This option should be usedif a transient cluster issue is triggering false-positives (for example, ifthe cluster occasionally encounters FailedScheduling events). Events listedhere will not trigger workspace failures.
 - `image_pull_policy` (String) ImagePullPolicy defines the imagePullPolicy used for containers in a DevWorkspace.
+- `max_number_of_running_workspaces_per_cluster` (Number) The maximum number of concurrently running workspaces across the entire Kubernetes cluster.This applies to all users in the system. If the value is set to -1, it means there isno limit on the number of running workspaces.
 - `max_number_of_running_workspaces_per_user` (Number) The maximum number of running workspaces per user.The value, -1, allows users to run an unlimited number of workspaces.
 - `max_number_of_workspaces_per_user` (Number) Total number of workspaces, both stopped and running, that a user can keep.The value, -1, allows users to keep an unlimited number of workspaces.
 - `node_selector` (Map of String) The node selector limits the nodes that can run the workspace pods.

@@ -61,6 +61,16 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 			ValidityDays                 *int64  `tfsdk:"validity_days" json:"validityDays,omitempty"`
 		} `tfsdk:"cluster_ca" json:"clusterCa,omitempty"`
 		CruiseControl *struct {
+			ApiUsers *struct {
+				Type      *string `tfsdk:"type" json:"type,omitempty"`
+				ValueFrom *struct {
+					SecretKeyRef *struct {
+						Key      *string `tfsdk:"key" json:"key,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+			} `tfsdk:"api_users" json:"apiUsers,omitempty"`
 			BrokerCapacity *struct {
 				Cpu             *string `tfsdk:"cpu" json:"cpu,omitempty"`
 				CpuUtilization  *int64  `tfsdk:"cpu_utilization" json:"cpuUtilization,omitempty"`
@@ -175,6 +185,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"cruise_control_container" json:"cruiseControlContainer,omitempty"`
 				Deployment *struct {
 					DeploymentStrategy *string `tfsdk:"deployment_strategy" json:"deploymentStrategy,omitempty"`
@@ -387,6 +406,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				PodDisruptionBudget *struct {
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -439,6 +492,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"tls_sidecar_container" json:"tlsSidecarContainer,omitempty"`
 			} `tfsdk:"template" json:"template,omitempty"`
 			TlsSidecar *struct {
@@ -686,6 +748,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				ServiceAccount *struct {
 					Metadata *struct {
@@ -731,6 +827,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"tls_sidecar_container" json:"tlsSidecarContainer,omitempty"`
 				TopicOperatorContainer *struct {
 					Env *[]struct {
@@ -770,6 +875,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"topic_operator_container" json:"topicOperatorContainer,omitempty"`
 				TopicOperatorRoleBinding *struct {
 					Metadata *struct {
@@ -815,6 +929,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"user_operator_container" json:"userOperatorContainer,omitempty"`
 				UserOperatorRoleBinding *struct {
 					Metadata *struct {
@@ -1018,6 +1141,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"container" json:"container,omitempty"`
 				Deployment *struct {
 					DeploymentStrategy *string `tfsdk:"deployment_strategy" json:"deploymentStrategy,omitempty"`
@@ -1230,6 +1362,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				ServiceAccount *struct {
 					Metadata *struct {
@@ -1330,7 +1496,8 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						Key        *string `tfsdk:"key" json:"key,omitempty"`
 						SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
 					} `tfsdk:"secrets" json:"secrets,omitempty"`
-					TlsTrustedCertificates *[]struct {
+					ServerBearerTokenLocation *string `tfsdk:"server_bearer_token_location" json:"serverBearerTokenLocation,omitempty"`
+					TlsTrustedCertificates    *[]struct {
 						Certificate *string `tfsdk:"certificate" json:"certificate,omitempty"`
 						Pattern     *string `tfsdk:"pattern" json:"pattern,omitempty"`
 						SecretName  *string `tfsdk:"secret_name" json:"secretName,omitempty"`
@@ -1339,6 +1506,7 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 					Type                *string `tfsdk:"type" json:"type,omitempty"`
 					UserInfoEndpointUri *string `tfsdk:"user_info_endpoint_uri" json:"userInfoEndpointUri,omitempty"`
 					UserNameClaim       *string `tfsdk:"user_name_claim" json:"userNameClaim,omitempty"`
+					UserNamePrefix      *string `tfsdk:"user_name_prefix" json:"userNamePrefix,omitempty"`
 					ValidIssuerUri      *string `tfsdk:"valid_issuer_uri" json:"validIssuerUri,omitempty"`
 					ValidTokenType      *string `tfsdk:"valid_token_type" json:"validTokenType,omitempty"`
 				} `tfsdk:"authentication" json:"authentication,omitempty"`
@@ -1578,6 +1746,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"init_container" json:"initContainer,omitempty"`
 				JmxSecret *struct {
 					Metadata *struct {
@@ -1623,6 +1800,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"kafka_container" json:"kafkaContainer,omitempty"`
 				PerPodIngress *struct {
 					Metadata *struct {
@@ -1852,6 +2038,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				PodDisruptionBudget *struct {
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -1957,6 +2177,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"container" json:"container,omitempty"`
 				Deployment *struct {
 					DeploymentStrategy *string `tfsdk:"deployment_strategy" json:"deploymentStrategy,omitempty"`
@@ -2169,6 +2398,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				Service *struct {
 					Metadata *struct {
@@ -2495,6 +2758,40 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 						TopologyKey        *string   `tfsdk:"topology_key" json:"topologyKey,omitempty"`
 						WhenUnsatisfiable  *string   `tfsdk:"when_unsatisfiable" json:"whenUnsatisfiable,omitempty"`
 					} `tfsdk:"topology_spread_constraints" json:"topologySpreadConstraints,omitempty"`
+					Volumes *[]struct {
+						ConfigMap *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Name     *string `tfsdk:"name" json:"name,omitempty"`
+							Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						} `tfsdk:"config_map" json:"configMap,omitempty"`
+						EmptyDir *struct {
+							Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+							SizeLimit *struct {
+								Amount *string `tfsdk:"amount" json:"amount,omitempty"`
+								Format *string `tfsdk:"format" json:"format,omitempty"`
+							} `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+						} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+						Name                  *string `tfsdk:"name" json:"name,omitempty"`
+						PersistentVolumeClaim *struct {
+							ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+							ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+						Secret *struct {
+							DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+							Items       *[]struct {
+								Key  *string `tfsdk:"key" json:"key,omitempty"`
+								Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+								Path *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"items" json:"items,omitempty"`
+							Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+						} `tfsdk:"secret" json:"secret,omitempty"`
+					} `tfsdk:"volumes" json:"volumes,omitempty"`
 				} `tfsdk:"pod" json:"pod,omitempty"`
 				PodDisruptionBudget *struct {
 					MaxUnavailable *int64 `tfsdk:"max_unavailable" json:"maxUnavailable,omitempty"`
@@ -2560,6 +2857,15 @@ type KafkaStrimziIoKafkaV1Beta2ManifestData struct {
 							RunAsUserName          *string `tfsdk:"run_as_user_name" json:"runAsUserName,omitempty"`
 						} `tfsdk:"windows_options" json:"windowsOptions,omitempty"`
 					} `tfsdk:"security_context" json:"securityContext,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"zookeeper_container" json:"zookeeperContainer,omitempty"`
 			} `tfsdk:"template" json:"template,omitempty"`
 		} `tfsdk:"zookeeper" json:"zookeeper,omitempty"`
@@ -2763,6 +3069,68 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 						Description:         "Configuration for Cruise Control deployment. Deploys a Cruise Control instance when specified.",
 						MarkdownDescription: "Configuration for Cruise Control deployment. Deploys a Cruise Control instance when specified.",
 						Attributes: map[string]schema.Attribute{
+							"api_users": schema.SingleNestedAttribute{
+								Description:         "Configuration of the Cruise Control REST API users.",
+								MarkdownDescription: "Configuration of the Cruise Control REST API users.",
+								Attributes: map[string]schema.Attribute{
+									"type": schema.StringAttribute{
+										Description:         "Type of the Cruise Control API users configuration. Supported format is: 'hashLoginService'.",
+										MarkdownDescription: "Type of the Cruise Control API users configuration. Supported format is: 'hashLoginService'.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.OneOf("hashLoginService"),
+										},
+									},
+
+									"value_from": schema.SingleNestedAttribute{
+										Description:         "Secret from which the custom Cruise Control API authentication credentials are read.",
+										MarkdownDescription: "Secret from which the custom Cruise Control API authentication credentials are read.",
+										Attributes: map[string]schema.Attribute{
+											"secret_key_ref": schema.SingleNestedAttribute{
+												Description:         "Selects a key of a Secret in the resource's namespace.",
+												MarkdownDescription: "Selects a key of a Secret in the resource's namespace.",
+												Attributes: map[string]schema.Attribute{
+													"key": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"optional": schema.BoolAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+										},
+										Required: true,
+										Optional: false,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"broker_capacity": schema.SingleNestedAttribute{
 								Description:         "The Cruise Control 'brokerCapacity' configuration.",
 								MarkdownDescription: "The Cruise Control 'brokerCapacity' configuration.",
@@ -3588,6 +3956,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -4856,8 +5291,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -5031,6 +5466,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -5375,6 +6032,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -6899,8 +7623,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -7074,6 +7798,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -7377,6 +8323,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Optional: true,
 												Computed: false,
 											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -7631,6 +8644,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -7927,6 +9007,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -9447,6 +10594,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Optional: true,
 												Computed: false,
 											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -10709,8 +11923,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -10884,6 +12098,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -11330,8 +12766,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"listeners": schema.ListNestedAttribute{
-								Description:         "Configures listeners of Kafka brokers.",
-								MarkdownDescription: "Configures listeners of Kafka brokers.",
+								Description:         "Configures listeners to provide access to Kafka brokers.",
+								MarkdownDescription: "Configures listeners to provide access to Kafka brokers.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"authentication": schema.SingleNestedAttribute{
@@ -11484,8 +12920,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"fallback_user_name_claim": schema.StringAttribute{
-													Description:         "The fallback username claim to be used for the user id if the claim specified by 'userNameClaim' is not present. This is useful when 'client_credentials' authentication only results in the client id being provided in another claim. It only takes effect if 'userNameClaim' is set.",
-													MarkdownDescription: "The fallback username claim to be used for the user id if the claim specified by 'userNameClaim' is not present. This is useful when 'client_credentials' authentication only results in the client id being provided in another claim. It only takes effect if 'userNameClaim' is set.",
+													Description:         "The fallback username claim to be used for the user ID if the claim specified by 'userNameClaim' is not present. This is useful when 'client_credentials' authentication only results in the client ID being provided in another claim. It only takes effect if 'userNameClaim' is set.",
+													MarkdownDescription: "The fallback username claim to be used for the user ID if the claim specified by 'userNameClaim' is not present. This is useful when 'client_credentials' authentication only results in the client ID being provided in another claim. It only takes effect if 'userNameClaim' is set.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11597,8 +13033,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"listener_config": schema.MapAttribute{
-													Description:         "Configuration to be used for a specific listener. All values are prefixed with listener.name._<listener_name>_.",
-													MarkdownDescription: "Configuration to be used for a specific listener. All values are prefixed with listener.name._<listener_name>_.",
+													Description:         "Configuration to be used for a specific listener. All values are prefixed with 'listener.name.<listener_name>'.",
+													MarkdownDescription: "Configuration to be used for a specific listener. All values are prefixed with 'listener.name.<listener_name>'.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -11630,8 +13066,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"secrets": schema.ListNestedAttribute{
-													Description:         "Secrets to be mounted to /opt/kafka/custom-authn-secrets/custom-listener-_<listener_name>-<port>_/_<secret_name>_.",
-													MarkdownDescription: "Secrets to be mounted to /opt/kafka/custom-authn-secrets/custom-listener-_<listener_name>-<port>_/_<secret_name>_.",
+													Description:         "Secrets to be mounted to '/opt/kafka/custom-authn-secrets/custom-listener-<listener_name>-<port>/<secret_name>'.",
+													MarkdownDescription: "Secrets to be mounted to '/opt/kafka/custom-authn-secrets/custom-listener-<listener_name>-<port>/<secret_name>'.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"key": schema.StringAttribute{
@@ -11654,6 +13090,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 													Required: false,
 													Optional: true,
 													Computed: false,
+												},
+
+												"server_bearer_token_location": schema.StringAttribute{
+													Description:         "Path to the file on the local filesystem that contains a bearer token to be used instead of client ID and secret when authenticating to authorization server.",
+													MarkdownDescription: "Path to the file on the local filesystem that contains a bearer token to be used instead of client ID and secret when authenticating to authorization server.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
 												},
 
 												"tls_trusted_certificates": schema.ListNestedAttribute{
@@ -11726,6 +13170,14 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 													Computed:            false,
 												},
 
+												"user_name_prefix": schema.StringAttribute{
+													Description:         "The prefix to use with the value of 'userNameClaim' to construct the user ID. This only takes effect if 'userNameClaim' is specified and the value is present for the claim. When used in combination with 'fallbackUserNameClaims', it ensures consistent mapping of usernames and client IDs into the same user ID space and prevents name collisions.",
+													MarkdownDescription: "The prefix to use with the value of 'userNameClaim' to construct the user ID. This only takes effect if 'userNameClaim' is specified and the value is present for the claim. When used in combination with 'fallbackUserNameClaims', it ensures consistent mapping of usernames and client IDs into the same user ID space and prevents name collisions.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+
 												"valid_issuer_uri": schema.StringAttribute{
 													Description:         "URI of the token issuer used for authentication.",
 													MarkdownDescription: "URI of the token issuer used for authentication.",
@@ -11765,8 +13217,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"annotations": schema.MapAttribute{
-															Description:         "Annotations that will be added to the 'Ingress', 'Route', or 'Service' resource. You can use this field to configure DNS providers such as External DNS. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.",
-															MarkdownDescription: "Annotations that will be added to the 'Ingress', 'Route', or 'Service' resource. You can use this field to configure DNS providers such as External DNS. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.",
+															Description:         "Annotations added to 'Ingress', 'Route', or 'Service' resources. You can use this property to configure DNS providers such as External DNS. For 'loadbalancer', 'nodeport', 'route', or 'ingress' listeners only.",
+															MarkdownDescription: "Annotations added to 'Ingress', 'Route', or 'Service' resources. You can use this property to configure DNS providers such as External DNS. For 'loadbalancer', 'nodeport', 'route', or 'ingress' listeners only.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -11774,8 +13226,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"external_i_ps": schema.ListAttribute{
-															Description:         "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
-															MarkdownDescription: "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This field is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. This field can only be used with 'nodeport' type listener.",
+															Description:         "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This property is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. For 'nodeport' listeners only.",
+															MarkdownDescription: "External IPs associated to the nodeport service. These IPs are used by clients external to the Kubernetes cluster to access the Kafka brokers. This property is helpful when 'nodeport' without 'externalIP' is not sufficient. For example on bare-metal Kubernetes clusters that do not support Loadbalancer service types. For 'nodeport' listeners only.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -11783,16 +13235,16 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"host": schema.StringAttribute{
-															Description:         "The bootstrap host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.",
-															MarkdownDescription: "The bootstrap host. This field will be used in the Ingress resource or in the Route resource to specify the desired hostname. This field can be used only with 'route' (optional) or 'ingress' (required) type listeners.",
+															Description:         "Specifies the hostname used for the bootstrap resource. For 'route' (optional) or 'ingress' (required) listeners only. Ensure the hostname resolves to the Ingress endpoints; no validation is performed by Strimzi.",
+															MarkdownDescription: "Specifies the hostname used for the bootstrap resource. For 'route' (optional) or 'ingress' (required) listeners only. Ensure the hostname resolves to the Ingress endpoints; no validation is performed by Strimzi.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"labels": schema.MapAttribute{
-															Description:         "Labels that will be added to the 'Ingress', 'Route', or 'Service' resource. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.",
-															MarkdownDescription: "Labels that will be added to the 'Ingress', 'Route', or 'Service' resource. This field can be used only with 'loadbalancer', 'nodeport', 'route', or 'ingress' type listeners.",
+															Description:         "Labels added to 'Ingress', 'Route', or 'Service' resources. For 'loadbalancer', 'nodeport', 'route', or 'ingress' listeners only.",
+															MarkdownDescription: "Labels added to 'Ingress', 'Route', or 'Service' resources. For 'loadbalancer', 'nodeport', 'route', or 'ingress' listeners only.",
 															ElementType:         types.StringType,
 															Required:            false,
 															Optional:            true,
@@ -11800,16 +13252,16 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														},
 
 														"load_balancer_ip": schema.StringAttribute{
-															Description:         "The loadbalancer is requested with the IP address specified in this field. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This field is ignored if the cloud provider does not support the feature.This field can be used only with 'loadbalancer' type listener.",
-															MarkdownDescription: "The loadbalancer is requested with the IP address specified in this field. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This field is ignored if the cloud provider does not support the feature.This field can be used only with 'loadbalancer' type listener.",
+															Description:         "The loadbalancer is requested with the IP address specified in this property. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This property is ignored if the cloud provider does not support the feature. For 'loadbalancer' listeners only.",
+															MarkdownDescription: "The loadbalancer is requested with the IP address specified in this property. This feature depends on whether the underlying cloud provider supports specifying the 'loadBalancerIP' when a load balancer is created. This property is ignored if the cloud provider does not support the feature. For 'loadbalancer' listeners only.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
 														},
 
 														"node_port": schema.Int64Attribute{
-															Description:         "Node port for the bootstrap service. This field can be used only with 'nodeport' type listener.",
-															MarkdownDescription: "Node port for the bootstrap service. This field can be used only with 'nodeport' type listener.",
+															Description:         "Node port for the bootstrap service. For 'nodeport' listeners only.",
+															MarkdownDescription: "Node port for the bootstrap service. For 'nodeport' listeners only.",
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
@@ -11940,24 +13392,24 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"class": schema.StringAttribute{
-													Description:         "Configures a specific class for 'Ingress' and 'LoadBalancer' that defines which controller will be used. This field can only be used with 'ingress' and 'loadbalancer' type listeners. If not specified, the default controller is used. For an 'ingress' listener, set the 'ingressClassName' property in the 'Ingress' resources. For a 'loadbalancer' listener, set the 'loadBalancerClass' property  in the 'Service' resources.",
-													MarkdownDescription: "Configures a specific class for 'Ingress' and 'LoadBalancer' that defines which controller will be used. This field can only be used with 'ingress' and 'loadbalancer' type listeners. If not specified, the default controller is used. For an 'ingress' listener, set the 'ingressClassName' property in the 'Ingress' resources. For a 'loadbalancer' listener, set the 'loadBalancerClass' property  in the 'Service' resources.",
+													Description:         "Configures a specific class for 'Ingress' and 'LoadBalancer' that defines which controller is used. If not specified, the default controller is used.* For an 'ingress' listener, the operator uses this property to set the 'ingressClassName' property in the 'Ingress' resources.* For a 'loadbalancer' listener, the operator uses this property to set the 'loadBalancerClass' property  in the 'Service' resources.For 'ingress' and 'loadbalancer' listeners only.",
+													MarkdownDescription: "Configures a specific class for 'Ingress' and 'LoadBalancer' that defines which controller is used. If not specified, the default controller is used.* For an 'ingress' listener, the operator uses this property to set the 'ingressClassName' property in the 'Ingress' resources.* For a 'loadbalancer' listener, the operator uses this property to set the 'loadBalancerClass' property  in the 'Service' resources.For 'ingress' and 'loadbalancer' listeners only.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"create_bootstrap_service": schema.BoolAttribute{
-													Description:         "Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the 'loadBalancer' type listener.",
-													MarkdownDescription: "Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the 'loadBalancer' type listener.",
+													Description:         "Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the 'loadbalancer' listener.",
+													MarkdownDescription: "Whether to create the bootstrap service or not. The bootstrap service is created by default (if not specified differently). This field can be used with the 'loadbalancer' listener.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"external_traffic_policy": schema.StringAttribute{
-													Description:         "Specifies whether the service routes external traffic to node-local or cluster-wide endpoints. 'Cluster' may cause a second hop to another node and obscures the client source IP. 'Local' avoids a second hop for LoadBalancer and Nodeport type services and preserves the client source IP (when supported by the infrastructure). If unspecified, Kubernetes will use 'Cluster' as the default.This field can be used only with 'loadbalancer' or 'nodeport' type listener.",
-													MarkdownDescription: "Specifies whether the service routes external traffic to node-local or cluster-wide endpoints. 'Cluster' may cause a second hop to another node and obscures the client source IP. 'Local' avoids a second hop for LoadBalancer and Nodeport type services and preserves the client source IP (when supported by the infrastructure). If unspecified, Kubernetes will use 'Cluster' as the default.This field can be used only with 'loadbalancer' or 'nodeport' type listener.",
+													Description:         "Specifies whether the service routes external traffic to cluster-wide or node-local endpoints:* 'Cluster' may cause a second hop to another node and obscures the client source IP.* 'Local' avoids a second hop for 'LoadBalancer' and 'Nodeport' type services and preserves the client source IP (when supported by the infrastructure).If unspecified, Kubernetes uses 'Cluster' as the default. For 'loadbalancer' or 'nodeport' listeners only.",
+													MarkdownDescription: "Specifies whether the service routes external traffic to cluster-wide or node-local endpoints:* 'Cluster' may cause a second hop to another node and obscures the client source IP.* 'Local' avoids a second hop for 'LoadBalancer' and 'Nodeport' type services and preserves the client source IP (when supported by the infrastructure).If unspecified, Kubernetes uses 'Cluster' as the default. For 'loadbalancer' or 'nodeport' listeners only.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11967,8 +13419,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"finalizers": schema.ListAttribute{
-													Description:         "A list of finalizers which will be configured for the 'LoadBalancer' type Services created for this listener. If supported by the platform, the finalizer 'service.kubernetes.io/load-balancer-cleanup' to make sure that the external load balancer is deleted together with the service.For more information, see https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#garbage-collecting-load-balancers. This field can be used only with 'loadbalancer' type listeners.",
-													MarkdownDescription: "A list of finalizers which will be configured for the 'LoadBalancer' type Services created for this listener. If supported by the platform, the finalizer 'service.kubernetes.io/load-balancer-cleanup' to make sure that the external load balancer is deleted together with the service.For more information, see https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#garbage-collecting-load-balancers. This field can be used only with 'loadbalancer' type listeners.",
+													Description:         "A list of finalizers configured for the 'LoadBalancer' type services created for this listener. If supported by the platform, the finalizer 'service.kubernetes.io/load-balancer-cleanup' to make sure that the external load balancer is deleted together with the service.For more information, see https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#garbage-collecting-load-balancers. For 'loadbalancer' listeners only.",
+													MarkdownDescription: "A list of finalizers configured for the 'LoadBalancer' type services created for this listener. If supported by the platform, the finalizer 'service.kubernetes.io/load-balancer-cleanup' to make sure that the external load balancer is deleted together with the service.For more information, see https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#garbage-collecting-load-balancers. For 'loadbalancer' listeners only.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -11985,8 +13437,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"ip_family_policy": schema.StringAttribute{
-													Description:         "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.",
-													MarkdownDescription: "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack'. 'SingleStack' is for a single IP family. 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters. 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters. If unspecified, Kubernetes will choose the default value based on the service type.",
+													Description:         "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack':* 'SingleStack' is for a single IP family.* 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters.* 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters.If unspecified, Kubernetes will choose the default value based on the service type.",
+													MarkdownDescription: "Specifies the IP Family Policy used by the service. Available options are 'SingleStack', 'PreferDualStack' and 'RequireDualStack':* 'SingleStack' is for a single IP family.* 'PreferDualStack' is for two IP families on dual-stack configured clusters or a single IP family on single-stack clusters.* 'RequireDualStack' fails unless there are two IP families on dual-stack configured clusters.If unspecified, Kubernetes will choose the default value based on the service type.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -11996,8 +13448,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"load_balancer_source_ranges": schema.ListAttribute{
-													Description:         "A list of CIDR ranges (for example '10.0.0.0/8' or '130.211.204.1/32') from which clients can connect to load balancer type listeners. If supported by the platform, traffic through the loadbalancer is restricted to the specified CIDR ranges. This field is applicable only for loadbalancer type services and is ignored if the cloud provider does not support the feature. This field can be used only with 'loadbalancer' type listener.",
-													MarkdownDescription: "A list of CIDR ranges (for example '10.0.0.0/8' or '130.211.204.1/32') from which clients can connect to load balancer type listeners. If supported by the platform, traffic through the loadbalancer is restricted to the specified CIDR ranges. This field is applicable only for loadbalancer type services and is ignored if the cloud provider does not support the feature. This field can be used only with 'loadbalancer' type listener.",
+													Description:         "A list of CIDR ranges (for example '10.0.0.0/8' or '130.211.204.1/32') from which clients can connect to loadbalancer listeners. If supported by the platform, traffic through the loadbalancer is restricted to the specified CIDR ranges. This field is applicable only for loadbalancer type services and is ignored if the cloud provider does not support the feature. For 'loadbalancer' listeners only.",
+													MarkdownDescription: "A list of CIDR ranges (for example '10.0.0.0/8' or '130.211.204.1/32') from which clients can connect to loadbalancer listeners. If supported by the platform, traffic through the loadbalancer is restricted to the specified CIDR ranges. This field is applicable only for loadbalancer type services and is ignored if the cloud provider does not support the feature. For 'loadbalancer' listeners only.",
 													ElementType:         types.StringType,
 													Required:            false,
 													Optional:            true,
@@ -12021,8 +13473,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"preferred_node_port_address_type": schema.StringAttribute{
-													Description:         "Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses will be used in the following order (the first one found will be used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This field is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order. This field can only be used with 'nodeport' type listener.",
-													MarkdownDescription: "Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses will be used in the following order (the first one found will be used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This field is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order. This field can only be used with 'nodeport' type listener.",
+													Description:         "Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses are used in the following order (the first one found is used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This property is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order.For 'nodeport' listeners only.",
+													MarkdownDescription: "Defines which address type should be used as the node address. Available types are: 'ExternalDNS', 'ExternalIP', 'InternalDNS', 'InternalIP' and 'Hostname'. By default, the addresses are used in the following order (the first one found is used):* 'ExternalDNS'* 'ExternalIP'* 'InternalDNS'* 'InternalIP'* 'Hostname'This property is used to select the preferred address type, which is checked first. If no address is found for this address type, the other types are checked in the default order.For 'nodeport' listeners only.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -12032,16 +13484,16 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"publish_not_ready_addresses": schema.BoolAttribute{
-													Description:         "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' type listeners.",
-													MarkdownDescription: "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' type listeners.",
+													Description:         "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' listeners.",
+													MarkdownDescription: "Configures whether the service endpoints are considered 'ready' even if the Pods themselves are not. Defaults to 'false'. This field can not be used with 'internal' listeners.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
 												},
 
 												"use_service_dns_domain": schema.BoolAttribute{
-													Description:         "Configures whether the Kubernetes service DNS domain should be used or not. If set to 'true', the generated addresses will contain the service DNS domain suffix (by default '.cluster.local', can be configured using environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'). Defaults to 'false'.This field can be used only with 'internal' and 'cluster-ip' type listeners.",
-													MarkdownDescription: "Configures whether the Kubernetes service DNS domain should be used or not. If set to 'true', the generated addresses will contain the service DNS domain suffix (by default '.cluster.local', can be configured using environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'). Defaults to 'false'.This field can be used only with 'internal' and 'cluster-ip' type listeners.",
+													Description:         "Configures whether the Kubernetes service DNS domain should be included in the generated addresses.* If set to 'false', the generated addresses do not contain the service DNS domain suffix. For example, 'my-cluster-kafka-0.my-cluster-kafka-brokers.myproject.svc'.* If set to 'true', the generated addresses contain the service DNS domain suffix. For example, 'my-cluster-kafka-0.my-cluster-kafka-brokers.myproject.svc.cluster.local'.The default is '.cluster.local', but this is customizable using the environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'. For 'internal' and 'cluster-ip' listeners only.",
+													MarkdownDescription: "Configures whether the Kubernetes service DNS domain should be included in the generated addresses.* If set to 'false', the generated addresses do not contain the service DNS domain suffix. For example, 'my-cluster-kafka-0.my-cluster-kafka-brokers.myproject.svc'.* If set to 'true', the generated addresses contain the service DNS domain suffix. For example, 'my-cluster-kafka-0.my-cluster-kafka-brokers.myproject.svc.cluster.local'.The default is '.cluster.local', but this is customizable using the environment variable 'KUBERNETES_SERVICE_DNS_DOMAIN'. For 'internal' and 'cluster-ip' listeners only.",
 													Required:            false,
 													Optional:            true,
 													Computed:            false,
@@ -12220,8 +13672,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 										},
 
 										"tls": schema.BoolAttribute{
-											Description:         "Enables TLS encryption on the listener. This is a required property.",
-											MarkdownDescription: "Enables TLS encryption on the listener. This is a required property.",
+											Description:         "Enables TLS encryption on the listener. This is a required property. For 'route' and 'ingress' type listeners, TLS encryption must be always enabled.",
+											MarkdownDescription: "Enables TLS encryption on the listener. This is a required property. For 'route' and 'ingress' type listeners, TLS encryption must be always enabled.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -12726,8 +14178,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"overrides": schema.ListNestedAttribute{
-										Description:         "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
-										MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
+										Description:         "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
+										MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"broker": schema.Int64Attribute{
@@ -12835,8 +14287,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												},
 
 												"overrides": schema.ListNestedAttribute{
-													Description:         "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
-													MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
+													Description:         "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
+													MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
 													NestedObject: schema.NestedAttributeObject{
 														Attributes: map[string]schema.Attribute{
 															"broker": schema.Int64Attribute{
@@ -13461,6 +14913,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 												Optional: true,
 												Computed: false,
 											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
 										},
 										Required: false,
 										Optional: true,
@@ -13751,6 +15270,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -15116,8 +16702,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -15291,6 +16877,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -16020,6 +17828,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,
@@ -17288,8 +19163,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -17463,6 +19338,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -18069,8 +20166,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 									},
 
 									"overrides": schema.ListNestedAttribute{
-										Description:         "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
-										MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows to specify a different configuration for different brokers.",
+										Description:         "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
+										MarkdownDescription: "Overrides for individual brokers. The 'overrides' field allows you to specify a different configuration for different brokers.",
 										NestedObject: schema.NestedAttributeObject{
 											Attributes: map[string]schema.Attribute{
 												"broker": schema.Int64Attribute{
@@ -19536,8 +21633,8 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 											},
 
 											"tmp_dir_size_limit": schema.StringAttribute{
-												Description:         "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
-												MarkdownDescription: "Defines the total amount (for example '1Gi') of local storage required for temporary EmptyDir volume ('/tmp'). Default value is '5Mi'.",
+												Description:         "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
+												MarkdownDescription: "Defines the total amount of pod memory allocated for the temporary 'EmptyDir' volume '/tmp'. Specify the allocation in memory units, for example, '100Mi' for 100 mebibytes. Default value is '5Mi'. The '/tmp' volume is backed by pod memory, not disk storage, so avoid setting a high value as it consumes pod memory resources.",
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
@@ -19711,6 +21808,228 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 															Required:            false,
 															Optional:            true,
 															Computed:            false,
+														},
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volumes": schema.ListNestedAttribute{
+												Description:         "Additional volumes that can be mounted to the pod.",
+												MarkdownDescription: "Additional volumes that can be mounted to the pod.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"config_map": schema.SingleNestedAttribute{
+															Description:         "ConfigMap to use to populate the volume.",
+															MarkdownDescription: "ConfigMap to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"empty_dir": schema.SingleNestedAttribute{
+															Description:         "EmptyDir to use to populate the volume.",
+															MarkdownDescription: "EmptyDir to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"medium": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"size_limit": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"amount": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"format": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name to use for the volume. Required.",
+															MarkdownDescription: "Name to use for the volume. Required.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"persistent_volume_claim": schema.SingleNestedAttribute{
+															Description:         "PersistentVolumeClaim object to use to populate the volume.",
+															MarkdownDescription: "PersistentVolumeClaim object to use to populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"claim_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"read_only": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"secret": schema.SingleNestedAttribute{
+															Description:         "Secret to use populate the volume.",
+															MarkdownDescription: "Secret to use populate the volume.",
+															Attributes: map[string]schema.Attribute{
+																"default_mode": schema.Int64Attribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"items": schema.ListNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	NestedObject: schema.NestedAttributeObject{
+																		Attributes: map[string]schema.Attribute{
+																			"key": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"mode": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
+																"optional": schema.BoolAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"secret_name": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
 														},
 													},
 												},
@@ -20138,6 +22457,73 @@ func (r *KafkaStrimziIoKafkaV1Beta2Manifest) Schema(_ context.Context, _ datasou
 														Required: false,
 														Optional: true,
 														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
+											"volume_mounts": schema.ListNestedAttribute{
+												Description:         "Additional volume mounts which should be applied to the container.",
+												MarkdownDescription: "Additional volume mounts which should be applied to the container.",
+												NestedObject: schema.NestedAttributeObject{
+													Attributes: map[string]schema.Attribute{
+														"mount_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"mount_propagation": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"recursive_read_only": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sub_path_expr": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
 													},
 												},
 												Required: false,

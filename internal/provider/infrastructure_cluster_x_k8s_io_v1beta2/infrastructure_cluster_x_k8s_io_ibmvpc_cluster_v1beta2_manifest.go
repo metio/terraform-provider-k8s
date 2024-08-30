@@ -51,12 +51,48 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 		} `tfsdk:"control_plane_endpoint" json:"controlPlaneEndpoint,omitempty"`
 		ControlPlaneLoadBalancer *struct {
 			AdditionalListeners *[]struct {
-				Port *int64 `tfsdk:"port" json:"port,omitempty"`
+				DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
+				Port            *int64  `tfsdk:"port" json:"port,omitempty"`
+				Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
 			} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
-			Id     *string `tfsdk:"id" json:"id,omitempty"`
-			Name   *string `tfsdk:"name" json:"name,omitempty"`
-			Public *bool   `tfsdk:"public" json:"public,omitempty"`
+			BackendPools *[]struct {
+				Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
+				HealthMonitor *struct {
+					Delay   *int64  `tfsdk:"delay" json:"delay,omitempty"`
+					Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+					Retries *int64  `tfsdk:"retries" json:"retries,omitempty"`
+					Timeout *int64  `tfsdk:"timeout" json:"timeout,omitempty"`
+					Type    *string `tfsdk:"type" json:"type,omitempty"`
+					UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
+				} `tfsdk:"health_monitor" json:"healthMonitor,omitempty"`
+				Name     *string `tfsdk:"name" json:"name,omitempty"`
+				Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+			} `tfsdk:"backend_pools" json:"backendPools,omitempty"`
+			Id             *string `tfsdk:"id" json:"id,omitempty"`
+			Name           *string `tfsdk:"name" json:"name,omitempty"`
+			Public         *bool   `tfsdk:"public" json:"public,omitempty"`
+			SecurityGroups *[]struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"security_groups" json:"securityGroups,omitempty"`
+			Subnets *[]struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"subnets" json:"subnets,omitempty"`
 		} `tfsdk:"control_plane_load_balancer" json:"controlPlaneLoadBalancer,omitempty"`
+		Image *struct {
+			CosBucket       *string `tfsdk:"cos_bucket" json:"cosBucket,omitempty"`
+			CosBucketRegion *string `tfsdk:"cos_bucket_region" json:"cosBucketRegion,omitempty"`
+			CosInstance     *string `tfsdk:"cos_instance" json:"cosInstance,omitempty"`
+			CosObject       *string `tfsdk:"cos_object" json:"cosObject,omitempty"`
+			Crn             *string `tfsdk:"crn" json:"crn,omitempty"`
+			Name            *string `tfsdk:"name" json:"name,omitempty"`
+			OperatingSystem *string `tfsdk:"operating_system" json:"operatingSystem,omitempty"`
+			ResourceGroup   *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
+		} `tfsdk:"image" json:"image,omitempty"`
 		Network *struct {
 			ControlPlaneSubnets *[]struct {
 				Cidr *string `tfsdk:"cidr" json:"cidr,omitempty"`
@@ -64,8 +100,82 @@ type InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2ManifestData struct {
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 				Zone *string `tfsdk:"zone" json:"zone,omitempty"`
 			} `tfsdk:"control_plane_subnets" json:"controlPlaneSubnets,omitempty"`
-			ResourceGroup *string `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
-			Vpc           *struct {
+			LoadBalancers *[]struct {
+				AdditionalListeners *[]struct {
+					DefaultPoolName *string `tfsdk:"default_pool_name" json:"defaultPoolName,omitempty"`
+					Port            *int64  `tfsdk:"port" json:"port,omitempty"`
+					Protocol        *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				} `tfsdk:"additional_listeners" json:"additionalListeners,omitempty"`
+				BackendPools *[]struct {
+					Algorithm     *string `tfsdk:"algorithm" json:"algorithm,omitempty"`
+					HealthMonitor *struct {
+						Delay   *int64  `tfsdk:"delay" json:"delay,omitempty"`
+						Port    *int64  `tfsdk:"port" json:"port,omitempty"`
+						Retries *int64  `tfsdk:"retries" json:"retries,omitempty"`
+						Timeout *int64  `tfsdk:"timeout" json:"timeout,omitempty"`
+						Type    *string `tfsdk:"type" json:"type,omitempty"`
+						UrlPath *string `tfsdk:"url_path" json:"urlPath,omitempty"`
+					} `tfsdk:"health_monitor" json:"healthMonitor,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+				} `tfsdk:"backend_pools" json:"backendPools,omitempty"`
+				Id             *string `tfsdk:"id" json:"id,omitempty"`
+				Name           *string `tfsdk:"name" json:"name,omitempty"`
+				Public         *bool   `tfsdk:"public" json:"public,omitempty"`
+				SecurityGroups *[]struct {
+					Id   *string `tfsdk:"id" json:"id,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"security_groups" json:"securityGroups,omitempty"`
+				Subnets *[]struct {
+					Id   *string `tfsdk:"id" json:"id,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
+				} `tfsdk:"subnets" json:"subnets,omitempty"`
+			} `tfsdk:"load_balancers" json:"loadBalancers,omitempty"`
+			ResourceGroup *struct {
+				Id   *string `tfsdk:"id" json:"id,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"resource_group" json:"resourceGroup,omitempty"`
+			SecurityGroups *[]struct {
+				Id    *string `tfsdk:"id" json:"id,omitempty"`
+				Name  *string `tfsdk:"name" json:"name,omitempty"`
+				Rules *[]struct {
+					Action      *string `tfsdk:"action" json:"action,omitempty"`
+					Destination *struct {
+						IcmpCode  *int64 `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+						IcmpType  *int64 `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+						PortRange *struct {
+							MaximumPort *int64 `tfsdk:"maximum_port" json:"maximumPort,omitempty"`
+							MinimumPort *int64 `tfsdk:"minimum_port" json:"minimumPort,omitempty"`
+						} `tfsdk:"port_range" json:"portRange,omitempty"`
+						Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+						Remotes  *[]struct {
+							Address           *string `tfsdk:"address" json:"address,omitempty"`
+							CidrSubnetName    *string `tfsdk:"cidr_subnet_name" json:"cidrSubnetName,omitempty"`
+							RemoteType        *string `tfsdk:"remote_type" json:"remoteType,omitempty"`
+							SecurityGroupName *string `tfsdk:"security_group_name" json:"securityGroupName,omitempty"`
+						} `tfsdk:"remotes" json:"remotes,omitempty"`
+					} `tfsdk:"destination" json:"destination,omitempty"`
+					Direction       *string `tfsdk:"direction" json:"direction,omitempty"`
+					SecurityGroupID *string `tfsdk:"security_group_id" json:"securityGroupID,omitempty"`
+					Source          *struct {
+						IcmpCode  *int64 `tfsdk:"icmp_code" json:"icmpCode,omitempty"`
+						IcmpType  *int64 `tfsdk:"icmp_type" json:"icmpType,omitempty"`
+						PortRange *struct {
+							MaximumPort *int64 `tfsdk:"maximum_port" json:"maximumPort,omitempty"`
+							MinimumPort *int64 `tfsdk:"minimum_port" json:"minimumPort,omitempty"`
+						} `tfsdk:"port_range" json:"portRange,omitempty"`
+						Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
+						Remotes  *[]struct {
+							Address           *string `tfsdk:"address" json:"address,omitempty"`
+							CidrSubnetName    *string `tfsdk:"cidr_subnet_name" json:"cidrSubnetName,omitempty"`
+							RemoteType        *string `tfsdk:"remote_type" json:"remoteType,omitempty"`
+							SecurityGroupName *string `tfsdk:"security_group_name" json:"securityGroupName,omitempty"`
+						} `tfsdk:"remotes" json:"remotes,omitempty"`
+					} `tfsdk:"source" json:"source,omitempty"`
+				} `tfsdk:"rules" json:"rules,omitempty"`
+				Tags *[]string `tfsdk:"tags" json:"tags,omitempty"`
+			} `tfsdk:"security_groups" json:"securityGroups,omitempty"`
+			Vpc *struct {
 				Id   *string `tfsdk:"id" json:"id,omitempty"`
 				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"vpc" json:"vpc,omitempty"`
@@ -186,14 +296,27 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 					},
 
 					"control_plane_load_balancer": schema.SingleNestedAttribute{
-						Description:         "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.",
-						MarkdownDescription: "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.",
+						Description:         "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
+						MarkdownDescription: "ControlPlaneLoadBalancer is optional configuration for customizing control plane behavior.Use this for legacy support, use Network.LoadBalancers for the extended VPC support.",
 						Attributes: map[string]schema.Attribute{
 							"additional_listeners": schema.ListNestedAttribute{
 								Description:         "AdditionalListeners sets the additional listeners for the control plane load balancer.",
 								MarkdownDescription: "AdditionalListeners sets the additional listeners for the control plane load balancer.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
+										"default_pool_name": schema.StringAttribute{
+											Description:         "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+											MarkdownDescription: "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+											},
+										},
+
 										"port": schema.Int64Attribute{
 											Description:         "Port sets the port for the additional listener.",
 											MarkdownDescription: "Port sets the port for the additional listener.",
@@ -203,6 +326,142 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 											Validators: []validator.Int64{
 												int64validator.AtLeast(1),
 												int64validator.AtMost(65535),
+											},
+										},
+
+										"protocol": schema.StringAttribute{
+											Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+											MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "https", "tcp", "udp"),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"backend_pools": schema.ListNestedAttribute{
+								Description:         "backendPools defines the load balancer's backend pools.",
+								MarkdownDescription: "backendPools defines the load balancer's backend pools.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"algorithm": schema.StringAttribute{
+											Description:         "algorithm defines the load balancing algorithm to use.",
+											MarkdownDescription: "algorithm defines the load balancing algorithm to use.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("least_connections", "round_robin", "weighted_round_robin"),
+											},
+										},
+
+										"health_monitor": schema.SingleNestedAttribute{
+											Description:         "healthMonitor defines the backend pool's health monitor.",
+											MarkdownDescription: "healthMonitor defines the backend pool's health monitor.",
+											Attributes: map[string]schema.Attribute{
+												"delay": schema.Int64Attribute{
+													Description:         "delay defines the seconds to wait between health checks.",
+													MarkdownDescription: "delay defines the seconds to wait between health checks.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(2),
+														int64validator.AtMost(60),
+													},
+												},
+
+												"port": schema.Int64Attribute{
+													Description:         "port defines the port to perform health monitoring on.",
+													MarkdownDescription: "port defines the port to perform health monitoring on.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(1),
+														int64validator.AtMost(65535),
+													},
+												},
+
+												"retries": schema.Int64Attribute{
+													Description:         "retries defines the max retries for health check.",
+													MarkdownDescription: "retries defines the max retries for health check.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(1),
+														int64validator.AtMost(10),
+													},
+												},
+
+												"timeout": schema.Int64Attribute{
+													Description:         "timeout defines the seconds to wait for a health check response.",
+													MarkdownDescription: "timeout defines the seconds to wait for a health check response.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.Int64{
+														int64validator.AtLeast(1),
+														int64validator.AtMost(59),
+													},
+												},
+
+												"type": schema.StringAttribute{
+													Description:         "type defines the protocol used for health checks.",
+													MarkdownDescription: "type defines the protocol used for health checks.",
+													Required:            true,
+													Optional:            false,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.OneOf("http", "https", "tcp"),
+													},
+												},
+
+												"url_path": schema.StringAttribute{
+													Description:         "urlPath defines the URL to use for health monitoring.",
+													MarkdownDescription: "urlPath defines the URL to use for health monitoring.",
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+													Validators: []validator.String{
+														stringvalidator.RegexMatches(regexp.MustCompile(`^\/(([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})+(\/([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})*)*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:@\/?]|%[a-fA-F0-9]{2})*)?$`), ""),
+													},
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name defines the name of the Backend Pool.",
+											MarkdownDescription: "name defines the name of the Backend Pool.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+											},
+										},
+
+										"protocol": schema.StringAttribute{
+											Description:         "protocol defines the protocol to use for the Backend Pool.",
+											MarkdownDescription: "protocol defines the protocol to use for the Backend Pool.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.OneOf("http", "https", "tcp", "udp"),
 											},
 										},
 									},
@@ -244,6 +503,167 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+
+							"security_groups": schema.ListNestedAttribute{
+								Description:         "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the resource.",
+											MarkdownDescription: "id of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the resource.",
+											MarkdownDescription: "name of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"subnets": schema.ListNestedAttribute{
+								Description:         "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the resource.",
+											MarkdownDescription: "id of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the resource.",
+											MarkdownDescription: "name of the resource.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+											},
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"image": schema.SingleNestedAttribute{
+						Description:         "image represents the Image details used for the cluster.",
+						MarkdownDescription: "image represents the Image details used for the cluster.",
+						Attributes: map[string]schema.Attribute{
+							"cos_bucket": schema.StringAttribute{
+								Description:         "cosBucket is the name of the IBM Cloud COS Bucket containing the source of the image, if necessary.",
+								MarkdownDescription: "cosBucket is the name of the IBM Cloud COS Bucket containing the source of the image, if necessary.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cos_bucket_region": schema.StringAttribute{
+								Description:         "cosBucketRegion is the COS region the bucket is in.",
+								MarkdownDescription: "cosBucketRegion is the COS region the bucket is in.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cos_instance": schema.StringAttribute{
+								Description:         "cosInstance is the name of the IBM Cloud COS Instance containing the source of the image, if necessary.",
+								MarkdownDescription: "cosInstance is the name of the IBM Cloud COS Instance containing the source of the image, if necessary.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"cos_object": schema.StringAttribute{
+								Description:         "cosObject is the name of a IBM Cloud COS Object used as the source of the image, if necessary.",
+								MarkdownDescription: "cosObject is the name of a IBM Cloud COS Object used as the source of the image, if necessary.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"crn": schema.StringAttribute{
+								Description:         "crn is the IBM Cloud CRN of the existing VPC Custom Image.",
+								MarkdownDescription: "crn is the IBM Cloud CRN of the existing VPC Custom Image.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "name is the name of the desired VPC Custom Image.",
+								MarkdownDescription: "name is the name of the desired VPC Custom Image.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.LengthAtLeast(1),
+									stringvalidator.LengthAtMost(63),
+									stringvalidator.RegexMatches(regexp.MustCompile(`'/^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$/'`), ""),
+								},
+							},
+
+							"operating_system": schema.StringAttribute{
+								Description:         "operatingSystem is the Custom Image's Operating System name.",
+								MarkdownDescription: "operatingSystem is the Custom Image's Operating System name.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"resource_group": schema.SingleNestedAttribute{
+								Description:         "resourceGroup is the Resource Group to create the Custom Image in.",
+								MarkdownDescription: "resourceGroup is the Resource Group to create the Custom Image in.",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id defines the IBM Cloud Resource ID.",
+										MarkdownDescription: "id defines the IBM Cloud Resource ID.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name defines the IBM Cloud Resource Name.",
+										MarkdownDescription: "name defines the IBM Cloud Resource Name.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,
@@ -308,12 +728,619 @@ func (r *InfrastructureClusterXK8SIoIbmvpcclusterV1Beta2Manifest) Schema(_ conte
 								Computed: false,
 							},
 
-							"resource_group": schema.StringAttribute{
-								Description:         "resourceGroup is the name of the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
-								MarkdownDescription: "resourceGroup is the name of the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
+							"load_balancers": schema.ListNestedAttribute{
+								Description:         "loadBalancers is a set of VPC Load Balancer definitions to use for the cluster.",
+								MarkdownDescription: "loadBalancers is a set of VPC Load Balancer definitions to use for the cluster.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"additional_listeners": schema.ListNestedAttribute{
+											Description:         "AdditionalListeners sets the additional listeners for the control plane load balancer.",
+											MarkdownDescription: "AdditionalListeners sets the additional listeners for the control plane load balancer.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"default_pool_name": schema.StringAttribute{
+														Description:         "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+														MarkdownDescription: "defaultPoolName defines the name of a VPC Load Balancer Backend Pool to use for the VPC Load Balancer Listener.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+														},
+													},
+
+													"port": schema.Int64Attribute{
+														Description:         "Port sets the port for the additional listener.",
+														MarkdownDescription: "Port sets the port for the additional listener.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.Int64{
+															int64validator.AtLeast(1),
+															int64validator.AtMost(65535),
+														},
+													},
+
+													"protocol": schema.StringAttribute{
+														Description:         "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+														MarkdownDescription: "protocol defines the protocol to use for the VPC Load Balancer Listener.Will default to TCP protocol if not specified.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("http", "https", "tcp", "udp"),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"backend_pools": schema.ListNestedAttribute{
+											Description:         "backendPools defines the load balancer's backend pools.",
+											MarkdownDescription: "backendPools defines the load balancer's backend pools.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"algorithm": schema.StringAttribute{
+														Description:         "algorithm defines the load balancing algorithm to use.",
+														MarkdownDescription: "algorithm defines the load balancing algorithm to use.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("least_connections", "round_robin", "weighted_round_robin"),
+														},
+													},
+
+													"health_monitor": schema.SingleNestedAttribute{
+														Description:         "healthMonitor defines the backend pool's health monitor.",
+														MarkdownDescription: "healthMonitor defines the backend pool's health monitor.",
+														Attributes: map[string]schema.Attribute{
+															"delay": schema.Int64Attribute{
+																Description:         "delay defines the seconds to wait between health checks.",
+																MarkdownDescription: "delay defines the seconds to wait between health checks.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(2),
+																	int64validator.AtMost(60),
+																},
+															},
+
+															"port": schema.Int64Attribute{
+																Description:         "port defines the port to perform health monitoring on.",
+																MarkdownDescription: "port defines the port to perform health monitoring on.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(1),
+																	int64validator.AtMost(65535),
+																},
+															},
+
+															"retries": schema.Int64Attribute{
+																Description:         "retries defines the max retries for health check.",
+																MarkdownDescription: "retries defines the max retries for health check.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(1),
+																	int64validator.AtMost(10),
+																},
+															},
+
+															"timeout": schema.Int64Attribute{
+																Description:         "timeout defines the seconds to wait for a health check response.",
+																MarkdownDescription: "timeout defines the seconds to wait for a health check response.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.Int64{
+																	int64validator.AtLeast(1),
+																	int64validator.AtMost(59),
+																},
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "type defines the protocol used for health checks.",
+																MarkdownDescription: "type defines the protocol used for health checks.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("http", "https", "tcp"),
+																},
+															},
+
+															"url_path": schema.StringAttribute{
+																Description:         "urlPath defines the URL to use for health monitoring.",
+																MarkdownDescription: "urlPath defines the URL to use for health monitoring.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.RegexMatches(regexp.MustCompile(`^\/(([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})+(\/([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})*)*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:@\/?]|%[a-fA-F0-9]{2})*)?$`), ""),
+																},
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "name defines the name of the Backend Pool.",
+														MarkdownDescription: "name defines the name of the Backend Pool.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+															stringvalidator.LengthAtMost(63),
+															stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+														},
+													},
+
+													"protocol": schema.StringAttribute{
+														Description:         "protocol defines the protocol to use for the Backend Pool.",
+														MarkdownDescription: "protocol defines the protocol to use for the Backend Pool.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("http", "https", "tcp", "udp"),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"id": schema.StringAttribute{
+											Description:         "id of the loadbalancer",
+											MarkdownDescription: "id of the loadbalancer",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(64),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[-0-9a-z_]+$`), ""),
+											},
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "Name sets the name of the VPC load balancer.",
+											MarkdownDescription: "Name sets the name of the VPC load balancer.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.LengthAtMost(63),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([a-z]|[a-z][-a-z0-9]*[a-z0-9])$`), ""),
+											},
+										},
+
+										"public": schema.BoolAttribute{
+											Description:         "public indicates that load balancer is public or private",
+											MarkdownDescription: "public indicates that load balancer is public or private",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"security_groups": schema.ListNestedAttribute{
+											Description:         "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											MarkdownDescription: "securityGroups defines the Security Groups to attach to the load balancer.Security Groups defined here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"id": schema.StringAttribute{
+														Description:         "id of the resource.",
+														MarkdownDescription: "id of the resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "name of the resource.",
+														MarkdownDescription: "name of the resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"subnets": schema.ListNestedAttribute{
+											Description:         "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											MarkdownDescription: "subnets defines the VPC Subnets to attach to the load balancer.Subnets defiens here are expected to already exist when the load balancer is reconciled (these do not get created when reconciling the load balancer).",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"id": schema.StringAttribute{
+														Description:         "id of the resource.",
+														MarkdownDescription: "id of the resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
+													},
+
+													"name": schema.StringAttribute{
+														Description:         "name of the resource.",
+														MarkdownDescription: "name of the resource.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.LengthAtLeast(1),
+														},
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"resource_group": schema.SingleNestedAttribute{
+								Description:         "resourceGroup is the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
+								MarkdownDescription: "resourceGroup is the Resource Group containing all of the newtork resources.This can be different than the Resource Group containing the remaining cluster resources.",
+								Attributes: map[string]schema.Attribute{
+									"id": schema.StringAttribute{
+										Description:         "id defines the IBM Cloud Resource ID.",
+										MarkdownDescription: "id defines the IBM Cloud Resource ID.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "name defines the IBM Cloud Resource Name.",
+										MarkdownDescription: "name defines the IBM Cloud Resource Name.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"security_groups": schema.ListNestedAttribute{
+								Description:         "securityGroups is a set of VPCSecurityGroup's which define the VPC Security Groups that manage traffic within and out of the VPC.",
+								MarkdownDescription: "securityGroups is a set of VPCSecurityGroup's which define the VPC Security Groups that manage traffic within and out of the VPC.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"id": schema.StringAttribute{
+											Description:         "id of the Security Group.",
+											MarkdownDescription: "id of the Security Group.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"name": schema.StringAttribute{
+											Description:         "name of the Security Group.",
+											MarkdownDescription: "name of the Security Group.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"rules": schema.ListNestedAttribute{
+											Description:         "rules are the Security Group Rules for the Security Group.",
+											MarkdownDescription: "rules are the Security Group Rules for the Security Group.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"action": schema.StringAttribute{
+														Description:         "action defines whether to allow or deny traffic defined by the Security Group Rule.",
+														MarkdownDescription: "action defines whether to allow or deny traffic defined by the Security Group Rule.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("allow", "deny"),
+														},
+													},
+
+													"destination": schema.SingleNestedAttribute{
+														Description:         "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+														MarkdownDescription: "destination is a VPCSecurityGroupRulePrototype which defines the destination of outbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionOutbound.",
+														Attributes: map[string]schema.Attribute{
+															"icmp_code": schema.Int64Attribute{
+																Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"icmp_type": schema.Int64Attribute{
+																Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"port_range": schema.SingleNestedAttribute{
+																Description:         "portRange is a range of ports allowed for the Rule's remote.",
+																MarkdownDescription: "portRange is a range of ports allowed for the Rule's remote.",
+																Attributes: map[string]schema.Attribute{
+																	"maximum_port": schema.Int64Attribute{
+																		Description:         "maximumPort is the inclusive upper range of ports.",
+																		MarkdownDescription: "maximumPort is the inclusive upper range of ports.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(65535),
+																		},
+																	},
+
+																	"minimum_port": schema.Int64Attribute{
+																		Description:         "minimumPort is the inclusive lower range of ports.",
+																		MarkdownDescription: "minimumPort is the inclusive lower range of ports.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(65535),
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"protocol": schema.StringAttribute{
+																Description:         "protocol defines the traffic protocol used for the Security Group Rule.",
+																MarkdownDescription: "protocol defines the traffic protocol used for the Security Group Rule.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("all", "icmp", "tcp", "udp"),
+																},
+															},
+
+															"remotes": schema.ListNestedAttribute{
+																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"address": schema.StringAttribute{
+																			Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"cidr_subnet_name": schema.StringAttribute{
+																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"remote_type": schema.StringAttribute{
+																			Description:         "remoteType defines the type of filter to define for the remote's destination/source.",
+																			MarkdownDescription: "remoteType defines the type of filter to define for the remote's destination/source.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("any", "cidr", "address", "sg"),
+																			},
+																		},
+
+																		"security_group_name": schema.StringAttribute{
+																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"direction": schema.StringAttribute{
+														Description:         "direction defines whether the traffic is inbound or outbound for the Security Group Rule.",
+														MarkdownDescription: "direction defines whether the traffic is inbound or outbound for the Security Group Rule.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("inbound", "outbound"),
+														},
+													},
+
+													"security_group_id": schema.StringAttribute{
+														Description:         "securityGroupID is the ID of the Security Group for the Security Group Rule.",
+														MarkdownDescription: "securityGroupID is the ID of the Security Group for the Security Group Rule.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"source": schema.SingleNestedAttribute{
+														Description:         "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+														MarkdownDescription: "source is a VPCSecurityGroupRulePrototype which defines the source of inbound traffic for the Security Group Rule.Only used when direction is VPCSecurityGroupRuleDirectionInbound.",
+														Attributes: map[string]schema.Attribute{
+															"icmp_code": schema.Int64Attribute{
+																Description:         "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpCode is the ICMP code for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"icmp_type": schema.Int64Attribute{
+																Description:         "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																MarkdownDescription: "icmpType is the ICMP type for the Rule.Only used when Protocol is VPCSecurityGroupRuleProtocolIcmp.",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"port_range": schema.SingleNestedAttribute{
+																Description:         "portRange is a range of ports allowed for the Rule's remote.",
+																MarkdownDescription: "portRange is a range of ports allowed for the Rule's remote.",
+																Attributes: map[string]schema.Attribute{
+																	"maximum_port": schema.Int64Attribute{
+																		Description:         "maximumPort is the inclusive upper range of ports.",
+																		MarkdownDescription: "maximumPort is the inclusive upper range of ports.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(65535),
+																		},
+																	},
+
+																	"minimum_port": schema.Int64Attribute{
+																		Description:         "minimumPort is the inclusive lower range of ports.",
+																		MarkdownDescription: "minimumPort is the inclusive lower range of ports.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																		Validators: []validator.Int64{
+																			int64validator.AtLeast(1),
+																			int64validator.AtMost(65535),
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"protocol": schema.StringAttribute{
+																Description:         "protocol defines the traffic protocol used for the Security Group Rule.",
+																MarkdownDescription: "protocol defines the traffic protocol used for the Security Group Rule.",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("all", "icmp", "tcp", "udp"),
+																},
+															},
+
+															"remotes": schema.ListNestedAttribute{
+																Description:         "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																MarkdownDescription: "remotes is a set of VPCSecurityGroupRuleRemote's that define the traffic allowed by the Rule's remote.Specifying multiple VPCSecurityGroupRuleRemote's creates a unique Security Group Rule with the shared Protocol, PortRange, etc.This allows for easier management of Security Group Rule's for sets of CIDR's, IP's, etc.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"address": schema.StringAttribute{
+																			Description:         " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			MarkdownDescription: " address is the address to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeAddress.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"cidr_subnet_name": schema.StringAttribute{
+																			Description:         "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			MarkdownDescription: "cidrSubnetName is the name of the VPC Subnet to retrieve the CIDR from, to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeCIDR.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"remote_type": schema.StringAttribute{
+																			Description:         "remoteType defines the type of filter to define for the remote's destination/source.",
+																			MarkdownDescription: "remoteType defines the type of filter to define for the remote's destination/source.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																			Validators: []validator.String{
+																				stringvalidator.OneOf("any", "cidr", "address", "sg"),
+																			},
+																		},
+
+																		"security_group_name": schema.StringAttribute{
+																			Description:         "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			MarkdownDescription: "securityGroupName is the name of the VPC Security Group to use for the remote's destination/source.Only used when remoteType is VPCSecurityGroupRuleRemoteTypeSG",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: true,
+																Optional: false,
+																Computed: false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"tags": schema.ListAttribute{
+											Description:         "tags are tags to add to the Security Group.",
+											MarkdownDescription: "tags are tags to add to the Security Group.",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 
 							"vpc": schema.SingleNestedAttribute{

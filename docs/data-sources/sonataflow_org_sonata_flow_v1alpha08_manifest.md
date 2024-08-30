@@ -240,6 +240,10 @@ Optional:
 <a id="nestedatt--spec--persistence"></a>
 ### Nested Schema for `spec.persistence`
 
+Required:
+
+- `migrate_db_on_start_up` (Boolean) Whether to migrate database on service startup?
+
 Optional:
 
 - `postgresql` (Attributes) Connect configured services to a postgresql database. (see [below for nested schema](#nestedatt--spec--persistence--postgresql))

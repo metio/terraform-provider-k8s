@@ -587,6 +587,7 @@ Optional:
 - `allowed_uses` (List of String) AllowedUse controls what the IP pool will be used for.  If not specified or empty, defaults to['Tunnel', 'Workload'] for back-compatibility
 - `block_size` (Number) BlockSize specifies the CIDR prefex length to use when allocating per-node IP blocks fromthe main IP pool CIDR.Default: 26 (IPv4), 122 (IPv6)
 - `disable_bgp_export` (Boolean) DisableBGPExport specifies whether routes from this IP pool's CIDR are exported over BGP.Default: false
+- `disable_new_allocations` (Boolean) DisableNewAllocations specifies whether or not new IP allocations are allowed from this pool.This is useful when you want to prevent new pods from receiving IP addresses from this pool, withoutimpacting any existing pods that have already been assigned addresses from this pool.
 - `encapsulation` (String) Encapsulation specifies the encapsulation type that will be used withthe IP Pool.Default: IPIP
 - `name` (String) Name is the name of the IP pool. If omitted, this will be generated.
 - `nat_outgoing` (String) NATOutgoing specifies if NAT will be enabled or disabled for outgoing traffic.Default: Enabled

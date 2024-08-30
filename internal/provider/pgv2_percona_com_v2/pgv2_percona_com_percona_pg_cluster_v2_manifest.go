@@ -16420,8 +16420,8 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
 							"dynamic_configuration": schema.MapAttribute{
-								Description:         "Patroni dynamic configuration settings. Changes to this value will beautomatically reloaded without validation. Changes to certain PostgreSQLparameters cause PostgreSQL to restart.More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
-								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will beautomatically reloaded without validation. Changes to certain PostgreSQLparameters cause PostgreSQL to restart.More info: https://patroni.readthedocs.io/en/latest/SETTINGS.html",
+								Description:         "Patroni dynamic configuration settings. Changes to this value will beautomatically reloaded without validation. Changes to certain PostgreSQLparameters cause PostgreSQL to restart.More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
+								MarkdownDescription: "Patroni dynamic configuration settings. Changes to this value will beautomatically reloaded without validation. Changes to certain PostgreSQLparameters cause PostgreSQL to restart.More info: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -20704,6 +20704,7 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
+										stringvalidator.LengthAtMost(200),
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[^;]*$`), ""),
 									},
 								},

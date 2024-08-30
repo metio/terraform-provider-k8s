@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_bucket_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  The CouchbaseBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseBucket provides replication and persistence for documents contained by it.
+  The CouchbaseBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseBucket provides replication and persistence for documents contained by it.
 ---
 
 # k8s_couchbase_com_couchbase_bucket_v2_manifest (Data Source)
 
-The CouchbaseBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseBucket provides replication and persistence for documents contained by it.
+The CouchbaseBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseBucket provides replication and persistence for documents contained by it.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_couchbase_com_couchbase_bucket_v2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) CouchbaseBucketSpec is the specification for a Couchbase bucket resource, and allows the bucket to be customized. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CouchbaseBucketSpec is the specification for a Couchbase bucket resource, andallows the bucket to be customized. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,39 +55,40 @@ Optional:
 
 Optional:
 
-- `compression_mode` (String) CompressionMode defines how Couchbase server handles document compression.  When off, documents are stored in memory, and transferred to the client uncompressed. When passive, documents are stored compressed in memory, and transferred to the client compressed when requested.  When active, documents are stored compresses in memory and when transferred to the client.  This field must be 'off', 'passive' or 'active', defaulting to 'passive'.  Be aware 'off' in YAML 1.2 is a boolean, so must be quoted as a string in configuration files.
-- `conflict_resolution` (String) ConflictResolution defines how XDCR handles concurrent write conflicts.  Sequence number based resolution selects the document with the highest sequence number as the most recent. Timestamp based resolution selects the document that was written to most recently as the most recent.  This field must be 'seqno' (sequence based), or 'lww' (timestamp based), defaulting to 'seqno'.
-- `enable_flush` (Boolean) EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.
-- `enable_index_replica` (Boolean) EnableIndexReplica defines whether indexes for this bucket are replicated. This field defaults to false.
-- `eviction_policy` (String) EvictionPolicy controls how Couchbase handles memory exhaustion.  Value only eviction flushes documents to disk but maintains document metadata in memory in order to improve query performance.  Full eviction removes all data from memory after the document is flushed to disk.  This field must be 'valueOnly' or 'fullEviction', defaulting to 'valueOnly'.
-- `io_priority` (String) IOPriority controls how many threads a bucket has, per pod, to process reads and writes. This field must be 'low' or 'high', defaulting to 'low'.  Modification of this field will cause a temporary service disruption as threads are restarted.
-- `max_ttl` (String) MaxTTL defines how long a document is permitted to exist for, without modification, until it is automatically deleted.  This is a default and maximum time-to-live and may be set to a lower value by the client.  If the client specifies a higher value, then it is truncated to the maximum durability.  Documents are removed by Couchbase, after they have expired, when either accessed, the expiry pager is run, or the bucket is compacted.  When set to 0, then documents are not expired by default.  This field must be a duration in the range 0-2147483648s, defaulting to 0.  More info: https://golang.org/pkg/time/#ParseDuration
-- `memory_quota` (String) MemoryQuota is a memory limit to the size of a bucket.  When this limit is exceeded, documents will be evicted from memory to disk as defined by the eviction policy.  The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `minimum_durability` (String) MiniumumDurability defines how durable a document write is by default, and can be made more durable by the client.  This feature enables ACID transactions. When none, Couchbase server will respond when the document is in memory, it will become eventually consistent across the cluster.  When majority, Couchbase server will respond when the document is replicated to at least half of the pods running the data service in the cluster.  When majorityAndPersistActive, Couchbase server will respond when the document is replicated to at least half of the pods running the data service in the cluster and the document has been persisted to disk on the document master pod.  When persistToMajority, Couchbase server will respond when the document is replicated and persisted to disk on at least half of the pods running the data service in the cluster.  This field must be either 'none', 'majority', 'majorityAndPersistActive' or 'persistToMajority', defaulting to 'none'.
-- `name` (String) Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
-- `replicas` (Number) Replicas defines how many copies of documents Couchbase server maintains.  This directly affects how fault tolerant a Couchbase cluster is.  With a single replica, the cluster can tolerate one data pod going down and still service requests without data loss.  The number of replicas also affect memory use.  With a single replica, the effective memory quota for documents is halved, with two replicas it is one third.  The number of replicas must be between 0 and 3, defaulting to 1.
-- `scopes` (Attributes) Scopes defines whether the Operator manages scopes for the bucket or not, and the set of scopes defined for the bucket. (see [below for nested schema](#nestedatt--spec--scopes))
-- `storage_backend` (String) StorageBackend to be assigned to and used by the bucket. Only valid for Couchbase Server 7.0.0 onward. Two different backend storage mechanisms can be used - 'couchstore' or 'magma', defaulting to 'couchstore'. This cannot be edited after bucket creation. Note: 'magma' is only valid for Couchbase Server 7.1.0 onward.
+- `compression_mode` (String) CompressionMode defines how Couchbase server handles document compression.  Whenoff, documents are stored in memory, and transferred to the client uncompressed.When passive, documents are stored compressed in memory, and transferred to theclient compressed when requested.  When active, documents are stored compressesin memory and when transferred to the client.  This field must be 'off', 'passive'or 'active', defaulting to 'passive'.  Be aware 'off' in YAML 1.2 is a boolean, somust be quoted as a string in configuration files.
+- `conflict_resolution` (String) ConflictResolution defines how XDCR handles concurrent write conflicts.  Sequence numberbased resolution selects the document with the highest sequence number as the most recent.Timestamp based resolution selects the document that was written to most recently as themost recent.  This field must be 'seqno' (sequence based), or 'lww' (timestamp based),defaulting to 'seqno'.
+- `enable_flush` (Boolean) EnableFlush defines whether a client can delete all documents in a bucket.This field defaults to false.
+- `enable_index_replica` (Boolean) EnableIndexReplica defines whether indexes for this bucket are replicated.This field defaults to false.
+- `eviction_policy` (String) EvictionPolicy controls how Couchbase handles memory exhaustion.  Value only evictionflushes documents to disk but maintains document metadata in memory in order to improvequery performance.  Full eviction removes all data from memory after the document isflushed to disk.  This field must be 'valueOnly' or 'fullEviction', defaulting to'valueOnly'.
+- `io_priority` (String) IOPriority controls how many threads a bucket has, per pod, to process reads and writes.This field must be 'low' or 'high', defaulting to 'low'.  Modification of this field willcause a temporary service disruption as threads are restarted.
+- `max_ttl` (String) MaxTTL defines how long a document is permitted to exist for, withoutmodification, until it is automatically deleted.  This is a default and maximumtime-to-live and may be set to a lower value by the client.  If the client specifiesa higher value, then it is truncated to the maximum durability.  Documents areremoved by Couchbase, after they have expired, when either accessed, the expirypager is run, or the bucket is compacted.  When set to 0, then documents are notexpired by default.  This field must be a duration in the range 0-2147483648s,defaulting to 0.  More info:https://golang.org/pkg/time/#ParseDuration
+- `memory_quota` (String) MemoryQuota is a memory limit to the size of a bucket.  When this limit is exceeded,documents will be evicted from memory to disk as defined by the eviction policy.  Thememory quota is defined per Couchbase pod running the data service.  This field defaultsto, and must be greater than or equal to 100Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `minimum_durability` (String) MiniumumDurability defines how durable a document write is by default, and canbe made more durable by the client.  This feature enables ACID transactions.When none, Couchbase server will respond when the document is in memory, it willbecome eventually consistent across the cluster.  When majority, Couchbase server willrespond when the document is replicated to at least half of the pods running thedata service in the cluster.  When majorityAndPersistActive, Couchbase server willrespond when the document is replicated to at least half of the pods running thedata service in the cluster and the document has been persisted to disk on thedocument master pod.  When persistToMajority, Couchbase server will respond whenthe document is replicated and persisted to disk on at least half of the pods runningthe data service in the cluster.  This field must be either 'none', 'majority','majorityAndPersistActive' or 'persistToMajority', defaulting to 'none'.
+- `name` (String) Name is the name of the bucket within Couchbase server.  By default the Operatorwill use the 'metadata.name' field to define the bucket name.  The 'metadata.name'field only supports a subset of the supported character set.  When specified, thisfield overrides 'metadata.name'.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
+- `rank` (Number) Rank determines the bucket’s place in the order in which the rebalance processhandles the buckets on the cluster. The higher a bucket’s assigned integer(in relation to the integers assigned other buckets), the sooner in therebalance process the bucket is handled. This assignment of rank allows acluster’s most mission-critical data to be rebalanced with top priority.This option is only supported for Couchbase Server 7.6.0+.
+- `replicas` (Number) Replicas defines how many copies of documents Couchbase server maintains.  This directlyaffects how fault tolerant a Couchbase cluster is.  With a single replica, the clustercan tolerate one data pod going down and still service requests without data loss.  Thenumber of replicas also affect memory use.  With a single replica, the effective memoryquota for documents is halved, with two replicas it is one third.  The number of replicasmust be between 0 and 3, defaulting to 1.
+- `scopes` (Attributes) Scopes defines whether the Operator manages scopes for the bucket or not, andthe set of scopes defined for the bucket. (see [below for nested schema](#nestedatt--spec--scopes))
+- `storage_backend` (String) StorageBackend to be assigned to and used by the bucket. Only valid for Couchbase Server 7.0.0 onward.Two different backend storage mechanisms can be used - 'couchstore' or 'magma', defaulting to 'couchstore'.Note: 'magma' is only valid for Couchbase Server 7.1.0 onward.
 
 <a id="nestedatt--spec--scopes"></a>
 ### Nested Schema for `spec.scopes`
 
 Optional:
 
-- `managed` (Boolean) Managed defines whether scopes are managed for this bucket. This field is 'false' by default, and the Operator will take no actions that will affect scopes and collections in this bucket.  The default scope and collection will be present.  When set to 'true', the Operator will manage user defined scopes, and optionally, their collections as defined by the 'CouchbaseScope', 'CouchbaseScopeGroup', 'CouchbaseCollection' and 'CouchbaseCollectionGroup' resource documentation.  If this field is set to 'false' while the  already managed, then the Operator will leave whatever configuration is already present.
-- `resources` (Attributes List) Resources is an explicit list of named resources that will be considered for inclusion in this bucket.  If a resource reference doesn't match a resource, then no error conditions are raised due to undefined resource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--scopes--resources))
-- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in this bucket.  More info: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--scopes--selector))
+- `managed` (Boolean) Managed defines whether scopes are managed for this bucket.This field is 'false' by default, and the Operator will take no actions thatwill affect scopes and collections in this bucket.  The default scope andcollection will be present.  When set to 'true', the Operator will manageuser defined scopes, and optionally, their collections as defined by the'CouchbaseScope', 'CouchbaseScopeGroup', 'CouchbaseCollection' and'CouchbaseCollectionGroup' resource documentation.  If this field is set to'false' while the  already managed, then the Operator will leave whateverconfiguration is already present.
+- `resources` (Attributes List) Resources is an explicit list of named resources that will be consideredfor inclusion in this bucket.  If a resource reference doesn'tmatch a resource, then no error conditions are raised due to undefinedresource creation ordering and eventual consistency. (see [below for nested schema](#nestedatt--spec--scopes--resources))
+- `selector` (Attributes) Selector allows resources to be implicitly considered for inclusion in thisbucket.  More info:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#labelselector-v1-meta (see [below for nested schema](#nestedatt--spec--scopes--selector))
 
 <a id="nestedatt--spec--scopes--resources"></a>
 ### Nested Schema for `spec.scopes.resources`
 
 Required:
 
-- `name` (String) Name is the name of the Kubernetes resource name that is being referenced. Legal scope names have a maximum length of 251 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
+- `name` (String) Name is the name of the Kubernetes resource name that is being referenced.Legal scope names have a maximum length of 251characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '_-%'.
 
 Optional:
 
-- `kind` (String) Kind indicates the kind of resource that is being referenced.  A scope can only reference 'CouchbaseScope' and 'CouchbaseScopeGroup' resource kinds.  This field defaults to 'CouchbaseScope' if not specified.
+- `kind` (String) Kind indicates the kind of resource that is being referenced.  A scopecan only reference 'CouchbaseScope' and 'CouchbaseScopeGroup'resource kinds.  This field defaults to 'CouchbaseScope' if notspecified.
 
 
 <a id="nestedatt--spec--scopes--selector"></a>
@@ -96,7 +97,7 @@ Optional:
 Optional:
 
 - `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--scopes--selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
 
 <a id="nestedatt--spec--scopes--selector--match_expressions"></a>
 ### Nested Schema for `spec.scopes.selector.match_expressions`
@@ -104,8 +105,8 @@ Optional:
 Required:
 
 - `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
 
 Optional:
 
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.

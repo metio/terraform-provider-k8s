@@ -126,8 +126,8 @@ func (r *EverestPerconaComDatabaseClusterBackupV1Alpha1Manifest) Schema(_ contex
 				MarkdownDescription: "DatabaseClusterBackupSpec defines the desired state of DatabaseClusterBackup.",
 				Attributes: map[string]schema.Attribute{
 					"backup_storage_name": schema.StringAttribute{
-						Description:         "BackupStorageName is the name of the BackupStorage used for backups.",
-						MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups.",
+						Description:         "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
+						MarkdownDescription: "BackupStorageName is the name of the BackupStorage used for backups.The BackupStorage must be created in the same namespace as the DatabaseCluster.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,

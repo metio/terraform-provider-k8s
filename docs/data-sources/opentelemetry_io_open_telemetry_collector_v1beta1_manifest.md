@@ -56,6 +56,7 @@ Optional:
 Required:
 
 - `config` (Attributes) (see [below for nested schema](#nestedatt--spec--config))
+- `management_state` (String)
 
 Optional:
 
@@ -78,7 +79,6 @@ Optional:
 - `ip_family_policy` (String)
 - `lifecycle` (Attributes) (see [below for nested schema](#nestedatt--spec--lifecycle))
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--liveness_probe))
-- `management_state` (String)
 - `mode` (String)
 - `node_selector` (Map of String)
 - `observability` (Attributes) (see [below for nested schema](#nestedatt--spec--observability))
@@ -588,6 +588,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -1914,6 +1918,10 @@ Required:
 
 - `name` (String)
 
+Optional:
+
+- `request` (String)
+
 
 
 <a id="nestedatt--spec--init_containers--security_context"></a>
@@ -2297,6 +2305,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--pod_security_context--windows_options))
 
@@ -2401,6 +2410,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -2998,6 +3011,7 @@ Optional:
 - `se_linux_options` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--pod_security_context--se_linux_options))
 - `seccomp_profile` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of String)
+- `supplemental_groups_policy` (String)
 - `sysctls` (Attributes List) (see [below for nested schema](#nestedatt--spec--target_allocator--pod_security_context--sysctls))
 - `windows_options` (Attributes) (see [below for nested schema](#nestedatt--spec--target_allocator--pod_security_context--windows_options))
 
@@ -3127,6 +3141,10 @@ Optional:
 Required:
 
 - `name` (String)
+
+Optional:
+
+- `request` (String)
 
 
 
@@ -3493,6 +3511,7 @@ Optional:
 - `git_repo` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--git_repo))
 - `glusterfs` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--glusterfs))
 - `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--host_path))
+- `image` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--image))
 - `iscsi` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--iscsi))
 - `nfs` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--nfs))
 - `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--volumes--persistent_volume_claim))
@@ -3899,6 +3918,15 @@ Required:
 Optional:
 
 - `type` (String)
+
+
+<a id="nestedatt--spec--volumes--image"></a>
+### Nested Schema for `spec.volumes.image`
+
+Optional:
+
+- `pull_policy` (String)
+- `reference` (String)
 
 
 <a id="nestedatt--spec--volumes--iscsi"></a>

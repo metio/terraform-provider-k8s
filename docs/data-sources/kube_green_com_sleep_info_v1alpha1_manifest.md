@@ -74,8 +74,8 @@ Optional:
 
 Optional:
 
-- `api_version` (String) ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.
-- `kind` (String) Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.
+- `api_version` (String) ApiVersion of the kubernetes resources.
+- `kind` (String) Kind of the kubernetes resources of the specific version.
 - `match_labels` (Map of String) MatchLabels which identify the kubernetes resource by labels
 - `name` (String) Name which identify the kubernetes resource.
 
@@ -85,8 +85,8 @@ Optional:
 
 Optional:
 
-- `api_version` (String) ApiVersion of the kubernetes resources.Supported api version is 'apps/v1'.
-- `kind` (String) Kind of the kubernetes resources of the specific version.Supported kind are 'Deployment' and 'CronJob'.
+- `api_version` (String) ApiVersion of the kubernetes resources.
+- `kind` (String) Kind of the kubernetes resources of the specific version.
 - `match_labels` (Map of String) MatchLabels which identify the kubernetes resource by labels
 - `name` (String) Name which identify the kubernetes resource.
 

@@ -367,6 +367,7 @@ Optional:
 
 - `datastore` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--ai--semantic_cache--datastore))
 - `embedding` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--ai--semantic_cache--embedding))
+- `mode` (String)
 - `ttl` (Number)
 
 <a id="nestedatt--spec--routes--options--ai--semantic_cache--datastore"></a>
@@ -382,6 +383,7 @@ Optional:
 Optional:
 
 - `connection_string` (String)
+- `score_threshold` (Number)
 
 
 

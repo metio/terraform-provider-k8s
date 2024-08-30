@@ -618,7 +618,9 @@ Optional:
 - `liveness_probe` (Attributes) Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe))
 - `ports` (Attributes List) List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated. (see [below for nested schema](#nestedatt--spec--init_containers--ports))
 - `readiness_probe` (Attributes) Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe))
+- `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--init_containers--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--init_containers--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--init_containers--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.
@@ -857,7 +859,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--init_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -945,7 +947,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--init_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -1011,6 +1013,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--init_containers--resize_policy"></a>
+### Nested Schema for `spec.init_containers.resize_policy`
+
+Required:
+
+- `resource_name` (String) Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.
+- `restart_policy` (String) Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.
+
+
 <a id="nestedatt--spec--init_containers--resources"></a>
 ### Nested Schema for `spec.init_containers.resources`
 
@@ -1018,7 +1029,7 @@ Optional:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--init_containers--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--init_containers--resources--claims"></a>
 ### Nested Schema for `spec.init_containers.resources.claims`
@@ -1075,7 +1086,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--init_containers--security_context--windows_options"></a>
@@ -1085,7 +1096,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -1097,7 +1108,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--init_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -1202,35 +1213,36 @@ Optional:
 
 Optional:
 
-- `authorization` (Attributes) Authorization section for this endpoint (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--authorization))
-- `basic_auth` (Attributes) BasicAuth allow an endpoint to authenticate over basic authenticationMore info: https://prometheus.io/docs/operating/configuration/#endpoints (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth))
-- `bearer_token_file` (String) File to read bearer token for scraping targets.
-- `bearer_token_secret` (Attributes) Secret to mount to read bearer token for scraping targets. The secretneeds to be in the same namespace as the service monitor and accessible bythe Prometheus Operator. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--bearer_token_secret))
-- `enable_http2` (Boolean) Whether to enable HTTP2.
-- `filter_running` (Boolean) Drop pods that are not running. (Failed, Succeeded). Enabled by default.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
-- `follow_redirects` (Boolean) FollowRedirects configures whether scrape requests follow HTTP 3xx redirects.
-- `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
-- `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.
-- `interval` (String) Interval at which metrics should be scrapedIf not specified Prometheus' global scrape interval is used.
-- `metric_relabelings` (Attributes List) MetricRelabelConfigs to apply to samples before ingestion. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--metric_relabelings))
-- `oauth2` (Attributes) OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2))
-- `params` (Map of List of String) Optional HTTP URL parameters
-- `path` (String) HTTP path to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').
-- `port` (String) Name of the service port this endpoint refers to. Mutually exclusive with targetPort.
-- `proxy_url` (String) ProxyURL eg http://proxyserver:2195 Directs scrapes to proxy through this endpoint.
-- `relabelings` (Attributes List) RelabelConfigs to apply to samples before scraping.Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--relabelings))
-- `scheme` (String) HTTP scheme to use for scraping.
-- `scrape_timeout` (String) Timeout after which the scrape is endedIf not specified, the Prometheus global scrape timeout is used unless it is less than 'Interval' in which the latter is used.
-- `target_port` (String) Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port.
-- `tls_config` (Attributes) TLS configuration to use when scraping the endpoint (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--tls_config))
+- `authorization` (Attributes) 'authorization' configures the Authorization header credentials to use whenscraping the target.Cannot be set at the same time as 'basicAuth', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--authorization))
+- `basic_auth` (Attributes) 'basicAuth' configures the Basic Authentication credentials to use whenscraping the target.Cannot be set at the same time as 'authorization', or 'oauth2'. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth))
+- `bearer_token_file` (String) File to read bearer token for scraping the target.Deprecated: use 'authorization' instead.
+- `bearer_token_secret` (Attributes) 'bearerTokenSecret' specifies a key of a Secret containing the bearertoken for scraping targets. The secret needs to be in the same namespaceas the ServiceMonitor object and readable by the Prometheus Operator.Deprecated: use 'authorization' instead. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--bearer_token_secret))
+- `enable_http2` (Boolean) 'enableHttp2' can be used to disable HTTP2 when scraping the target.
+- `filter_running` (Boolean) When true, the pods which are not running (e.g. either in Failed orSucceeded state) are dropped during the target discovery.If unset, the filtering is enabled.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
+- `follow_redirects` (Boolean) 'followRedirects' defines whether the scrape requests should follow HTTP3xx redirects.
+- `honor_labels` (Boolean) When true, 'honorLabels' preserves the metric's labels when they collidewith the target's labels.
+- `honor_timestamps` (Boolean) 'honorTimestamps' controls whether Prometheus preserves the timestampswhen exposed by the target.
+- `interval` (String) Interval at which Prometheus scrapes the metrics from the target.If empty, Prometheus uses the global scrape interval.
+- `metric_relabelings` (Attributes List) 'metricRelabelings' configures the relabeling rules to apply to thesamples before ingestion. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--metric_relabelings))
+- `oauth2` (Attributes) 'oauth2' configures the OAuth2 settings to use when scraping the target.It requires Prometheus >= 2.27.0.Cannot be set at the same time as 'authorization', or 'basicAuth'. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2))
+- `params` (Map of List of String) params define optional HTTP URL parameters.
+- `path` (String) HTTP path from which to scrape for metrics.If empty, Prometheus uses the default value (e.g. '/metrics').
+- `port` (String) Name of the Service port which this endpoint refers to.It takes precedence over 'targetPort'.
+- `proxy_url` (String) 'proxyURL' configures the HTTP Proxy URL (e.g.'http://proxyserver:2195') to go through when scraping the target.
+- `relabelings` (Attributes List) 'relabelings' configures the relabeling rules to apply the target'smetadata labels.The Operator automatically adds relabelings for a few standard Kubernetes fields.The original scrape job's name is available via the '__tmp_prometheus_job_name' label.More info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--relabelings))
+- `scheme` (String) HTTP scheme to use for scraping.'http' and 'https' are the expected values unless you rewrite the'__scheme__' label via relabeling.If empty, Prometheus uses the default value 'http'.
+- `scrape_timeout` (String) Timeout after which Prometheus considers the scrape to be failed.If empty, Prometheus uses the global scrape timeout unless it is lessthan the target's scrape interval value in which the latter is used.
+- `target_port` (String) Name or number of the target port of the 'Pod' object behind the Service, theport must be specified with container port property.Deprecated: use 'port' instead.
+- `tls_config` (Attributes) TLS configuration to use when scraping the target. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--tls_config))
+- `track_timestamps_staleness` (Boolean) 'trackTimestampsStaleness' defines whether Prometheus tracks staleness ofthe metrics that have an explicit timestamp present in scraped data.Has no effect if 'honorTimestamps' is false.It requires Prometheus >= v2.48.0.
 
 <a id="nestedatt--spec--monitoring--endpoints--authorization"></a>
 ### Nested Schema for `spec.monitoring.endpoints.authorization`
 
 Optional:
 
-- `credentials` (Attributes) The secret's key that contains the credentials of the request (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--authorization--credentials))
-- `type` (String) Set the authentication type. Defaults to Bearer, Basic will cause anerror
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
 
 <a id="nestedatt--spec--monitoring--endpoints--authorization--credentials"></a>
 ### Nested Schema for `spec.monitoring.endpoints.authorization.credentials`
@@ -1251,8 +1263,8 @@ Optional:
 
 Optional:
 
-- `password` (Attributes) The secret in the service monitor namespace that contains the passwordfor authentication. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth--password))
-- `username` (Attributes) The secret in the service monitor namespace that contains the usernamefor authentication. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth--username))
+- `password` (Attributes) 'password' specifies a key of a Secret containing the password forauthentication. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth--password))
+- `username` (Attributes) 'username' specifies a key of a Secret containing the username forauthentication. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--basic_auth--username))
 
 <a id="nestedatt--spec--monitoring--endpoints--basic_auth--password"></a>
 ### Nested Schema for `spec.monitoring.endpoints.basic_auth.password`
@@ -1299,13 +1311,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.
-- `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
-- `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `regex` (String) Regular expression against which the extracted value is matched.
+- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `separator` (String) Separator is the string between concatenated SourceLabels.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
 
 
 <a id="nestedatt--spec--monitoring--endpoints--oauth2"></a>
@@ -1313,14 +1325,14 @@ Optional:
 
 Required:
 
-- `client_id` (Attributes) The secret or configmap containing the OAuth2 client id (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2--client_id))
-- `client_secret` (Attributes) The secret containing the OAuth2 client secret (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2--client_secret))
-- `token_url` (String) The URL to fetch the token from
+- `client_id` (Attributes) 'clientId' specifies a key of a Secret or ConfigMap containing theOAuth2 client's ID. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2--client_id))
+- `client_secret` (Attributes) 'clientSecret' specifies a key of a Secret containing the OAuth2client's secret. (see [below for nested schema](#nestedatt--spec--monitoring--endpoints--oauth2--client_secret))
+- `token_url` (String) 'tokenURL' configures the URL to fetch the token from.
 
 Optional:
 
-- `endpoint_params` (Map of String) Parameters to append to the token URL
-- `scopes` (List of String) OAuth2 scopes used for the token request
+- `endpoint_params` (Map of String) 'endpointParams' configures the HTTP parameters to append to the tokenURL.
+- `scopes` (List of String) 'scopes' defines the OAuth2 scopes used for the token request.
 
 <a id="nestedatt--spec--monitoring--endpoints--oauth2--client_id"></a>
 ### Nested Schema for `spec.monitoring.endpoints.oauth2.client_id`
@@ -1376,13 +1388,13 @@ Optional:
 
 Optional:
 
-- `action` (String) Action to perform based on regex matching. Default is 'replace'.uppercase and lowercase actions require Prometheus >= 2.36.
-- `modulus` (Number) Modulus to take of the hash of the source label values.
-- `regex` (String) Regular expression against which the extracted value is matched. Default is '(.*)'
-- `replacement` (String) Replacement value against which a regex replace is performed if theregular expression matches. Regex capture groups are available. Default is '$1'
-- `separator` (String) Separator placed between concatenated source label values. default is ';'.
-- `source_labels` (List of String) The source labels select values from existing labels. Their content is concatenatedusing the configured separator and matched against the configured regular expressionfor the replace, keep, and drop actions.
-- `target_label` (String) Label to which the resulting value is written in a replace action.It is mandatory for replace actions. Regex capture groups are available.
+- `action` (String) Action to perform based on the regex matching.'Uppercase' and 'Lowercase' actions require Prometheus >= v2.36.0.'DropEqual' and 'KeepEqual' actions require Prometheus >= v2.41.0.Default: 'Replace'
+- `modulus` (Number) Modulus to take of the hash of the source label values.Only applicable when the action is 'HashMod'.
+- `regex` (String) Regular expression against which the extracted value is matched.
+- `replacement` (String) Replacement value against which a Replace action is performed if theregular expression matches.Regex capture groups are available.
+- `separator` (String) Separator is the string between concatenated SourceLabels.
+- `source_labels` (List of String) The source labels select values from existing labels. Their content isconcatenated using the configured Separator and matched against theconfigured regular expression.
+- `target_label` (String) Label to which the resulting string is written in a replacement.It is mandatory for 'Replace', 'HashMod', 'Lowercase', 'Uppercase','KeepEqual' and 'DropEqual' actions.Regex capture groups are available.
 
 
 <a id="nestedatt--spec--monitoring--endpoints--tls_config"></a>
@@ -1501,7 +1513,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--probes--liveness--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--probes--liveness--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--probes--liveness--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--probes--liveness--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -1574,7 +1586,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--probes--readiness--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--probes--readiness--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--probes--readiness--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--probes--readiness--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -1647,7 +1659,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--probes--startup--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--probes--startup--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--probes--startup--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--probes--startup--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -1721,7 +1733,7 @@ Optional:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--resources--claims"></a>
 ### Nested Schema for `spec.resources.claims`
@@ -1770,7 +1782,7 @@ Required:
 
 Optional:
 
-- `app_protocol` (String) The application protocol for this port.This field follows standard Kubernetes label syntax.Un-prefixed names are reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).Non-standard protocols should use prefixed names such asmycompany.com/my-custom-protocol.
+- `app_protocol` (String) The application protocol for this port.This is used as a hint for implementations to offer richer behavior for protocols that they understand.This field follows standard Kubernetes label syntax.Valid values are either:* Un-prefixed protocol names - reserved for IANA standard service names (as perRFC-6335 and https://www.iana.org/assignments/service-names).* Kubernetes-defined prefixed names:  * 'kubernetes.io/h2c' - HTTP/2 over cleartext as described in https://www.rfc-editor.org/rfc/rfc7540  * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455  * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455* Other protocols should use implementation-defined prefixed names such asmycompany.com/my-custom-protocol.
 - `name` (String) The name of this port within the service. This must be a DNS_LABEL.All ports within a ServiceSpec must have unique names. When consideringthe endpoints for a Service, this must match the 'name' field in theEndpointPort.Optional if only one ServicePort is defined on this service.
 - `node_port` (Number) The port on each node on which this service is exposed when type isNodePort or LoadBalancer.  Usually assigned by the system. If a value isspecified, in-range, and not in use it will be used, otherwise theoperation will fail.  If not specified, a port will be allocated if thisService requires one.  If this field is specified when creating aService which does not need it, creation will fail. This field will bewiped when updating a Service to no longer need it (e.g. changing typefrom NodePort to ClusterIP).More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 - `protocol` (String) The IP protocol for this port. Supports 'TCP', 'UDP', and 'SCTP'.Default is TCP.
@@ -1797,7 +1809,9 @@ Optional:
 - `liveness_probe` (Attributes) Periodic probe of container liveness.Container will be restarted if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--sidecar_containers--liveness_probe))
 - `ports` (Attributes List) List of ports to expose from the container. Not specifying a port hereDOES NOT prevent that port from being exposed. Any port which islistening on the default '0.0.0.0' address inside a container will beaccessible from the network.Modifying this array with strategic merge patch may corrupt the data.For more information See https://github.com/kubernetes/kubernetes/issues/108255.Cannot be updated. (see [below for nested schema](#nestedatt--spec--sidecar_containers--ports))
 - `readiness_probe` (Attributes) Periodic probe of container service readiness.Container will be removed from service endpoints if the probe fails.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--sidecar_containers--readiness_probe))
+- `resize_policy` (Attributes List) Resources resize policy for the container. (see [below for nested schema](#nestedatt--spec--sidecar_containers--resize_policy))
 - `resources` (Attributes) Compute Resources required by this container.Cannot be updated.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/ (see [below for nested schema](#nestedatt--spec--sidecar_containers--resources))
+- `restart_policy` (String) RestartPolicy defines the restart behavior of individual containers in a pod.This field may only be set for init containers, and the only allowed value is 'Always'.For non-init containers or when this field is not specified,the restart behavior is defined by the Pod's restart policy and the container type.Setting the RestartPolicy as 'Always' for the init container will have the following effect:this init container will be continually restarted onexit until all regular containers have terminated. Once all regularcontainers have completed, all init containers with restartPolicy 'Always'will be shut down. This lifecycle differs from normal init containers andis often referred to as a 'sidecar' container. Although this initcontainer still starts in the init container sequence, it does not waitfor the container to complete before proceeding to the next initcontainer. Instead, the next init container starts immediately after thisinit container is started, or after any startupProbe has successfullycompleted.
 - `security_context` (Attributes) SecurityContext defines the security options the container should be run with.If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ (see [below for nested schema](#nestedatt--spec--sidecar_containers--security_context))
 - `startup_probe` (Attributes) StartupProbe indicates that the Pod has successfully initialized.If specified, no other probes are executed until this completes successfully.If this probe fails, the Pod will be restarted, just as if the livenessProbe failed.This can be used to provide different probe parameters at the beginning of a Pod's lifecycle,when it might take a long time to load data or warm a cache, than during steady-state operation.This cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes (see [below for nested schema](#nestedatt--spec--sidecar_containers--startup_probe))
 - `stdin` (Boolean) Whether this container should allocate a buffer for stdin in the container runtime. If thisis not set, reads from stdin in the container will always result in EOF.Default is false.
@@ -2036,7 +2050,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--sidecar_containers--liveness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--sidecar_containers--liveness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--sidecar_containers--liveness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--sidecar_containers--liveness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -2124,7 +2138,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--sidecar_containers--readiness_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--sidecar_containers--readiness_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--sidecar_containers--readiness_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--sidecar_containers--readiness_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -2190,6 +2204,15 @@ Optional:
 
 
 
+<a id="nestedatt--spec--sidecar_containers--resize_policy"></a>
+### Nested Schema for `spec.sidecar_containers.resize_policy`
+
+Required:
+
+- `resource_name` (String) Name of the resource to which this resource resize policy applies.Supported values: cpu, memory.
+- `restart_policy` (String) Restart policy to apply when specified resource is resized.If not specified, it defaults to NotRequired.
+
+
 <a id="nestedatt--spec--sidecar_containers--resources"></a>
 ### Nested Schema for `spec.sidecar_containers.resources`
 
@@ -2197,7 +2220,7 @@ Optional:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--sidecar_containers--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--sidecar_containers--resources--claims"></a>
 ### Nested Schema for `spec.sidecar_containers.resources.claims`
@@ -2254,7 +2277,7 @@ Required:
 
 Optional:
 
-- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must only be set if type is 'Localhost'.
+- `localhost_profile` (String) localhostProfile indicates a profile defined in a file on the node should be used.The profile must be preconfigured on the node to work.Must be a descending path, relative to the kubelet's configured seccomp profile location.Must be set if type is 'Localhost'. Must NOT be set for any other type.
 
 
 <a id="nestedatt--spec--sidecar_containers--security_context--windows_options"></a>
@@ -2264,7 +2287,7 @@ Optional:
 
 - `gmsa_credential_spec` (String) GMSACredentialSpec is where the GMSA admission webhook(https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of theGMSA credential spec named by the GMSACredentialSpecName field.
 - `gmsa_credential_spec_name` (String) GMSACredentialSpecName is the name of the GMSA credential spec to use.
-- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.This field is alpha-level and will only be honored by components that enable theWindowsHostProcessContainers feature flag. Setting this field without the featureflag will result in errors when validating the Pod. All of a Pod's containers musthave the same effective HostProcess value (it is not allowed to have a mix of HostProcesscontainers and non-HostProcess containers).  In addition, if HostProcess is truethen HostNetwork must also be set to true.
+- `host_process` (Boolean) HostProcess determines if a container should be run as a 'Host Process' container.All of a Pod's containers must have the same effective HostProcess value(it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).In addition, if HostProcess is true then HostNetwork must also be set to true.
 - `run_as_user_name` (String) The UserName in Windows to run the entrypoint of the container process.Defaults to the user specified in image metadata if unspecified.May also be set in PodSecurityContext. If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
 
 
@@ -2276,7 +2299,7 @@ Optional:
 
 - `exec` (Attributes) Exec specifies the action to take. (see [below for nested schema](#nestedatt--spec--sidecar_containers--startup_probe--exec))
 - `failure_threshold` (Number) Minimum consecutive failures for the probe to be considered failed after having succeeded.Defaults to 3. Minimum value is 1.
-- `grpc` (Attributes) GRPC specifies an action involving a GRPC port.This is a beta field and requires enabling GRPCContainerProbe feature gate. (see [below for nested schema](#nestedatt--spec--sidecar_containers--startup_probe--grpc))
+- `grpc` (Attributes) GRPC specifies an action involving a GRPC port. (see [below for nested schema](#nestedatt--spec--sidecar_containers--startup_probe--grpc))
 - `http_get` (Attributes) HTTPGet specifies the http request to perform. (see [below for nested schema](#nestedatt--spec--sidecar_containers--startup_probe--http_get))
 - `initial_delay_seconds` (Number) Number of seconds after the container has started before liveness probes are initiated.More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
 - `period_seconds` (Number) How often (in seconds) to perform the probe.Default to 10 seconds. Minimum value is 1.
@@ -2457,7 +2480,7 @@ Optional:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--stateful_set--storage--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--stateful_set--storage--volume_claim_template--spec--resources--claims"></a>
 ### Nested Schema for `spec.stateful_set.storage.volume_claim_template.spec.resources.claims`
@@ -2497,11 +2520,11 @@ Optional:
 Optional:
 
 - `access_modes` (List of String) accessModes contains the actual access modes the volume backing the PVC has.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
-- `allocated_resources` (Map of String) allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It maybe larger than the actual capacity when a volume expansion operation is requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resource_statuses` (Map of String) allocatedResourceStatuses stores status of resource being resized for the given PVC.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.ClaimResourceStatus can be in any of following states:	- ControllerResizeInProgress:		State set when resize controller starts resizing the volume in control-plane.	- ControllerResizeFailed:		State set when resize has failed in resize controller with a terminal error.	- NodeResizePending:		State set when resize controller has finished resizing the volume but further resizing of		volume is needed on the node.	- NodeResizeInProgress:		State set when kubelet starts resizing the volume.	- NodeResizeFailed:		State set when resizing has failed in kubelet with a terminal error. Transient errors don't set		NodeResizeFailed.For example: if expanding a PVC for more capacity - this field can be one of the following states:	- pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'ControllerResizeFailed'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizePending'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeInProgress'     - pvc.status.allocatedResourceStatus['storage'] = 'NodeResizeFailed'When this field is not set, it means that no resize operation is in progress for the given PVC.A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatusshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+- `allocated_resources` (Map of String) allocatedResources tracks the resources allocated to a PVC including its capacity.Key names follow standard Kubernetes label syntax. Valid values are either:	* Un-prefixed keys:		- storage - the capacity of the volume.	* Custom resources must use implementation-defined prefixed names such as 'example.com/my-custom-resource'Apart from above values - keys that are unprefixed or have kubernetes.io prefix are consideredreserved and hence may not be used.Capacity reported here may be larger than the actual capacity when a volume expansion operationis requested.For storage quota, the larger value from allocatedResources and PVC.spec.resources is used.If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation.If a volume expansion capacity request is lowered, allocatedResources is onlylowered if there are no expansion operations in progress and if the actual volume capacityis equal or lower than the requested capacity.A controller that receives PVC update with previously unknown resourceNameshould ignore the update for the purpose it was designed. For example - a controller thatonly is responsible for resizing capacity of the volume, should ignore PVC updates that change other validresources associated with PVC.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 - `capacity` (Map of String) capacity represents the actual resources of the underlying volume.
 - `conditions` (Attributes List) conditions is the current Condition of persistent volume claim. If underlying persistent volume is beingresized then the Condition will be set to 'ResizeStarted'. (see [below for nested schema](#nestedatt--spec--stateful_set--storage--volume_claim_template--status--conditions))
 - `phase` (String) phase represents the current phase of PersistentVolumeClaim.
-- `resize_status` (String) resizeStatus stores status of resize operation.ResizeStatus is not set by default but when expansion is complete resizeStatus is set to emptystring by resize controller or kubelet.This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
 
 <a id="nestedatt--spec--stateful_set--storage--volume_claim_template--status--conditions"></a>
 ### Nested Schema for `spec.stateful_set.storage.volume_claim_template.status.conditions`
@@ -2786,7 +2809,7 @@ Optional:
 Optional:
 
 - `medium` (String) medium represents what type of storage medium should back this directory.The default is '' which means to use the node's default medium.Must be an empty string (default) or Memory.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
-- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+- `size_limit` (String) sizeLimit is the total amount of local storage required for this EmptyDir volume.The size limit is also applicable for memory medium.The maximum usage on memory medium EmptyDir would be the minimum value betweenthe SizeLimit specified here and the sum of memory limits of all containers in a pod.The default is nil which means that the limit is undefined.More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
 
 
 <a id="nestedatt--spec--volumes--ephemeral"></a>
@@ -2855,7 +2878,7 @@ Optional:
 
 - `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims))
 - `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 <a id="nestedatt--spec--volumes--ephemeral--volume_claim_template--spec--resources--claims"></a>
 ### Nested Schema for `spec.volumes.ephemeral.volume_claim_template.spec.resources.claims`

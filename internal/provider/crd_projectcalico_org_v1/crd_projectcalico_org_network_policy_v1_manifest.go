@@ -163,6 +163,7 @@ type CrdProjectcalicoOrgNetworkPolicyV1ManifestData struct {
 		PerformanceHints       *[]string `tfsdk:"performance_hints" json:"performanceHints,omitempty"`
 		Selector               *string   `tfsdk:"selector" json:"selector,omitempty"`
 		ServiceAccountSelector *string   `tfsdk:"service_account_selector" json:"serviceAccountSelector,omitempty"`
+		Tier                   *string   `tfsdk:"tier" json:"tier,omitempty"`
 		Types                  *[]string `tfsdk:"types" json:"types,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -1037,8 +1038,8 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					},
 
 					"order": schema.Float64Attribute{
-						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
-						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name'.",
+						Description:         "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
+						MarkdownDescription: "Order is an optional field that specifies the order in which the policy is applied. Policies with higher 'order' are applied after those with lower order within the same tier.  If the order is omitted, it may be considered to be 'infinite' - i.e. the policy will be applied last.  Policies with identical order will be applied in alphanumerical order based on the Policy 'Name' within the tier.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -1064,6 +1065,14 @@ func (r *CrdProjectcalicoOrgNetworkPolicyV1Manifest) Schema(_ context.Context, _
 					"service_account_selector": schema.StringAttribute{
 						Description:         "ServiceAccountSelector is an optional field for an expression used to select a pod based on service accounts.",
 						MarkdownDescription: "ServiceAccountSelector is an optional field for an expression used to select a pod based on service accounts.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"tier": schema.StringAttribute{
+						Description:         "The name of the tier that this policy belongs to.  If this is omitted, the default tier (name is 'default') is assumed.  The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
+						MarkdownDescription: "The name of the tier that this policy belongs to.  If this is omitted, the default tier (name is 'default') is assumed.  The specified tier must exist in order to create security policies within the tier, the 'default' tier is created automatically if it does not exist, this means for deployments requiring only a single Tier, the tier name may be omitted on all policy management requests.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

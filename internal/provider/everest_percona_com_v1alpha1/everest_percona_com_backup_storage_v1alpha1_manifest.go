@@ -133,8 +133,8 @@ func (r *EverestPerconaComBackupStorageV1Alpha1Manifest) Schema(_ context.Contex
 				MarkdownDescription: "BackupStorageSpec defines the desired state of BackupStorage.",
 				Attributes: map[string]schema.Attribute{
 					"allowed_namespaces": schema.ListAttribute{
-						Description:         "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.",
-						MarkdownDescription: "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.",
+						Description:         "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.",
+						MarkdownDescription: "AllowedNamespaces is the list of namespaces where the operator will copy secrets provided in the CredentialsSecretsName.Deprecated: BackupStorages are now used only in the namespaces where they are created.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,

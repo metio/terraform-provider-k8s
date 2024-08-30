@@ -70,7 +70,7 @@ Optional:
 - `proxy_secret_ref` (Attributes) ProxySecretRef specifies the Secret containing the proxy configurationto use while communicating with the Bucket server. (see [below for nested schema](#nestedatt--spec--proxy_secret_ref))
 - `region` (String) Region of the Endpoint where the BucketName is located in.
 - `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the Bucket. (see [below for nested schema](#nestedatt--spec--secret_ref))
-- `sts` (Attributes) STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider. (see [below for nested schema](#nestedatt--spec--sts))
+- `sts` (Attributes) STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers. (see [below for nested schema](#nestedatt--spec--sts))
 - `suspend` (Boolean) Suspend tells the controller to suspend the reconciliation of thisBucket.
 - `timeout` (String) Timeout for fetch operations, defaults to 60s.
 
@@ -121,3 +121,23 @@ Required:
 
 - `endpoint` (String) Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.
 - `provider` (String) Provider of the Security Token Service.
+
+Optional:
+
+- `cert_secret_ref` (Attributes) CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--cert_secret_ref))
+- `secret_ref` (Attributes) SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider. (see [below for nested schema](#nestedatt--spec--sts--secret_ref))
+
+<a id="nestedatt--spec--sts--cert_secret_ref"></a>
+### Nested Schema for `spec.sts.cert_secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.
+
+
+<a id="nestedatt--spec--sts--secret_ref"></a>
+### Nested Schema for `spec.sts.secret_ref`
+
+Required:
+
+- `name` (String) Name of the referent.

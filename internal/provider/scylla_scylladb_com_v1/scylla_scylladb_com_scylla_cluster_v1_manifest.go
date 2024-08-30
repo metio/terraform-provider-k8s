@@ -973,8 +973,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"cpuset": schema.BoolAttribute{
-						Description:         "cpuset determines if the cluster will use cpu-pinning for max performance.",
-						MarkdownDescription: "cpuset determines if the cluster will use cpu-pinning for max performance.",
+						Description:         "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.",
+						MarkdownDescription: "cpuset determines if the cluster will use cpu-pinning. Deprecated: 'cpuset' is deprecated and may be ignored in the future.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -4267,8 +4267,8 @@ func (r *ScyllaScylladbComScyllaClusterV1Manifest) Schema(_ context.Context, _ d
 					},
 
 					"expose_options": schema.SingleNestedAttribute{
-						Description:         "exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
-						MarkdownDescription: "exposeOptions specifies options for exposing ScyllaCluster services. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
+						Description:         "exposeOptions specifies options for exposing ScyllaCluster services. This field is immutable. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
+						MarkdownDescription: "exposeOptions specifies options for exposing ScyllaCluster services. This field is immutable. EXPERIMENTAL. Do not rely on any particular behaviour controlled by this field.",
 						Attributes: map[string]schema.Attribute{
 							"broadcast_options": schema.SingleNestedAttribute{
 								Description:         "BroadcastOptions defines how ScyllaDB node publishes its IP address to other nodes and clients.",

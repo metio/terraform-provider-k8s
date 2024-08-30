@@ -210,6 +210,7 @@ Optional:
 
 Optional:
 
+- `additional_volume_mounts` (Attributes List) AdditionalVolumeMounts allows additional volumes to be mounted to the RGW pod.The root directory for each additional volume mount is '/var/rgw'.Example: for an additional mount at subPath 'ldap', mounted from a secret that has key'bindpass.secret', the file would reside at '/var/rgw/ldap/bindpass.secret'. (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts))
 - `annotations` (Map of String) The annotations-related configuration to add/set on each Pod related object.
 - `ca_bundle_ref` (String) The name of the secret that stores custom ca-bundle with root and intermediate certificates.
 - `dashboard_enabled` (Boolean) Whether rgw dashboard is enabled for the rgw daemon. If not set, the rgw dashboard will be enabled.
@@ -225,6 +226,273 @@ Optional:
 - `secure_port` (Number) The port the rgw service will be listening on (https)
 - `service` (Attributes) The configuration related to add/set on each rgw service. (see [below for nested schema](#nestedatt--spec--gateway--service))
 - `ssl_certificate_ref` (String) The name of the secret that stores the ssl certificate for secure rgw connections
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts`
+
+Required:
+
+- `sub_path` (String) SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.
+- `volume_source` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source`
+
+Optional:
+
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--config_map))
+- `empty_dir` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--empty_dir))
+- `host_path` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--host_path))
+- `persistent_volume_claim` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--persistent_volume_claim))
+- `projected` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--secret))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--config_map"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.config_map`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--config_map--items"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--empty_dir"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.empty_dir`
+
+Optional:
+
+- `medium` (String)
+- `size_limit` (String)
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--host_path"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.host_path`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `type` (String)
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--persistent_volume_claim"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.persistent_volume_claim`
+
+Required:
+
+- `claim_name` (String)
+
+Optional:
+
+- `read_only` (Boolean)
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected`
+
+Optional:
+
+- `default_mode` (Number)
+- `sources` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources`
+
+Optional:
+
+- `cluster_trust_bundle` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle))
+- `config_map` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--config_map))
+- `downward_api` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api))
+- `secret` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--secret))
+- `service_account_token` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--service_account_token))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.cluster_trust_bundle`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `label_selector` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle--label_selector))
+- `name` (String)
+- `optional` (Boolean)
+- `signer_name` (String)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle--label_selector"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.cluster_trust_bundle.label_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--cluster_trust_bundle--label_selector--match_expressions"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.cluster_trust_bundle.label_selector.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--config_map"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.config_map`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--config_map--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--config_map--items"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.config_map.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.downward_api`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.downward_api.items`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items--field_ref))
+- `mode` (Number)
+- `resource_field_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items--resource_field_ref))
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items--field_ref"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.downward_api.items.field_ref`
+
+Required:
+
+- `field_path` (String)
+
+Optional:
+
+- `api_version` (String)
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--downward_api--items--resource_field_ref"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.downward_api.items.resource_field_ref`
+
+Required:
+
+- `resource` (String)
+
+Optional:
+
+- `container_name` (String)
+- `divisor` (String)
+
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--secret"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.secret`
+
+Optional:
+
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--secret--items))
+- `name` (String)
+- `optional` (Boolean)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--secret--items"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.secret.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--projected--sources--service_account_token"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.projected.sources.service_account_token`
+
+Required:
+
+- `path` (String)
+
+Optional:
+
+- `audience` (String)
+- `expiration_seconds` (Number)
+
+
+
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--secret"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.secret`
+
+Optional:
+
+- `default_mode` (Number)
+- `items` (Attributes List) (see [below for nested schema](#nestedatt--spec--gateway--additional_volume_mounts--volume_source--secret--items))
+- `optional` (Boolean)
+- `secret_name` (String)
+
+<a id="nestedatt--spec--gateway--additional_volume_mounts--volume_source--secret--items"></a>
+### Nested Schema for `spec.gateway.additional_volume_mounts.volume_source.secret.items`
+
+Required:
+
+- `key` (String)
+- `path` (String)
+
+Optional:
+
+- `mode` (Number)
+
+
+
+
 
 <a id="nestedatt--spec--gateway--external_rgw_endpoints"></a>
 ### Nested Schema for `spec.gateway.external_rgw_endpoints`
@@ -686,6 +954,10 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
 
 
 

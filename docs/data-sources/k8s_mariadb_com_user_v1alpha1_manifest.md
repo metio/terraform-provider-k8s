@@ -59,9 +59,12 @@ Required:
 
 Optional:
 
+- `cleanup_policy` (String) CleanupPolicy defines the behavior for cleaning up a SQL resource.
 - `host` (String) Host related to the User.
 - `max_user_connections` (Number) MaxUserConnections defines the maximum number of connections that the User can establish.
 - `name` (String) Name overrides the default name provided by metadata.name.
+- `password_hash_secret_key_ref` (Attributes) PasswordHashSecretKeyRef is a reference to the password hash to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password hash. (see [below for nested schema](#nestedatt--spec--password_hash_secret_key_ref))
+- `password_plugin` (Attributes) PasswordPlugin is a reference to the password plugin and arguments to be used by the User. (see [below for nested schema](#nestedatt--spec--password_plugin))
 - `password_secret_key_ref` (Attributes) PasswordSecretKeyRef is a reference to the password to be used by the User.If not provided, the account will be locked and the password will expire.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the password. (see [below for nested schema](#nestedatt--spec--password_secret_key_ref))
 - `requeue_interval` (String) RequeueInterval is used to perform requeue reconciliations.
 - `retry_interval` (String) RetryInterval is the interval used to perform retries.
@@ -72,13 +75,61 @@ Optional:
 Optional:
 
 - `api_version` (String) API version of the referent.
-- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.
+- `field_path` (String) If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.
 - `kind` (String) Kind of the referent.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 - `name` (String) Name of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
 - `wait_for_it` (Boolean) WaitForIt indicates whether the controller using this reference should wait for MariaDB to be ready.
+
+
+<a id="nestedatt--spec--password_hash_secret_key_ref"></a>
+### Nested Schema for `spec.password_hash_secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--password_plugin"></a>
+### Nested Schema for `spec.password_plugin`
+
+Optional:
+
+- `plugin_arg_secret_key_ref` (Attributes) PluginArgSecretKeyRef is a reference to the arguments to be provided to the authentication plugin for the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin arguments. (see [below for nested schema](#nestedatt--spec--password_plugin--plugin_arg_secret_key_ref))
+- `plugin_name_secret_key_ref` (Attributes) PluginNameSecretKeyRef is a reference to the authentication plugin to be used by the User.If the referred Secret is labeled with 'k8s.mariadb.com/watch', updates may be performed to the Secret in order to update the authentication plugin. (see [below for nested schema](#nestedatt--spec--password_plugin--plugin_name_secret_key_ref))
+
+<a id="nestedatt--spec--password_plugin--plugin_arg_secret_key_ref"></a>
+### Nested Schema for `spec.password_plugin.plugin_arg_secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--password_plugin--plugin_name_secret_key_ref"></a>
+### Nested Schema for `spec.password_plugin.plugin_name_secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
 
 
 <a id="nestedatt--spec--password_secret_key_ref"></a>
@@ -90,5 +141,5 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined

@@ -1504,6 +1504,7 @@ Optional:
 - `http_password` (Attributes) Password for user defined in HTTP_User (see [below for nested schema](#nestedatt--spec--opentelemetry--http_password))
 - `http_user` (Attributes) Optional username credential for access (see [below for nested schema](#nestedatt--spec--opentelemetry--http_user))
 - `log_response_payload` (Boolean) Log the response payload within the Fluent Bit log.
+- `logs_body_key_attributes` (Boolean) If true, remaining unmatched keys are added as attributes.
 - `logs_uri` (String) Specify an optional HTTP URI for the target web server listening for logs, e.g: /v1/logs
 - `metrics_uri` (String) Specify an optional HTTP URI for the target web server listening for metrics, e.g: /v1/metrics
 - `networking` (Attributes) Include fluentbit networking options for this output-plugin (see [below for nested schema](#nestedatt--spec--opentelemetry--networking))
@@ -2161,6 +2162,7 @@ Optional:
 - `syslog_sd_key` (String) Key name from the original record that contains the Structured Data (SD) content.
 - `syslog_severity_key` (String) Key from the original record that contains the Syslog severity number.
 - `tls` (Attributes) Syslog output plugin supports TTL/SSL, for more details about the properties availableand general configuration, please refer to the TLS/SSL section. (see [below for nested schema](#nestedatt--spec--syslog--tls))
+- `total_limit_size` (String) Limit the maximum number of Chunks in the filesystem for the current output logical destination.
 
 <a id="nestedatt--spec--syslog--networking"></a>
 ### Nested Schema for `spec.syslog.networking`

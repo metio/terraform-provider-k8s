@@ -58,6 +58,35 @@ type CoreKubeadmiralIoClusterOverridePolicyV1Alpha1ManifestData struct {
 					Operator      *string   `tfsdk:"operator" json:"operator,omitempty"`
 					Value         *[]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
+				Envs *[]struct {
+					ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+					Operator      *string `tfsdk:"operator" json:"operator,omitempty"`
+					Value         *[]struct {
+						Name      *string `tfsdk:"name" json:"name,omitempty"`
+						Value     *string `tfsdk:"value" json:"value,omitempty"`
+						ValueFrom *struct {
+							ConfigMapKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map_key_ref" json:"configMapKeyRef,omitempty"`
+							FieldRef *struct {
+								ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+								FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+							} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+							ResourceFieldRef *struct {
+								ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+								Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+								Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+							} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+							SecretKeyRef *struct {
+								Key      *string `tfsdk:"key" json:"key,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
+						} `tfsdk:"value_from" json:"valueFrom,omitempty"`
+					} `tfsdk:"value" json:"value,omitempty"`
+				} `tfsdk:"envs" json:"envs,omitempty"`
 				Image *[]struct {
 					ContainerNames *[]string `tfsdk:"container_names" json:"containerNames,omitempty"`
 					ImagePath      *string   `tfsdk:"image_path" json:"imagePath,omitempty"`
@@ -272,6 +301,196 @@ func (r *CoreKubeadmiralIoClusterOverridePolicyV1Alpha1Manifest) Schema(_ contex
 														Required:            true,
 														Optional:            false,
 														Computed:            false,
+													},
+												},
+											},
+											Required: false,
+											Optional: true,
+											Computed: false,
+										},
+
+										"envs": schema.ListNestedAttribute{
+											Description:         "Envs specifies overriders that apply to the container envs.",
+											MarkdownDescription: "Envs specifies overriders that apply to the container envs.",
+											NestedObject: schema.NestedAttributeObject{
+												Attributes: map[string]schema.Attribute{
+													"container_name": schema.StringAttribute{
+														Description:         "ContainerName targets the specified container or init container in the pod template.",
+														MarkdownDescription: "ContainerName targets the specified container or init container in the pod template.",
+														Required:            true,
+														Optional:            false,
+														Computed:            false,
+													},
+
+													"operator": schema.StringAttribute{
+														Description:         "Operator specifies the operation. If omitted, defaults to 'overwrite'.",
+														MarkdownDescription: "Operator specifies the operation. If omitted, defaults to 'overwrite'.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+														Validators: []validator.String{
+															stringvalidator.OneOf("addIfAbsent", "overwrite", "delete"),
+														},
+													},
+
+													"value": schema.ListNestedAttribute{
+														Description:         "List of environment variables to set in the container.",
+														MarkdownDescription: "List of environment variables to set in the container.",
+														NestedObject: schema.NestedAttributeObject{
+															Attributes: map[string]schema.Attribute{
+																"name": schema.StringAttribute{
+																	Description:         "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	MarkdownDescription: "Name of the environment variable. Must be a C_IDENTIFIER.",
+																	Required:            true,
+																	Optional:            false,
+																	Computed:            false,
+																},
+
+																"value": schema.StringAttribute{
+																	Description:         "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																	MarkdownDescription: "Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"value_from": schema.SingleNestedAttribute{
+																	Description:         "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	MarkdownDescription: "Source for the environment variable's value. Cannot be used if value is not empty.",
+																	Attributes: map[string]schema.Attribute{
+																		"config_map_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a ConfigMap.",
+																			MarkdownDescription: "Selects a key of a ConfigMap.",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key to select.",
+																					MarkdownDescription: "The key to select.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the ConfigMap or its key must be defined",
+																					MarkdownDescription: "Specify whether the ConfigMap or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			MarkdownDescription: "Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+																			Attributes: map[string]schema.Attribute{
+																				"api_version": schema.StringAttribute{
+																					Description:         "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					MarkdownDescription: "Version of the schema the FieldPath is written in terms of, defaults to 'v1'.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"field_path": schema.StringAttribute{
+																					Description:         "Path of the field to select in the specified API version.",
+																					MarkdownDescription: "Path of the field to select in the specified API version.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"resource_field_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			MarkdownDescription: "Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.",
+																			Attributes: map[string]schema.Attribute{
+																				"container_name": schema.StringAttribute{
+																					Description:         "Container name: required for volumes, optional for env vars",
+																					MarkdownDescription: "Container name: required for volumes, optional for env vars",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"divisor": schema.StringAttribute{
+																					Description:         "Specifies the output format of the exposed resources, defaults to '1'",
+																					MarkdownDescription: "Specifies the output format of the exposed resources, defaults to '1'",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"resource": schema.StringAttribute{
+																					Description:         "Required: resource to select",
+																					MarkdownDescription: "Required: resource to select",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+
+																		"secret_key_ref": schema.SingleNestedAttribute{
+																			Description:         "Selects a key of a secret in the pod's namespace",
+																			MarkdownDescription: "Selects a key of a secret in the pod's namespace",
+																			Attributes: map[string]schema.Attribute{
+																				"key": schema.StringAttribute{
+																					Description:         "The key of the secret to select from.  Must be a valid secret key.",
+																					MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+																					Required:            true,
+																					Optional:            false,
+																					Computed:            false,
+																				},
+
+																				"name": schema.StringAttribute{
+																					Description:         "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					MarkdownDescription: "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"optional": schema.BoolAttribute{
+																					Description:         "Specify whether the Secret or its key must be defined",
+																					MarkdownDescription: "Specify whether the Secret or its key must be defined",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+																			},
+																			Required: false,
+																			Optional: true,
+																			Computed: false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+															},
+														},
+														Required: true,
+														Optional: false,
+														Computed: false,
 													},
 												},
 											},

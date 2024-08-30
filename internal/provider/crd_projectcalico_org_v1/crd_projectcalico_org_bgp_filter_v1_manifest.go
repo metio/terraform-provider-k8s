@@ -7,6 +7,7 @@ package crd_projectcalico_org_v1
 
 import (
 	"context"
+	"github.com/hashicorp/terraform-plugin-framework-validators/int64validator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
@@ -47,28 +48,44 @@ type CrdProjectcalicoOrgBgpfilterV1ManifestData struct {
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
 			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
-			Source        *string `tfsdk:"source" json:"source,omitempty"`
+			PrefixLength  *struct {
+				Max *int64 `tfsdk:"max" json:"max,omitempty"`
+				Min *int64 `tfsdk:"min" json:"min,omitempty"`
+			} `tfsdk:"prefix_length" json:"prefixLength,omitempty"`
+			Source *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"export_v4" json:"exportV4,omitempty"`
 		ExportV6 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
 			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
-			Source        *string `tfsdk:"source" json:"source,omitempty"`
+			PrefixLength  *struct {
+				Max *int64 `tfsdk:"max" json:"max,omitempty"`
+				Min *int64 `tfsdk:"min" json:"min,omitempty"`
+			} `tfsdk:"prefix_length" json:"prefixLength,omitempty"`
+			Source *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"export_v6" json:"exportV6,omitempty"`
 		ImportV4 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
 			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
-			Source        *string `tfsdk:"source" json:"source,omitempty"`
+			PrefixLength  *struct {
+				Max *int64 `tfsdk:"max" json:"max,omitempty"`
+				Min *int64 `tfsdk:"min" json:"min,omitempty"`
+			} `tfsdk:"prefix_length" json:"prefixLength,omitempty"`
+			Source *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"import_v4" json:"importV4,omitempty"`
 		ImportV6 *[]struct {
 			Action        *string `tfsdk:"action" json:"action,omitempty"`
 			Cidr          *string `tfsdk:"cidr" json:"cidr,omitempty"`
 			Interface     *string `tfsdk:"interface" json:"interface,omitempty"`
 			MatchOperator *string `tfsdk:"match_operator" json:"matchOperator,omitempty"`
-			Source        *string `tfsdk:"source" json:"source,omitempty"`
+			PrefixLength  *struct {
+				Max *int64 `tfsdk:"max" json:"max,omitempty"`
+				Min *int64 `tfsdk:"min" json:"min,omitempty"`
+			} `tfsdk:"prefix_length" json:"prefixLength,omitempty"`
+			Source *string `tfsdk:"source" json:"source,omitempty"`
 		} `tfsdk:"import_v6" json:"importV6,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
@@ -175,6 +192,39 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"prefix_length": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"max": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(32),
+											},
+										},
+
+										"min": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(32),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"source": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -224,6 +274,39 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"prefix_length": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"max": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(128),
+											},
+										},
+
+										"min": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(128),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"source": schema.StringAttribute{
@@ -277,6 +360,39 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 									Computed:            false,
 								},
 
+								"prefix_length": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"max": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(32),
+											},
+										},
+
+										"min": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(32),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
+								},
+
 								"source": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",
@@ -326,6 +442,39 @@ func (r *CrdProjectcalicoOrgBgpfilterV1Manifest) Schema(_ context.Context, _ dat
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
+								},
+
+								"prefix_length": schema.SingleNestedAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Attributes: map[string]schema.Attribute{
+										"max": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(128),
+											},
+										},
+
+										"min": schema.Int64Attribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.Int64{
+												int64validator.AtLeast(0),
+												int64validator.AtMost(128),
+											},
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"source": schema.StringAttribute{

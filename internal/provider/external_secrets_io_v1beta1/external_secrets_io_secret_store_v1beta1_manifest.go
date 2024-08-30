@@ -258,9 +258,15 @@ type ExternalSecretsIoSecretStoreV1Beta1ManifestData struct {
 				} `tfsdk:"auth" json:"auth,omitempty"`
 				BitwardenServerSDKURL *string `tfsdk:"bitwarden_server_sdk_url" json:"bitwardenServerSDKURL,omitempty"`
 				CaBundle              *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
-				IdentityURL           *string `tfsdk:"identity_url" json:"identityURL,omitempty"`
-				OrganizationID        *string `tfsdk:"organization_id" json:"organizationID,omitempty"`
-				ProjectID             *string `tfsdk:"project_id" json:"projectID,omitempty"`
+				CaProvider            *struct {
+					Key       *string `tfsdk:"key" json:"key,omitempty"`
+					Name      *string `tfsdk:"name" json:"name,omitempty"`
+					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Type      *string `tfsdk:"type" json:"type,omitempty"`
+				} `tfsdk:"ca_provider" json:"caProvider,omitempty"`
+				IdentityURL    *string `tfsdk:"identity_url" json:"identityURL,omitempty"`
+				OrganizationID *string `tfsdk:"organization_id" json:"organizationID,omitempty"`
+				ProjectID      *string `tfsdk:"project_id" json:"projectID,omitempty"`
 			} `tfsdk:"bitwardensecretsmanager" json:"bitwardensecretsmanager,omitempty"`
 			Chef *struct {
 				Auth *struct {
@@ -2337,9 +2343,53 @@ func (r *ExternalSecretsIoSecretStoreV1Beta1Manifest) Schema(_ context.Context, 
 									"ca_bundle": schema.StringAttribute{
 										Description:         "Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.",
 										MarkdownDescription: "Base64 encoded certificate for the bitwarden server sdk. The sdk MUST run with HTTPS to make sure no MITM attackcan be performed.",
-										Required:            true,
-										Optional:            false,
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
+									},
+
+									"ca_provider": schema.SingleNestedAttribute{
+										Description:         "see: https://external-secrets.io/latest/spec/#external-secrets.io/v1alpha1.CAProvider",
+										MarkdownDescription: "see: https://external-secrets.io/latest/spec/#external-secrets.io/v1alpha1.CAProvider",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key where the CA certificate can be found in the Secret or ConfigMap.",
+												MarkdownDescription: "The key where the CA certificate can be found in the Secret or ConfigMap.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "The name of the object located at the provider type.",
+												MarkdownDescription: "The name of the object located at the provider type.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"namespace": schema.StringAttribute{
+												Description:         "The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.",
+												MarkdownDescription: "The namespace the Provider type is in.Can only be defined when used in a ClusterSecretStore.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"type": schema.StringAttribute{
+												Description:         "The type of provider to use such as 'Secret', or 'ConfigMap'.",
+												MarkdownDescription: "The type of provider to use such as 'Secret', or 'ConfigMap'.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+												Validators: []validator.String{
+													stringvalidator.OneOf("Secret", "ConfigMap"),
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
 									},
 
 									"identity_url": schema.StringAttribute{

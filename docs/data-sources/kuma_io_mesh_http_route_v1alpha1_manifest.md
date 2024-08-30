@@ -163,7 +163,7 @@ Required:
 
 Required:
 
-- `backend_ref` (Attributes) TODO forbid weight (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_mirror--backend_ref))
+- `backend_ref` (Attributes) BackendRef defines where to forward traffic. (see [below for nested schema](#nestedatt--spec--to--rules--default--filters--request_mirror--backend_ref))
 
 Optional:
 

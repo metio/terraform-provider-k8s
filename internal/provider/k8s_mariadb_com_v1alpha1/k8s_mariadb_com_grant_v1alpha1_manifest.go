@@ -43,10 +43,11 @@ type K8SMariadbComGrantV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		Database    *string `tfsdk:"database" json:"database,omitempty"`
-		GrantOption *bool   `tfsdk:"grant_option" json:"grantOption,omitempty"`
-		Host        *string `tfsdk:"host" json:"host,omitempty"`
-		MariaDbRef  *struct {
+		CleanupPolicy *string `tfsdk:"cleanup_policy" json:"cleanupPolicy,omitempty"`
+		Database      *string `tfsdk:"database" json:"database,omitempty"`
+		GrantOption   *bool   `tfsdk:"grant_option" json:"grantOption,omitempty"`
+		Host          *string `tfsdk:"host" json:"host,omitempty"`
+		MariaDbRef    *struct {
 			ApiVersion      *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
 			FieldPath       *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
 			Kind            *string `tfsdk:"kind" json:"kind,omitempty"`
@@ -141,6 +142,17 @@ func (r *K8SMariadbComGrantV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 				Description:         "GrantSpec defines the desired state of Grant",
 				MarkdownDescription: "GrantSpec defines the desired state of Grant",
 				Attributes: map[string]schema.Attribute{
+					"cleanup_policy": schema.StringAttribute{
+						Description:         "CleanupPolicy defines the behavior for cleaning up a SQL resource.",
+						MarkdownDescription: "CleanupPolicy defines the behavior for cleaning up a SQL resource.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+						Validators: []validator.String{
+							stringvalidator.OneOf("Skip", "Delete"),
+						},
+					},
+
 					"database": schema.StringAttribute{
 						Description:         "Database to use in the Grant.",
 						MarkdownDescription: "Database to use in the Grant.",
@@ -178,8 +190,8 @@ func (r *K8SMariadbComGrantV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 							},
 
 							"field_path": schema.StringAttribute{
-								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
-								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.TODO: this design is not final and this field is subject to change in the future.",
+								Description:         "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
+								MarkdownDescription: "If referring to a piece of an object instead of an entire object, this stringshould contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2].For example, if the object reference is to a container within a pod, this would take on a value like:'spec.containers{name}' (where 'name' refers to the name of the container that triggeredthe event) or if no container name is specified 'spec.containers[2]' (container withindex 2 in this pod). This syntax is chosen only to have some well-defined way ofreferencing a part of an object.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

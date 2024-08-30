@@ -3,12 +3,12 @@
 page_title: "k8s_couchbase_com_couchbase_memcached_bucket_v2_manifest Data Source - terraform-provider-k8s"
 subcategory: "couchbase.com"
 description: |-
-  The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.
+  The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.
 ---
 
 # k8s_couchbase_com_couchbase_memcached_bucket_v2_manifest (Data Source)
 
-The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server. A Couchbase client connects to and operates on a bucket, which provides independent management of a set documents and a security boundary for role based access control. A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.
+The CouchbaseMemcachedBucket resource defines a set of documents in Couchbase server.A Couchbase client connects to and operates on a bucket, which provides independentmanagement of a set documents and a security boundary for role based access control.A CouchbaseEphemeralBucket provides in-memory only storage for documents contained by it.
 
 ## Example Usage
 
@@ -30,7 +30,7 @@ data "k8s_couchbase_com_couchbase_memcached_bucket_v2_manifest" "example" {
 
 ### Optional
 
-- `spec` (Attributes) CouchbaseMemcachedBucketSpec is the specification for a Memcached bucket resource, and allows the bucket to be customized. (see [below for nested schema](#nestedatt--spec))
+- `spec` (Attributes) CouchbaseMemcachedBucketSpec is the specification for a Memcached bucketresource, and allows the bucket to be customized. (see [below for nested schema](#nestedatt--spec))
 
 ### Read-Only
 
@@ -55,6 +55,6 @@ Optional:
 
 Optional:
 
-- `enable_flush` (Boolean) EnableFlush defines whether a client can delete all documents in a bucket. This field defaults to false.
-- `memory_quota` (String) MemoryQuota is a memory limit to the size of a bucket. The memory quota is defined per Couchbase pod running the data service.  This field defaults to, and must be greater than or equal to 100Mi.  More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
-- `name` (String) Name is the name of the bucket within Couchbase server.  By default the Operator will use the 'metadata.name' field to define the bucket name.  The 'metadata.name' field only supports a subset of the supported character set.  When specified, this field overrides 'metadata.name'.  Legal bucket names have a maximum length of 100 characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.
+- `enable_flush` (Boolean) EnableFlush defines whether a client can delete all documents in a bucket.This field defaults to false.
+- `memory_quota` (String) MemoryQuota is a memory limit to the size of a bucket. The memory quotais defined per Couchbase pod running the data service.  This field defaults to, and mustbe greater than or equal to 100Mi.  More info:https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes
+- `name` (String) Name is the name of the bucket within Couchbase server.  By default the Operatorwill use the 'metadata.name' field to define the bucket name.  The 'metadata.name'field only supports a subset of the supported character set.  When specified, thisfield overrides 'metadata.name'.  Legal bucket names have a maximum length of 100characters and may be composed of any character from 'a-z', 'A-Z', '0-9' and '-_%.'.

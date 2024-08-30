@@ -158,10 +158,13 @@ Optional:
 <a id="nestedatt--spec--rules--context--global_reference"></a>
 ### Nested Schema for `spec.rules.context.global_reference`
 
+Required:
+
+- `name` (String) Name of the global context entry
+
 Optional:
 
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
-- `name` (String) Name of the global context entry
 
 
 <a id="nestedatt--spec--rules--context--image_registry"></a>
@@ -384,6 +387,7 @@ Optional:
 - `clone` (Attributes) Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only. (see [below for nested schema](#nestedatt--spec--rules--generate--clone))
 - `clone_list` (Attributes) CloneList specifies the list of source resource used to populate each generated resource. (see [below for nested schema](#nestedatt--spec--rules--generate--clone_list))
 - `data` (Map of String) Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.
+- `foreach` (Attributes List) ForEach applies generate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach))
 - `generate_existing` (Boolean) GenerateExisting controls whether to trigger the rule in existing resourcesIf is set to 'true' the rule will be triggered and applied to existing matched resources.
 - `kind` (String) Kind specifies resource kind.
 - `name` (String) Name specifies the resource name.
@@ -429,6 +433,199 @@ Required:
 Optional:
 
 - `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--rules--generate--foreach"></a>
+### Nested Schema for `spec.rules.generate.foreach`
+
+Optional:
+
+- `api_version` (String) APIVersion specifies resource apiVersion.
+- `clone` (Attributes) Clone specifies the source resource used to populate each generated resource.At most one of Data or Clone can be specified. If neither are provided, the generatedresource will be created with default data only. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--clone))
+- `clone_list` (Attributes) CloneList specifies the list of source resource used to populate each generated resource. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--clone_list))
+- `context` (Attributes List) Context defines variables and data sources that can be used during rule execution. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context))
+- `data` (Map of String) Data provides the resource declaration used to populate each generated resource.At most one of Data or Clone must be specified. If neither are provided, the generatedresource will be created with default data only.
+- `kind` (String) Kind specifies resource kind.
+- `list` (String) List specifies a JMESPath expression that results in one or more elementsto which the validation logic is applied.
+- `name` (String) Name specifies the resource name.
+- `namespace` (String) Namespace specifies resource namespace.
+- `preconditions` (Attributes) AnyAllConditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements.See: https://kyverno.io/docs/writing-policies/preconditions/ (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--preconditions))
+- `uid` (String) UID specifies the resource uid.
+
+<a id="nestedatt--spec--rules--generate--foreach--clone"></a>
+### Nested Schema for `spec.rules.generate.foreach.clone`
+
+Optional:
+
+- `name` (String) Name specifies name of the resource.
+- `namespace` (String) Namespace specifies source resource namespace.
+
+
+<a id="nestedatt--spec--rules--generate--foreach--clone_list"></a>
+### Nested Schema for `spec.rules.generate.foreach.clone_list`
+
+Optional:
+
+- `kinds` (List of String) Kinds is a list of resource kinds.
+- `namespace` (String) Namespace specifies source resource namespace.
+- `selector` (Attributes) Selector is a label selector. Label keys and values in 'matchLabels'.wildcard characters are not supported. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--clone_list--selector))
+
+<a id="nestedatt--spec--rules--generate--foreach--clone_list--selector"></a>
+### Nested Schema for `spec.rules.generate.foreach.clone_list.selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--clone_list--selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--generate--foreach--clone_list--selector--match_expressions"></a>
+### Nested Schema for `spec.rules.generate.foreach.clone_list.selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
+
+
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context"></a>
+### Nested Schema for `spec.rules.generate.foreach.context`
+
+Optional:
+
+- `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call))
+- `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--config_map))
+- `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--global_reference))
+- `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--image_registry))
+- `name` (String) Name is the variable name.
+- `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--variable))
+
+<a id="nestedatt--spec--rules--generate--foreach--context--api_call"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.api_call`
+
+Optional:
+
+- `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--data))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+- `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
+- `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--service))
+- `url_path` (String) URLPath is the URL path to be used in the HTTP GET or POST request to theKubernetes API server (e.g. '/api/v1/namespaces' or  '/apis/apps/v1/deployments').The format required is the same format used by the 'kubectl get --raw' command.See https://kyverno.io/docs/writing-policies/external-data-sources/#variables-from-kubernetes-api-server-callsfor details.It's mutually exclusive with the Service field.
+
+<a id="nestedatt--spec--rules--generate--foreach--context--api_call--data"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.api_call.data`
+
+Required:
+
+- `key` (String) Key is a unique identifier for the data value
+- `value` (Map of String) Value is the data value
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context--api_call--service"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.api_call.service`
+
+Required:
+
+- `url` (String) URL is the JSON web service URL. A typical form is'https://{service}.{namespace}:{port}/{path}'.
+
+Optional:
+
+- `ca_bundle` (String) CABundle is a PEM encoded CA bundle which will be used to validatethe server certificate.
+
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context--config_map"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.config_map`
+
+Required:
+
+- `name` (String) Name is the ConfigMap name.
+
+Optional:
+
+- `namespace` (String) Namespace is the ConfigMap namespace.
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context--global_reference"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.global_reference`
+
+Required:
+
+- `name` (String) Name of the global context entry
+
+Optional:
+
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context--image_registry"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.image_registry`
+
+Required:
+
+- `reference` (String) Reference is image reference to a container image in the registry.Example: ghcr.io/kyverno/kyverno:latest
+
+Optional:
+
+- `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--image_registry--image_registry_credentials))
+- `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the ImageData struct returned as a result of processingthe image reference.
+
+<a id="nestedatt--spec--rules--generate--foreach--context--image_registry--image_registry_credentials"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.image_registry.image_registry_credentials`
+
+Optional:
+
+- `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
+- `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
+- `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
+
+
+
+<a id="nestedatt--spec--rules--generate--foreach--context--variable"></a>
+### Nested Schema for `spec.rules.generate.foreach.context.variable`
+
+Optional:
+
+- `default` (Map of String) Default is an optional arbitrary JSON object that the variable may take if the JMESPathexpression evaluates to nil
+- `jmes_path` (String) JMESPath is an optional JMESPath Expression that can be used totransform the variable.
+- `value` (Map of String) Value is any arbitrary JSON object representable in YAML or JSON form.
+
+
+
+<a id="nestedatt--spec--rules--generate--foreach--preconditions"></a>
+### Nested Schema for `spec.rules.generate.foreach.preconditions`
+
+Optional:
+
+- `all` (Attributes List) AllConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, all of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--preconditions--all))
+- `any` (Attributes List) AnyConditions enable variable-based conditional rule execution. This is useful forfiner control of when an rule is applied. A condition can reference object datausing JMESPath notation.Here, at least one of the conditions need to pass (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--preconditions--any))
+
+<a id="nestedatt--spec--rules--generate--foreach--preconditions--all"></a>
+### Nested Schema for `spec.rules.generate.foreach.preconditions.all`
+
+Optional:
+
+- `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
+- `message` (String) Message is an optional display message
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
+
+
+<a id="nestedatt--spec--rules--generate--foreach--preconditions--any"></a>
+### Nested Schema for `spec.rules.generate.foreach.preconditions.any`
+
+Optional:
+
+- `key` (Map of String) Key is the context entry (using JMESPath) for conditional rule evaluation.
+- `message` (String) Message is an optional display message
+- `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
+- `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
 
 
 
@@ -695,10 +892,13 @@ Optional:
 <a id="nestedatt--spec--rules--mutate--foreach--context--global_reference"></a>
 ### Nested Schema for `spec.rules.mutate.foreach.context.global_reference`
 
+Required:
+
+- `name` (String) Name of the global context entry
+
 Optional:
 
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
-- `name` (String) Name of the global context entry
 
 
 <a id="nestedatt--spec--rules--mutate--foreach--context--image_registry"></a>
@@ -840,10 +1040,13 @@ Optional:
 <a id="nestedatt--spec--rules--mutate--targets--context--global_reference"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context.global_reference`
 
+Required:
+
+- `name` (String) Name of the global context entry
+
 Optional:
 
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
-- `name` (String) Name of the global context entry
 
 
 <a id="nestedatt--spec--rules--mutate--targets--context--image_registry"></a>
@@ -922,13 +1125,13 @@ Optional:
 - `assert` (Map of String) Assert defines a kyverno-json assertion tree.
 - `cel` (Attributes) CEL allows validation checks using the Common Expression Language (https://kubernetes.io/docs/reference/using-api/cel/). (see [below for nested schema](#nestedatt--spec--rules--validate--cel))
 - `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--validate--deny))
+- `failure_action` (String) FailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.
+- `failure_action_overrides` (Attributes List) FailureActionOverrides is a Cluster Policy attribute that specifies FailureActionnamespace-wise. It overrides FailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--rules--validate--failure_action_overrides))
 - `foreach` (Attributes List) ForEach applies validate rules to a list of sub-elements by creating a context for each entry in the list and looping over it to apply the specified logic. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach))
 - `manifests` (Attributes) Manifest specifies conditions for manifest verification (see [below for nested schema](#nestedatt--spec--rules--validate--manifests))
 - `message` (String) Message specifies a custom message to be displayed on failure.
 - `pattern` (Map of String) Pattern specifies an overlay-style pattern used to check resources.
 - `pod_security` (Attributes) PodSecurity applies exemptions for Kubernetes Pod Security admissionby specifying exclusions for Pod Security Standards controls. (see [below for nested schema](#nestedatt--spec--rules--validate--pod_security))
-- `validation_failure_action` (String) ValidationFailureAction defines if a validation policy rule violation should blockthe admission review request (Enforce), or allow (Audit) the admission review requestand report an error in a policy report. Optional.Allowed values are Audit or Enforce.
-- `validation_failure_action_overrides` (Attributes List) ValidationFailureActionOverrides is a Cluster Policy attribute that specifies ValidationFailureActionnamespace-wise. It overrides ValidationFailureAction for the specified namespaces. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides))
 
 <a id="nestedatt--spec--rules--validate--cel"></a>
 ### Nested Schema for `spec.rules.validate.cel`
@@ -978,9 +1181,9 @@ Optional:
 
 Optional:
 
-- `name` (String) 'name' is the name of the resource being referenced.'name' and 'selector' are mutually exclusive properties. If one is set,the other must be unset.
+- `name` (String) name is the name of the resource being referenced.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset.A single parameter used for all admission requests can be configuredby setting the 'name' field, leaving 'selector' blank, and setting namespaceif 'paramKind' is namespace-scoped.
 - `namespace` (String) namespace is the namespace of the referenced resource. Allows limitingthe search for params to a specific namespace. Applies to both 'name' and'selector' fields.A per-namespace parameter may be used by specifying a namespace-scoped'paramKind' in the policy and leaving this field empty.- If 'paramKind' is cluster-scoped, this field MUST be unset. Setting thisfield results in a configuration error.- If 'paramKind' is namespace-scoped, the namespace of the object beingevaluated for admission will be used when this field is left unset. Takecare that if this is left empty the binding must not match any cluster-scopedresources, which will result in an error.
-- `parameter_not_found_action` (String) 'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Default to 'Deny'
+- `parameter_not_found_action` (String) 'parameterNotFoundAction' controls the behavior of the binding when the resourceexists, and name or selector is valid, but there are no parametersmatched by the binding. If the value is set to 'Allow', then nomatched parameters will be treated as successful validation by the binding.If set to 'Deny', then no matched parameters will be subject to the'failurePolicy' of the policy.Allowed values are 'Allow' or 'Deny'Required
 - `selector` (Attributes) selector can be used to match multiple param objects based on their labels.Supply selector: {} to match all resources of the ParamKind.If multiple params are found, they are all evaluated with the policy expressionsand the results are ANDed together.One of 'name' or 'selector' must be set, but 'name' and 'selector' aremutually exclusive properties. If one is set, the other must be unset. (see [below for nested schema](#nestedatt--spec--rules--validate--cel--param_ref--selector))
 
 <a id="nestedatt--spec--rules--validate--cel--param_ref--selector"></a>
@@ -1051,6 +1254,38 @@ Optional:
 - `message` (String) Message is an optional display message
 - `operator` (String) Operator is the conditional operation to perform. Valid operators are:Equals, NotEquals, In, AnyIn, AllIn, NotIn, AnyNotIn, AllNotIn, GreaterThanOrEquals,GreaterThan, LessThanOrEquals, LessThan, DurationGreaterThanOrEquals, DurationGreaterThan,DurationLessThanOrEquals, DurationLessThan
 - `value` (Map of String) Value is the conditional value, or set of values. The values can be fixed setor can be variables declared using JMESPath.
+
+
+
+
+<a id="nestedatt--spec--rules--validate--failure_action_overrides"></a>
+### Nested Schema for `spec.rules.validate.failure_action_overrides`
+
+Optional:
+
+- `action` (String) ValidationFailureAction defines the policy validation failure action
+- `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects. (see [below for nested schema](#nestedatt--spec--rules--validate--failure_action_overrides--namespace_selector))
+- `namespaces` (List of String)
+
+<a id="nestedatt--spec--rules--validate--failure_action_overrides--namespace_selector"></a>
+### Nested Schema for `spec.rules.validate.failure_action_overrides.namespace_selector`
+
+Optional:
+
+- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--failure_action_overrides--namespace_selector--match_expressions))
+- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
+
+<a id="nestedatt--spec--rules--validate--failure_action_overrides--namespace_selector--match_expressions"></a>
+### Nested Schema for `spec.rules.validate.failure_action_overrides.namespace_selector.match_expressions`
+
+Required:
+
+- `key` (String) key is the label key that the selector applies to.
+- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
+
+Optional:
+
+- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
 
 
 
@@ -1129,10 +1364,13 @@ Optional:
 <a id="nestedatt--spec--rules--validate--foreach--context--global_reference"></a>
 ### Nested Schema for `spec.rules.validate.foreach.context.global_reference`
 
+Required:
+
+- `name` (String) Name of the global context entry
+
 Optional:
 
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
-- `name` (String) Name of the global context entry
 
 
 <a id="nestedatt--spec--rules--validate--foreach--context--image_registry"></a>
@@ -1405,38 +1643,6 @@ Optional:
 
 
 
-<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides"></a>
-### Nested Schema for `spec.rules.validate.validation_failure_action_overrides`
-
-Optional:
-
-- `action` (String) ValidationFailureAction defines the policy validation failure action
-- `namespace_selector` (Attributes) A label selector is a label query over a set of resources. The result of matchLabels andmatchExpressions are ANDed. An empty label selector matches all objects. A nulllabel selector matches no objects. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector))
-- `namespaces` (List of String)
-
-<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector"></a>
-### Nested Schema for `spec.rules.validate.validation_failure_action_overrides.namespace_selector`
-
-Optional:
-
-- `match_expressions` (Attributes List) matchExpressions is a list of label selector requirements. The requirements are ANDed. (see [below for nested schema](#nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector--match_expressions))
-- `match_labels` (Map of String) matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.
-
-<a id="nestedatt--spec--rules--validate--validation_failure_action_overrides--namespace_selector--match_expressions"></a>
-### Nested Schema for `spec.rules.validate.validation_failure_action_overrides.namespace_selector.match_expressions`
-
-Required:
-
-- `key` (String) key is the label key that the selector applies to.
-- `operator` (String) operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.
-
-Optional:
-
-- `values` (List of String) values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.
-
-
-
-
 
 <a id="nestedatt--spec--rules--verify_images"></a>
 ### Nested Schema for `spec.rules.verify_images`
@@ -1445,6 +1651,7 @@ Optional:
 
 - `attestations` (Attributes List) Attestations are optional checks for signed in-toto Statements used to verify the image.See https://github.com/in-toto/attestation. Kyverno fetches signed attestations from theOCI registry and decodes them into a list of Statement declarations. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations))
 - `attestors` (Attributes List) Attestors specified the required attestors (i.e. authorities) (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors))
+- `failure_action` (String) Allowed values are Audit or Enforce.
 - `image_references` (List of String) ImageReferences is a list of matching image reference patterns. At least one pattern in thelist must match the image for the rule to apply. Each image reference consists of a registryaddress (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `image_registry_credentials` (Attributes) ImageRegistryCredentials provides credentials that will be used for authentication with registry (see [below for nested schema](#nestedatt--spec--rules--verify_images--image_registry_credentials))
 - `mutate_digest` (Boolean) MutateDigest enables replacement of image tags with digests.Defaults to true.
@@ -1453,7 +1660,6 @@ Optional:
 - `skip_image_references` (List of String) SkipImageReferences is a list of matching image reference patterns that should be skipped.At least one pattern in the list must match the image for the rule to be skipped. Each image referenceconsists of a registry address (defaults to docker.io), repository, image, and tag (defaults to latest).Wildcards ('*' and '?') are allowed. See: https://kubernetes.io/docs/concepts/containers/images.
 - `type` (String) Type specifies the method of signature validation. The allowed optionsare Cosign and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule
-- `validation_failure_action` (String) Allowed values are Audit or Enforce.
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
 
 <a id="nestedatt--spec--rules--verify_images--attestations"></a>

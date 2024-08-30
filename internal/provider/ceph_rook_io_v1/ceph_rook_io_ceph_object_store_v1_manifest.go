@@ -107,6 +107,100 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			} `tfsdk:"status_check" json:"statusCheck,omitempty"`
 		} `tfsdk:"data_pool" json:"dataPool,omitempty"`
 		Gateway *struct {
+			AdditionalVolumeMounts *[]struct {
+				SubPath      *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+				VolumeSource *struct {
+					ConfigMap *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Name     *string `tfsdk:"name" json:"name,omitempty"`
+						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+					} `tfsdk:"config_map" json:"configMap,omitempty"`
+					EmptyDir *struct {
+						Medium    *string `tfsdk:"medium" json:"medium,omitempty"`
+						SizeLimit *string `tfsdk:"size_limit" json:"sizeLimit,omitempty"`
+					} `tfsdk:"empty_dir" json:"emptyDir,omitempty"`
+					HostPath *struct {
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+						Type *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"host_path" json:"hostPath,omitempty"`
+					PersistentVolumeClaim *struct {
+						ClaimName *string `tfsdk:"claim_name" json:"claimName,omitempty"`
+						ReadOnly  *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+					} `tfsdk:"persistent_volume_claim" json:"persistentVolumeClaim,omitempty"`
+					Projected *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Sources     *[]struct {
+							ClusterTrustBundle *struct {
+								LabelSelector *struct {
+									MatchExpressions *[]struct {
+										Key      *string   `tfsdk:"key" json:"key,omitempty"`
+										Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+										Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+									} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+									MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+								} `tfsdk:"label_selector" json:"labelSelector,omitempty"`
+								Name       *string `tfsdk:"name" json:"name,omitempty"`
+								Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+								Path       *string `tfsdk:"path" json:"path,omitempty"`
+								SignerName *string `tfsdk:"signer_name" json:"signerName,omitempty"`
+							} `tfsdk:"cluster_trust_bundle" json:"clusterTrustBundle,omitempty"`
+							ConfigMap *struct {
+								Items *[]struct {
+									Key  *string `tfsdk:"key" json:"key,omitempty"`
+									Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+									Path *string `tfsdk:"path" json:"path,omitempty"`
+								} `tfsdk:"items" json:"items,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"config_map" json:"configMap,omitempty"`
+							DownwardAPI *struct {
+								Items *[]struct {
+									FieldRef *struct {
+										ApiVersion *string `tfsdk:"api_version" json:"apiVersion,omitempty"`
+										FieldPath  *string `tfsdk:"field_path" json:"fieldPath,omitempty"`
+									} `tfsdk:"field_ref" json:"fieldRef,omitempty"`
+									Mode             *int64  `tfsdk:"mode" json:"mode,omitempty"`
+									Path             *string `tfsdk:"path" json:"path,omitempty"`
+									ResourceFieldRef *struct {
+										ContainerName *string `tfsdk:"container_name" json:"containerName,omitempty"`
+										Divisor       *string `tfsdk:"divisor" json:"divisor,omitempty"`
+										Resource      *string `tfsdk:"resource" json:"resource,omitempty"`
+									} `tfsdk:"resource_field_ref" json:"resourceFieldRef,omitempty"`
+								} `tfsdk:"items" json:"items,omitempty"`
+							} `tfsdk:"downward_api" json:"downwardAPI,omitempty"`
+							Secret *struct {
+								Items *[]struct {
+									Key  *string `tfsdk:"key" json:"key,omitempty"`
+									Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+									Path *string `tfsdk:"path" json:"path,omitempty"`
+								} `tfsdk:"items" json:"items,omitempty"`
+								Name     *string `tfsdk:"name" json:"name,omitempty"`
+								Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+							} `tfsdk:"secret" json:"secret,omitempty"`
+							ServiceAccountToken *struct {
+								Audience          *string `tfsdk:"audience" json:"audience,omitempty"`
+								ExpirationSeconds *int64  `tfsdk:"expiration_seconds" json:"expirationSeconds,omitempty"`
+								Path              *string `tfsdk:"path" json:"path,omitempty"`
+							} `tfsdk:"service_account_token" json:"serviceAccountToken,omitempty"`
+						} `tfsdk:"sources" json:"sources,omitempty"`
+					} `tfsdk:"projected" json:"projected,omitempty"`
+					Secret *struct {
+						DefaultMode *int64 `tfsdk:"default_mode" json:"defaultMode,omitempty"`
+						Items       *[]struct {
+							Key  *string `tfsdk:"key" json:"key,omitempty"`
+							Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
+							Path *string `tfsdk:"path" json:"path,omitempty"`
+						} `tfsdk:"items" json:"items,omitempty"`
+						Optional   *bool   `tfsdk:"optional" json:"optional,omitempty"`
+						SecretName *string `tfsdk:"secret_name" json:"secretName,omitempty"`
+					} `tfsdk:"secret" json:"secret,omitempty"`
+				} `tfsdk:"volume_source" json:"volumeSource,omitempty"`
+			} `tfsdk:"additional_volume_mounts" json:"additionalVolumeMounts,omitempty"`
 			Annotations                 *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
 			CaBundleRef                 *string            `tfsdk:"ca_bundle_ref" json:"caBundleRef,omitempty"`
 			DashboardEnabled            *bool              `tfsdk:"dashboard_enabled" json:"dashboardEnabled,omitempty"`
@@ -277,7 +371,8 @@ type CephRookIoCephObjectStoreV1ManifestData struct {
 			PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
 			Resources         *struct {
 				Claims *[]struct {
-					Name *string `tfsdk:"name" json:"name,omitempty"`
+					Name    *string `tfsdk:"name" json:"name,omitempty"`
+					Request *string `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"claims" json:"claims,omitempty"`
 				Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
 				Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
@@ -964,6 +1059,619 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 						Description:         "The rgw pod info",
 						MarkdownDescription: "The rgw pod info",
 						Attributes: map[string]schema.Attribute{
+							"additional_volume_mounts": schema.ListNestedAttribute{
+								Description:         "AdditionalVolumeMounts allows additional volumes to be mounted to the RGW pod.The root directory for each additional volume mount is '/var/rgw'.Example: for an additional mount at subPath 'ldap', mounted from a secret that has key'bindpass.secret', the file would reside at '/var/rgw/ldap/bindpass.secret'.",
+								MarkdownDescription: "AdditionalVolumeMounts allows additional volumes to be mounted to the RGW pod.The root directory for each additional volume mount is '/var/rgw'.Example: for an additional mount at subPath 'ldap', mounted from a secret that has key'bindpass.secret', the file would reside at '/var/rgw/ldap/bindpass.secret'.",
+								NestedObject: schema.NestedAttributeObject{
+									Attributes: map[string]schema.Attribute{
+										"sub_path": schema.StringAttribute{
+											Description:         "SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.",
+											MarkdownDescription: "SubPath defines the sub-path (subdirectory) of the directory root where the volumeSource willbe mounted. All files/keys in the volume source's volume will be mounted to the subdirectory.This is not the same as the Kubernetes 'subPath' volume mount option.Each subPath definition must be unique and must not contain ':'.",
+											Required:            true,
+											Optional:            false,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.LengthAtLeast(1),
+												stringvalidator.RegexMatches(regexp.MustCompile(`^[^:]+$`), ""),
+											},
+										},
+
+										"volume_source": schema.SingleNestedAttribute{
+											Description:         "",
+											MarkdownDescription: "",
+											Attributes: map[string]schema.Attribute{
+												"config_map": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"empty_dir": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"medium": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"size_limit": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"host_path": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"path": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"persistent_volume_claim": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"claim_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            true,
+															Optional:            false,
+															Computed:            false,
+														},
+
+														"read_only": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"projected": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"sources": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"cluster_trust_bundle": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"label_selector": schema.SingleNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Attributes: map[string]schema.Attribute{
+																					"match_expressions": schema.ListNestedAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						NestedObject: schema.NestedAttributeObject{
+																							Attributes: map[string]schema.Attribute{
+																								"key": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"operator": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+
+																								"values": schema.ListAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									ElementType:         types.StringType,
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+																							},
+																						},
+																						Required: false,
+																						Optional: true,
+																						Computed: false,
+																					},
+
+																					"match_labels": schema.MapAttribute{
+																						Description:         "",
+																						MarkdownDescription: "",
+																						ElementType:         types.StringType,
+																						Required:            false,
+																						Optional:            true,
+																						Computed:            false,
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+
+																			"signer_name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"config_map": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"items": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"mode": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"path": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"downward_api": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"items": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"field_ref": schema.SingleNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Attributes: map[string]schema.Attribute{
+																								"api_version": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"field_path": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+
+																						"mode": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"path": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"resource_field_ref": schema.SingleNestedAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Attributes: map[string]schema.Attribute{
+																								"container_name": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"divisor": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            false,
+																									Optional:            true,
+																									Computed:            false,
+																								},
+
+																								"resource": schema.StringAttribute{
+																									Description:         "",
+																									MarkdownDescription: "",
+																									Required:            true,
+																									Optional:            false,
+																									Computed:            false,
+																								},
+																							},
+																							Required: false,
+																							Optional: true,
+																							Computed: false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"secret": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"items": schema.ListNestedAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				NestedObject: schema.NestedAttributeObject{
+																					Attributes: map[string]schema.Attribute{
+																						"key": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+
+																						"mode": schema.Int64Attribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            false,
+																							Optional:            true,
+																							Computed:            false,
+																						},
+
+																						"path": schema.StringAttribute{
+																							Description:         "",
+																							MarkdownDescription: "",
+																							Required:            true,
+																							Optional:            false,
+																							Computed:            false,
+																						},
+																					},
+																				},
+																				Required: false,
+																				Optional: true,
+																				Computed: false,
+																			},
+
+																			"name": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"optional": schema.BoolAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+
+																	"service_account_token": schema.SingleNestedAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Attributes: map[string]schema.Attribute{
+																			"audience": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"expiration_seconds": schema.Int64Attribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            false,
+																				Optional:            true,
+																				Computed:            false,
+																			},
+
+																			"path": schema.StringAttribute{
+																				Description:         "",
+																				MarkdownDescription: "",
+																				Required:            true,
+																				Optional:            false,
+																				Computed:            false,
+																			},
+																		},
+																		Required: false,
+																		Optional: true,
+																		Computed: false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"secret": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"default_mode": schema.Int64Attribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"items": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"key": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+
+																	"mode": schema.Int64Attribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            true,
+																		Optional:            false,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"optional": schema.BoolAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+
+														"secret_name": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+											},
+											Required: true,
+											Optional: false,
+											Computed: false,
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"annotations": schema.MapAttribute{
 								Description:         "The annotations-related configuration to add/set on each Pod related object.",
 								MarkdownDescription: "The annotations-related configuration to add/set on each Pod related object.",
@@ -2130,6 +2838,14 @@ func (r *CephRookIoCephObjectStoreV1Manifest) Schema(_ context.Context, _ dataso
 													MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
 													Required:            true,
 													Optional:            false,
+													Computed:            false,
+												},
+
+												"request": schema.StringAttribute{
+													Description:         "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+													MarkdownDescription: "Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.",
+													Required:            false,
+													Optional:            true,
 													Computed:            false,
 												},
 											},

@@ -253,9 +253,9 @@ Optional:
 - `hostname` (String) Specifies the hostname of the PodIf not specified, the pod's hostname will be set to a system-defined value.
 - `image_pull_secrets` (Attributes List) ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec.If specified, these secrets will be passed to individual puller implementations for them to use.More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod (see [below for nested schema](#nestedatt--spec--pod_template--spec--image_pull_secrets))
 - `init_containers` (Attributes List) List of initialization containers belonging to the pod.Init containers are executed in order prior to containers being started. If anyinit container fails, the pod is considered to have failed and is handled accordingto its restartPolicy. The name for an init container or normal container must beunique among all containers.Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes.The resourceRequirements of an init container are taken into account during schedulingby finding the highest request/limit for each resource type, and then using the max ofof that value or the sum of the normal containers. Limits are applied to init containersin a similar fashion.Init containers cannot currently be added or removed.Cannot be updated.More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers))
-- `node_name` (String) NodeName is a request to schedule this pod onto a specific node. If it is non-empty,the scheduler simply schedules this pod onto that node, assuming that it fits resourcerequirements.
+- `node_name` (String) NodeName indicates in which node this pod is scheduled.If empty, this pod is a candidate for scheduling by the scheduler defined in schedulerName.Once this field is set, the kubelet for this node becomes responsible for the lifecycle of this pod.This field should not be used to express a desire for the pod to be scheduled on a specific node.https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename
 - `node_selector` (Map of String) NodeSelector is a selector which must be true for the pod to fit on a node.Selector which must match a node's labels for the pod to be scheduled on that node.More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-- `os` (Attributes) Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.appArmorProfile- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.containers[*].securityContext.appArmorProfile- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup (see [below for nested schema](#nestedatt--spec--pod_template--spec--os))
+- `os` (Attributes) Specifies the OS of the containers in the pod.Some pod and container fields are restricted if this is set.If the OS field is set to linux, the following fields must be unset:-securityContext.windowsOptionsIf the OS field is set to windows, following fields must be unset:- spec.hostPID- spec.hostIPC- spec.hostUsers- spec.securityContext.appArmorProfile- spec.securityContext.seLinuxOptions- spec.securityContext.seccompProfile- spec.securityContext.fsGroup- spec.securityContext.fsGroupChangePolicy- spec.securityContext.sysctls- spec.shareProcessNamespace- spec.securityContext.runAsUser- spec.securityContext.runAsGroup- spec.securityContext.supplementalGroups- spec.securityContext.supplementalGroupsPolicy- spec.containers[*].securityContext.appArmorProfile- spec.containers[*].securityContext.seLinuxOptions- spec.containers[*].securityContext.seccompProfile- spec.containers[*].securityContext.capabilities- spec.containers[*].securityContext.readOnlyRootFilesystem- spec.containers[*].securityContext.privileged- spec.containers[*].securityContext.allowPrivilegeEscalation- spec.containers[*].securityContext.procMount- spec.containers[*].securityContext.runAsUser- spec.containers[*].securityContext.runAsGroup (see [below for nested schema](#nestedatt--spec--pod_template--spec--os))
 - `overhead` (Map of String) Overhead represents the resource overhead associated with running a pod for a given RuntimeClass.This field will be autopopulated at admission time by the RuntimeClass admission controller. Ifthe RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests.The RuntimeClass admission controller will reject Pod create requests which have the overhead alreadyset. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the valuedefined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero.More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
 - `preemption_policy` (String) PreemptionPolicy is the Policy for preempting pods with lower priority.One of Never, PreemptLowerPriority.Defaults to PreemptLowerPriority if unset.
 - `priority` (Number) The priority value. Various system components use this field to find thepriority of the pod. When Priority Admission Controller is enabled, itprevents users from setting this field. The admission controller populatesthis field from PriorityClassName.The higher the value, the higher the priority.
@@ -341,7 +341,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -379,7 +379,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -399,7 +399,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
@@ -408,7 +408,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret must be defined
 
 
@@ -734,6 +734,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+
 
 
 <a id="nestedatt--spec--pod_template--spec--containers--security_context"></a>
@@ -745,7 +749,7 @@ Optional:
 - `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.
-- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default value is Default which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
@@ -1041,8 +1045,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1102,8 +1106,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1179,8 +1183,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1240,8 +1244,8 @@ Required:
 Optional:
 
 - `label_selector` (Attributes) A label query over a set of resources, in this case pods.If it's null, this PodAffinityTerm matches with no Pods. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
-- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
-- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is an alpha field and requires enabling MatchLabelKeysInPodAffinity feature gate.
+- `match_label_keys` (List of String) MatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key in (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both matchLabelKeys and labelSelector.Also, matchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
+- `mismatch_label_keys` (List of String) MismatchLabelKeys is a set of pod label keys to select which pods willbe taken into consideration. The keys are used to lookup values from theincoming pod labels, those key-value labels are merged with 'labelSelector' as 'key notin (value)'to select the group of existing pods which pods will be taken into considerationfor the incoming pod's pod (anti) affinity. Keys that don't exist in the incomingpod labels will be ignored. The default value is empty.The same key is forbidden to exist in both mismatchLabelKeys and labelSelector.Also, mismatchLabelKeys cannot be set when labelSelector isn't set.This is a beta field and requires enabling MatchLabelKeysInPodAffinity feature gate (enabled by default).
 - `namespace_selector` (Attributes) A label query over the set of namespaces that the term applies to.The term is applied to the union of the namespaces selected by this fieldand the ones listed in the namespaces field.null selector and null or empty namespaces list means 'this pod's namespace'.An empty selector ({}) matches all namespaces. (see [below for nested schema](#nestedatt--spec--pod_template--spec--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String) namespaces specifies a static list of namespace names that the term applies to.The term is applied to the union of the namespaces listed in this fieldand the ones selected by namespaceSelector.null or empty namespaces list and null namespaceSelector means 'this pod's namespace'.
 
@@ -1376,7 +1380,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -1414,7 +1418,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -1434,7 +1438,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
@@ -1443,7 +1447,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret must be defined
 
 
@@ -1769,6 +1773,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+
 
 
 <a id="nestedatt--spec--pod_template--spec--ephemeral_containers--security_context"></a>
@@ -1780,7 +1788,7 @@ Optional:
 - `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--ephemeral_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.
-- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default value is Default which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
@@ -1962,7 +1970,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 <a id="nestedatt--spec--pod_template--spec--init_containers"></a>
@@ -2029,7 +2037,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
 
 
@@ -2067,7 +2075,7 @@ Required:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret or its key must be defined
 
 
@@ -2087,7 +2095,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the ConfigMap must be defined
 
 
@@ -2096,7 +2104,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) Specify whether the Secret must be defined
 
 
@@ -2422,6 +2430,10 @@ Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
 
+Optional:
+
+- `request` (String) Request is the name chosen for a request in the referenced claim.If empty, everything from the claim is made available, otherwiseonly the result of this request.
+
 
 
 <a id="nestedatt--spec--pod_template--spec--init_containers--security_context"></a>
@@ -2433,7 +2445,7 @@ Optional:
 - `app_armor_profile` (Attributes) appArmorProfile is the AppArmor options to use by this container. If set, this profileoverrides the pod's appArmorProfile.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--app_armor_profile))
 - `capabilities` (Attributes) The capabilities to add/drop when running containers.Defaults to the default set of capabilities granted by the container runtime.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--init_containers--security_context--capabilities))
 - `privileged` (Boolean) Run container in privileged mode.Processes in privileged containers are essentially equivalent to root on the host.Defaults to false.Note that this field cannot be set when spec.os.name is windows.
-- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default is DefaultProcMount which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
+- `proc_mount` (String) procMount denotes the type of proc mount to use for the containers.The default value is Default which uses the container runtime defaults forreadonly paths and masked paths.This requires the ProcMountType feature flag to be enabled.Note that this field cannot be set when spec.os.name is windows.
 - `read_only_root_filesystem` (Boolean) Whether this container has a read-only root filesystem.Default is false.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_group` (Number) The GID to run the entrypoint of the container process.Uses runtime default if unset.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is windows.
 - `run_as_non_root` (Boolean) Indicates that the container must run as a non-root user.If true, the Kubelet will validate the image at runtime to ensure that itdoes not run as UID 0 (root) and fail to start the container if it does.If unset or false, no such validation will be performed.May also be set in PodSecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedence.
@@ -2623,16 +2635,8 @@ Required:
 
 Optional:
 
-- `source` (Attributes) Source describes where to find the ResourceClaim. (see [below for nested schema](#nestedatt--spec--pod_template--spec--resource_claims--source))
-
-<a id="nestedatt--spec--pod_template--spec--resource_claims--source"></a>
-### Nested Schema for `spec.pod_template.spec.resource_claims.source`
-
-Optional:
-
-- `resource_claim_name` (String) ResourceClaimName is the name of a ResourceClaim object in the samenamespace as this pod.
-- `resource_claim_template_name` (String) ResourceClaimTemplateName is the name of a ResourceClaimTemplateobject in the same namespace as this pod.The template will be used to create a new ResourceClaim, which willbe bound to this pod. When this pod is deleted, the ResourceClaimwill also be deleted. The pod name and resource name, along with agenerated component, will be used to form a unique name for theResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to thecorresponding ResourceClaim by the control plane after creating theResourceClaim.
-
+- `resource_claim_name` (String) ResourceClaimName is the name of a ResourceClaim object in the samenamespace as this pod.Exactly one of ResourceClaimName and ResourceClaimTemplateName mustbe set.
+- `resource_claim_template_name` (String) ResourceClaimTemplateName is the name of a ResourceClaimTemplateobject in the same namespace as this pod.The template will be used to create a new ResourceClaim, which willbe bound to this pod. When this pod is deleted, the ResourceClaimwill also be deleted. The pod name and resource name, along with agenerated component, will be used to form a unique name for theResourceClaim, which will be recorded in pod.status.resourceClaimStatuses.This field is immutable and no changes will be made to thecorresponding ResourceClaim by the control plane after creating theResourceClaim.Exactly one of ResourceClaimName and ResourceClaimTemplateName mustbe set.
 
 
 <a id="nestedatt--spec--pod_template--spec--scheduling_gates"></a>
@@ -2656,7 +2660,8 @@ Optional:
 - `run_as_user` (Number) The UID to run the entrypoint of the container process.Defaults to user specified in image metadata if unspecified.May also be set in SecurityContext.  If set in both SecurityContext andPodSecurityContext, the value specified in SecurityContext takes precedencefor that container.Note that this field cannot be set when spec.os.name is windows.
 - `se_linux_options` (Attributes) The SELinux context to be applied to all containers.If unspecified, the container runtime will allocate a random SELinux context for eachcontainer.  May also be set in SecurityContext.  If set inboth SecurityContext and PodSecurityContext, the value specified in SecurityContexttakes precedence for that container.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--se_linux_options))
 - `seccomp_profile` (Attributes) The seccomp options to use by the containers in this pod.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--seccomp_profile))
-- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, in additionto the container's primary GID, the fsGroup (if specified), and group membershipsdefined in the container image for the uid of the container process. If unspecified,no additional groups are added to any container. Note that group membershipsdefined in the container image for the uid of the container process are still effective,even if they are not included in this list.Note that this field cannot be set when spec.os.name is windows.
+- `supplemental_groups` (List of String) A list of groups applied to the first process run in each container, inaddition to the container's primary GID and fsGroup (if specified).  Ifthe SupplementalGroupsPolicy feature is enabled, thesupplementalGroupsPolicy field determines whether these are in additionto or instead of any group memberships defined in the container image.If unspecified, no additional groups are added, though group membershipsdefined in the container image may still be used, depending on thesupplementalGroupsPolicy field.Note that this field cannot be set when spec.os.name is windows.
+- `supplemental_groups_policy` (String) Defines how supplemental groups of the first container processes are calculated.Valid values are 'Merge' and 'Strict'. If not specified, 'Merge' is used.(Alpha) Using the field requires the SupplementalGroupsPolicy feature gate to be enabledand the container runtime must implement support for this feature.Note that this field cannot be set when spec.os.name is windows.
 - `sysctls` (Attributes List) Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupportedsysctls (by the container runtime) might fail to launch.Note that this field cannot be set when spec.os.name is windows. (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--sysctls))
 - `windows_options` (Attributes) The Windows specific settings applied to all containers.If unspecified, the options within a container's SecurityContext will be used.If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.Note that this field cannot be set when spec.os.name is linux. (see [below for nested schema](#nestedatt--spec--pod_template--spec--security_context--windows_options))
 
@@ -2793,7 +2798,8 @@ Optional:
 - `gce_persistent_disk` (Attributes) gcePersistentDisk represents a GCE Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--gce_persistent_disk))
 - `git_repo` (Attributes) gitRepo represents a git repository at a particular revision.DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount anEmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDirinto the Pod's container. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--git_repo))
 - `glusterfs` (Attributes) glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime.More info: https://examples.k8s.io/volumes/glusterfs/README.md (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--glusterfs))
-- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the hostmachine that is directly exposed to the container. This is generallyused for system agents or other privileged things that are allowedto see the host machine. Most containers will NOT need this.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath---TODO(jonesdl) We need to restrict who can use host directory mounts and who can/can notmount host directories as read/write. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--host_path))
+- `host_path` (Attributes) hostPath represents a pre-existing file or directory on the hostmachine that is directly exposed to the container. This is generallyused for system agents or other privileged things that are allowedto see the host machine. Most containers will NOT need this.More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--host_path))
+- `image` (Attributes) image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.The volume is resolved at pod startup depending on which PullPolicy value is provided:- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.The volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.A failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.The types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.The OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.The volume will be mounted read-only (ro) and non-executable files (noexec).Sub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath).The field spec.securityContext.fsGroupChangePolicy has no effect on this volume type. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--image))
 - `iscsi` (Attributes) iscsi represents an ISCSI Disk resource that is attached to akubelet's host machine and then exposed to the pod.More info: https://examples.k8s.io/volumes/iscsi/README.md (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--iscsi))
 - `nfs` (Attributes) nfs represents an NFS mount on the host that shares a pod's lifetimeMore info: https://kubernetes.io/docs/concepts/storage/volumes#nfs (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--nfs))
 - `persistent_volume_claim` (Attributes) persistentVolumeClaimVolumeSource represents a reference to aPersistentVolumeClaim in the same namespace.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--persistent_volume_claim))
@@ -2816,7 +2822,7 @@ Required:
 
 Optional:
 
-- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstoreTODO: how do we prevent errors in the filesystem from compromising the machine
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 - `partition` (Number) partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).
 - `read_only` (Boolean) readOnly value true will force the readOnly setting in VolumeMounts.More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
 
@@ -2870,7 +2876,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -2892,7 +2898,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -2903,7 +2909,7 @@ Optional:
 
 - `default_mode` (Number) defaultMode is optional: mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Defaults to 0644.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
 - `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--config_map--items))
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--pod_template--spec--volumes--config_map--items"></a>
@@ -2939,7 +2945,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -3029,7 +3035,7 @@ Optional:
 - `resources` (Attributes) resources represents the minimum resources the volume should have.If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirementsthat are lower than previous value but must still be higher than capacity recorded in thestatus field of the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--resources))
 - `selector` (Attributes) selector is a label query over volumes to consider for binding. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--ephemeral--volume_claim_template--spec--selector))
 - `storage_class_name` (String) storageClassName is the name of the StorageClass required by the claim.More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
-- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.
+- `volume_attributes_class_name` (String) volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim.If specified, the CSI driver will create or update the volume with the attributes definedin the corresponding VolumeAttributesClass. This has a different purpose than storageClassName,it can be changed after the claim is created. An empty string value means that no VolumeAttributesClasswill be applied to the claim but it's not allowed to reset this field to empty string once it is set.If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClasswill be set by the persistentvolume controller if it exists.If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will beset to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resourceexists.More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/(Beta) Using this field requires the VolumeAttributesClass feature gate to be enabled (off by default).
 - `volume_mode` (String) volumeMode defines what type of volume is required by the claim.Value of Filesystem is implied when not included in claim spec.
 - `volume_name` (String) volumeName is the binding reference to the PersistentVolume backing this claim.
 
@@ -3111,7 +3117,7 @@ Optional:
 
 Optional:
 
-- `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.TODO: how do we prevent errors in the filesystem from compromising the machine
+- `fs_type` (String) fsType is the filesystem type to mount.Must be a filesystem type supported by the host operating system.Ex. 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.
 - `lun` (Number) lun is Optional: FC target lun number
 - `read_only` (Boolean) readOnly is Optional: Defaults to false (read/write). ReadOnly here will forcethe ReadOnly setting in VolumeMounts.
 - `target_ww_ns` (List of String) targetWWNs is Optional: FC target worldwide names (WWNs)
@@ -3137,7 +3143,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -3159,7 +3165,7 @@ Required:
 
 Optional:
 
-- `fs_type` (String) fsType is filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdiskTODO: how do we prevent errors in the filesystem from compromising the machine
+- `fs_type` (String) fsType is filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 - `partition` (Number) partition is the partition in the volume that you want to mount.If omitted, the default is to mount by volume name.Examples: For volume /dev/sda1, you specify the partition as '1'.Similarly, the volume partition for /dev/sda is '0' (or you can leave the property empty).More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
 
@@ -3202,6 +3208,15 @@ Optional:
 - `type` (String) type for HostPath VolumeDefaults to ''More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
 
 
+<a id="nestedatt--spec--pod_template--spec--volumes--image"></a>
+### Nested Schema for `spec.pod_template.spec.volumes.image`
+
+Optional:
+
+- `pull_policy` (String) Policy for pulling OCI objects. Possible values are:Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.
+- `reference` (String) Required: Image or artifact reference to be used.Behaves in the same way as pod.spec.containers[*].image.Pull secrets will be assembled in the same way as for the container image by looking up node credentials, SA image pull secrets, and pod spec image pull secrets.More info: https://kubernetes.io/docs/concepts/containers/imagesThis field is optional to allow higher level config management to default or overridecontainer images in workload controllers like Deployments and StatefulSets.
+
+
 <a id="nestedatt--spec--pod_template--spec--volumes--iscsi"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.iscsi`
 
@@ -3215,7 +3230,7 @@ Optional:
 
 - `chap_auth_discovery` (Boolean) chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
 - `chap_auth_session` (Boolean) chapAuthSession defines whether support iSCSI Session CHAP authentication
-- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsiTODO: how do we prevent errors in the filesystem from compromising the machine
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
 - `initiator_name` (String) initiatorName is the custom iSCSI Initiator Name.If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface<target portal>:<volume name> will be created for the connection.
 - `iscsi_interface` (String) iscsiInterface is the interface Name that uses an iSCSI transport.Defaults to 'default' (tcp).
 - `portals` (List of String) portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the portis other than default (typically TCP ports 860 and 3260).
@@ -3227,7 +3242,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -3287,7 +3302,7 @@ Optional:
 Optional:
 
 - `default_mode` (Number) defaultMode are the mode bits used to set permissions on created files by default.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.Directories within the path are not affected by this setting.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.
-- `sources` (Attributes List) sources is the list of volume projections (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--projected--sources))
+- `sources` (Attributes List) sources is the list of volume projections. Each entry in this listhandles one source. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--projected--sources))
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources"></a>
 ### Nested Schema for `spec.pod_template.spec.volumes.projected.sources`
@@ -3343,7 +3358,7 @@ Optional:
 Optional:
 
 - `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedConfigMap will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the ConfigMap,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--projected--sources--config_map--items))
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) optional specify whether the ConfigMap or its keys must be defined
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--config_map--items"></a>
@@ -3413,7 +3428,7 @@ Optional:
 Optional:
 
 - `items` (Attributes List) items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'. (see [below for nested schema](#nestedatt--spec--pod_template--spec--volumes--projected--sources--secret--items))
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 - `optional` (Boolean) optional field specify whether the Secret or its key must be defined
 
 <a id="nestedatt--spec--pod_template--spec--volumes--projected--sources--secret--items"></a>
@@ -3471,7 +3486,7 @@ Required:
 
 Optional:
 
-- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#rbdTODO: how do we prevent errors in the filesystem from compromising the machine
+- `fs_type` (String) fsType is the filesystem type of the volume that you want to mount.Tip: Ensure that the filesystem type is supported by the host operating system.Examples: 'ext4', 'xfs', 'ntfs'. Implicitly inferred to be 'ext4' if unspecified.More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
 - `keyring` (String) keyring is the path to key ring for RBDUser.Default is /etc/ceph/keyring.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `pool` (String) pool is the rados pool name.Default is rbd.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
 - `read_only` (Boolean) readOnly here will force the ReadOnly setting in VolumeMounts.Defaults to false.More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
@@ -3483,7 +3498,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -3511,7 +3526,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 
@@ -3555,7 +3570,7 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
 
 
 

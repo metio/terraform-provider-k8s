@@ -69,6 +69,7 @@ Optional:
 - `custom_plugin` (Attributes) CustomPlugin defines a Custom plugin configuration. (see [below for nested schema](#nestedatt--spec--filters--custom_plugin))
 - `grep` (Attributes) Grep defines Grep Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--grep))
 - `kubernetes` (Attributes) Kubernetes defines Kubernetes Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--kubernetes))
+- `log_to_metrics` (Attributes) LogToMetrics defines a Log to Metrics Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--log_to_metrics))
 - `lua` (Attributes) Lua defines Lua Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--lua))
 - `modify` (Attributes) Modify defines Modify Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--modify))
 - `multiline` (Attributes) Multiline defines a Multiline configuration. (see [below for nested schema](#nestedatt--spec--filters--multiline))
@@ -77,6 +78,7 @@ Optional:
 - `record_modifier` (Attributes) RecordModifier defines Record Modifier Filter configuration. (see [below for nested schema](#nestedatt--spec--filters--record_modifier))
 - `rewrite_tag` (Attributes) RewriteTag defines a RewriteTag configuration. (see [below for nested schema](#nestedatt--spec--filters--rewrite_tag))
 - `throttle` (Attributes) Throttle defines a Throttle configuration. (see [below for nested schema](#nestedatt--spec--filters--throttle))
+- `wasm` (Attributes) Wasm defines a Wasm configuration. (see [below for nested schema](#nestedatt--spec--filters--wasm))
 
 <a id="nestedatt--spec--filters--aws"></a>
 ### Nested Schema for `spec.filters.aws`
@@ -159,6 +161,31 @@ Optional:
 - `use_kubelet` (Boolean) This is an optional feature flag to get metadata information from kubeletinstead of calling Kube Server API to enhance the log.This could mitigate the Kube API heavy traffic issue for large cluster.
 
 
+<a id="nestedatt--spec--filters--log_to_metrics"></a>
+### Nested Schema for `spec.filters.log_to_metrics`
+
+Optional:
+
+- `add_label` (List of String) Add a custom label NAME and set the value to the value of KEY
+- `alias` (String) Alias for the plugin
+- `bucket` (List of String) Defines a bucket for histogram
+- `discard_logs` (Boolean) Flag that defines if logs should be discarded after processing. This appliesfor all logs, no matter if they have emitted metrics or not.
+- `emitter_mem_buf_limit` (String) set a buffer limit to restrict memory usage of metrics emitter
+- `emitter_name` (String) Name of the emitter (advanced users)
+- `exclude` (List of String) Optional filter for records in which the content of KEY does not matches the regular expression.Value Format: FIELD REGEX
+- `kubernetes_mode` (Boolean) If enabled, it will automatically put pod_id, pod_name, namespace_name, docker_id and container_nameinto the metric as labels. This option is intended to be used in combination with the kubernetes filter plugin.
+- `label_field` (List of String) Includes a record field as label dimension in the metric.
+- `metric_description` (String) Sets a help text for the metric.
+- `metric_mode` (String) Defines the mode for the metric. Valid values are [counter, gauge or histogram]
+- `metric_name` (String) Sets the name of the metric.
+- `metric_namespace` (String) Namespace of the metric
+- `metric_subsystem` (String) Sets a sub-system for the metric.
+- `regex` (List of String) Optional filter for records in which the content of KEY matches the regular expression.Value Format: FIELD REGEX
+- `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
+- `tag` (String) Defines the tag for the generated metrics record
+- `value_field` (String) Specify the record field that holds a numerical value
+
+
 <a id="nestedatt--spec--filters--lua"></a>
 ### Nested Schema for `spec.filters.lua`
 
@@ -174,6 +201,7 @@ Optional:
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `script` (Attributes) Path to the Lua script that will be used. (see [below for nested schema](#nestedatt--spec--filters--lua--script))
 - `time_as_table` (Boolean) By default when the Lua script is invoked, the record timestamp is passed as aFloating number which might lead to loss precision when the data is converted back.If you desire timestamp precision enabling this option will pass the timestamp asa Lua table with keys sec for seconds since epoch and nsec for nanoseconds.
+- `type_array_key` (List of String) If these keys are matched, the fields are handled as array. If more thanone key, delimit by space. It is useful the array can be empty.
 - `type_int_key` (List of String) If these keys are matched, the fields are converted to integer.If more than one key, delimit by space.Note that starting from Fluent Bit v1.6 integer data types are preservedand not converted to double as in previous versions.
 
 <a id="nestedatt--spec--filters--lua--script"></a>
@@ -321,3 +349,18 @@ Optional:
 - `rate` (Number) Rate is the amount of messages for the time.
 - `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
 - `window` (Number) Window is the amount of intervals to calculate average over.
+
+
+<a id="nestedatt--spec--filters--wasm"></a>
+### Nested Schema for `spec.filters.wasm`
+
+Optional:
+
+- `accessible_paths` (List of String) Specify the whitelist of paths to be able to access paths from WASM programs.
+- `alias` (String) Alias for the plugin
+- `event_format` (String) Define event format to interact with Wasm programs: msgpack or json. Default: json
+- `function_name` (String) Wasm function name that will be triggered to do filtering. It's assumed that the function is built inside the Wasm program specified above.
+- `retry_limit` (String) RetryLimit describes how many times fluent-bit should retry to send data to a specific output. If set to false fluent-bit will try indefinetly. If set to any integer N>0 it will try at most N+1 times. Leading zeros are not allowed (values such as 007, 0150, 01 do not work). If this property is not defined fluent-bit will use the default value: 1.
+- `wasm_heap_size` (String) Size of the heap size of Wasm execution. Review unit sizes for allowed values.
+- `wasm_path` (String) Path to the built Wasm program that will be used. This can be a relative path against the main configuration file.
+- `wasm_stack_size` (String) Size of the stack size of Wasm execution. Review unit sizes for allowed values.

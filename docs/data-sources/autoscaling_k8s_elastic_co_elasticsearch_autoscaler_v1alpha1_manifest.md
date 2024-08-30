@@ -55,12 +55,20 @@ Optional:
 
 Required:
 
+- `elasticsearch_ref` (Attributes) ElasticsearchRef is a reference to an Elasticsearch cluster that exists in the same namespace. (see [below for nested schema](#nestedatt--spec--elasticsearch_ref))
 - `policies` (Attributes List) (see [below for nested schema](#nestedatt--spec--policies))
 
 Optional:
 
-- `elasticsearch_ref` (Attributes) ElasticsearchRef is a reference to an Elasticsearch cluster that exists in the same namespace. (see [below for nested schema](#nestedatt--spec--elasticsearch_ref))
 - `polling_period` (String) PollingPeriod is the period at which to synchronize with the Elasticsearch autoscaling API.
+
+<a id="nestedatt--spec--elasticsearch_ref"></a>
+### Nested Schema for `spec.elasticsearch_ref`
+
+Optional:
+
+- `name` (String) Name is the name of the Elasticsearch resource to scale automatically.
+
 
 <a id="nestedatt--spec--policies"></a>
 ### Nested Schema for `spec.policies`
@@ -134,13 +142,3 @@ Required:
 Optional:
 
 - `requests_to_limits_ratio` (String) RequestsToLimitsRatio allows to customize Kubernetes resource Limit based on the Request.
-
-
-
-
-<a id="nestedatt--spec--elasticsearch_ref"></a>
-### Nested Schema for `spec.elasticsearch_ref`
-
-Optional:
-
-- `name` (String) Name is the name of the Elasticsearch resource to scale automatically.

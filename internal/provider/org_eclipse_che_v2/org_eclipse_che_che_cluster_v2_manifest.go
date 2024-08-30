@@ -602,12 +602,13 @@ type OrgEclipseCheCheClusterV2ManifestData struct {
 					} `tfsdk:"request" json:"request,omitempty"`
 				} `tfsdk:"resources" json:"resources,omitempty"`
 			} `tfsdk:"gateway_container" json:"gatewayContainer,omitempty"`
-			IgnoredUnrecoverableEvents          *[]string          `tfsdk:"ignored_unrecoverable_events" json:"ignoredUnrecoverableEvents,omitempty"`
-			ImagePullPolicy                     *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			MaxNumberOfRunningWorkspacesPerUser *int64             `tfsdk:"max_number_of_running_workspaces_per_user" json:"maxNumberOfRunningWorkspacesPerUser,omitempty"`
-			MaxNumberOfWorkspacesPerUser        *int64             `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
-			NodeSelector                        *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
-			PersistUserHome                     *struct {
+			IgnoredUnrecoverableEvents             *[]string          `tfsdk:"ignored_unrecoverable_events" json:"ignoredUnrecoverableEvents,omitempty"`
+			ImagePullPolicy                        *string            `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
+			MaxNumberOfRunningWorkspacesPerCluster *int64             `tfsdk:"max_number_of_running_workspaces_per_cluster" json:"maxNumberOfRunningWorkspacesPerCluster,omitempty"`
+			MaxNumberOfRunningWorkspacesPerUser    *int64             `tfsdk:"max_number_of_running_workspaces_per_user" json:"maxNumberOfRunningWorkspacesPerUser,omitempty"`
+			MaxNumberOfWorkspacesPerUser           *int64             `tfsdk:"max_number_of_workspaces_per_user" json:"maxNumberOfWorkspacesPerUser,omitempty"`
+			NodeSelector                           *map[string]string `tfsdk:"node_selector" json:"nodeSelector,omitempty"`
+			PersistUserHome                        *struct {
 				DisableInitContainer *bool `tfsdk:"disable_init_container" json:"disableInitContainer,omitempty"`
 				Enabled              *bool `tfsdk:"enabled" json:"enabled,omitempty"`
 			} `tfsdk:"persist_user_home" json:"persistUserHome,omitempty"`
@@ -4793,6 +4794,17 @@ func (r *OrgEclipseCheCheClusterV2Manifest) Schema(_ context.Context, _ datasour
 								Computed:            false,
 								Validators: []validator.String{
 									stringvalidator.OneOf("Always", "IfNotPresent", "Never"),
+								},
+							},
+
+							"max_number_of_running_workspaces_per_cluster": schema.Int64Attribute{
+								Description:         "The maximum number of concurrently running workspaces across the entire Kubernetes cluster.This applies to all users in the system. If the value is set to -1, it means there isno limit on the number of running workspaces.",
+								MarkdownDescription: "The maximum number of concurrently running workspaces across the entire Kubernetes cluster.This applies to all users in the system. If the value is set to -1, it means there isno limit on the number of running workspaces.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.Int64{
+									int64validator.AtLeast(-1),
 								},
 							},
 

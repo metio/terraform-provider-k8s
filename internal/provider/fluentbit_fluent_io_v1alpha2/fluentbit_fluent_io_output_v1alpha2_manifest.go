@@ -714,10 +714,11 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
 				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
 			} `tfsdk:"http_user" json:"httpUser,omitempty"`
-			LogResponsePayload *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
-			LogsUri            *string `tfsdk:"logs_uri" json:"logsUri,omitempty"`
-			MetricsUri         *string `tfsdk:"metrics_uri" json:"metricsUri,omitempty"`
-			Networking         *struct {
+			LogResponsePayload    *bool   `tfsdk:"log_response_payload" json:"logResponsePayload,omitempty"`
+			LogsBodyKeyAttributes *bool   `tfsdk:"logs_body_key_attributes" json:"logsBodyKeyAttributes,omitempty"`
+			LogsUri               *string `tfsdk:"logs_uri" json:"logsUri,omitempty"`
+			MetricsUri            *string `tfsdk:"metrics_uri" json:"metricsUri,omitempty"`
+			Networking            *struct {
 				DNSMode                *string `tfsdk:"dns_mode" json:"DNSMode,omitempty"`
 				DNSPreferIPv4          *bool   `tfsdk:"dns_prefer_i_pv4" json:"DNSPreferIPv4,omitempty"`
 				DNSResolver            *string `tfsdk:"dns_resolver" json:"DNSResolver,omitempty"`
@@ -1027,6 +1028,7 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 				Verify *bool   `tfsdk:"verify" json:"verify,omitempty"`
 				Vhost  *string `tfsdk:"vhost" json:"vhost,omitempty"`
 			} `tfsdk:"tls" json:"tls,omitempty"`
+			TotalLimitSize *string `tfsdk:"total_limit_size" json:"totalLimitSize,omitempty"`
 		} `tfsdk:"syslog" json:"syslog,omitempty"`
 		Tcp *struct {
 			Format         *string `tfsdk:"format" json:"format,omitempty"`
@@ -5847,6 +5849,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
+							"logs_body_key_attributes": schema.BoolAttribute{
+								Description:         "If true, remaining unmatched keys are added as attributes.",
+								MarkdownDescription: "If true, remaining unmatched keys are added as attributes.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"logs_uri": schema.StringAttribute{
 								Description:         "Specify an optional HTTP URI for the target web server listening for logs, e.g: /v1/logs",
 								MarkdownDescription: "Specify an optional HTTP URI for the target web server listening for logs, e.g: /v1/logs",
@@ -8064,6 +8074,14 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+
+							"total_limit_size": schema.StringAttribute{
+								Description:         "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								MarkdownDescription: "Limit the maximum number of Chunks in the filesystem for the current output logical destination.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

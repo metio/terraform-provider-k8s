@@ -71,7 +71,17 @@ Optional:
 - `cidr` (String)
 - `interface` (String)
 - `match_operator` (String)
+- `prefix_length` (Attributes) (see [below for nested schema](#nestedatt--spec--export_v4--prefix_length))
 - `source` (String)
+
+<a id="nestedatt--spec--export_v4--prefix_length"></a>
+### Nested Schema for `spec.export_v4.prefix_length`
+
+Optional:
+
+- `max` (Number)
+- `min` (Number)
+
 
 
 <a id="nestedatt--spec--export_v6"></a>
@@ -86,7 +96,17 @@ Optional:
 - `cidr` (String)
 - `interface` (String)
 - `match_operator` (String)
+- `prefix_length` (Attributes) (see [below for nested schema](#nestedatt--spec--export_v6--prefix_length))
 - `source` (String)
+
+<a id="nestedatt--spec--export_v6--prefix_length"></a>
+### Nested Schema for `spec.export_v6.prefix_length`
+
+Optional:
+
+- `max` (Number)
+- `min` (Number)
+
 
 
 <a id="nestedatt--spec--import_v4"></a>
@@ -101,7 +121,17 @@ Optional:
 - `cidr` (String)
 - `interface` (String)
 - `match_operator` (String)
+- `prefix_length` (Attributes) (see [below for nested schema](#nestedatt--spec--import_v4--prefix_length))
 - `source` (String)
+
+<a id="nestedatt--spec--import_v4--prefix_length"></a>
+### Nested Schema for `spec.import_v4.prefix_length`
+
+Optional:
+
+- `max` (Number)
+- `min` (Number)
+
 
 
 <a id="nestedatt--spec--import_v6"></a>
@@ -116,4 +146,13 @@ Optional:
 - `cidr` (String)
 - `interface` (String)
 - `match_operator` (String)
+- `prefix_length` (Attributes) (see [below for nested schema](#nestedatt--spec--import_v6--prefix_length))
 - `source` (String)
+
+<a id="nestedatt--spec--import_v6--prefix_length"></a>
+### Nested Schema for `spec.import_v6.prefix_length`
+
+Optional:
+
+- `max` (Number)
+- `min` (Number)

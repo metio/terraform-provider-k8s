@@ -2171,6 +2171,9 @@ Optional:
 Required:
 
 - `path` (String) Path defines the json path to wait for, e.g. '{.status.phase}'.
+
+Optional:
+
 - `value` (String) Value defines the expected value to wait for, e.g., 'Running'.
 
 

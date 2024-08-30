@@ -412,7 +412,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -478,12 +482,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
@@ -664,7 +669,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -731,12 +740,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -919,7 +929,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -985,12 +999,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -1020,6 +1035,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 					SecurityContext *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -1473,6 +1492,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"container_statuses" json:"containerStatuses,omitempty"`
 					EphemeralContainerStatuses *[]struct {
 						AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
@@ -1526,6 +1551,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
 					HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
 					HostIPs *[]struct {
@@ -1583,6 +1614,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"init_container_statuses" json:"initContainerStatuses,omitempty"`
 					Message           *string `tfsdk:"message" json:"message,omitempty"`
 					NominatedNodeName *string `tfsdk:"nominated_node_name" json:"nominatedNodeName,omitempty"`
@@ -1946,7 +1983,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2012,12 +2053,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"containers" json:"containers,omitempty"`
@@ -2198,7 +2240,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2265,12 +2311,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -2453,7 +2500,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 					SecurityContext *struct {
 						AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-						Capabilities             *struct {
+						AppArmorProfile          *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+						Capabilities *struct {
 							Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 							Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 						} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -2519,12 +2570,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Name       *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 					VolumeMounts *[]struct {
-						MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-						MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-						Name             *string `tfsdk:"name" json:"name,omitempty"`
-						ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-						SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-						SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+						SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 				} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -2554,6 +2606,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 				SecurityContext *struct {
+					AppArmorProfile *struct {
+						LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+						Type             *string `tfsdk:"type" json:"type,omitempty"`
+					} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 					FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 					FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 					RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -3007,6 +3063,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 						} `tfsdk:"waiting" json:"waiting,omitempty"`
 					} `tfsdk:"state" json:"state,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"container_statuses" json:"containerStatuses,omitempty"`
 				EphemeralContainerStatuses *[]struct {
 					AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
@@ -3060,6 +3122,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 						} `tfsdk:"waiting" json:"waiting,omitempty"`
 					} `tfsdk:"state" json:"state,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
 				HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
 				HostIPs *[]struct {
@@ -3117,6 +3185,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 						} `tfsdk:"waiting" json:"waiting,omitempty"`
 					} `tfsdk:"state" json:"state,omitempty"`
+					VolumeMounts *[]struct {
+						MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+						Name              *string `tfsdk:"name" json:"name,omitempty"`
+						ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+						RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+					} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 				} `tfsdk:"init_container_statuses" json:"initContainerStatuses,omitempty"`
 				Message           *string `tfsdk:"message" json:"message,omitempty"`
 				NominatedNodeName *string `tfsdk:"nominated_node_name" json:"nominatedNodeName,omitempty"`
@@ -3474,7 +3548,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -3540,12 +3618,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"containers" json:"containers,omitempty"`
@@ -3726,7 +3805,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -3793,12 +3876,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"ephemeral_containers" json:"ephemeralContainers,omitempty"`
@@ -3981,7 +4065,11 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						RestartPolicy   *string `tfsdk:"restart_policy" json:"restartPolicy,omitempty"`
 						SecurityContext *struct {
 							AllowPrivilegeEscalation *bool `tfsdk:"allow_privilege_escalation" json:"allowPrivilegeEscalation,omitempty"`
-							Capabilities             *struct {
+							AppArmorProfile          *struct {
+								LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+								Type             *string `tfsdk:"type" json:"type,omitempty"`
+							} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
+							Capabilities *struct {
 								Add  *[]string `tfsdk:"add" json:"add,omitempty"`
 								Drop *[]string `tfsdk:"drop" json:"drop,omitempty"`
 							} `tfsdk:"capabilities" json:"capabilities,omitempty"`
@@ -4047,12 +4135,13 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 							Name       *string `tfsdk:"name" json:"name,omitempty"`
 						} `tfsdk:"volume_devices" json:"volumeDevices,omitempty"`
 						VolumeMounts *[]struct {
-							MountPath        *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
-							MountPropagation *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
-							Name             *string `tfsdk:"name" json:"name,omitempty"`
-							ReadOnly         *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
-							SubPath          *string `tfsdk:"sub_path" json:"subPath,omitempty"`
-							SubPathExpr      *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							MountPropagation  *string `tfsdk:"mount_propagation" json:"mountPropagation,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+							SubPath           *string `tfsdk:"sub_path" json:"subPath,omitempty"`
+							SubPathExpr       *string `tfsdk:"sub_path_expr" json:"subPathExpr,omitempty"`
 						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 						WorkingDir *string `tfsdk:"working_dir" json:"workingDir,omitempty"`
 					} `tfsdk:"init_containers" json:"initContainers,omitempty"`
@@ -4082,6 +4171,10 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 						Name *string `tfsdk:"name" json:"name,omitempty"`
 					} `tfsdk:"scheduling_gates" json:"schedulingGates,omitempty"`
 					SecurityContext *struct {
+						AppArmorProfile *struct {
+							LocalhostProfile *string `tfsdk:"localhost_profile" json:"localhostProfile,omitempty"`
+							Type             *string `tfsdk:"type" json:"type,omitempty"`
+						} `tfsdk:"app_armor_profile" json:"appArmorProfile,omitempty"`
 						FsGroup             *int64  `tfsdk:"fs_group" json:"fsGroup,omitempty"`
 						FsGroupChangePolicy *string `tfsdk:"fs_group_change_policy" json:"fsGroupChangePolicy,omitempty"`
 						RunAsGroup          *int64  `tfsdk:"run_as_group" json:"runAsGroup,omitempty"`
@@ -4535,6 +4628,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"container_statuses" json:"containerStatuses,omitempty"`
 					EphemeralContainerStatuses *[]struct {
 						AllocatedResources *map[string]string `tfsdk:"allocated_resources" json:"allocatedResources,omitempty"`
@@ -4588,6 +4687,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"ephemeral_container_statuses" json:"ephemeralContainerStatuses,omitempty"`
 					HostIP  *string `tfsdk:"host_ip" json:"hostIP,omitempty"`
 					HostIPs *[]struct {
@@ -4645,6 +4750,12 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 								Reason  *string `tfsdk:"reason" json:"reason,omitempty"`
 							} `tfsdk:"waiting" json:"waiting,omitempty"`
 						} `tfsdk:"state" json:"state,omitempty"`
+						VolumeMounts *[]struct {
+							MountPath         *string `tfsdk:"mount_path" json:"mountPath,omitempty"`
+							Name              *string `tfsdk:"name" json:"name,omitempty"`
+							ReadOnly          *bool   `tfsdk:"read_only" json:"readOnly,omitempty"`
+							RecursiveReadOnly *string `tfsdk:"recursive_read_only" json:"recursiveReadOnly,omitempty"`
+						} `tfsdk:"volume_mounts" json:"volumeMounts,omitempty"`
 					} `tfsdk:"init_container_statuses" json:"initContainerStatuses,omitempty"`
 					Message           *string `tfsdk:"message" json:"message,omitempty"`
 					NominatedNodeName *string `tfsdk:"nominated_node_name" json:"nominatedNodeName,omitempty"`
@@ -4766,7 +4877,7 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 						Optional:            true,
 						Computed:            false,
 						Validators: []validator.String{
-							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18", "v1_19"),
+							stringvalidator.OneOf("v1_13", "v1_14", "v1_15", "v1_16", "v1_17", "v1_18", "v1_19", "v1_20"),
 						},
 					},
 
@@ -7248,6 +7359,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -7725,6 +7861,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -8927,6 +9071,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -9412,6 +9581,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -10631,6 +10808,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -11115,6 +11317,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		Computed:            false,
 																	},
 
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"sub_path": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -11328,6 +11538,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -14404,6 +14639,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Optional: true,
 															Computed: false,
 														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
 													},
 												},
 												Required: false,
@@ -14752,6 +15030,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
 																},
 															},
 															Required: false,
@@ -15133,6 +15454,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
 																},
 															},
 															Required: false,
@@ -17582,6 +17946,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -18059,6 +18448,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,
@@ -19261,6 +19658,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -19746,6 +20168,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															},
 
 															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
 																Required:            false,
@@ -20965,6 +21395,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Computed:            false,
 														},
 
+														"app_armor_profile": schema.SingleNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Attributes: map[string]schema.Attribute{
+																"localhost_profile": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+
+																"type": schema.StringAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Required:            false,
+																	Optional:            true,
+																	Computed:            false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
 														"capabilities": schema.SingleNestedAttribute{
 															Description:         "",
 															MarkdownDescription: "",
@@ -21449,6 +21904,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																Computed:            false,
 															},
 
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
 															"sub_path": schema.StringAttribute{
 																Description:         "",
 																MarkdownDescription: "",
@@ -21662,6 +22125,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
+											"app_armor_profile": schema.SingleNestedAttribute{
+												Description:         "",
+												MarkdownDescription: "",
+												Attributes: map[string]schema.Attribute{
+													"localhost_profile": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"type": schema.StringAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
+											},
+
 											"fs_group": schema.Int64Attribute{
 												Description:         "",
 												MarkdownDescription: "",
@@ -24738,6 +25226,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 													Optional: true,
 													Computed: false,
 												},
+
+												"volume_mounts": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"mount_path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
 											},
 										},
 										Required: false,
@@ -25086,6 +25617,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"volume_mounts": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"mount_path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -25467,6 +26041,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"volume_mounts": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"mount_path": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"name": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"read_only": schema.BoolAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"recursive_read_only": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
 														},
 													},
 													Required: false,
@@ -27870,6 +28487,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -28347,6 +28989,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -29549,6 +30199,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -30034,6 +30709,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	},
 
 																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
 																		Required:            false,
@@ -31253,6 +31936,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Computed:            false,
 																},
 
+																"app_armor_profile": schema.SingleNestedAttribute{
+																	Description:         "",
+																	MarkdownDescription: "",
+																	Attributes: map[string]schema.Attribute{
+																		"localhost_profile": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"type": schema.StringAttribute{
+																			Description:         "",
+																			MarkdownDescription: "",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+																	},
+																	Required: false,
+																	Optional: true,
+																	Computed: false,
+																},
+
 																"capabilities": schema.SingleNestedAttribute{
 																	Description:         "",
 																	MarkdownDescription: "",
@@ -31737,6 +32445,14 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																		Computed:            false,
 																	},
 
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
 																	"sub_path": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
@@ -31950,6 +32666,31 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 												Description:         "",
 												MarkdownDescription: "",
 												Attributes: map[string]schema.Attribute{
+													"app_armor_profile": schema.SingleNestedAttribute{
+														Description:         "",
+														MarkdownDescription: "",
+														Attributes: map[string]schema.Attribute{
+															"localhost_profile": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"type": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
 													"fs_group": schema.Int64Attribute{
 														Description:         "",
 														MarkdownDescription: "",
@@ -35026,6 +35767,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 															Optional: true,
 															Computed: false,
 														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
 													},
 												},
 												Required: false,
@@ -35374,6 +36158,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
 																},
 															},
 															Required: false,
@@ -35755,6 +36582,49 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 																	Required: false,
 																	Optional: true,
 																	Computed: false,
+																},
+															},
+															Required: false,
+															Optional: true,
+															Computed: false,
+														},
+
+														"volume_mounts": schema.ListNestedAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															NestedObject: schema.NestedAttributeObject{
+																Attributes: map[string]schema.Attribute{
+																	"mount_path": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"name": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"read_only": schema.BoolAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"recursive_read_only": schema.StringAttribute{
+																		Description:         "",
+																		MarkdownDescription: "",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
 																},
 															},
 															Required: false,

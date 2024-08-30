@@ -67,8 +67,14 @@ type SourceToolkitFluxcdIoBucketV1Beta2ManifestData struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		Sts *struct {
-			Endpoint *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
-			Provider *string `tfsdk:"provider" json:"provider,omitempty"`
+			CertSecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"cert_secret_ref" json:"certSecretRef,omitempty"`
+			Endpoint  *string `tfsdk:"endpoint" json:"endpoint,omitempty"`
+			Provider  *string `tfsdk:"provider" json:"provider,omitempty"`
+			SecretRef *struct {
+				Name *string `tfsdk:"name" json:"name,omitempty"`
+			} `tfsdk:"secret_ref" json:"secretRef,omitempty"`
 		} `tfsdk:"sts" json:"sts,omitempty"`
 		Suspend *bool   `tfsdk:"suspend" json:"suspend,omitempty"`
 		Timeout *string `tfsdk:"timeout" json:"timeout,omitempty"`
@@ -303,9 +309,26 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 					},
 
 					"sts": schema.SingleNestedAttribute{
-						Description:         "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider.",
-						MarkdownDescription: "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' provider.",
+						Description:         "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers.",
+						MarkdownDescription: "STS specifies the required configuration to use a Security TokenService for fetching temporary credentials to authenticate in aBucket provider.This field is only supported for the 'aws' and 'generic' providers.",
 						Attributes: map[string]schema.Attribute{
+							"cert_secret_ref": schema.SingleNestedAttribute{
+								Description:         "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider.",
+								MarkdownDescription: "CertSecretRef can be given the name of a Secret containingeither or both of- a PEM-encoded client certificate ('tls.crt') and privatekey ('tls.key');- a PEM-encoded CA certificate ('ca.crt')and whichever are supplied, will be used for connecting to theSTS endpoint. The client cert and key are useful if you areauthenticating with a certificate; the CA cert is useful ifyou are using a self-signed server certificate. The Secret mustbe of type 'Opaque' or 'kubernetes.io/tls'.This field is only supported for the 'ldap' provider.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
 							"endpoint": schema.StringAttribute{
 								Description:         "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
 								MarkdownDescription: "Endpoint is the HTTP/S endpoint of the Security Token Service fromwhere temporary credentials will be fetched.",
@@ -324,8 +347,25 @@ func (r *SourceToolkitFluxcdIoBucketV1Beta2Manifest) Schema(_ context.Context, _
 								Optional:            false,
 								Computed:            false,
 								Validators: []validator.String{
-									stringvalidator.OneOf("aws"),
+									stringvalidator.OneOf("aws", "ldap"),
 								},
+							},
+
+							"secret_ref": schema.SingleNestedAttribute{
+								Description:         "SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider.",
+								MarkdownDescription: "SecretRef specifies the Secret containing authentication credentialsfor the STS endpoint. This Secret must contain the fields 'username'and 'password' and is supported only for the 'ldap' provider.",
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description:         "Name of the referent.",
+										MarkdownDescription: "Name of the referent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
 							},
 						},
 						Required: false,

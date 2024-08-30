@@ -64,6 +64,7 @@ Optional:
 Optional:
 
 - `backend_refs` (Attributes List) BackendRefs defines the backend(s) where matching requests should besent. If unspecified or invalid (refers to a non-existent resource or aService with no endpoints), the underlying implementation MUST activelyreject connection attempts to this backend. Packet drops mustrespect weight; if an invalid backend is requested to have 80% ofthe packets, then 80% of packets must be dropped instead.Support: Core for Kubernetes ServiceSupport: Extended for Kubernetes ServiceImportSupport: Implementation-specific for any other resourceSupport for weight: Extended (see [below for nested schema](#nestedatt--spec--rules--backend_refs))
+- `name` (String) Name is the name of the route rule. This name MUST be unique within a Route if it is set.Support: Extended
 
 <a id="nestedatt--spec--rules--backend_refs"></a>
 ### Nested Schema for `spec.rules.backend_refs`

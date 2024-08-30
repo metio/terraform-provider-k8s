@@ -69,6 +69,7 @@ Optional:
 - `annotations` (Attributes List) Annotation specifies overriders that apply to the resource annotations. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--annotations))
 - `args` (Attributes List) Args specifies overriders that apply to the container arguments. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--args))
 - `command` (Attributes List) Command specifies overriders that apply to the container commands. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--command))
+- `envs` (Attributes List) Envs specifies overriders that apply to the container envs. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs))
 - `image` (Attributes List) Image specifies the overriders that apply to the image. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--image))
 - `jsonpatch` (Attributes List) JsonPatch specifies overriders in a syntax similar to RFC6902 JSON Patch. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--jsonpatch))
 - `labels` (Attributes List) Label specifies overriders that apply to the resource labels. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--labels))
@@ -109,6 +110,94 @@ Required:
 Optional:
 
 - `operator` (String) Operator specifies the operation. If omitted, defaults to 'overwrite'.
+
+
+<a id="nestedatt--spec--override_rules--overriders--envs"></a>
+### Nested Schema for `spec.override_rules.overriders.envs`
+
+Required:
+
+- `container_name` (String) ContainerName targets the specified container or init container in the pod template.
+- `value` (Attributes List) List of environment variables to set in the container. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value))
+
+Optional:
+
+- `operator` (String) Operator specifies the operation. If omitted, defaults to 'overwrite'.
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value`
+
+Required:
+
+- `name` (String) Name of the environment variable. Must be a C_IDENTIFIER.
+
+Optional:
+
+- `value` (String) Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. '$$(VAR_NAME)' will produce the string literal '$(VAR_NAME)'. Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to ''.
+- `value_from` (Attributes) Source for the environment variable's value. Cannot be used if value is not empty. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value--value_from))
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value--value_from"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value.value_from`
+
+Optional:
+
+- `config_map_key_ref` (Attributes) Selects a key of a ConfigMap. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value--value_from--config_map_key_ref))
+- `field_ref` (Attributes) Selects a field of the pod: supports metadata.name, metadata.namespace, 'metadata.labels['<KEY>']', 'metadata.annotations['<KEY>']', spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value--value_from--field_ref))
+- `resource_field_ref` (Attributes) Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value--value_from--resource_field_ref))
+- `secret_key_ref` (Attributes) Selects a key of a secret in the pod's namespace (see [below for nested schema](#nestedatt--spec--override_rules--overriders--envs--value--value_from--secret_key_ref))
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value--value_from--config_map_key_ref"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value.value_from.config_map_key_ref`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value--value_from--field_ref"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value.value_from.field_ref`
+
+Required:
+
+- `field_path` (String) Path of the field to select in the specified API version.
+
+Optional:
+
+- `api_version` (String) Version of the schema the FieldPath is written in terms of, defaults to 'v1'.
+
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value--value_from--resource_field_ref"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value.value_from.resource_field_ref`
+
+Required:
+
+- `resource` (String) Required: resource to select
+
+Optional:
+
+- `container_name` (String) Container name: required for volumes, optional for env vars
+- `divisor` (String) Specifies the output format of the exposed resources, defaults to '1'
+
+
+<a id="nestedatt--spec--override_rules--overriders--envs--value--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.override_rules.overriders.envs.value.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
 
 
 <a id="nestedatt--spec--override_rules--overriders--image"></a>
