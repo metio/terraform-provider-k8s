@@ -63,6 +63,7 @@ type SchedulingVolcanoShQueueV1Beta1ManifestData struct {
 			Resource *map[string]string `tfsdk:"resource" json:"resource,omitempty"`
 		} `tfsdk:"guarantee" json:"guarantee,omitempty"`
 		Parent      *string `tfsdk:"parent" json:"parent,omitempty"`
+		Priority    *int64  `tfsdk:"priority" json:"priority,omitempty"`
 		Reclaimable *bool   `tfsdk:"reclaimable" json:"reclaimable,omitempty"`
 		Type        *string `tfsdk:"type" json:"type,omitempty"`
 		Weight      *int64  `tfsdk:"weight" json:"weight,omitempty"`
@@ -272,6 +273,14 @@ func (r *SchedulingVolcanoShQueueV1Beta1Manifest) Schema(_ context.Context, _ da
 					"parent": schema.StringAttribute{
 						Description:         "Parent define the parent of queue",
 						MarkdownDescription: "Parent define the parent of queue",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"priority": schema.Int64Attribute{
+						Description:         "Priority define the priority of queue. Higher values are prioritized for scheduling and considered later during reclamation.",
+						MarkdownDescription: "Priority define the priority of queue. Higher values are prioritized for scheduling and considered later during reclamation.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

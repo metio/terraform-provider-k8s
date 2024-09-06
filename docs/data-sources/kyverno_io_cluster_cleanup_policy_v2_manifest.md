@@ -94,13 +94,16 @@ Optional:
 <a id="nestedatt--spec--context"></a>
 ### Nested Schema for `spec.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--context--variable))
 
 <a id="nestedatt--spec--context--api_call"></a>
@@ -109,6 +112,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--context--api_call--service))

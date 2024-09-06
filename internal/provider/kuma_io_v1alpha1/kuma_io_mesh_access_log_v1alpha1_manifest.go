@@ -648,8 +648,8 @@ func (r *KumaIoMeshAccessLogV1Alpha1Manifest) Schema(_ context.Context, _ dataso
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

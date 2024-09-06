@@ -260,8 +260,8 @@ func (r *KumaIoMeshHealthCheckV1Alpha1Manifest) Schema(_ context.Context, _ data
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

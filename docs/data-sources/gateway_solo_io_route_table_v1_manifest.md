@@ -201,6 +201,7 @@ Optional:
 - `host_rewrite_path_regex` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--host_rewrite_path_regex))
 - `idle_timeout` (String)
 - `jwt` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt))
+- `jwt_providers_staged` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged))
 - `jwt_staged` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_staged))
 - `lb_hash` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--lb_hash))
 - `max_stream_duration` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--max_stream_duration))
@@ -834,6 +835,207 @@ Optional:
 Optional:
 
 - `disable` (Boolean)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged`
+
+Optional:
+
+- `after_ext_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth))
+- `before_ext_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth`
+
+Optional:
+
+- `allow_missing_or_failed_jwt` (Boolean)
+- `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers`
+
+Optional:
+
+- `audiences` (List of String)
+- `claims_to_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--claims_to_headers))
+- `clock_skew_seconds` (Number)
+- `issuer` (String)
+- `jwks` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks))
+- `keep_token` (Boolean)
+- `token_source` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--token_source))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--claims_to_headers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.claims_to_headers`
+
+Optional:
+
+- `append` (Boolean)
+- `claim` (String)
+- `header` (String)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.jwks`
+
+Optional:
+
+- `local` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--local))
+- `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--local"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.jwks.local`
+
+Optional:
+
+- `key` (String)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.jwks.remote`
+
+Optional:
+
+- `async_fetch` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote--async_fetch))
+- `cache_duration` (String)
+- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote--upstream_ref))
+- `url` (String)
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote--async_fetch"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.jwks.remote.async_fetch`
+
+Optional:
+
+- `fast_listener` (Boolean)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--jwks--remote--upstream_ref"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.jwks.remote.upstream_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--token_source"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.token_source`
+
+Optional:
+
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--token_source--headers))
+- `query_params` (List of String)
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--after_ext_auth--providers--token_source--headers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.after_ext_auth.providers.token_source.headers`
+
+Optional:
+
+- `header` (String)
+- `prefix` (String)
+
+
+
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth`
+
+Optional:
+
+- `allow_missing_or_failed_jwt` (Boolean)
+- `providers` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers`
+
+Optional:
+
+- `audiences` (List of String)
+- `claims_to_headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--claims_to_headers))
+- `clock_skew_seconds` (Number)
+- `issuer` (String)
+- `jwks` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks))
+- `keep_token` (Boolean)
+- `token_source` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--token_source))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--claims_to_headers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.claims_to_headers`
+
+Optional:
+
+- `append` (Boolean)
+- `claim` (String)
+- `header` (String)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.jwks`
+
+Optional:
+
+- `local` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--local))
+- `remote` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote))
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--local"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.jwks.local`
+
+Optional:
+
+- `key` (String)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.jwks.remote`
+
+Optional:
+
+- `async_fetch` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote--async_fetch))
+- `cache_duration` (String)
+- `upstream_ref` (Attributes) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote--upstream_ref))
+- `url` (String)
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote--async_fetch"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.jwks.remote.async_fetch`
+
+Optional:
+
+- `fast_listener` (Boolean)
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--jwks--remote--upstream_ref"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.jwks.remote.upstream_ref`
+
+Optional:
+
+- `name` (String)
+- `namespace` (String)
+
+
+
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--token_source"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.token_source`
+
+Optional:
+
+- `headers` (Attributes List) (see [below for nested schema](#nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--token_source--headers))
+- `query_params` (List of String)
+
+<a id="nestedatt--spec--routes--options--jwt_providers_staged--before_ext_auth--providers--token_source--headers"></a>
+### Nested Schema for `spec.routes.options.jwt_providers_staged.before_ext_auth.providers.token_source.headers`
+
+Optional:
+
+- `header` (String)
+- `prefix` (String)
+
+
+
+
 
 
 <a id="nestedatt--spec--routes--options--jwt_staged"></a>

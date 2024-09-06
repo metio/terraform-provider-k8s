@@ -53,12 +53,9 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
-
 Optional:
 
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined in-place. (see [below for nested schema](#nestedatt--spec--target_ref))
 - `to` (Attributes List) To list makes a match between the consumed services and correspondingconfigurations (see [below for nested schema](#nestedatt--spec--to))
 
 <a id="nestedatt--spec--target_ref"></a>

@@ -68,6 +68,7 @@ type CanariesFlanksourceComComponentV1ManifestData struct {
 		ExternalID *string            `tfsdk:"external_id" json:"externalID,omitempty"`
 		ForEach    *map[string]string `tfsdk:"for_each" json:"forEach,omitempty"`
 		Health     *string            `tfsdk:"health" json:"health,omitempty"`
+		HealthExpr *string            `tfsdk:"health_expr" json:"healthExpr,omitempty"`
 		Hidden     *bool              `tfsdk:"hidden" json:"hidden,omitempty"`
 		Icon       *string            `tfsdk:"icon" json:"icon,omitempty"`
 		Id         *struct {
@@ -398,6 +399,14 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					"health": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"health_expr": schema.StringAttribute{
+						Description:         "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
+						MarkdownDescription: "healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -749,8 +758,8 @@ func (r *CanariesFlanksourceComComponentV1Manifest) Schema(_ context.Context, _ 
 					},
 
 					"status_expr": schema.StringAttribute{
-						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config",
-						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config",
+						Description:         "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
+						MarkdownDescription: "statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

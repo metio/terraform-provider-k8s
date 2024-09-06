@@ -58,6 +58,7 @@ Optional:
 - `components` (Attributes List) (see [below for nested schema](#nestedatt--spec--components))
 - `configs` (Attributes List) Lookup and associate config items with this component (see [below for nested schema](#nestedatt--spec--configs))
 - `group_by` (Attributes) Specify the catalog tag (& optionally the tag selector) to groupthe topology. (see [below for nested schema](#nestedatt--spec--group_by))
+- `health_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--id))
 - `label` (String)
@@ -65,7 +66,7 @@ Optional:
 - `properties` (Attributes List) Properties are created once the full component tree is created, property lookup functionscan return a map of coomponent name => properties to allow for bulk property lookupsbeing applied to multiple components in the tree (see [below for nested schema](#nestedatt--spec--properties))
 - `push` (Attributes) Agent will push topology to specified path (see [below for nested schema](#nestedatt--spec--push))
 - `schedule` (String)
-- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.
 - `text` (String)
 - `tooltip` (String)
 - `type` (String)
@@ -81,6 +82,7 @@ Optional:
 - `external_id` (String)
 - `for_each` (Map of String) Only applies when using lookup, when specified the components and propertiesspecified under ForEach will be templated using the components returned by the lookup${.properties} can be used to reference the properties of the component${.component} can be used to reference the component itself
 - `health` (String)
+- `health_expr` (String) healthExpr allows defining a cel expression to evaluate the health of a componentbased on the summary.
 - `hidden` (Boolean) If set to true, do not display in UI
 - `icon` (String)
 - `id` (Attributes) (see [below for nested schema](#nestedatt--spec--components--id))
@@ -96,7 +98,7 @@ Optional:
 - `properties` (Map of String)
 - `relationships` (Attributes List) (see [below for nested schema](#nestedatt--spec--components--relationships))
 - `selectors` (Attributes List) Lookup and associcate other components with this component (see [below for nested schema](#nestedatt--spec--components--selectors))
-- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary and the related config
+- `status_expr` (String) statusExpr allows defining a cel expression to evaluate the status of a componentbased on the summary.
 - `summary` (Attributes) Summary is the health, incidents, insights & check summary (see [below for nested schema](#nestedatt--spec--components--summary))
 - `tooltip` (String)
 - `type` (String) The type of component, e.g. service, API, website, library, database, etc.

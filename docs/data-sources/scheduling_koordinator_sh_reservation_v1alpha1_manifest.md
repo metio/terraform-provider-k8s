@@ -63,6 +63,7 @@ Optional:
 - `allocate_policy` (String) AllocatePolicy represents the allocation policy of reserved resources that Reservation expects.
 - `expires` (String) Expired timestamp when the reservation is expected to expire.If both 'expires' and 'ttl' are set, 'expires' is checked first.'expires' and 'ttl' are mutually exclusive. Defaults to being set dynamically at runtime based on the 'ttl'.
 - `pre_allocation` (Boolean) By default, the resources requirements of reservation (specified in 'template.spec') is filtered by whether thenode has sufficient free resources (i.e. Reservation Request <  Node Free).When 'preAllocation' is set, the scheduler will skip this validation and allow overcommitment. The scheduledreservation would be waiting to be available until free resources are sufficient.
+- `taints` (Attributes List) Specifies the reservation's taints. This can be toleranted by the reservation tolerance.Eviction is not supported for NoExecute taints (see [below for nested schema](#nestedatt--spec--taints))
 - `ttl` (String) Time-to-Live period for the reservation.'expires' and 'ttl' are mutually exclusive. Defaults to 24h. Set 0 to disable expiration.
 - `unschedulable` (Boolean) Unschedulable controls reservation schedulability of new pods. By default, reservation is schedulable.
 
@@ -126,3 +127,18 @@ Optional:
 - `namespace` (String) Namespace of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 - `resource_version` (String) Specific resourceVersion to which this reference is made, if any.More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 - `uid` (String) UID of the referent.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
+
+
+
+<a id="nestedatt--spec--taints"></a>
+### Nested Schema for `spec.taints`
+
+Required:
+
+- `effect` (String) Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
+- `key` (String) Required. The taint key to be applied to a node.
+
+Optional:
+
+- `time_added` (String) TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.
+- `value` (String) The taint value corresponding to the taint key.

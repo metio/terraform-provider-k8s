@@ -53,28 +53,10 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
-Required:
-
-- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
-
 Optional:
 
 - `from` (Attributes List) From list makes a match between clients and corresponding configurations (see [below for nested schema](#nestedatt--spec--from))
-
-<a id="nestedatt--spec--target_ref"></a>
-### Nested Schema for `spec.target_ref`
-
-Optional:
-
-- `kind` (String) Kind of the referenced resource
-- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
-- `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
-- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
-- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
-- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
-- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
-- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'
-
+- `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--from"></a>
 ### Nested Schema for `spec.from`
@@ -108,3 +90,19 @@ Optional:
 Optional:
 
 - `action` (String) Action defines a behavior for the specified group of clients:
+
+
+
+<a id="nestedatt--spec--target_ref"></a>
+### Nested Schema for `spec.target_ref`
+
+Optional:
+
+- `kind` (String) Kind of the referenced resource
+- `labels` (Map of String) Labels are used to select group of MeshServices that match labels. Either Labels orName and Namespace can be used.
+- `mesh` (String) Mesh is reserved for future use to identify cross mesh resources.
+- `name` (String) Name of the referenced resource. Can only be used with kinds: 'MeshService','MeshServiceSubset' and 'MeshGatewayRoute'
+- `namespace` (String) Namespace specifies the namespace of target resource. If empty only resources in policy namespacewill be targeted.
+- `proxy_types` (List of String) ProxyTypes specifies the data plane types that are subject to the policy. When not specified,all data plane types are targeted by the policy.
+- `section_name` (String) SectionName is used to target specific section of resource.For example, you can target port from MeshService.ports[] by its name. Only traffic to this port will be affected.
+- `tags` (Map of String) Tags used to select a subset of proxies by tags. Can only be used with kinds'MeshSubset' and 'MeshServiceSubset'

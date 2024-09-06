@@ -62,6 +62,8 @@ Optional:
 
 Optional:
 
+- `ipv4` (String)
+- `ipv6` (String)
 - `name` (String)
 - `port` (Number)
 - `protocol` (String)

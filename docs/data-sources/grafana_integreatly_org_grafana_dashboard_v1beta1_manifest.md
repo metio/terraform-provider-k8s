@@ -76,6 +76,7 @@ Optional:
 - `plugins` (Attributes List) plugins (see [below for nested schema](#nestedatt--spec--plugins))
 - `resync_period` (String) how often the dashboard is refreshed, defaults to 5m if not set
 - `url` (String) dashboard url
+- `url_authorization` (Attributes) authorization options for dashboard from url (see [below for nested schema](#nestedatt--spec--url_authorization))
 
 <a id="nestedatt--spec--instance_selector"></a>
 ### Nested Schema for `spec.instance_selector`
@@ -236,3 +237,44 @@ Required:
 
 - `name` (String)
 - `version` (String)
+
+
+<a id="nestedatt--spec--url_authorization"></a>
+### Nested Schema for `spec.url_authorization`
+
+Optional:
+
+- `basic_auth` (Attributes) (see [below for nested schema](#nestedatt--spec--url_authorization--basic_auth))
+
+<a id="nestedatt--spec--url_authorization--basic_auth"></a>
+### Nested Schema for `spec.url_authorization.basic_auth`
+
+Optional:
+
+- `password` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--url_authorization--basic_auth--password))
+- `username` (Attributes) SecretKeySelector selects a key of a Secret. (see [below for nested schema](#nestedatt--spec--url_authorization--basic_auth--username))
+
+<a id="nestedatt--spec--url_authorization--basic_auth--password"></a>
+### Nested Schema for `spec.url_authorization.basic_auth.password`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+<a id="nestedatt--spec--url_authorization--basic_auth--username"></a>
+### Nested Schema for `spec.url_authorization.basic_auth.username`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.
+- `optional` (Boolean) Specify whether the Secret or its key must be defined

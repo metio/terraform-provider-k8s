@@ -60,6 +60,7 @@ Optional:
 - `extend_clusters` (Attributes List) extendCluster indicate the jobs in this Queue will be dispatched to these clusters. (see [below for nested schema](#nestedatt--spec--extend_clusters))
 - `guarantee` (Attributes) Guarantee indicate configuration about resource reservation (see [below for nested schema](#nestedatt--spec--guarantee))
 - `parent` (String) Parent define the parent of queue
+- `priority` (Number) Priority define the priority of queue. Higher values are prioritized for scheduling and considered later during reclamation.
 - `reclaimable` (Boolean) Reclaimable indicate whether the queue can be reclaimed by other queue
 - `type` (String) Type define the type of queue
 - `weight` (Number)

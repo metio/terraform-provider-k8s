@@ -53,8 +53,11 @@ Optional:
 <a id="nestedatt--spec"></a>
 ### Nested Schema for `spec`
 
+Required:
+
+- `plugin_name` (String)
+- `selector` (Map of String)
+
 Optional:
 
 - `config` (Map of String)
-- `plugin_name` (String)
-- `selector` (Map of String)

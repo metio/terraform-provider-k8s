@@ -54,4 +54,7 @@ Optional:
 
 Optional:
 
-- `scylla_utils_image` (String) scyllaUtilsImage is a Scylla image used for running scylla utilities.
+- `scylla_utils_image` (String) scyllaUtilsImage is a ScyllaDB image used for running ScyllaDB utilities.
+- `unsupported_bash_tools_image_override` (String) unsupportedBashToolsImageOverride allows to adjust a generic Bash image with extra tools used by the operator for auxiliary purposes. Setting this field renders your cluster unsupported. Use at your own risk.
+- `unsupported_grafana_image_override` (String) unsupportedGrafanaImageOverride allows to adjust Grafana image used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.
+- `unsupported_prometheus_version_override` (String) unsupportedPrometheusVersionOverride allows to adjust Prometheus version used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.

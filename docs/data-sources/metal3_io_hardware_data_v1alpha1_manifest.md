@@ -62,13 +62,13 @@ Optional:
 
 Optional:
 
-- `cpu` (Attributes) CPU describes one processor on the host. (see [below for nested schema](#nestedatt--spec--hardware--cpu))
-- `firmware` (Attributes) Firmware describes the firmware on the host. (see [below for nested schema](#nestedatt--spec--hardware--firmware))
+- `cpu` (Attributes) Details of the CPU(s) in the system. (see [below for nested schema](#nestedatt--spec--hardware--cpu))
+- `firmware` (Attributes) System firmware information. (see [below for nested schema](#nestedatt--spec--hardware--firmware))
 - `hostname` (String)
-- `nics` (Attributes List) (see [below for nested schema](#nestedatt--spec--hardware--nics))
-- `ram_mebibytes` (Number)
-- `storage` (Attributes List) (see [below for nested schema](#nestedatt--spec--hardware--storage))
-- `system_vendor` (Attributes) HardwareSystemVendor stores details about the whole hardware system. (see [below for nested schema](#nestedatt--spec--hardware--system_vendor))
+- `nics` (Attributes List) List of network interfaces for the host. (see [below for nested schema](#nestedatt--spec--hardware--nics))
+- `ram_mebibytes` (Number) The host's amount of memory in Mebibytes.
+- `storage` (Attributes List) List of storage (disk, SSD, etc.) available to the host. (see [below for nested schema](#nestedatt--spec--hardware--storage))
+- `system_vendor` (Attributes) System vendor information. (see [below for nested schema](#nestedatt--spec--hardware--system_vendor))
 
 <a id="nestedatt--spec--hardware--cpu"></a>
 ### Nested Schema for `spec.hardware.cpu`

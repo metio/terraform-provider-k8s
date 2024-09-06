@@ -70,6 +70,7 @@ Optional:
 - `health_check` (Attributes) Healthcheck defines health checks for ExternalName services. (see [below for nested schema](#nestedatt--spec--mirroring--health_check))
 - `kind` (String) Kind defines the kind of the Service.
 - `max_body_size` (Number) MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.
+- `mirror_body` (Boolean) MirrorBody defines whether the body of the request should be mirrored.Default value is true.
 - `mirrors` (Attributes List) Mirrors defines the list of mirrors where Traefik will duplicate the traffic. (see [below for nested schema](#nestedatt--spec--mirroring--mirrors))
 - `namespace` (String) Namespace defines the namespace of the referenced Kubernetes Service or TraefikService.
 - `native_lb` (Boolean) NativeLB controls, when creating the load-balancer,whether the LB's children are directly the pods IPs or if the only child is the Kubernetes Service clusterIP.The Kubernetes Service itself does load-balance to the pods.By default, NativeLB is false.

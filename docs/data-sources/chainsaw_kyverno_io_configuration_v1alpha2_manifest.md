@@ -143,6 +143,7 @@ Optional:
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--error--catch--command--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+- `work_dir` (String) WorkDir is the working directory for command.
 
 <a id="nestedatt--spec--error--catch--command--bindings"></a>
 ### Nested Schema for `spec.error.catch.command.bindings`
@@ -381,6 +382,7 @@ Optional:
 - `outputs` (Attributes List) Outputs defines output bindings. (see [below for nested schema](#nestedatt--spec--error--catch--script--outputs))
 - `skip_log_output` (Boolean) SkipLogOutput removes the output from the command. Useful for sensitive logs or to reduce noise.
 - `timeout` (String) Timeout for the operation. Overrides the global timeout set in the Configuration.
+- `work_dir` (String) WorkDir is the working directory for script.
 
 <a id="nestedatt--spec--error--catch--script--bindings"></a>
 ### Nested Schema for `spec.error.catch.script.bindings`

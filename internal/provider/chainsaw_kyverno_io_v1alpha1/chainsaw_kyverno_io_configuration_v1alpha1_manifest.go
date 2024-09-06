@@ -69,6 +69,7 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"command" json:"command,omitempty"`
 			Delete *struct {
 				Bindings *[]struct {
@@ -173,6 +174,7 @@ type ChainsawKyvernoIoConfigurationV1Alpha1ManifestData struct {
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"script" json:"script,omitempty"`
 			Sleep *struct {
 				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -481,6 +483,14 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"timeout": schema.StringAttribute{
 											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"work_dir": schema.StringAttribute{
+											Description:         "WorkDir is the working directory for command.",
+											MarkdownDescription: "WorkDir is the working directory for command.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -1227,6 +1237,14 @@ func (r *ChainsawKyvernoIoConfigurationV1Alpha1Manifest) Schema(_ context.Contex
 										"timeout": schema.StringAttribute{
 											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"work_dir": schema.StringAttribute{
+											Description:         "WorkDir is the working directory for script.",
+											MarkdownDescription: "WorkDir is the working directory for script.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,

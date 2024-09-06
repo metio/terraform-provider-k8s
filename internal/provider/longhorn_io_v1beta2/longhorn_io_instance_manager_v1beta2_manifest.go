@@ -43,10 +43,15 @@ type LonghornIoInstanceManagerV1Beta2ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		DataEngine *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
-		Image      *string `tfsdk:"image" json:"image,omitempty"`
-		NodeID     *string `tfsdk:"node_id" json:"nodeID,omitempty"`
-		Type       *string `tfsdk:"type" json:"type,omitempty"`
+		DataEngine     *string `tfsdk:"data_engine" json:"dataEngine,omitempty"`
+		DataEngineSpec *struct {
+			V2 *struct {
+				CpuMask *string `tfsdk:"cpu_mask" json:"cpuMask,omitempty"`
+			} `tfsdk:"v2" json:"v2,omitempty"`
+		} `tfsdk:"data_engine_spec" json:"dataEngineSpec,omitempty"`
+		Image  *string `tfsdk:"image" json:"image,omitempty"`
+		NodeID *string `tfsdk:"node_id" json:"nodeID,omitempty"`
+		Type   *string `tfsdk:"type" json:"type,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -133,6 +138,32 @@ func (r *LonghornIoInstanceManagerV1Beta2Manifest) Schema(_ context.Context, _ d
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"data_engine_spec": schema.SingleNestedAttribute{
+						Description:         "",
+						MarkdownDescription: "",
+						Attributes: map[string]schema.Attribute{
+							"v2": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"cpu_mask": schema.StringAttribute{
+										Description:         "",
+										MarkdownDescription: "",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"image": schema.StringAttribute{

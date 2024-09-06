@@ -56,7 +56,6 @@ Optional:
 Optional:
 
 - `additional_display_details` (Attributes List) A list of additional details that Kiali will look for in annotations. When found on any workload or service, Kiali will display the additional details in the respective workload or service details page. This is typically used to inject some CI metadata or documentation links into Kiali views. For example, by default, Kiali will recognize these annotations on a service or workload (e.g. a Deployment, StatefulSet, etc.):'''annotations:  kiali.io/api-spec: http://list/to/my/api/doc  kiali.io/api-type: rest'''Note that if you change this setting for your own custom annotations, keep in mind that it would override the current default. So you would have to add the default setting as shown in the example CR if you want to preserve the default links. (see [below for nested schema](#nestedatt--spec--additional_display_details))
-- `api` (Attributes) (see [below for nested schema](#nestedatt--spec--api))
 - `auth` (Attributes) (see [below for nested schema](#nestedatt--spec--auth))
 - `clustering` (Attributes) Multi-cluster related features. (see [below for nested schema](#nestedatt--spec--clustering))
 - `custom_dashboards` (List of Map of String) A list of user-defined custom monitoring dashboards that you can use to generate metrics chartsfor your applications. The server has some built-in dashboards; if you define a custom dashboard herewith the same name as a built-in dashboard, your custom dashboard takes precedence and will overwritethe built-in dashboard. You can disable one or more of the built-in dashboards by simply defining anempty dashboard.An example of an additional user-defined dashboard,'''- name: myapp  title: My App Metrics  items:  - chart:      name: 'Thread Count'      spans: 4      metricName: 'thread-count'      dataType: 'raw''''An example of disabling a built-in dashboard (in this case, disabling the Envoy dashboard),'''- name: envoy'''To learn more about custom monitoring dashboards, see the documentation at https://kiali.io/docs/configuration/custom-dashboard/
@@ -84,25 +83,6 @@ Required:
 Optional:
 
 - `icon_annotation` (String) The name of the annotation whose value is used to determine what icon to display. The annotation name itself can be anything, but note that the value of that annotation must be one of: 'rest', 'grpc', and 'graphql' - any other value is ignored.
-
-
-<a id="nestedatt--spec--api"></a>
-### Nested Schema for `spec.api`
-
-Optional:
-
-- `namespaces` (Attributes) Settings that control what namespaces are returned by Kiali. (see [below for nested schema](#nestedatt--spec--api--namespaces))
-
-<a id="nestedatt--spec--api--namespaces"></a>
-### Nested Schema for `spec.api.namespaces`
-
-Optional:
-
-- `exclude` (List of String) A list of namespaces to be excluded from the list of namespaces provided by the Kiali API and Kiali UI. Regex is supported. This does not affect explicit namespace access.
-- `include` (List of String) A list of namespaces to be included in the list of namespaces provided by the Kiali API and Kiali UI (if those namespaces exist). Regex is supported. An undefined or empty list is ignored. This does not affect explicit namespace access.
-- `label_selector_exclude` (String) A Kubernetes label selector (e.g. 'myLabel=myValue') which is used for filtering out namespaceswhen fetching the list of available namespaces. This does not affect explicit namespace access.
-- `label_selector_include` (String) A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector_include' (this label is added regardless if the namespace matches the label_selector_exclude also).Note that if you do not set this 'label_selector_include' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector_include' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.
-
 
 
 <a id="nestedatt--spec--auth"></a>
@@ -190,12 +170,12 @@ Optional:
 
 Optional:
 
-- `accessible_namespaces` (List of String) When 'cluster_wide_access=false' this must be set to the list of namespaces to which Kiali is to be given permissions.  You can provide names using regex expressions matched against all namespaces the operator can see.  If left unset it is required that 'cluster_wide_access' be 'true', and Kiali will have permissions to all namespaces.  The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC settings.
 - `additional_service_yaml` (Map of String) Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'
 - `affinity` (Attributes) Affinity definitions that are to be used to define the nodes where the Kiali pod should be constrained. See the Kubernetes documentation on Assigning Pods to Nodes for the proper syntax for these three different affinity types. (see [below for nested schema](#nestedatt--spec--deployment--affinity))
-- `cluster_wide_access` (Boolean) Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.accessible_namespaces' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and list the desired namespaces in 'deployment.accessible_namespaces'. When not set, this value will default to 'false' if 'deployment.accessible_namespaces' is set to a list of namespaces; otherwise this will be 'true'.
+- `cluster_wide_access` (Boolean) Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.discovery_selectors.default' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and define the desired selectors in 'deployment.discovery_selectors.default'. When not set, this value will default to 'true'.
 - `configmap_annotations` (Map of String) Custom annotations to be created on the Kiali ConfigMap.
 - `custom_secrets` (Attributes List) Defines additional secrets that are to be mounted in the Kiali pod.These are useful to contain certs that are used by Kiali to securely connect to third party systems(for example, see 'external_services.tracing.auth.ca_file').These secrets must be created by an external mechanism. Kiali will not generate these secrets; itis assumed these secrets are externally managed. You can define 0, 1, or more secrets.An example configuration is,'''custom_secrets:- name: mysecret  mount: /mysecret-path- name: my-other-secret  mount: /my-other-secret-location  optional: true''' (see [below for nested schema](#nestedatt--spec--deployment--custom_secrets))
+- `discovery_selectors` (Attributes) Discovery selectors used to determine which namespaces are accessible to Kiali and which namespaces are visible to Kiali users.You can define discovery selectors to match namespaces on the local cluster as well as remote clusters.The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC permissions.These selectors will have similar semantics as defined by Istio ( https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig )and the syntax of the equality-based and set-based label selectors are documented by Kubernetes here( https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements ) (see [below for nested schema](#nestedatt--spec--deployment--discovery_selectors))
 - `dns` (Attributes) The Kiali server pod's DNS configuration. Kubernetes supports different DNS policies and configurations.For further details, consult the Kubernetes documentation - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ (see [below for nested schema](#nestedatt--spec--deployment--dns))
 - `host_aliases` (Attributes List) This is content for the Kubernetes 'hostAliases' setting for the Kiali server.This allows you to modify the Kiali server pod '/etc/hosts' file.A typical way to configure this setting is,'''host_aliases:- ip: 192.168.1.100  hostnames:  - 'foo.local'  - 'bar.local''''For details on the content of this setting, see https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/#adding-additional-entries-with-hostaliases (see [below for nested schema](#nestedatt--spec--deployment--host_aliases))
 - `hpa` (Attributes) Determines what (if any) HorizontalPodAutoscaler should be created to autoscale the Kiali pod.A typical way to configure HPA for Kiali is,'''hpa:  api_version: 'autoscaling/v2'  spec:    maxReplicas: 2    minReplicas: 1    metrics:    - type: Resource      resource:        name: cpu        target:          type: Utilization          averageUtilization: 50''' (see [below for nested schema](#nestedatt--spec--deployment--hpa))
@@ -244,6 +224,37 @@ Optional:
 
 - `csi` (Map of String) Defines CSI-specific settings that allows a secret from an external CSI secret store to be injected in the pod via a volume mount. For details, see https://secrets-store-csi-driver.sigs.k8s.io/
 - `optional` (Boolean) Indicates if the secret may or may not exist at the time the Kiali pod starts. This will default to 'false' if not specified. This is ignored if 'csi' is specified - CSI secrets must exist when specified.
+
+
+<a id="nestedatt--spec--deployment--discovery_selectors"></a>
+### Nested Schema for `spec.deployment.discovery_selectors`
+
+Optional:
+
+- `default` (Attributes List) These are label selectors for the Kiali local cluster and for all remote clusters that do not have overrides.Namespaces that match these selectors are visible to Kiali users.When 'cluster_wide_access=false' these 'default' selectors are used to restrict which namespaces Kiali will have access to.If there are no default discovery selectors, then 'cluster_wide_access' should be 'true' in which case Kiali will havepermissions to access all namespaces. (see [below for nested schema](#nestedatt--spec--deployment--discovery_selectors--default))
+- `overrides` (Map of String) If a remote cluster has different namespaces than the local cluster, these overrides provide a way for you to match those remote namespaces. Kiali will make these remote namespaces visible to users. The name of the overrides section is the name of the remote cluster. Note that the 'default' selectors are ignored when matching namespaces on a remote cluster if that remote cluster has overrides defined.
+
+<a id="nestedatt--spec--deployment--discovery_selectors--default"></a>
+### Nested Schema for `spec.deployment.discovery_selectors.default`
+
+Optional:
+
+- `match_expressions` (Attributes List) (see [below for nested schema](#nestedatt--spec--deployment--discovery_selectors--default--match_expressions))
+- `match_labels` (Map of String)
+
+<a id="nestedatt--spec--deployment--discovery_selectors--default--match_expressions"></a>
+### Nested Schema for `spec.deployment.discovery_selectors.default.match_expressions`
+
+Required:
+
+- `key` (String)
+- `operator` (String)
+
+Optional:
+
+- `values` (List of String)
+
+
 
 
 <a id="nestedatt--spec--deployment--dns"></a>

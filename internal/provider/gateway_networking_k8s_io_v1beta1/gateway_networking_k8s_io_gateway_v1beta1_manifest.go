@@ -49,6 +49,14 @@ type GatewayNetworkingK8SIoGatewayV1Beta1ManifestData struct {
 			Type  *string `tfsdk:"type" json:"type,omitempty"`
 			Value *string `tfsdk:"value" json:"value,omitempty"`
 		} `tfsdk:"addresses" json:"addresses,omitempty"`
+		BackendTLS *struct {
+			ClientCertificateRef *struct {
+				Group     *string `tfsdk:"group" json:"group,omitempty"`
+				Kind      *string `tfsdk:"kind" json:"kind,omitempty"`
+				Name      *string `tfsdk:"name" json:"name,omitempty"`
+				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+			} `tfsdk:"client_certificate_ref" json:"clientCertificateRef,omitempty"`
+		} `tfsdk:"backend_tls" json:"backendTLS,omitempty"`
 		GatewayClassName *string `tfsdk:"gateway_class_name" json:"gatewayClassName,omitempty"`
 		Infrastructure   *struct {
 			Annotations   *map[string]string `tfsdk:"annotations" json:"annotations,omitempty"`
@@ -216,6 +224,74 @@ func (r *GatewayNetworkingK8SIoGatewayV1Beta1Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
+					"backend_tls": schema.SingleNestedAttribute{
+						Description:         "BackendTLS configures TLS settings for when this Gateway is connecting tobackends with TLS.Support: Core",
+						MarkdownDescription: "BackendTLS configures TLS settings for when this Gateway is connecting tobackends with TLS.Support: Core",
+						Attributes: map[string]schema.Attribute{
+							"client_certificate_ref": schema.SingleNestedAttribute{
+								Description:         "ClientCertificateRef is a reference to an object that contains a ClientCertificate and the associated private key.References to a resource in different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason.ClientCertificateRef can reference to standard Kubernetes resources, i.e.Secret, or implementation-specific custom resources.This setting can be overridden on the service level by use of BackendTLSPolicy.Support: Core",
+								MarkdownDescription: "ClientCertificateRef is a reference to an object that contains a ClientCertificate and the associated private key.References to a resource in different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason.ClientCertificateRef can reference to standard Kubernetes resources, i.e.Secret, or implementation-specific custom resources.This setting can be overridden on the service level by use of BackendTLSPolicy.Support: Core",
+								Attributes: map[string]schema.Attribute{
+									"group": schema.StringAttribute{
+										Description:         "Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.",
+										MarkdownDescription: "Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtMost(253),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^$|^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
+										},
+									},
+
+									"kind": schema.StringAttribute{
+										Description:         "Kind is kind of the referent. For example 'Secret'.",
+										MarkdownDescription: "Kind is kind of the referent. For example 'Secret'.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(63),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$`), ""),
+										},
+									},
+
+									"name": schema.StringAttribute{
+										Description:         "Name is the name of the referent.",
+										MarkdownDescription: "Name is the name of the referent.",
+										Required:            true,
+										Optional:            false,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(253),
+										},
+									},
+
+									"namespace": schema.StringAttribute{
+										Description:         "Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core",
+										MarkdownDescription: "Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+										Validators: []validator.String{
+											stringvalidator.LengthAtLeast(1),
+											stringvalidator.LengthAtMost(63),
+											stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?$`), ""),
+										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
 					"gateway_class_name": schema.StringAttribute{
 						Description:         "GatewayClassName used for this Gateway. This is the name of aGatewayClass resource.",
 						MarkdownDescription: "GatewayClassName used for this Gateway. This is the name of aGatewayClass resource.",
@@ -229,8 +305,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Beta1Manifest) Schema(_ context.Context,
 					},
 
 					"infrastructure": schema.SingleNestedAttribute{
-						Description:         "Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Core",
-						MarkdownDescription: "Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Core",
+						Description:         "Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Extended",
+						MarkdownDescription: "Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Extended",
 						Attributes: map[string]schema.Attribute{
 							"annotations": schema.MapAttribute{
 								Description:         "Annotations that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.annotations' field on resources.For other implementations, this refers to any relevant (implementation specific) 'annotations' concepts.An implementation may chose to add additional implementation-specific annotations as they see fit.Support: Extended",
@@ -242,8 +318,8 @@ func (r *GatewayNetworkingK8SIoGatewayV1Beta1Manifest) Schema(_ context.Context,
 							},
 
 							"labels": schema.MapAttribute{
-								Description:         "Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.Support: Extended",
-								MarkdownDescription: "Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.Support: Extended",
+								Description:         "Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.If an implementation maps these labels to Pods, or any other resource that would need to be recreated when labelschange, it SHOULD clearly warn about this behavior in documentation.Support: Extended",
+								MarkdownDescription: "Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.If an implementation maps these labels to Pods, or any other resource that would need to be recreated when labelschange, it SHOULD clearly warn about this behavior in documentation.Support: Extended",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

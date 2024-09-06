@@ -570,6 +570,7 @@ Optional:
 - `discovery_poll_interval` (String)
 - `dynamic_metadata_from_claims` (Map of String)
 - `end_session_properties` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--end_session_properties))
+- `front_channel_logout` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--front_channel_logout))
 - `headers` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--headers))
 - `identity_token` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--identity_token))
 - `jwks_cache_refresh_policy` (Attributes) (see [below for nested schema](#nestedatt--spec--configs--oauth2--oidc_authorization_code--jwks_cache_refresh_policy))
@@ -719,6 +720,14 @@ Optional:
 Optional:
 
 - `method_type` (String)
+
+
+<a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--front_channel_logout"></a>
+### Nested Schema for `spec.configs.oauth2.oidc_authorization_code.front_channel_logout`
+
+Optional:
+
+- `path` (String)
 
 
 <a id="nestedatt--spec--configs--oauth2--oidc_authorization_code--headers"></a>

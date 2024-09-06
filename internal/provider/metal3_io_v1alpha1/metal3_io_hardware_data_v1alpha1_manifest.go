@@ -180,8 +180,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 						MarkdownDescription: "The hardware discovered on the host during its inspection.",
 						Attributes: map[string]schema.Attribute{
 							"cpu": schema.SingleNestedAttribute{
-								Description:         "CPU describes one processor on the host.",
-								MarkdownDescription: "CPU describes one processor on the host.",
+								Description:         "Details of the CPU(s) in the system.",
+								MarkdownDescription: "Details of the CPU(s) in the system.",
 								Attributes: map[string]schema.Attribute{
 									"arch": schema.StringAttribute{
 										Description:         "",
@@ -230,8 +230,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"firmware": schema.SingleNestedAttribute{
-								Description:         "Firmware describes the firmware on the host.",
-								MarkdownDescription: "Firmware describes the firmware on the host.",
+								Description:         "System firmware information.",
+								MarkdownDescription: "System firmware information.",
 								Attributes: map[string]schema.Attribute{
 									"bios": schema.SingleNestedAttribute{
 										Description:         "The BIOS for this firmware",
@@ -280,8 +280,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"nics": schema.ListNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "List of network interfaces for the host.",
+								MarkdownDescription: "List of network interfaces for the host.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"ip": schema.StringAttribute{
@@ -385,16 +385,16 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"ram_mebibytes": schema.Int64Attribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "The host's amount of memory in Mebibytes.",
+								MarkdownDescription: "The host's amount of memory in Mebibytes.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"storage": schema.ListNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
+								Description:         "List of storage (disk, SSD, etc.) available to the host.",
+								MarkdownDescription: "List of storage (disk, SSD, etc.) available to the host.",
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"alternate_names": schema.ListAttribute{
@@ -504,8 +504,8 @@ func (r *Metal3IoHardwareDataV1Alpha1Manifest) Schema(_ context.Context, _ datas
 							},
 
 							"system_vendor": schema.SingleNestedAttribute{
-								Description:         "HardwareSystemVendor stores details about the whole hardware system.",
-								MarkdownDescription: "HardwareSystemVendor stores details about the whole hardware system.",
+								Description:         "System vendor information.",
+								MarkdownDescription: "System vendor information.",
 								Attributes: map[string]schema.Attribute{
 									"manufacturer": schema.StringAttribute{
 										Description:         "",

@@ -70,6 +70,7 @@ Optional:
 - `honor_labels` (Boolean) HonorLabels chooses the metric's labels on collisions with target labels.
 - `honor_timestamps` (Boolean) HonorTimestamps controls whether Prometheus respects the timestamps present in scraped data.
 - `http_sd_configs` (Attributes List) HTTPSDConfigs defines a list of HTTP service discovery configurations. (see [below for nested schema](#nestedatt--spec--http_sd_configs))
+- `ionos_sd_configs` (Attributes List) IonosSDConfigs defines a list of IONOS service discovery configurations. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs))
 - `job_name` (String) The value of the 'job' label assigned to the scraped metrics by default.The 'job_name' field in the rendered scrape configuration is always controlled by theoperator to prevent duplicate job names, which Prometheus does not allow. Instead the'job' label is set by means of relabeling configs.
 - `keep_dropped_targets` (Number) Per-scrape limit on the number of targets dropped by relabelingthat will be kept in memory. 0 means no limit.It requires Prometheus >= v2.47.0.
 - `kubernetes_sd_configs` (Attributes List) KubernetesSDConfigs defines a list of Kubernetes service discovery configurations. (see [below for nested schema](#nestedatt--spec--kubernetes_sd_configs))
@@ -83,7 +84,7 @@ Optional:
 - `metrics_path` (String) MetricsPath HTTP path to scrape for metrics. If empty, Prometheus uses the default value (e.g. /metrics).
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `nomad_sd_configs` (Attributes List) NomadSDConfigs defines a list of Nomad service discovery configurations. (see [below for nested schema](#nestedatt--spec--nomad_sd_configs))
-- `oauth2` (Attributes) OAuth2 client credentials used to fetch a token for the targets. (see [below for nested schema](#nestedatt--spec--oauth2))
+- `oauth2` (Attributes) OAuth2 configuration to use on every scrape request. (see [below for nested schema](#nestedatt--spec--oauth2))
 - `openstack_sd_configs` (Attributes List) OpenStackSDConfigs defines a list of OpenStack service discovery configurations. (see [below for nested schema](#nestedatt--spec--openstack_sd_configs))
 - `ovhcloud_sd_configs` (Attributes List) OVHCloudSDConfigs defines a list of OVHcloud service discovery configurations. (see [below for nested schema](#nestedatt--spec--ovhcloud_sd_configs))
 - `params` (Map of List of String) Optional HTTP URL parameters
@@ -888,7 +889,7 @@ Optional:
 - `filters` (Attributes List) Optional filters to limit the discovery process to a subset of the available resources. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--filters))
 - `follow_redirects` (Boolean) Configure whether HTTP requests follow HTTP 3xx redirects.
 - `host_networking_host` (String) The host to use if the container is in host networking mode.
-- `match_first_network` (Boolean) Configure whether to match the first network if the container has multiple networks defined.If unset, Prometheus uses true by default.It requires Prometheus >= v2.54.0.
+- `match_first_network` (Boolean) Configure whether to match the first network if the container has multiple networks defined.If unset, Prometheus uses true by default.It requires Prometheus >= v2.54.1.
 - `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
 - `oauth2` (Attributes) Optional OAuth 2.0 configuration.Cannot be set at the same time as 'authorization'. (see [below for nested schema](#nestedatt--spec--docker_sd_configs--oauth2))
 - `port` (Number) The port to scrape metrics from.
@@ -2772,6 +2773,146 @@ Optional:
 
 <a id="nestedatt--spec--http_sd_configs--tls_config--key_secret"></a>
 ### Nested Schema for `spec.http_sd_configs.tls_config.key_secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+
+<a id="nestedatt--spec--ionos_sd_configs"></a>
+### Nested Schema for `spec.ionos_sd_configs`
+
+Required:
+
+- `authorization` (Attributes) Authorization' header configuration, required when using IONOS. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--authorization))
+- `datacenter_id` (String) The unique ID of the IONOS data center.
+
+Optional:
+
+- `enable_http2` (Boolean) Configure whether to enable HTTP2.
+- `follow_redirects` (Boolean) Configure whether the HTTP requests should follow HTTP 3xx redirects.
+- `no_proxy` (String) 'noProxy' is a comma-separated string that can contain IPs, CIDR notation, domain namesthat should be excluded from proxying. IP and domain names cancontain port numbers.It requires Prometheus >= v2.43.0.
+- `port` (Number) Port to scrape the metrics from.
+- `proxy_connect_header` (Map of String) ProxyConnectHeader optionally specifies headers to send toproxies during CONNECT requests.It requires Prometheus >= v2.43.0.
+- `proxy_from_environment` (Boolean) Whether to use the proxy configuration defined by environment variables (HTTP_PROXY, HTTPS_PROXY, and NO_PROXY).If unset, Prometheus uses its default value.It requires Prometheus >= v2.43.0.
+- `proxy_url` (String) 'proxyURL' defines the HTTP proxy server to use.
+- `refresh_interval` (String) Refresh interval to re-read the list of resources.
+- `tls_config` (Attributes) TLS configuration to use when connecting to the IONOS API. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config))
+
+<a id="nestedatt--spec--ionos_sd_configs--authorization"></a>
+### Nested Schema for `spec.ionos_sd_configs.authorization`
+
+Optional:
+
+- `credentials` (Attributes) Selects a key of a Secret in the namespace that contains the credentials for authentication. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--authorization--credentials))
+- `type` (String) Defines the authentication type. The value is case-insensitive.'Basic' is not a supported value.Default: 'Bearer'
+
+<a id="nestedatt--spec--ionos_sd_configs--authorization--credentials"></a>
+### Nested Schema for `spec.ionos_sd_configs.authorization.credentials`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config`
+
+Optional:
+
+- `ca` (Attributes) Certificate authority used when verifying server certificates. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--ca))
+- `cert` (Attributes) Client certificate to present when doing client-authentication. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--cert))
+- `insecure_skip_verify` (Boolean) Disable target certificate validation.
+- `key_secret` (Attributes) Secret containing the client key file for the targets. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--key_secret))
+- `max_version` (String) Maximum acceptable TLS version.It requires Prometheus >= v2.41.0.
+- `min_version` (String) Minimum acceptable TLS version.It requires Prometheus >= v2.35.0.
+- `server_name` (String) Used to verify the hostname for the targets.
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--ca"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.ca`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--ca--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--ca--secret))
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--ca--config_map"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.ca.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--ca--secret"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.ca.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--cert"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.cert`
+
+Optional:
+
+- `config_map` (Attributes) ConfigMap containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--cert--config_map))
+- `secret` (Attributes) Secret containing data to use for the targets. (see [below for nested schema](#nestedatt--spec--ionos_sd_configs--tls_config--cert--secret))
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--cert--config_map"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.cert.config_map`
+
+Required:
+
+- `key` (String) The key to select.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the ConfigMap or its key must be defined
+
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--cert--secret"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.cert.secret`
+
+Required:
+
+- `key` (String) The key of the secret to select from.  Must be a valid secret key.
+
+Optional:
+
+- `name` (String) Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+- `optional` (Boolean) Specify whether the Secret or its key must be defined
+
+
+
+<a id="nestedatt--spec--ionos_sd_configs--tls_config--key_secret"></a>
+### Nested Schema for `spec.ionos_sd_configs.tls_config.key_secret`
 
 Required:
 

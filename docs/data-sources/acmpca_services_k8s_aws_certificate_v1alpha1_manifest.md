@@ -63,6 +63,7 @@ Optional:
 - `api_passthrough` (Attributes) Specifies X.509 certificate information to be included in the issued certificate.An APIPassthrough or APICSRPassthrough template variant must be selected,or else this parameter is ignored. For more information about using thesetemplates, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).If conflicting or duplicate certificate information is supplied during certificateissuance, Amazon Web Services Private CA applies order of operation rules(https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html#template-order-of-operations)to determine what information is used. (see [below for nested schema](#nestedatt--spec--api_passthrough))
 - `certificate_authority_arn` (String) The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority(https://docs.aws.amazon.com/privateca/latest/APIReference/API_CreateCertificateAuthority.html).This must be of the form:arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
 - `certificate_authority_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--certificate_authority_ref))
+- `certificate_output` (Attributes) SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret (see [below for nested schema](#nestedatt--spec--certificate_output))
 - `certificate_signing_request` (String)
 - `certificate_signing_request_ref` (Attributes) AWSResourceReferenceWrapper provides a wrapper around *AWSResourceReferencetype to provide more user friendly syntax for references using 'from' fieldEx:APIIDRef:	from:	  name: my-api (see [below for nested schema](#nestedatt--spec--certificate_signing_request_ref))
 - `template_arn` (String) Specifies a custom configuration template to use when issuing a certificate.If this parameter is not provided, Amazon Web Services Private CA defaultsto the EndEntityCertificate/V1 template. For CA certificates, you shouldchoose the shortest path length that meets your needs. The path length isindicated by the PathLenN portion of the ARN, where N is the CA depth (https://docs.aws.amazon.com/privateca/latest/userguide/PcaTerms.html#terms-cadepth).Note: The CA depth configured on a subordinate CA certificate must not exceedthe limit set by its parents in the CA hierarchy.For a list of TemplateArn values supported by Amazon Web Services PrivateCA, see Understanding Certificate Templates (https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html).
@@ -269,6 +270,19 @@ Optional:
 - `name` (String)
 - `namespace` (String)
 
+
+
+<a id="nestedatt--spec--certificate_output"></a>
+### Nested Schema for `spec.certificate_output`
+
+Required:
+
+- `key` (String) Key is the key within the secret
+
+Optional:
+
+- `name` (String) name is unique within a namespace to reference a secret resource.
+- `namespace` (String) namespace defines the space within which the secret name must be unique.
 
 
 <a id="nestedatt--spec--certificate_signing_request_ref"></a>

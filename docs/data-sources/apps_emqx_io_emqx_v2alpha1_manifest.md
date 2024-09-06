@@ -3390,12 +3390,9 @@ Optional:
 
 Required:
 
+- `error` (String)
 - `port` (Number)
 - `protocol` (String)
-
-Optional:
-
-- `error` (String)
 
 
 
@@ -3537,12 +3534,9 @@ Optional:
 
 Required:
 
+- `error` (String)
 - `port` (Number)
 - `protocol` (String)
-
-Optional:
-
-- `error` (String)
 
 
 

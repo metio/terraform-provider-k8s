@@ -49,14 +49,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 			Icon_annotation *string `tfsdk:"icon_annotation" json:"icon_annotation,omitempty"`
 			Title           *string `tfsdk:"title" json:"title,omitempty"`
 		} `tfsdk:"additional_display_details" json:"additional_display_details,omitempty"`
-		Api *struct {
-			Namespaces *struct {
-				Exclude                *[]string `tfsdk:"exclude" json:"exclude,omitempty"`
-				Include                *[]string `tfsdk:"include" json:"include,omitempty"`
-				Label_selector_exclude *string   `tfsdk:"label_selector_exclude" json:"label_selector_exclude,omitempty"`
-				Label_selector_include *string   `tfsdk:"label_selector_include" json:"label_selector_include,omitempty"`
-			} `tfsdk:"namespaces" json:"namespaces,omitempty"`
-		} `tfsdk:"api" json:"api,omitempty"`
 		Auth *struct {
 			Openid *struct {
 				Additional_request_params *map[string]string `tfsdk:"additional_request_params" json:"additional_request_params,omitempty"`
@@ -99,7 +91,6 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 		} `tfsdk:"clustering" json:"clustering,omitempty"`
 		Custom_dashboards *[]map[string]string `tfsdk:"custom_dashboards" json:"custom_dashboards,omitempty"`
 		Deployment        *struct {
-			Accessible_namespaces   *[]string          `tfsdk:"accessible_namespaces" json:"accessible_namespaces,omitempty"`
 			Additional_service_yaml *map[string]string `tfsdk:"additional_service_yaml" json:"additional_service_yaml,omitempty"`
 			Affinity                *struct {
 				Node     *map[string]string `tfsdk:"node" json:"node,omitempty"`
@@ -114,6 +105,17 @@ type KialiIoKialiV1Alpha1ManifestData struct {
 				Name     *string            `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool              `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"custom_secrets" json:"custom_secrets,omitempty"`
+			Discovery_selectors *struct {
+				Default *[]struct {
+					MatchExpressions *[]struct {
+						Key      *string   `tfsdk:"key" json:"key,omitempty"`
+						Operator *string   `tfsdk:"operator" json:"operator,omitempty"`
+						Values   *[]string `tfsdk:"values" json:"values,omitempty"`
+					} `tfsdk:"match_expressions" json:"matchExpressions,omitempty"`
+					MatchLabels *map[string]string `tfsdk:"match_labels" json:"matchLabels,omitempty"`
+				} `tfsdk:"default" json:"default,omitempty"`
+				Overrides *map[string]string `tfsdk:"overrides" json:"overrides,omitempty"`
+			} `tfsdk:"discovery_selectors" json:"discovery_selectors,omitempty"`
 			Dns *struct {
 				Config *map[string]string `tfsdk:"config" json:"config,omitempty"`
 				Policy *string            `tfsdk:"policy" json:"policy,omitempty"`
@@ -554,58 +556,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 						Computed: false,
 					},
 
-					"api": schema.SingleNestedAttribute{
-						Description:         "",
-						MarkdownDescription: "",
-						Attributes: map[string]schema.Attribute{
-							"namespaces": schema.SingleNestedAttribute{
-								Description:         "Settings that control what namespaces are returned by Kiali.",
-								MarkdownDescription: "Settings that control what namespaces are returned by Kiali.",
-								Attributes: map[string]schema.Attribute{
-									"exclude": schema.ListAttribute{
-										Description:         "A list of namespaces to be excluded from the list of namespaces provided by the Kiali API and Kiali UI. Regex is supported. This does not affect explicit namespace access.",
-										MarkdownDescription: "A list of namespaces to be excluded from the list of namespaces provided by the Kiali API and Kiali UI. Regex is supported. This does not affect explicit namespace access.",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"include": schema.ListAttribute{
-										Description:         "A list of namespaces to be included in the list of namespaces provided by the Kiali API and Kiali UI (if those namespaces exist). Regex is supported. An undefined or empty list is ignored. This does not affect explicit namespace access.",
-										MarkdownDescription: "A list of namespaces to be included in the list of namespaces provided by the Kiali API and Kiali UI (if those namespaces exist). Regex is supported. An undefined or empty list is ignored. This does not affect explicit namespace access.",
-										ElementType:         types.StringType,
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"label_selector_exclude": schema.StringAttribute{
-										Description:         "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used for filtering out namespaceswhen fetching the list of available namespaces. This does not affect explicit namespace access.",
-										MarkdownDescription: "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used for filtering out namespaceswhen fetching the list of available namespaces. This does not affect explicit namespace access.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"label_selector_include": schema.StringAttribute{
-										Description:         "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector_include' (this label is added regardless if the namespace matches the label_selector_exclude also).Note that if you do not set this 'label_selector_include' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector_include' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
-										MarkdownDescription: "A Kubernetes label selector (e.g. 'myLabel=myValue') which is used when fetching the list ofavailable namespaces. This does not affect explicit namespace access.If 'deployment.accessible_namespaces' does not have the special value of ''**''then the Kiali operator will add a new label to all accessible namespaces - that newlabel will be this 'label_selector_include' (this label is added regardless if the namespace matches the label_selector_exclude also).Note that if you do not set this 'label_selector_include' setting but 'deployment.accessible_namespaces'does not have the special 'all namespaces' entry of ''**'' then this 'label_selector_include' will be setto a default value of 'kiali.io/[<deployment.instance_name>.]member-of=<deployment.namespace>'where '[<deployment.instance_name>.]' is the instance name assigned to the Kiali installationif it is not the default 'kiali' (otherwise, this is omitted) and '<deployment.namespace>'is the namespace where Kiali is to be installed.",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-						},
-						Required: false,
-						Optional: true,
-						Computed: false,
-					},
-
 					"auth": schema.SingleNestedAttribute{
 						Description:         "",
 						MarkdownDescription: "",
@@ -900,15 +850,6 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 						Description:         "",
 						MarkdownDescription: "",
 						Attributes: map[string]schema.Attribute{
-							"accessible_namespaces": schema.ListAttribute{
-								Description:         "When 'cluster_wide_access=false' this must be set to the list of namespaces to which Kiali is to be given permissions.  You can provide names using regex expressions matched against all namespaces the operator can see.  If left unset it is required that 'cluster_wide_access' be 'true', and Kiali will have permissions to all namespaces.  The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC settings.",
-								MarkdownDescription: "When 'cluster_wide_access=false' this must be set to the list of namespaces to which Kiali is to be given permissions.  You can provide names using regex expressions matched against all namespaces the operator can see.  If left unset it is required that 'cluster_wide_access' be 'true', and Kiali will have permissions to all namespaces.  The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC settings.",
-								ElementType:         types.StringType,
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
-							},
-
 							"additional_service_yaml": schema.MapAttribute{
 								Description:         "Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'",
 								MarkdownDescription: "Additional custom yaml to add to the service definition. This is used mainly to customize the service type. For example, if the 'deployment.service_type' is set to 'LoadBalancer' and you want to set the loadBalancerIP, you can do so here with: 'additional_service_yaml: { 'loadBalancerIP': '78.11.24.19' }'. Another example would be if the 'deployment.service_type' is set to 'ExternalName' you will need to configure the name via: 'additional_service_yaml: { 'externalName': 'my.kiali.example.com' }'. A final example would be if external IPs need to be set: 'additional_service_yaml: { 'externalIPs': ['80.11.12.10'] }'",
@@ -955,8 +896,8 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 							},
 
 							"cluster_wide_access": schema.BoolAttribute{
-								Description:         "Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.accessible_namespaces' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and list the desired namespaces in 'deployment.accessible_namespaces'. When not set, this value will default to 'false' if 'deployment.accessible_namespaces' is set to a list of namespaces; otherwise this will be 'true'.",
-								MarkdownDescription: "Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.accessible_namespaces' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and list the desired namespaces in 'deployment.accessible_namespaces'. When not set, this value will default to 'false' if 'deployment.accessible_namespaces' is set to a list of namespaces; otherwise this will be 'true'.",
+								Description:         "Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.discovery_selectors.default' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and define the desired selectors in 'deployment.discovery_selectors.default'. When not set, this value will default to 'true'.",
+								MarkdownDescription: "Determines if the Kiali server will be granted cluster-wide permissions to see all namespaces. When true, this provides more efficient caching within the Kiali server. It must be 'true' if 'deployment.discovery_selectors.default' is left unset. To limit the namespaces for which Kiali has permissions, set to 'false' and define the desired selectors in 'deployment.discovery_selectors.default'. When not set, this value will default to 'true'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -1008,6 +949,83 @@ func (r *KialiIoKialiV1Alpha1Manifest) Schema(_ context.Context, _ datasource.Sc
 											Optional:            true,
 											Computed:            false,
 										},
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"discovery_selectors": schema.SingleNestedAttribute{
+								Description:         "Discovery selectors used to determine which namespaces are accessible to Kiali and which namespaces are visible to Kiali users.You can define discovery selectors to match namespaces on the local cluster as well as remote clusters.The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC permissions.These selectors will have similar semantics as defined by Istio ( https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig )and the syntax of the equality-based and set-based label selectors are documented by Kubernetes here( https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements )",
+								MarkdownDescription: "Discovery selectors used to determine which namespaces are accessible to Kiali and which namespaces are visible to Kiali users.You can define discovery selectors to match namespaces on the local cluster as well as remote clusters.The list of namespaces that a user can access is a subset of these namespaces, given that user's RBAC permissions.These selectors will have similar semantics as defined by Istio ( https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#MeshConfig )and the syntax of the equality-based and set-based label selectors are documented by Kubernetes here( https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#resources-that-support-set-based-requirements )",
+								Attributes: map[string]schema.Attribute{
+									"default": schema.ListNestedAttribute{
+										Description:         "These are label selectors for the Kiali local cluster and for all remote clusters that do not have overrides.Namespaces that match these selectors are visible to Kiali users.When 'cluster_wide_access=false' these 'default' selectors are used to restrict which namespaces Kiali will have access to.If there are no default discovery selectors, then 'cluster_wide_access' should be 'true' in which case Kiali will havepermissions to access all namespaces.",
+										MarkdownDescription: "These are label selectors for the Kiali local cluster and for all remote clusters that do not have overrides.Namespaces that match these selectors are visible to Kiali users.When 'cluster_wide_access=false' these 'default' selectors are used to restrict which namespaces Kiali will have access to.If there are no default discovery selectors, then 'cluster_wide_access' should be 'true' in which case Kiali will havepermissions to access all namespaces.",
+										NestedObject: schema.NestedAttributeObject{
+											Attributes: map[string]schema.Attribute{
+												"match_expressions": schema.ListNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													NestedObject: schema.NestedAttributeObject{
+														Attributes: map[string]schema.Attribute{
+															"key": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+															},
+
+															"operator": schema.StringAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																Required:            true,
+																Optional:            false,
+																Computed:            false,
+																Validators: []validator.String{
+																	stringvalidator.OneOf("In", "NotIn", "Exists", "DoesNotExist"),
+																},
+															},
+
+															"values": schema.ListAttribute{
+																Description:         "",
+																MarkdownDescription: "",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"match_labels": schema.MapAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													ElementType:         types.StringType,
+													Required:            false,
+													Optional:            true,
+													Computed:            false,
+												},
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"overrides": schema.MapAttribute{
+										Description:         "If a remote cluster has different namespaces than the local cluster, these overrides provide a way for you to match those remote namespaces. Kiali will make these remote namespaces visible to users. The name of the overrides section is the name of the remote cluster. Note that the 'default' selectors are ignored when matching namespaces on a remote cluster if that remote cluster has overrides defined.",
+										MarkdownDescription: "If a remote cluster has different namespaces than the local cluster, these overrides provide a way for you to match those remote namespaces. Kiali will make these remote namespaces visible to users. The name of the overrides section is the name of the remote cluster. Note that the 'default' selectors are ignored when matching namespaces on a remote cluster if that remote cluster has overrides defined.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
 									},
 								},
 								Required: false,

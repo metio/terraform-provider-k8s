@@ -61,6 +61,7 @@ Optional:
 - `sources` (Attributes List) sources in any Camel DSL supported (see [below for nested schema](#nestedatt--spec--sources))
 - `template` (Map of String) the main source in YAML DSL
 - `types` (Attributes) data specification types for the events consumed/produced by the KameletDeprecated: In favor of using DataTypes (see [below for nested schema](#nestedatt--spec--types))
+- `versions` (Attributes) the optional versions available for this Kamelet. This field may not be taken in account by Camel core and is meant to supportany user defined versioning model on cluster only. If the user wants to use any given version, she must materialize a file with the given version specas the 'main' Kamelet spec on the runtime. (see [below for nested schema](#nestedatt--spec--versions))
 
 <a id="nestedatt--spec--data_types"></a>
 ### Nested Schema for `spec.data_types`
@@ -277,6 +278,264 @@ Optional:
 
 <a id="nestedatt--spec--types--schema--properties"></a>
 ### Nested Schema for `spec.types.schema.properties`
+
+Optional:
+
+- `default` (Map of String) default is a default value for undefined object fields.
+- `deprecated` (Boolean)
+- `description` (String)
+- `enum` (List of String)
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `exclusive_maximum` (Boolean)
+- `exclusive_minimum` (Boolean)
+- `format` (String) format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:- bsonobjectid: a bson object ID, i.e. a 24 characters hex string- uri: an URI as parsed by Golang net/url.ParseRequestURI- email: an email address as parsed by Golang net/mail.ParseAddress- hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034].- ipv4: an IPv4 IP as parsed by Golang net.ParseIP- ipv6: an IPv6 IP as parsed by Golang net.ParseIP- cidr: a CIDR as parsed by Golang net.ParseCIDR- mac: a MAC address as parsed by Golang net.ParseMAC- uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- isbn: an ISBN10 or ISBN13 number string like '0321751043' or '978-0321751041'- isbn10: an ISBN10 number string like '0321751043'- isbn13: an ISBN13 number string like '978-0321751041'- creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35d{3})d{11})$ with any non digit characters mixed in- ssn: a U.S. social security number following the regex ^d{3}[- ]?d{2}[- ]?d{4}$- hexcolor: an hexadecimal color code like '#FFFFFF' following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$- rgbcolor: an RGB color code like rgb like 'rgb(255,255,255)'- byte: base64 encoded binary data- password: any kind of string- date: a date string like '2006-01-02' as defined by full-date in RFC3339- duration: a duration string like '22 ns' as parsed by Golang time.ParseDuration or compatible with Scala duration format- datetime: a date time string like '2014-12-15T19:30:20.000Z' as defined by date-time in RFC3339.
+- `id` (String)
+- `max_items` (Number)
+- `max_length` (Number)
+- `max_properties` (Number)
+- `maximum` (String) A Number represents a JSON number literal.
+- `min_items` (Number)
+- `min_length` (Number)
+- `min_properties` (Number)
+- `minimum` (String) A Number represents a JSON number literal.
+- `multiple_of` (String) A Number represents a JSON number literal.
+- `nullable` (Boolean)
+- `pattern` (String)
+- `title` (String)
+- `type` (String)
+- `unique_items` (Boolean)
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+
+
+
+
+<a id="nestedatt--spec--versions"></a>
+### Nested Schema for `spec.versions`
+
+Optional:
+
+- `data_types` (Attributes) data specification types for the events consumed/produced by the Kamelet (see [below for nested schema](#nestedatt--spec--versions--data_types))
+- `definition` (Attributes) defines the formal configuration of the Kamelet (see [below for nested schema](#nestedatt--spec--versions--definition))
+- `dependencies` (List of String) Camel dependencies needed by the Kamelet
+- `sources` (Attributes List) sources in any Camel DSL supported (see [below for nested schema](#nestedatt--spec--versions--sources))
+- `template` (Map of String) the main source in YAML DSL
+- `types` (Attributes) data specification types for the events consumed/produced by the KameletDeprecated: In favor of using DataTypes (see [below for nested schema](#nestedatt--spec--versions--types))
+
+<a id="nestedatt--spec--versions--data_types"></a>
+### Nested Schema for `spec.versions.data_types`
+
+Optional:
+
+- `default` (String) the default data type for this Kamelet
+- `headers` (Attributes) one to many header specifications (see [below for nested schema](#nestedatt--spec--versions--data_types--headers))
+- `types` (Attributes) one to many data type specifications (see [below for nested schema](#nestedatt--spec--versions--data_types--types))
+
+<a id="nestedatt--spec--versions--data_types--headers"></a>
+### Nested Schema for `spec.versions.data_types.headers`
+
+Optional:
+
+- `default` (String)
+- `description` (String)
+- `required` (Boolean)
+- `title` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--versions--data_types--types"></a>
+### Nested Schema for `spec.versions.data_types.types`
+
+Optional:
+
+- `dependencies` (List of String) the list of Camel or Maven dependencies required by the data type
+- `description` (String) optional description
+- `format` (String) the data type format name
+- `headers` (Attributes) one to many header specifications (see [below for nested schema](#nestedatt--spec--versions--data_types--types--headers))
+- `media_type` (String) media type as expected for HTTP media types (ie, application/json)
+- `schema` (Attributes) the expected schema for the data type (see [below for nested schema](#nestedatt--spec--versions--data_types--types--schema))
+- `scheme` (String) the data type component scheme
+
+<a id="nestedatt--spec--versions--data_types--types--headers"></a>
+### Nested Schema for `spec.versions.data_types.types.headers`
+
+Optional:
+
+- `default` (String)
+- `description` (String)
+- `required` (Boolean)
+- `title` (String)
+- `type` (String)
+
+
+<a id="nestedatt--spec--versions--data_types--types--schema"></a>
+### Nested Schema for `spec.versions.data_types.types.schema`
+
+Optional:
+
+- `description` (String)
+- `dollarschema` (String) JSONSchemaURL represents a schema url.
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `external_docs` (Attributes) ExternalDocumentation allows referencing an external resource for extended documentation. (see [below for nested schema](#nestedatt--spec--versions--data_types--types--schema--external_docs))
+- `id` (String)
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--versions--data_types--types--schema--properties))
+- `required` (List of String)
+- `title` (String)
+- `type` (String)
+
+<a id="nestedatt--spec--versions--data_types--types--schema--external_docs"></a>
+### Nested Schema for `spec.versions.data_types.types.schema.external_docs`
+
+Optional:
+
+- `description` (String)
+- `url` (String)
+
+
+<a id="nestedatt--spec--versions--data_types--types--schema--properties"></a>
+### Nested Schema for `spec.versions.data_types.types.schema.properties`
+
+Optional:
+
+- `default` (Map of String) default is a default value for undefined object fields.
+- `deprecated` (Boolean)
+- `description` (String)
+- `enum` (List of String)
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `exclusive_maximum` (Boolean)
+- `exclusive_minimum` (Boolean)
+- `format` (String) format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:- bsonobjectid: a bson object ID, i.e. a 24 characters hex string- uri: an URI as parsed by Golang net/url.ParseRequestURI- email: an email address as parsed by Golang net/mail.ParseAddress- hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034].- ipv4: an IPv4 IP as parsed by Golang net.ParseIP- ipv6: an IPv6 IP as parsed by Golang net.ParseIP- cidr: a CIDR as parsed by Golang net.ParseCIDR- mac: a MAC address as parsed by Golang net.ParseMAC- uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- isbn: an ISBN10 or ISBN13 number string like '0321751043' or '978-0321751041'- isbn10: an ISBN10 number string like '0321751043'- isbn13: an ISBN13 number string like '978-0321751041'- creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35d{3})d{11})$ with any non digit characters mixed in- ssn: a U.S. social security number following the regex ^d{3}[- ]?d{2}[- ]?d{4}$- hexcolor: an hexadecimal color code like '#FFFFFF' following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$- rgbcolor: an RGB color code like rgb like 'rgb(255,255,255)'- byte: base64 encoded binary data- password: any kind of string- date: a date string like '2006-01-02' as defined by full-date in RFC3339- duration: a duration string like '22 ns' as parsed by Golang time.ParseDuration or compatible with Scala duration format- datetime: a date time string like '2014-12-15T19:30:20.000Z' as defined by date-time in RFC3339.
+- `id` (String)
+- `max_items` (Number)
+- `max_length` (Number)
+- `max_properties` (Number)
+- `maximum` (String) A Number represents a JSON number literal.
+- `min_items` (Number)
+- `min_length` (Number)
+- `min_properties` (Number)
+- `minimum` (String) A Number represents a JSON number literal.
+- `multiple_of` (String) A Number represents a JSON number literal.
+- `nullable` (Boolean)
+- `pattern` (String)
+- `title` (String)
+- `type` (String)
+- `unique_items` (Boolean)
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+
+
+
+
+
+<a id="nestedatt--spec--versions--definition"></a>
+### Nested Schema for `spec.versions.definition`
+
+Optional:
+
+- `description` (String)
+- `dollarschema` (String) JSONSchemaURL represents a schema url.
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `external_docs` (Attributes) ExternalDocumentation allows referencing an external resource for extended documentation. (see [below for nested schema](#nestedatt--spec--versions--definition--external_docs))
+- `id` (String)
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--versions--definition--properties))
+- `required` (List of String)
+- `title` (String)
+- `type` (String)
+
+<a id="nestedatt--spec--versions--definition--external_docs"></a>
+### Nested Schema for `spec.versions.definition.external_docs`
+
+Optional:
+
+- `description` (String)
+- `url` (String)
+
+
+<a id="nestedatt--spec--versions--definition--properties"></a>
+### Nested Schema for `spec.versions.definition.properties`
+
+Optional:
+
+- `default` (Map of String) default is a default value for undefined object fields.
+- `deprecated` (Boolean)
+- `description` (String)
+- `enum` (List of String)
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `exclusive_maximum` (Boolean)
+- `exclusive_minimum` (Boolean)
+- `format` (String) format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:- bsonobjectid: a bson object ID, i.e. a 24 characters hex string- uri: an URI as parsed by Golang net/url.ParseRequestURI- email: an email address as parsed by Golang net/mail.ParseAddress- hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034].- ipv4: an IPv4 IP as parsed by Golang net.ParseIP- ipv6: an IPv6 IP as parsed by Golang net.ParseIP- cidr: a CIDR as parsed by Golang net.ParseCIDR- mac: a MAC address as parsed by Golang net.ParseMAC- uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$- uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$- isbn: an ISBN10 or ISBN13 number string like '0321751043' or '978-0321751041'- isbn10: an ISBN10 number string like '0321751043'- isbn13: an ISBN13 number string like '978-0321751041'- creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35d{3})d{11})$ with any non digit characters mixed in- ssn: a U.S. social security number following the regex ^d{3}[- ]?d{2}[- ]?d{4}$- hexcolor: an hexadecimal color code like '#FFFFFF' following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$- rgbcolor: an RGB color code like rgb like 'rgb(255,255,255)'- byte: base64 encoded binary data- password: any kind of string- date: a date string like '2006-01-02' as defined by full-date in RFC3339- duration: a duration string like '22 ns' as parsed by Golang time.ParseDuration or compatible with Scala duration format- datetime: a date time string like '2014-12-15T19:30:20.000Z' as defined by date-time in RFC3339.
+- `id` (String)
+- `max_items` (Number)
+- `max_length` (Number)
+- `max_properties` (Number)
+- `maximum` (String) A Number represents a JSON number literal.
+- `min_items` (Number)
+- `min_length` (Number)
+- `min_properties` (Number)
+- `minimum` (String) A Number represents a JSON number literal.
+- `multiple_of` (String) A Number represents a JSON number literal.
+- `nullable` (Boolean)
+- `pattern` (String)
+- `title` (String)
+- `type` (String)
+- `unique_items` (Boolean)
+- `x_descriptors` (List of String) XDescriptors is a list of extended properties that trigger a custom behavior in external systems
+
+
+
+<a id="nestedatt--spec--versions--sources"></a>
+### Nested Schema for `spec.versions.sources`
+
+Optional:
+
+- `compression` (Boolean) if the content is compressed (base64 encrypted)
+- `content` (String) the source code (plain text)
+- `content_key` (String) the confimap key holding the source content
+- `content_ref` (String) the confimap reference holding the source content
+- `content_type` (String) the content type (tipically text or binary)
+- `from_kamelet` (Boolean) True if the spec is generated from a Kamelet
+- `interceptors` (List of String) Interceptors are optional identifiers the org.apache.camel.k.RoutesLoaderuses to pre/post process sources
+- `language` (String) specify which is the language (Camel DSL) used to interpret this source code
+- `loader` (String) Loader is an optional id of the org.apache.camel.k.RoutesLoader that willinterpret this source at runtime
+- `name` (String) the name of the specification
+- `path` (String) the path where the file is stored
+- `property_names` (List of String) List of property names defined in the source (e.g. if type is 'template')
+- `raw_content` (String) the source code (binary)
+- `type` (String) Type defines the kind of source described by this object
+
+
+<a id="nestedatt--spec--versions--types"></a>
+### Nested Schema for `spec.versions.types`
+
+Optional:
+
+- `media_type` (String) media type as expected for HTTP media types (ie, application/json)
+- `schema` (Attributes) the expected schema for the event (see [below for nested schema](#nestedatt--spec--versions--types--schema))
+
+<a id="nestedatt--spec--versions--types--schema"></a>
+### Nested Schema for `spec.versions.types.schema`
+
+Optional:
+
+- `description` (String)
+- `dollarschema` (String) JSONSchemaURL represents a schema url.
+- `example` (Map of String) JSON represents any valid JSON value.These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+- `external_docs` (Attributes) ExternalDocumentation allows referencing an external resource for extended documentation. (see [below for nested schema](#nestedatt--spec--versions--types--schema--external_docs))
+- `id` (String)
+- `properties` (Attributes) (see [below for nested schema](#nestedatt--spec--versions--types--schema--properties))
+- `required` (List of String)
+- `title` (String)
+- `type` (String)
+
+<a id="nestedatt--spec--versions--types--schema--external_docs"></a>
+### Nested Schema for `spec.versions.types.schema.external_docs`
+
+Optional:
+
+- `description` (String)
+- `url` (String)
+
+
+<a id="nestedatt--spec--versions--types--schema--properties"></a>
+### Nested Schema for `spec.versions.types.schema.properties`
 
 Optional:
 

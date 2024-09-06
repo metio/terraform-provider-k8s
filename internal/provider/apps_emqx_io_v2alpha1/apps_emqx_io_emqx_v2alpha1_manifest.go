@@ -11323,8 +11323,8 @@ func (r *AppsEmqxIoEmqxV2Alpha1Manifest) Schema(_ context.Context, _ datasource.
 																	"error": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtMost(316),
@@ -11842,8 +11842,8 @@ func (r *AppsEmqxIoEmqxV2Alpha1Manifest) Schema(_ context.Context, _ datasource.
 																	"error": schema.StringAttribute{
 																		Description:         "",
 																		MarkdownDescription: "",
-																		Required:            false,
-																		Optional:            true,
+																		Required:            true,
+																		Optional:            false,
 																		Computed:            false,
 																		Validators: []validator.String{
 																			stringvalidator.LengthAtMost(316),

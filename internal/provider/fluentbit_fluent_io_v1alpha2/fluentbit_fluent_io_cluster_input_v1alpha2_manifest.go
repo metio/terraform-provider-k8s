@@ -60,6 +60,17 @@ type FluentbitFluentIoClusterInputV1Alpha2ManifestData struct {
 			Samples *int64  `tfsdk:"samples" json:"samples,omitempty"`
 			Tag     *string `tfsdk:"tag" json:"tag,omitempty"`
 		} `tfsdk:"dummy" json:"dummy,omitempty"`
+		ExecWasi *struct {
+			AccessiblePaths *[]string `tfsdk:"accessible_paths" json:"accessiblePaths,omitempty"`
+			BufSize         *string   `tfsdk:"buf_size" json:"bufSize,omitempty"`
+			IntervalNSec    *int64    `tfsdk:"interval_n_sec" json:"intervalNSec,omitempty"`
+			IntervalSec     *int64    `tfsdk:"interval_sec" json:"intervalSec,omitempty"`
+			Parser          *string   `tfsdk:"parser" json:"parser,omitempty"`
+			Threaded        *bool     `tfsdk:"threaded" json:"threaded,omitempty"`
+			WasiPath        *string   `tfsdk:"wasi_path" json:"wasiPath,omitempty"`
+			WasmHeapSize    *string   `tfsdk:"wasm_heap_size" json:"wasmHeapSize,omitempty"`
+			WasmStackSize   *string   `tfsdk:"wasm_stack_size" json:"wasmStackSize,omitempty"`
+		} `tfsdk:"exec_wasi" json:"execWasi,omitempty"`
 		FluentBitMetrics *struct {
 			ScrapeInterval *string `tfsdk:"scrape_interval" json:"scrapeInterval,omitempty"`
 			ScrapeOnStart  *bool   `tfsdk:"scrape_on_start" json:"scrapeOnStart,omitempty"`
@@ -410,6 +421,97 @@ func (r *FluentbitFluentIoClusterInputV1Alpha2Manifest) Schema(_ context.Context
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"exec_wasi": schema.SingleNestedAttribute{
+						Description:         "ExecWasi defines the exec wasi input plugin configuration",
+						MarkdownDescription: "ExecWasi defines the exec wasi input plugin configuration",
+						Attributes: map[string]schema.Attribute{
+							"accessible_paths": schema.ListAttribute{
+								Description:         "Specify the whitelist of paths to be able to access paths from WASM programs.",
+								MarkdownDescription: "Specify the whitelist of paths to be able to access paths from WASM programs.",
+								ElementType:         types.StringType,
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"buf_size": schema.StringAttribute{
+								Description:         "Size of the buffer (check unit sizes for allowed values)",
+								MarkdownDescription: "Size of the buffer (check unit sizes for allowed values)",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+								},
+							},
+
+							"interval_n_sec": schema.Int64Attribute{
+								Description:         "Polling interval (nanoseconds).",
+								MarkdownDescription: "Polling interval (nanoseconds).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"interval_sec": schema.Int64Attribute{
+								Description:         "Polling interval (seconds).",
+								MarkdownDescription: "Polling interval (seconds).",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"parser": schema.StringAttribute{
+								Description:         "Specify the name of a parser to interpret the entry as a structured message.",
+								MarkdownDescription: "Specify the name of a parser to interpret the entry as a structured message.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"threaded": schema.BoolAttribute{
+								Description:         "Indicates whether to run this input in its own thread. Default: false.",
+								MarkdownDescription: "Indicates whether to run this input in its own thread. Default: false.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"wasi_path": schema.StringAttribute{
+								Description:         "The place of a WASM program file.",
+								MarkdownDescription: "The place of a WASM program file.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"wasm_heap_size": schema.StringAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+								},
+							},
+
+							"wasm_stack_size": schema.StringAttribute{
+								Description:         "Size of the stack size of Wasm execution. Review unit sizes for allowed values.",
+								MarkdownDescription: "Size of the stack size of Wasm execution. Review unit sizes for allowed values.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+								Validators: []validator.String{
+									stringvalidator.RegexMatches(regexp.MustCompile(`^\d+(k|K|KB|kb|m|M|MB|mb|g|G|GB|gb)?$`), ""),
+								},
 							},
 						},
 						Required: false,

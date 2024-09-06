@@ -62,7 +62,8 @@ Required:
 Optional:
 
 - `addresses` (Attributes List) Addresses requested for this Gateway. This is optional and behavior candepend on the implementation. If a value is set in the spec and therequested address is invalid or unavailable, the implementation MUSTindicate this in the associated entry in GatewayStatus.Addresses.The Addresses field represents a request for the address(es) on the'outside of the Gateway', that traffic bound for this Gateway will use.This could be the IP address or hostname of an external load balancer orother networking infrastructure, or some other address that traffic willbe sent to.If no Addresses are specified, the implementation MAY schedule theGateway in an implementation-specific manner, assigning an appropriateset of Addresses.The implementation MUST bind all Listeners to every GatewayAddress thatit assigns to the Gateway and add a corresponding entry inGatewayStatus.Addresses.Support: Extended (see [below for nested schema](#nestedatt--spec--addresses))
-- `infrastructure` (Attributes) Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Core (see [below for nested schema](#nestedatt--spec--infrastructure))
+- `backend_tls` (Attributes) BackendTLS configures TLS settings for when this Gateway is connecting tobackends with TLS.Support: Core (see [below for nested schema](#nestedatt--spec--backend_tls))
+- `infrastructure` (Attributes) Infrastructure defines infrastructure level attributes about this Gateway instance.Support: Extended (see [below for nested schema](#nestedatt--spec--infrastructure))
 
 <a id="nestedatt--spec--listeners"></a>
 ### Nested Schema for `spec.listeners`
@@ -191,13 +192,35 @@ Optional:
 - `type` (String) Type of the address.
 
 
+<a id="nestedatt--spec--backend_tls"></a>
+### Nested Schema for `spec.backend_tls`
+
+Optional:
+
+- `client_certificate_ref` (Attributes) ClientCertificateRef is a reference to an object that contains a ClientCertificate and the associated private key.References to a resource in different namespace are invalid UNLESS thereis a ReferenceGrant in the target namespace that allows the certificateto be attached. If a ReferenceGrant does not allow this reference, the'ResolvedRefs' condition MUST be set to False for this listener with the'RefNotPermitted' reason.ClientCertificateRef can reference to standard Kubernetes resources, i.e.Secret, or implementation-specific custom resources.This setting can be overridden on the service level by use of BackendTLSPolicy.Support: Core (see [below for nested schema](#nestedatt--spec--backend_tls--client_certificate_ref))
+
+<a id="nestedatt--spec--backend_tls--client_certificate_ref"></a>
+### Nested Schema for `spec.backend_tls.client_certificate_ref`
+
+Required:
+
+- `name` (String) Name is the name of the referent.
+
+Optional:
+
+- `group` (String) Group is the group of the referent. For example, 'gateway.networking.k8s.io'.When unspecified or empty string, core API group is inferred.
+- `kind` (String) Kind is kind of the referent. For example 'Secret'.
+- `namespace` (String) Namespace is the namespace of the referenced object. When unspecified, the localnamespace is inferred.Note that when a namespace different than the local namespace is specified,a ReferenceGrant object is required in the referent namespace to allow thatnamespace's owner to accept the reference. See the ReferenceGrantdocumentation for details.Support: Core
+
+
+
 <a id="nestedatt--spec--infrastructure"></a>
 ### Nested Schema for `spec.infrastructure`
 
 Optional:
 
 - `annotations` (Map of String) Annotations that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.annotations' field on resources.For other implementations, this refers to any relevant (implementation specific) 'annotations' concepts.An implementation may chose to add additional implementation-specific annotations as they see fit.Support: Extended
-- `labels` (Map of String) Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.Support: Extended
+- `labels` (Map of String) Labels that SHOULD be applied to any resources created in response to this Gateway.For implementations creating other Kubernetes objects, this should be the 'metadata.labels' field on resources.For other implementations, this refers to any relevant (implementation specific) 'labels' concepts.An implementation may chose to add additional implementation-specific labels as they see fit.If an implementation maps these labels to Pods, or any other resource that would need to be recreated when labelschange, it SHOULD clearly warn about this behavior in documentation.Support: Extended
 - `parameters_ref` (Attributes) ParametersRef is a reference to a resource that contains the configurationparameters corresponding to the Gateway. This is optional if thecontroller does not require any additional configuration.This follows the same semantics as GatewayClass's 'parametersRef', but on a per-Gateway basisThe Gateway's GatewayClass may provide its own 'parametersRef'. When both are specified,the merging behavior is implementation specific.It is generally recommended that GatewayClass provides defaults that can be overridden by a Gateway.Support: Implementation-specific (see [below for nested schema](#nestedatt--spec--infrastructure--parameters_ref))
 
 <a id="nestedatt--spec--infrastructure--parameters_ref"></a>

@@ -138,8 +138,8 @@ func (r *AppsEmqxIoEmqxPluginV1Beta3Manifest) Schema(_ context.Context, _ dataso
 					"plugin_name": schema.StringAttribute{
 						Description:         "",
 						MarkdownDescription: "",
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 
@@ -147,8 +147,8 @@ func (r *AppsEmqxIoEmqxPluginV1Beta3Manifest) Schema(_ context.Context, _ dataso
 						Description:         "",
 						MarkdownDescription: "",
 						ElementType:         types.StringType,
-						Required:            false,
-						Optional:            true,
+						Required:            true,
+						Optional:            false,
 						Computed:            false,
 					},
 				},

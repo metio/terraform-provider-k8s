@@ -94,10 +94,10 @@ Optional:
 
 Optional:
 
-- `i_p_set_references` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--reference_sets--i_p_set_references))
+- `ip_set_references` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--reference_sets--ip_set_references))
 
-<a id="nestedatt--spec--rule_group--reference_sets--i_p_set_references"></a>
-### Nested Schema for `spec.rule_group.reference_sets.i_p_set_references`
+<a id="nestedatt--spec--rule_group--reference_sets--ip_set_references"></a>
+### Nested Schema for `spec.rule_group.reference_sets.ip_set_references`
 
 Optional:
 
@@ -110,11 +110,11 @@ Optional:
 
 Optional:
 
-- `i_p_sets` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--rule_variables--i_p_sets))
+- `ip_sets` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--rule_variables--ip_sets))
 - `port_sets` (Attributes) (see [below for nested schema](#nestedatt--spec--rule_group--rule_variables--port_sets))
 
-<a id="nestedatt--spec--rule_group--rule_variables--i_p_sets"></a>
-### Nested Schema for `spec.rule_group.rule_variables.i_p_sets`
+<a id="nestedatt--spec--rule_group--rule_variables--ip_sets"></a>
+### Nested Schema for `spec.rule_group.rule_variables.ip_sets`
 
 Optional:
 

@@ -58,22 +58,17 @@ type FlinkApacheOrgFlinkDeploymentV1Beta1ManifestData struct {
 			} `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"ingress" json:"ingress,omitempty"`
 		Job *struct {
-			AllowNonRestoredState       *bool     `tfsdk:"allow_non_restored_state" json:"allowNonRestoredState,omitempty"`
-			Args                        *[]string `tfsdk:"args" json:"args,omitempty"`
-			CheckpointTriggerNonce      *int64    `tfsdk:"checkpoint_trigger_nonce" json:"checkpointTriggerNonce,omitempty"`
-			EntryClass                  *string   `tfsdk:"entry_class" json:"entryClass,omitempty"`
-			FlinkStateSnapshotReference *struct {
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
-				Path      *string `tfsdk:"path" json:"path,omitempty"`
-			} `tfsdk:"flink_state_snapshot_reference" json:"flinkStateSnapshotReference,omitempty"`
-			InitialSavepointPath   *string `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
-			JarURI                 *string `tfsdk:"jar_uri" json:"jarURI,omitempty"`
-			Parallelism            *int64  `tfsdk:"parallelism" json:"parallelism,omitempty"`
-			SavepointRedeployNonce *int64  `tfsdk:"savepoint_redeploy_nonce" json:"savepointRedeployNonce,omitempty"`
-			SavepointTriggerNonce  *int64  `tfsdk:"savepoint_trigger_nonce" json:"savepointTriggerNonce,omitempty"`
-			State                  *string `tfsdk:"state" json:"state,omitempty"`
-			UpgradeMode            *string `tfsdk:"upgrade_mode" json:"upgradeMode,omitempty"`
+			AllowNonRestoredState  *bool     `tfsdk:"allow_non_restored_state" json:"allowNonRestoredState,omitempty"`
+			Args                   *[]string `tfsdk:"args" json:"args,omitempty"`
+			CheckpointTriggerNonce *int64    `tfsdk:"checkpoint_trigger_nonce" json:"checkpointTriggerNonce,omitempty"`
+			EntryClass             *string   `tfsdk:"entry_class" json:"entryClass,omitempty"`
+			InitialSavepointPath   *string   `tfsdk:"initial_savepoint_path" json:"initialSavepointPath,omitempty"`
+			JarURI                 *string   `tfsdk:"jar_uri" json:"jarURI,omitempty"`
+			Parallelism            *int64    `tfsdk:"parallelism" json:"parallelism,omitempty"`
+			SavepointRedeployNonce *int64    `tfsdk:"savepoint_redeploy_nonce" json:"savepointRedeployNonce,omitempty"`
+			SavepointTriggerNonce  *int64    `tfsdk:"savepoint_trigger_nonce" json:"savepointTriggerNonce,omitempty"`
+			State                  *string   `tfsdk:"state" json:"state,omitempty"`
+			UpgradeMode            *string   `tfsdk:"upgrade_mode" json:"upgradeMode,omitempty"`
 		} `tfsdk:"job" json:"job,omitempty"`
 		JobManager *struct {
 			PodTemplate *struct {
@@ -5003,39 +4998,6 @@ func (r *FlinkApacheOrgFlinkDeploymentV1Beta1Manifest) Schema(_ context.Context,
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"flink_state_snapshot_reference": schema.SingleNestedAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Attributes: map[string]schema.Attribute{
-									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"namespace": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"path": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"initial_savepoint_path": schema.StringAttribute{

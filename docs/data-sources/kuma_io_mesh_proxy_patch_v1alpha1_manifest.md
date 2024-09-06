@@ -56,6 +56,9 @@ Optional:
 Required:
 
 - `default` (Attributes) Default is a configuration specific to the group of destinationsreferenced in 'targetRef'. (see [below for nested schema](#nestedatt--spec--default))
+
+Optional:
+
 - `target_ref` (Attributes) TargetRef is a reference to the resource the policy takes an effect on.The resource could be either a real store object or virtual resourcedefined inplace. (see [below for nested schema](#nestedatt--spec--target_ref))
 
 <a id="nestedatt--spec--default"></a>
