@@ -56,6 +56,7 @@ Optional:
 - `admission` (Boolean) Admission controls if rules are applied during admission.Optional. Default value is 'true'.
 - `apply_rules` (String) ApplyRules controls how rules in a policy are applied. Rule are processed inthe order of declaration. When set to 'One' processing stops after a rule hasbeen applied i.e. the rule matches and results in a pass, fail, or error. Whenset to 'All' all rules in the policy are processed. The default is 'All'.
 - `background` (Boolean) Background controls if rules are applied to existing resources during a background scan.Optional. Default value is 'true'. The value must be set to 'false' if the policy ruleuses variables that are only available in the admission review request (e.g. user name).
+- `emit_warning` (Boolean) EmitWarning enables API response warnings for mutate policy rules or validate policy rules with validationFailureAction set to Audit.Enabling this option will extend admission request processing times. The default value is 'false'.
 - `failure_policy` (String) Deprecated, use failurePolicy under the webhookConfiguration instead.
 - `generate_existing` (Boolean) Deprecated, use generateExisting under the generate rule instead
 - `generate_existing_on_policy_update` (Boolean) Deprecated, use generateExisting instead
@@ -85,6 +86,7 @@ Optional:
 - `match` (Attributes) MatchResources defines when this policy rule should be applied. The matchcriteria can include resource information (e.g. kind, name, namespace, labels)and admission review request information like the user name or role.At least one kind is required. (see [below for nested schema](#nestedatt--spec--rules--match))
 - `mutate` (Attributes) Mutation is used to modify matching resources. (see [below for nested schema](#nestedatt--spec--rules--mutate))
 - `preconditions` (Map of String) Preconditions are used to determine if a policy rule should be applied by evaluating aset of conditions. The declaration can contain nested 'any' or 'all' statements. A direct listof conditions (without 'any' or 'all' statements is supported for backwards compatibility butwill be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/preconditions/
+- `report_properties` (Map of String) ReportProperties are the additional properties from the rule that will be added to the policy report result
 - `skip_background_requests` (Boolean) SkipBackgroundRequests bypasses admission requests that are sent by the background controller.The default value is set to 'true', it must be set to 'false' to applygenerate and mutateExisting rules to those requests.
 - `validate` (Attributes) Validation is used to validate matching resources. (see [below for nested schema](#nestedatt--spec--rules--validate))
 - `verify_images` (Attributes List) VerifyImages is used to verify image signatures and mutate them to add a digest (see [below for nested schema](#nestedatt--spec--rules--verify_images))
@@ -101,13 +103,16 @@ Required:
 <a id="nestedatt--spec--rules--context"></a>
 ### Nested Schema for `spec.rules.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--context--variable))
 
 <a id="nestedatt--spec--rules--context--api_call"></a>
@@ -116,6 +121,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--context--api_call--service))
@@ -575,13 +581,16 @@ Optional:
 <a id="nestedatt--spec--rules--generate--foreach--context"></a>
 ### Nested Schema for `spec.rules.generate.foreach.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--variable))
 
 <a id="nestedatt--spec--rules--generate--foreach--context--api_call"></a>
@@ -590,6 +599,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--generate--foreach--context--api_call--service))
@@ -989,13 +999,16 @@ Optional:
 <a id="nestedatt--spec--rules--mutate--foreach--context"></a>
 ### Nested Schema for `spec.rules.mutate.foreach.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--variable))
 
 <a id="nestedatt--spec--rules--mutate--foreach--context--api_call"></a>
@@ -1004,6 +1017,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--foreach--context--api_call--service))
@@ -1137,13 +1151,16 @@ Optional:
 <a id="nestedatt--spec--rules--mutate--targets--context"></a>
 ### Nested Schema for `spec.rules.mutate.targets.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--variable))
 
 <a id="nestedatt--spec--rules--mutate--targets--context--api_call"></a>
@@ -1152,6 +1169,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--mutate--targets--context--api_call--service))
@@ -1244,6 +1262,7 @@ Optional:
 
 Optional:
 
+- `allow_existing_violations` (Boolean) AllowExistingViolations allows prexisting violating resources to continue violating a policy.
 - `any_pattern` (Map of String) AnyPattern specifies list of validation patterns. At least one of the patternsmust be satisfied for the validation rule to succeed.
 - `assert` (Map of String) Assert defines a kyverno-json assertion tree.
 - `cel` (Attributes) CEL allows validation checks using the Common Expression Language (https://kubernetes.io/docs/reference/using-api/cel/). (see [below for nested schema](#nestedatt--spec--rules--validate--cel))
@@ -1399,13 +1418,16 @@ Optional:
 <a id="nestedatt--spec--rules--validate--foreach--context"></a>
 ### Nested Schema for `spec.rules.validate.foreach.context`
 
+Required:
+
+- `name` (String) Name is the variable name.
+
 Optional:
 
 - `api_call` (Attributes) APICall is an HTTP request to the Kubernetes API server, or other JSON web service.The data returned is stored in the context with the name for the context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call))
 - `config_map` (Attributes) ConfigMap is the ConfigMap reference. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--config_map))
 - `global_reference` (Attributes) GlobalContextEntryReference is a reference to a cached global context entry. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--global_reference))
 - `image_registry` (Attributes) ImageRegistry defines requests to an OCI/Docker V2 registry to fetch imagedetails. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--image_registry))
-- `name` (String) Name is the variable name.
 - `variable` (Attributes) Variable defines an arbitrary JMESPath context variable that can be defined inline. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--variable))
 
 <a id="nestedatt--spec--rules--validate--foreach--context--api_call"></a>
@@ -1414,6 +1436,7 @@ Optional:
 Optional:
 
 - `data` (Attributes List) The data object specifies the POST data sent to the server.Only applicable when the method field is set to POST. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--data))
+- `default` (Map of String) Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error
 - `jmes_path` (String) JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.
 - `method` (String) Method is the HTTP request type (GET or POST). Defaults to GET.
 - `service` (Attributes) Service is an API call to a JSON web service.This is used for non-Kubernetes API server calls.It's mutually exclusive with the URLPath field. (see [below for nested schema](#nestedatt--spec--rules--validate--foreach--context--api_call--service))
@@ -1569,6 +1592,7 @@ Optional:
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--validate--manifests--attestors--entries--certificates"></a>
 ### Nested Schema for `spec.rules.validate.manifests.attestors.entries.certificates`
@@ -1646,7 +1670,7 @@ Optional:
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--validate--manifests--attestors--entries--keys--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
+- `signature_algorithm` (String) Deprecated. Use attestor.signatureAlgorithm instead.
 
 <a id="nestedatt--spec--rules--validate--manifests--attestors--entries--keys--ctlog"></a>
 ### Nested Schema for `spec.rules.validate.manifests.attestors.entries.keys.ctlog`
@@ -1760,6 +1784,7 @@ Optional:
 - `subject` (String) Deprecated. Use KeylessAttestor instead.
 - `type` (String) Type specifies the method of signature validation. The allowed optionsare Cosign, Sigstore Bundle and Notary. By default Cosign is used if a type is not specified.
 - `use_cache` (Boolean) UseCache enables caching of image verify responses for this rule.
+- `validate` (Attributes) Validation checks conditions across multiple imageverification attestations or context entries (see [below for nested schema](#nestedatt--spec--rules--verify_images--validate))
 - `verify_digest` (Boolean) VerifyDigest validates that images have a digest.
 
 <a id="nestedatt--spec--rules--verify_images--attestations"></a>
@@ -1769,6 +1794,7 @@ Optional:
 
 - `attestors` (Attributes List) Attestors specify the required attestors (i.e. authorities). (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors))
 - `conditions` (Attributes List) Conditions are used to verify attributes within a Predicate. If no Conditions are specifiedthe attestation check is satisfied as long there are predicates that match the predicate type. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--conditions))
+- `name` (String) Name is the variable name.
 - `predicate_type` (String) Deprecated in favour of 'Type', to be removed soon
 - `type` (String) Type defines the type of attestation contained within the Statement.
 
@@ -1791,6 +1817,7 @@ Optional:
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--certificates"></a>
 ### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.certificates`
@@ -1868,7 +1895,7 @@ Optional:
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
+- `signature_algorithm` (String) Deprecated. Use attestor.signatureAlgorithm instead.
 
 <a id="nestedatt--spec--rules--verify_images--attestations--attestors--entries--keys--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.attestations.attestors.entries.keys.ctlog`
@@ -1953,6 +1980,7 @@ Optional:
 - `keyless` (Attributes) Keyless is a set of attribute used to verify a Sigstore keyless attestor.See https://github.com/sigstore/cosign/blob/main/KEYLESS.md. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keyless))
 - `keys` (Attributes) Keys specifies one or more public keys. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys))
 - `repository` (String) Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.
+- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
 
 <a id="nestedatt--spec--rules--verify_images--attestors--entries--certificates"></a>
 ### Nested Schema for `spec.rules.verify_images.attestors.entries.certificates`
@@ -2030,7 +2058,7 @@ Optional:
 - `public_keys` (String) Keys is a set of X.509 public keys used to verify image signatures. The keys can be directlyspecified or can be a variable reference to a key specified in a ConfigMap (seehttps://kyverno.io/docs/writing-policies/variables/), or reference a standard Kubernetes Secretelsewhere in the cluster by specifying it in the format 'k8s://<namespace>/<secret_name>'.The named Secret must specify a key 'cosign.pub' containing the public key used forverification, (see https://github.com/sigstore/cosign/blob/main/KMS.md#kubernetes-secret).When multiple keys are specified each key is processed as a separate staticKey entry(.attestors[*].entries.keys) within the set of attestors and the count is applied across the keys.
 - `rekor` (Attributes) Rekor provides configuration for the Rekor transparency log service. If an empty objectis provided the public instance of Rekor (https://rekor.sigstore.dev) is used. (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys--rekor))
 - `secret` (Attributes) Reference to a Secret resource that contains a public key (see [below for nested schema](#nestedatt--spec--rules--verify_images--attestors--entries--keys--secret))
-- `signature_algorithm` (String) Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.
+- `signature_algorithm` (String) Deprecated. Use attestor.signatureAlgorithm instead.
 
 <a id="nestedatt--spec--rules--verify_images--attestors--entries--keys--ctlog"></a>
 ### Nested Schema for `spec.rules.verify_images.attestors.entries.keys.ctlog`
@@ -2072,6 +2100,23 @@ Optional:
 - `allow_insecure_registry` (Boolean) AllowInsecureRegistry allows insecure access to a registry.
 - `providers` (List of String) Providers specifies a list of OCI Registry names, whose authentication providers are provided.It can be of one of these values: default,google,azure,amazon,github.
 - `secrets` (List of String) Secrets specifies a list of secrets that are provided for credentials.Secrets must live in the Kyverno namespace.
+
+
+<a id="nestedatt--spec--rules--verify_images--validate"></a>
+### Nested Schema for `spec.rules.verify_images.validate`
+
+Optional:
+
+- `deny` (Attributes) Deny defines conditions used to pass or fail a validation rule. (see [below for nested schema](#nestedatt--spec--rules--verify_images--validate--deny))
+- `message` (String) Message specifies a custom message to be displayed on failure.
+
+<a id="nestedatt--spec--rules--verify_images--validate--deny"></a>
+### Nested Schema for `spec.rules.verify_images.validate.deny`
+
+Optional:
+
+- `conditions` (Map of String) Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules
+
 
 
 

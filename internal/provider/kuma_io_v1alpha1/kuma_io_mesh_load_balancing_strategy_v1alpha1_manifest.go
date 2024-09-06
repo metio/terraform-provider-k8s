@@ -304,8 +304,8 @@ func (r *KumaIoMeshLoadBalancingStrategyV1Alpha1Manifest) Schema(_ context.Conte
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

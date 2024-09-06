@@ -55,36 +55,36 @@ Optional:
 
 Required:
 
-- `online` (Boolean) Should the server be online?
+- `online` (Boolean) Should the host be powered on? Changing this value will trigger a change in power state of the host.
 
 Optional:
 
 - `architecture` (String) CPU architecture of the host, e.g. 'x86_64' or 'aarch64'. If unset, eventually populated by inspection.
-- `automated_cleaning_mode` (String) When set to disabled, automated cleaning will be avoided during provisioning and deprovisioning.
-- `bmc` (Attributes) How do we connect to the BMC? (see [below for nested schema](#nestedatt--spec--bmc))
-- `boot_mac_address` (String) Which MAC address will PXE boot? This is optional for some types, but required for libvirt VMs driven by vbmc.
-- `boot_mode` (String) Select the method of initializing the hardware during boot. Defaults to UEFI.
-- `consumer_ref` (Attributes) ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'. (see [below for nested schema](#nestedatt--spec--consumer_ref))
-- `custom_deploy` (Attributes) A custom deploy procedure. (see [below for nested schema](#nestedatt--spec--custom_deploy))
-- `description` (String) Description is a human-entered text used to help identify the host
-- `externally_provisioned` (Boolean) ExternallyProvisioned means something else is managing the image running on the host and the operator should only manage the power status and hardware inventory inspection. If the Image field is filled in, this field is ignored.
-- `firmware` (Attributes) BIOS configuration for bare metal server (see [below for nested schema](#nestedatt--spec--firmware))
+- `automated_cleaning_mode` (String) When set to disabled, automated cleaning will be skipped during provisioning and deprovisioning.
+- `bmc` (Attributes) How do we connect to the BMC (Baseboard Management Controller) on the host? (see [below for nested schema](#nestedatt--spec--bmc))
+- `boot_mac_address` (String) The MAC address of the NIC used for provisioning the host. In case of network boot, this is the MAC address of the PXE booting interface. The MAC address of the BMC must never be used here!
+- `boot_mode` (String) Select the method of initializing the hardware during boot. Defaults to UEFI. Legacy boot should only be used for hardware that does not support UEFI correctly. Set to UEFISecureBoot to turn secure boot on automatically after provisioning.
+- `consumer_ref` (Attributes) ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'. The common use case is a link to a Machine resource when the host is used by Cluster API. (see [below for nested schema](#nestedatt--spec--consumer_ref))
+- `custom_deploy` (Attributes) A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Settings this field triggers provisioning. (see [below for nested schema](#nestedatt--spec--custom_deploy))
+- `description` (String) Description is a human-entered text used to help identify the host.
+- `externally_provisioned` (Boolean) ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters. If unsure, leave this field as false.
+- `firmware` (Attributes) Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned. Only some vendor drivers support this field. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers. (see [below for nested schema](#nestedatt--spec--firmware))
 - `hardware_profile` (String) What is the name of the hardware profile for this host? Hardware profiles are deprecated and should not be used. Use the separate fields Architecture and RootDeviceHints instead. Set to 'empty' to prepare for the future version of the API without hardware profiles.
-- `image` (Attributes) Image holds the details of the image to be provisioned. (see [below for nested schema](#nestedatt--spec--image))
-- `meta_data` (Attributes) MetaData holds the reference to the Secret containing host metadata (e.g. meta_data.json) which is passed to the Config Drive. (see [below for nested schema](#nestedatt--spec--meta_data))
-- `network_data` (Attributes) NetworkData holds the reference to the Secret containing network configuration (e.g content of network_data.json) which is passed to the Config Drive. (see [below for nested schema](#nestedatt--spec--network_data))
-- `preprovisioning_network_data_name` (String) PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration (e.g content of network_data.json) which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.
-- `raid` (Attributes) RAID configuration for bare metal server (see [below for nested schema](#nestedatt--spec--raid))
-- `root_device_hints` (Attributes) Provide guidance about how to choose the device for the image being provisioned. (see [below for nested schema](#nestedatt--spec--root_device_hints))
+- `image` (Attributes) Image holds the details of the image to be provisioned. Populating the image will cause the host to start provisioning. (see [below for nested schema](#nestedatt--spec--image))
+- `meta_data` (Attributes) MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, the operater will generate metadata for the host, so most users do not need to set this field. (see [below for nested schema](#nestedatt--spec--meta_data))
+- `network_data` (Attributes) NetworkData holds the reference to the Secret containing network configuration which is passed to the Config Drive and interpreted by the first boot software such as cloud-init. (see [below for nested schema](#nestedatt--spec--network_data))
+- `preprovisioning_network_data_name` (String) PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.
+- `raid` (Attributes) RAID configuration for bare metal server. If set, the RAID settings will be applied before the host is provisioned. If not, the current settings will not be modified. Only one of the sub-fields hardwareRAIDVolumes and softwareRAIDVolumes can be set at the same time. (see [below for nested schema](#nestedatt--spec--raid))
+- `root_device_hints` (Attributes) Provide guidance about how to choose the device for the image being provisioned. The default is currently to use /dev/sda as the root device. (see [below for nested schema](#nestedatt--spec--root_device_hints))
 - `taints` (Attributes List) Taints is the full, authoritative list of taints to apply to the corresponding Machine. This list will overwrite any modifications made to the Machine on an ongoing basis. (see [below for nested schema](#nestedatt--spec--taints))
-- `user_data` (Attributes) UserData holds the reference to the Secret containing the user data to be passed to the host before it boots. (see [below for nested schema](#nestedatt--spec--user_data))
+- `user_data` (Attributes) UserData holds the reference to the Secret containing the user data which is passed to the Config Drive and interpreted by the first-boot software such as cloud-init. The format of user data is specific to the first-boot software. (see [below for nested schema](#nestedatt--spec--user_data))
 
 <a id="nestedatt--spec--bmc"></a>
 ### Nested Schema for `spec.bmc`
 
 Required:
 
-- `address` (String) Address holds the URL for accessing the controller on the network.
+- `address` (String) Address holds the URL for accessing the controller on the network. The scheme part designates the driver to use with the host.
 - `credentials_name` (String) The name of the secret containing the BMC credentials (requires keys 'username' and 'password').
 
 Optional:
@@ -119,9 +119,9 @@ Required:
 
 Optional:
 
-- `simultaneous_multithreading_enabled` (Boolean) Allows a single physical processor core to appear as several logical processors. This supports following options: true, false.
-- `sriov_enabled` (Boolean) SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. This supports following options: true, false.
-- `virtualization_enabled` (Boolean) Supports the virtualization of platform hardware. This supports following options: true, false.
+- `simultaneous_multithreading_enabled` (Boolean) Allows a single physical processor core to appear as several logical processors.
+- `sriov_enabled` (Boolean) SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance.
+- `virtualization_enabled` (Boolean) Supports the virtualization of platform hardware.
 
 
 <a id="nestedatt--spec--image"></a>
@@ -133,9 +133,9 @@ Required:
 
 Optional:
 
-- `checksum` (String) Checksum is the checksum for the image.
+- `checksum` (String) Checksum is the checksum for the image. Required for all formats except for 'live-iso'.
 - `checksum_type` (String) ChecksumType is the checksum algorithm for the image, e.g md5, sha256 or sha512. The special value 'auto' can be used to detect the algorithm from the checksum. If missing, MD5 is used. If in doubt, use 'auto'.
-- `format` (String) DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.
+- `format` (String) Format contains the format of the image (raw, qcow2, ...). When set to 'live-iso', an ISO 9660 image referenced by the url will be live-booted and not deployed to disk.
 
 
 <a id="nestedatt--spec--meta_data"></a>
@@ -169,16 +169,16 @@ Optional:
 
 Required:
 
-- `level` (String) RAID level for the logical disk. The following levels are supported: 0;1;2;5;6;1+0;5+0;6+0.
+- `level` (String) RAID level for the logical disk. The following levels are supported: 0, 1, 2, 5, 6, 1+0, 5+0, 6+0 (drivers may support only some of them).
 
 Optional:
 
-- `controller` (String) The name of the RAID controller to use
-- `name` (String) Name of the volume. Should be unique within the Node. If not specified, volume name will be auto-generated.
+- `controller` (String) The name of the RAID controller to use.
+- `name` (String) Name of the volume. Should be unique within the Node. If not specified, the name will be auto-generated.
 - `number_of_physical_disks` (Number) Integer, number of physical disks to use for the logical disk. Defaults to minimum number of disks required for the particular RAID level.
-- `physical_disks` (List of String) Optional list of physical disk names to be used for the Hardware RAID volumes. The disk names are interpreted by the Hardware RAID controller, and the format is hardware specific.
-- `rotational` (Boolean) Select disks with only rotational or solid-state storage
-- `size_gibibytes` (Number) Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.
+- `physical_disks` (List of String) Optional list of physical disk names to be used for the hardware RAID volumes. The disk names are interpreted by the hardware RAID controller, and the format is hardware specific.
+- `rotational` (Boolean) Select disks with only rotational (if set to true) or solid-state (if set to false) storage. By default, any disks can be picked.
+- `size_gibibytes` (Number) Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.
 
 
 <a id="nestedatt--spec--raid--software_raid_volumes"></a>
@@ -186,12 +186,12 @@ Optional:
 
 Required:
 
-- `level` (String) RAID level for the logical disk. The following levels are supported: 0;1;1+0.
+- `level` (String) RAID level for the logical disk. The following levels are supported: 0, 1 and 1+0.
 
 Optional:
 
 - `physical_disks` (Attributes List) A list of device hints, the number of items should be greater than or equal to 2. (see [below for nested schema](#nestedatt--spec--raid--software_raid_volumes--physical_disks))
-- `size_gibibytes` (Number) Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.
+- `size_gibibytes` (Number) Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.
 
 <a id="nestedatt--spec--raid--software_raid_volumes--physical_disks"></a>
 ### Nested Schema for `spec.raid.software_raid_volumes.physical_disks`

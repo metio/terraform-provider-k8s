@@ -273,8 +273,8 @@ func (r *KumaIoMeshRetryV1Alpha1Manifest) Schema(_ context.Context, _ datasource
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

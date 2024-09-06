@@ -3652,8 +3652,8 @@ func (r *AppsEmqxIoEmqxEnterpriseV1Beta4Manifest) Schema(_ context.Context, _ da
 													"version": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 												},

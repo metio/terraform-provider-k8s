@@ -52,6 +52,7 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 			} `tfsdk:"memberlist" json:"memberlist,omitempty"`
 		} `tfsdk:"hash_ring" json:"hashRing,omitempty"`
 		Images *struct {
+			JaegerQuery     *string `tfsdk:"jaeger_query" json:"jaegerQuery,omitempty"`
 			OauthProxy      *string `tfsdk:"oauth_proxy" json:"oauthProxy,omitempty"`
 			Tempo           *string `tfsdk:"tempo" json:"tempo,omitempty"`
 			TempoGateway    *string `tfsdk:"tempo_gateway" json:"tempoGateway,omitempty"`
@@ -310,6 +311,15 @@ type TempoGrafanaComTempoStackV1Alpha1ManifestData struct {
 						Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
 					} `tfsdk:"resources" json:"resources,omitempty"`
 					ServicesQueryDuration *string `tfsdk:"services_query_duration" json:"servicesQueryDuration,omitempty"`
+					TempoQuery            *struct {
+						Resources *struct {
+							Claims *[]struct {
+								Name *string `tfsdk:"name" json:"name,omitempty"`
+							} `tfsdk:"claims" json:"claims,omitempty"`
+							Limits   *map[string]string `tfsdk:"limits" json:"limits,omitempty"`
+							Requests *map[string]string `tfsdk:"requests" json:"requests,omitempty"`
+						} `tfsdk:"resources" json:"resources,omitempty"`
+					} `tfsdk:"tempo_query" json:"tempoQuery,omitempty"`
 				} `tfsdk:"jaeger_query" json:"jaegerQuery,omitempty"`
 			} `tfsdk:"query_frontend" json:"queryFrontend,omitempty"`
 		} `tfsdk:"template" json:"template,omitempty"`
@@ -473,6 +483,14 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 						Description:         "Images defines the image for each container.",
 						MarkdownDescription: "Images defines the image for each container.",
 						Attributes: map[string]schema.Attribute{
+							"jaeger_query": schema.StringAttribute{
+								Description:         "JaegerQuery defines the tempo-query container image.",
+								MarkdownDescription: "JaegerQuery defines the tempo-query container image.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"oauth_proxy": schema.StringAttribute{
 								Description:         "OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.",
 								MarkdownDescription: "OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.",
@@ -2181,6 +2199,61 @@ func (r *TempoGrafanaComTempoStackV1Alpha1Manifest) Schema(_ context.Context, _ 
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"tempo_query": schema.SingleNestedAttribute{
+												Description:         "TempoQuery defines options specific to the Tempoo Query component.",
+												MarkdownDescription: "TempoQuery defines options specific to the Tempoo Query component.",
+												Attributes: map[string]schema.Attribute{
+													"resources": schema.SingleNestedAttribute{
+														Description:         "Resources defines resources for this component, this will override the calculated resources derived from total",
+														MarkdownDescription: "Resources defines resources for this component, this will override the calculated resources derived from total",
+														Attributes: map[string]schema.Attribute{
+															"claims": schema.ListNestedAttribute{
+																Description:         "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																MarkdownDescription: "Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers.",
+																NestedObject: schema.NestedAttributeObject{
+																	Attributes: map[string]schema.Attribute{
+																		"name": schema.StringAttribute{
+																			Description:         "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																			MarkdownDescription: "Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.",
+																			Required:            true,
+																			Optional:            false,
+																			Computed:            false,
+																		},
+																	},
+																},
+																Required: false,
+																Optional: true,
+																Computed: false,
+															},
+
+															"limits": schema.MapAttribute{
+																Description:         "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+
+															"requests": schema.MapAttribute{
+																Description:         "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																MarkdownDescription: "Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 										},
 										Required: false,

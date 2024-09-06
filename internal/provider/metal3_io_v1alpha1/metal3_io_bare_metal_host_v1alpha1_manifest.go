@@ -228,8 +228,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"automated_cleaning_mode": schema.StringAttribute{
-						Description:         "When set to disabled, automated cleaning will be avoided during provisioning and deprovisioning.",
-						MarkdownDescription: "When set to disabled, automated cleaning will be avoided during provisioning and deprovisioning.",
+						Description:         "When set to disabled, automated cleaning will be skipped during provisioning and deprovisioning.",
+						MarkdownDescription: "When set to disabled, automated cleaning will be skipped during provisioning and deprovisioning.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -239,12 +239,12 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"bmc": schema.SingleNestedAttribute{
-						Description:         "How do we connect to the BMC?",
-						MarkdownDescription: "How do we connect to the BMC?",
+						Description:         "How do we connect to the BMC (Baseboard Management Controller) on the host?",
+						MarkdownDescription: "How do we connect to the BMC (Baseboard Management Controller) on the host?",
 						Attributes: map[string]schema.Attribute{
 							"address": schema.StringAttribute{
-								Description:         "Address holds the URL for accessing the controller on the network.",
-								MarkdownDescription: "Address holds the URL for accessing the controller on the network.",
+								Description:         "Address holds the URL for accessing the controller on the network. The scheme part designates the driver to use with the host.",
+								MarkdownDescription: "Address holds the URL for accessing the controller on the network. The scheme part designates the driver to use with the host.",
 								Required:            true,
 								Optional:            false,
 								Computed:            false,
@@ -272,8 +272,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"boot_mac_address": schema.StringAttribute{
-						Description:         "Which MAC address will PXE boot? This is optional for some types, but required for libvirt VMs driven by vbmc.",
-						MarkdownDescription: "Which MAC address will PXE boot? This is optional for some types, but required for libvirt VMs driven by vbmc.",
+						Description:         "The MAC address of the NIC used for provisioning the host. In case of network boot, this is the MAC address of the PXE booting interface. The MAC address of the BMC must never be used here!",
+						MarkdownDescription: "The MAC address of the NIC used for provisioning the host. In case of network boot, this is the MAC address of the PXE booting interface. The MAC address of the BMC must never be used here!",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -283,8 +283,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"boot_mode": schema.StringAttribute{
-						Description:         "Select the method of initializing the hardware during boot. Defaults to UEFI.",
-						MarkdownDescription: "Select the method of initializing the hardware during boot. Defaults to UEFI.",
+						Description:         "Select the method of initializing the hardware during boot. Defaults to UEFI. Legacy boot should only be used for hardware that does not support UEFI correctly. Set to UEFISecureBoot to turn secure boot on automatically after provisioning.",
+						MarkdownDescription: "Select the method of initializing the hardware during boot. Defaults to UEFI. Legacy boot should only be used for hardware that does not support UEFI correctly. Set to UEFISecureBoot to turn secure boot on automatically after provisioning.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -294,8 +294,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"consumer_ref": schema.SingleNestedAttribute{
-						Description:         "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'.",
-						MarkdownDescription: "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'.",
+						Description:         "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'. The common use case is a link to a Machine resource when the host is used by Cluster API.",
+						MarkdownDescription: "ConsumerRef can be used to store information about something that is using a host. When it is not empty, the host is considered 'in use'. The common use case is a link to a Machine resource when the host is used by Cluster API.",
 						Attributes: map[string]schema.Attribute{
 							"api_version": schema.StringAttribute{
 								Description:         "API version of the referent.",
@@ -359,8 +359,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"custom_deploy": schema.SingleNestedAttribute{
-						Description:         "A custom deploy procedure.",
-						MarkdownDescription: "A custom deploy procedure.",
+						Description:         "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Settings this field triggers provisioning.",
+						MarkdownDescription: "A custom deploy procedure. This is an advanced feature that allows using a custom deploy step provided by a site-specific deployment ramdisk. Most users will want to use 'image' instead. Settings this field triggers provisioning.",
 						Attributes: map[string]schema.Attribute{
 							"method": schema.StringAttribute{
 								Description:         "Custom deploy method name. This name is specific to the deploy ramdisk used. If you don't have a custom deploy ramdisk, you shouldn't use CustomDeploy.",
@@ -376,44 +376,44 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"description": schema.StringAttribute{
-						Description:         "Description is a human-entered text used to help identify the host",
-						MarkdownDescription: "Description is a human-entered text used to help identify the host",
+						Description:         "Description is a human-entered text used to help identify the host.",
+						MarkdownDescription: "Description is a human-entered text used to help identify the host.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"externally_provisioned": schema.BoolAttribute{
-						Description:         "ExternallyProvisioned means something else is managing the image running on the host and the operator should only manage the power status and hardware inventory inspection. If the Image field is filled in, this field is ignored.",
-						MarkdownDescription: "ExternallyProvisioned means something else is managing the image running on the host and the operator should only manage the power status and hardware inventory inspection. If the Image field is filled in, this field is ignored.",
+						Description:         "ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters. If unsure, leave this field as false.",
+						MarkdownDescription: "ExternallyProvisioned means something else has provisioned the image running on the host, and the operator should only manage the power status. This field is used for integration with already provisioned hosts and when pivoting hosts between clusters. If unsure, leave this field as false.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"firmware": schema.SingleNestedAttribute{
-						Description:         "BIOS configuration for bare metal server",
-						MarkdownDescription: "BIOS configuration for bare metal server",
+						Description:         "Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned. Only some vendor drivers support this field. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers.",
+						MarkdownDescription: "Firmware (BIOS) configuration for bare metal server. If set, the requested settings will be applied before the host is provisioned. Only some vendor drivers support this field. An alternative is to use HostFirmwareSettings resources that allow changing arbitrary values and support the generic Redfish-based drivers.",
 						Attributes: map[string]schema.Attribute{
 							"simultaneous_multithreading_enabled": schema.BoolAttribute{
-								Description:         "Allows a single physical processor core to appear as several logical processors. This supports following options: true, false.",
-								MarkdownDescription: "Allows a single physical processor core to appear as several logical processors. This supports following options: true, false.",
+								Description:         "Allows a single physical processor core to appear as several logical processors.",
+								MarkdownDescription: "Allows a single physical processor core to appear as several logical processors.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"sriov_enabled": schema.BoolAttribute{
-								Description:         "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. This supports following options: true, false.",
-								MarkdownDescription: "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance. This supports following options: true, false.",
+								Description:         "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance.",
+								MarkdownDescription: "SR-IOV support enables a hypervisor to create virtual instances of a PCI-express device, potentially increasing performance.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
 							},
 
 							"virtualization_enabled": schema.BoolAttribute{
-								Description:         "Supports the virtualization of platform hardware. This supports following options: true, false.",
-								MarkdownDescription: "Supports the virtualization of platform hardware. This supports following options: true, false.",
+								Description:         "Supports the virtualization of platform hardware.",
+								MarkdownDescription: "Supports the virtualization of platform hardware.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -433,12 +433,12 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"image": schema.SingleNestedAttribute{
-						Description:         "Image holds the details of the image to be provisioned.",
-						MarkdownDescription: "Image holds the details of the image to be provisioned.",
+						Description:         "Image holds the details of the image to be provisioned. Populating the image will cause the host to start provisioning.",
+						MarkdownDescription: "Image holds the details of the image to be provisioned. Populating the image will cause the host to start provisioning.",
 						Attributes: map[string]schema.Attribute{
 							"checksum": schema.StringAttribute{
-								Description:         "Checksum is the checksum for the image.",
-								MarkdownDescription: "Checksum is the checksum for the image.",
+								Description:         "Checksum is the checksum for the image. Required for all formats except for 'live-iso'.",
+								MarkdownDescription: "Checksum is the checksum for the image. Required for all formats except for 'live-iso'.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -456,8 +456,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 							},
 
 							"format": schema.StringAttribute{
-								Description:         "DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.",
-								MarkdownDescription: "DiskFormat contains the format of the image (raw, qcow2, ...). Needs to be set to raw for raw images streaming. Note live-iso means an iso referenced by the url will be live-booted and not deployed to disk, and in this case the checksum options are not required and if specified will be ignored.",
+								Description:         "Format contains the format of the image (raw, qcow2, ...). When set to 'live-iso', an ISO 9660 image referenced by the url will be live-booted and not deployed to disk.",
+								MarkdownDescription: "Format contains the format of the image (raw, qcow2, ...). When set to 'live-iso', an ISO 9660 image referenced by the url will be live-booted and not deployed to disk.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
@@ -480,8 +480,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"meta_data": schema.SingleNestedAttribute{
-						Description:         "MetaData holds the reference to the Secret containing host metadata (e.g. meta_data.json) which is passed to the Config Drive.",
-						MarkdownDescription: "MetaData holds the reference to the Secret containing host metadata (e.g. meta_data.json) which is passed to the Config Drive.",
+						Description:         "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, the operater will generate metadata for the host, so most users do not need to set this field.",
+						MarkdownDescription: "MetaData holds the reference to the Secret containing host metadata which is passed to the Config Drive. By default, the operater will generate metadata for the host, so most users do not need to set this field.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "name is unique within a namespace to reference a secret resource.",
@@ -505,8 +505,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"network_data": schema.SingleNestedAttribute{
-						Description:         "NetworkData holds the reference to the Secret containing network configuration (e.g content of network_data.json) which is passed to the Config Drive.",
-						MarkdownDescription: "NetworkData holds the reference to the Secret containing network configuration (e.g content of network_data.json) which is passed to the Config Drive.",
+						Description:         "NetworkData holds the reference to the Secret containing network configuration which is passed to the Config Drive and interpreted by the first boot software such as cloud-init.",
+						MarkdownDescription: "NetworkData holds the reference to the Secret containing network configuration which is passed to the Config Drive and interpreted by the first boot software such as cloud-init.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "name is unique within a namespace to reference a secret resource.",
@@ -530,24 +530,24 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"online": schema.BoolAttribute{
-						Description:         "Should the server be online?",
-						MarkdownDescription: "Should the server be online?",
+						Description:         "Should the host be powered on? Changing this value will trigger a change in power state of the host.",
+						MarkdownDescription: "Should the host be powered on? Changing this value will trigger a change in power state of the host.",
 						Required:            true,
 						Optional:            false,
 						Computed:            false,
 					},
 
 					"preprovisioning_network_data_name": schema.StringAttribute{
-						Description:         "PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration (e.g content of network_data.json) which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.",
-						MarkdownDescription: "PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration (e.g content of network_data.json) which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.",
+						Description:         "PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.",
+						MarkdownDescription: "PreprovisioningNetworkDataName is the name of the Secret in the local namespace containing network configuration which is passed to the preprovisioning image, and to the Config Drive if not overridden by specifying NetworkData.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"raid": schema.SingleNestedAttribute{
-						Description:         "RAID configuration for bare metal server",
-						MarkdownDescription: "RAID configuration for bare metal server",
+						Description:         "RAID configuration for bare metal server. If set, the RAID settings will be applied before the host is provisioned. If not, the current settings will not be modified. Only one of the sub-fields hardwareRAIDVolumes and softwareRAIDVolumes can be set at the same time.",
+						MarkdownDescription: "RAID configuration for bare metal server. If set, the RAID settings will be applied before the host is provisioned. If not, the current settings will not be modified. Only one of the sub-fields hardwareRAIDVolumes and softwareRAIDVolumes can be set at the same time.",
 						Attributes: map[string]schema.Attribute{
 							"hardware_raid_volumes": schema.ListNestedAttribute{
 								Description:         "The list of logical disks for hardware RAID, if rootDeviceHints isn't used, first volume is root volume. You can set the value of this field to '[]' to clear all the hardware RAID configurations.",
@@ -555,16 +555,16 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"controller": schema.StringAttribute{
-											Description:         "The name of the RAID controller to use",
-											MarkdownDescription: "The name of the RAID controller to use",
+											Description:         "The name of the RAID controller to use.",
+											MarkdownDescription: "The name of the RAID controller to use.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"level": schema.StringAttribute{
-											Description:         "RAID level for the logical disk. The following levels are supported: 0;1;2;5;6;1+0;5+0;6+0.",
-											MarkdownDescription: "RAID level for the logical disk. The following levels are supported: 0;1;2;5;6;1+0;5+0;6+0.",
+											Description:         "RAID level for the logical disk. The following levels are supported: 0, 1, 2, 5, 6, 1+0, 5+0, 6+0 (drivers may support only some of them).",
+											MarkdownDescription: "RAID level for the logical disk. The following levels are supported: 0, 1, 2, 5, 6, 1+0, 5+0, 6+0 (drivers may support only some of them).",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -574,8 +574,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"name": schema.StringAttribute{
-											Description:         "Name of the volume. Should be unique within the Node. If not specified, volume name will be auto-generated.",
-											MarkdownDescription: "Name of the volume. Should be unique within the Node. If not specified, volume name will be auto-generated.",
+											Description:         "Name of the volume. Should be unique within the Node. If not specified, the name will be auto-generated.",
+											MarkdownDescription: "Name of the volume. Should be unique within the Node. If not specified, the name will be auto-generated.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -596,8 +596,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"physical_disks": schema.ListAttribute{
-											Description:         "Optional list of physical disk names to be used for the Hardware RAID volumes. The disk names are interpreted by the Hardware RAID controller, and the format is hardware specific.",
-											MarkdownDescription: "Optional list of physical disk names to be used for the Hardware RAID volumes. The disk names are interpreted by the Hardware RAID controller, and the format is hardware specific.",
+											Description:         "Optional list of physical disk names to be used for the hardware RAID volumes. The disk names are interpreted by the hardware RAID controller, and the format is hardware specific.",
+											MarkdownDescription: "Optional list of physical disk names to be used for the hardware RAID volumes. The disk names are interpreted by the hardware RAID controller, and the format is hardware specific.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -605,16 +605,16 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"rotational": schema.BoolAttribute{
-											Description:         "Select disks with only rotational or solid-state storage",
-											MarkdownDescription: "Select disks with only rotational or solid-state storage",
+											Description:         "Select disks with only rotational (if set to true) or solid-state (if set to false) storage. By default, any disks can be picked.",
+											MarkdownDescription: "Select disks with only rotational (if set to true) or solid-state (if set to false) storage. By default, any disks can be picked.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
 										},
 
 										"size_gibibytes": schema.Int64Attribute{
-											Description:         "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
-											MarkdownDescription: "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+											Description:         "Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+											MarkdownDescription: "Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -635,8 +635,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 								NestedObject: schema.NestedAttributeObject{
 									Attributes: map[string]schema.Attribute{
 										"level": schema.StringAttribute{
-											Description:         "RAID level for the logical disk. The following levels are supported: 0;1;1+0.",
-											MarkdownDescription: "RAID level for the logical disk. The following levels are supported: 0;1;1+0.",
+											Description:         "RAID level for the logical disk. The following levels are supported: 0, 1 and 1+0.",
+											MarkdownDescription: "RAID level for the logical disk. The following levels are supported: 0, 1 and 1+0.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -740,8 +740,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 										},
 
 										"size_gibibytes": schema.Int64Attribute{
-											Description:         "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
-											MarkdownDescription: "Size (Integer) of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+											Description:         "Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
+											MarkdownDescription: "Size of the logical disk to be created in GiB. If unspecified or set be 0, the maximum capacity of disk will be used for logical disk.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -762,8 +762,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"root_device_hints": schema.SingleNestedAttribute{
-						Description:         "Provide guidance about how to choose the device for the image being provisioned.",
-						MarkdownDescription: "Provide guidance about how to choose the device for the image being provisioned.",
+						Description:         "Provide guidance about how to choose the device for the image being provisioned. The default is currently to use /dev/sda as the root device.",
+						MarkdownDescription: "Provide guidance about how to choose the device for the image being provisioned. The default is currently to use /dev/sda as the root device.",
 						Attributes: map[string]schema.Attribute{
 							"device_name": schema.StringAttribute{
 								Description:         "A Linux device name like '/dev/vda', or a by-path link to it like '/dev/disk/by-path/pci-0000:01:00.0-scsi-0:2:0:0'. The hint must match the actual value exactly.",
@@ -900,8 +900,8 @@ func (r *Metal3IoBareMetalHostV1Alpha1Manifest) Schema(_ context.Context, _ data
 					},
 
 					"user_data": schema.SingleNestedAttribute{
-						Description:         "UserData holds the reference to the Secret containing the user data to be passed to the host before it boots.",
-						MarkdownDescription: "UserData holds the reference to the Secret containing the user data to be passed to the host before it boots.",
+						Description:         "UserData holds the reference to the Secret containing the user data which is passed to the Config Drive and interpreted by the first-boot software such as cloud-init. The format of user data is specific to the first-boot software.",
+						MarkdownDescription: "UserData holds the reference to the Secret containing the user data which is passed to the Config Drive and interpreted by the first-boot software such as cloud-init. The format of user data is specific to the first-boot software.",
 						Attributes: map[string]schema.Attribute{
 							"name": schema.StringAttribute{
 								Description:         "name is unique within a namespace to reference a secret resource.",

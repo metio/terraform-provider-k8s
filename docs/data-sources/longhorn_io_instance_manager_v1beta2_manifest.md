@@ -56,6 +56,21 @@ Optional:
 Optional:
 
 - `data_engine` (String)
+- `data_engine_spec` (Attributes) (see [below for nested schema](#nestedatt--spec--data_engine_spec))
 - `image` (String)
 - `node_id` (String)
 - `type` (String)
+
+<a id="nestedatt--spec--data_engine_spec"></a>
+### Nested Schema for `spec.data_engine_spec`
+
+Optional:
+
+- `v2` (Attributes) (see [below for nested schema](#nestedatt--spec--data_engine_spec--v2))
+
+<a id="nestedatt--spec--data_engine_spec--v2"></a>
+### Nested Schema for `spec.data_engine_spec.v2`
+
+Optional:
+
+- `cpu_mask` (String)

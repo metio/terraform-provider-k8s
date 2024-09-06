@@ -90,7 +90,8 @@ type DataprotectionKubeblocksIoActionSetV1Alpha1ManifestData struct {
 		Env        *map[string]string `tfsdk:"env" json:"env,omitempty"`
 		EnvFrom    *map[string]string `tfsdk:"env_from" json:"envFrom,omitempty"`
 		Restore    *struct {
-			PostReady *[]struct {
+			BaseBackupRequired *bool `tfsdk:"base_backup_required" json:"baseBackupRequired,omitempty"`
+			PostReady          *[]struct {
 				Exec *struct {
 					Command   *[]string `tfsdk:"command" json:"command,omitempty"`
 					Container *string   `tfsdk:"container" json:"container,omitempty"`
@@ -516,6 +517,14 @@ func (r *DataprotectionKubeblocksIoActionSetV1Alpha1Manifest) Schema(_ context.C
 						Description:         "Specifies the restore action.",
 						MarkdownDescription: "Specifies the restore action.",
 						Attributes: map[string]schema.Attribute{
+							"base_backup_required": schema.BoolAttribute{
+								Description:         "Determines if a base backup is required during restoration.",
+								MarkdownDescription: "Determines if a base backup is required during restoration.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
 							"post_ready": schema.ListNestedAttribute{
 								Description:         "Specifies the actions that should be executed after the data has been prepared and is ready for restoration.",
 								MarkdownDescription: "Specifies the actions that should be executed after the data has been prepared and is ready for restoration.",

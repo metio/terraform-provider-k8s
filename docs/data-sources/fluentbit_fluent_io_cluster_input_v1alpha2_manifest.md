@@ -58,6 +58,7 @@ Optional:
 - `collectd` (Attributes) Collectd defines the Collectd input plugin configuration (see [below for nested schema](#nestedatt--spec--collectd))
 - `custom_plugin` (Attributes) CustomPlugin defines Custom Input configuration. (see [below for nested schema](#nestedatt--spec--custom_plugin))
 - `dummy` (Attributes) Dummy defines Dummy Input configuration. (see [below for nested schema](#nestedatt--spec--dummy))
+- `exec_wasi` (Attributes) ExecWasi defines the exec wasi input plugin configuration (see [below for nested schema](#nestedatt--spec--exec_wasi))
 - `fluent_bit_metrics` (Attributes) FluentBitMetrics defines Fluent Bit Metrics Input configuration. (see [below for nested schema](#nestedatt--spec--fluent_bit_metrics))
 - `forward` (Attributes) Forward defines forward  input plugin configuration (see [below for nested schema](#nestedatt--spec--forward))
 - `http` (Attributes) HTTP defines the HTTP input plugin configuration (see [below for nested schema](#nestedatt--spec--http))
@@ -104,6 +105,22 @@ Optional:
 - `rate` (Number) Events number generated per second.
 - `samples` (Number) Sample events to generate.
 - `tag` (String) Tag name associated to all records comming from this plugin.
+
+
+<a id="nestedatt--spec--exec_wasi"></a>
+### Nested Schema for `spec.exec_wasi`
+
+Optional:
+
+- `accessible_paths` (List of String) Specify the whitelist of paths to be able to access paths from WASM programs.
+- `buf_size` (String) Size of the buffer (check unit sizes for allowed values)
+- `interval_n_sec` (Number) Polling interval (nanoseconds).
+- `interval_sec` (Number) Polling interval (seconds).
+- `parser` (String) Specify the name of a parser to interpret the entry as a structured message.
+- `threaded` (Boolean) Indicates whether to run this input in its own thread. Default: false.
+- `wasi_path` (String) The place of a WASM program file.
+- `wasm_heap_size` (String)
+- `wasm_stack_size` (String) Size of the stack size of Wasm execution. Review unit sizes for allowed values.
 
 
 <a id="nestedatt--spec--fluent_bit_metrics"></a>

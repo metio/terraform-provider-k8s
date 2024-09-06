@@ -97,12 +97,12 @@ type CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1ManifestData struct {
 					Override               *bool  `tfsdk:"override" json:"override,omitempty"`
 					Preload                *bool  `tfsdk:"preload" json:"preload,omitempty"`
 				} `tfsdk:"strict_transport_security" json:"strictTransportSecurity,omitempty"`
-				XSSProtection *struct {
+				XssProtection *struct {
 					ModeBlock  *bool   `tfsdk:"mode_block" json:"modeBlock,omitempty"`
 					Override   *bool   `tfsdk:"override" json:"override,omitempty"`
 					Protection *bool   `tfsdk:"protection" json:"protection,omitempty"`
 					ReportURI  *string `tfsdk:"report_uri" json:"reportURI,omitempty"`
-				} `tfsdk:"x_ss_protection" json:"xSSProtection,omitempty"`
+				} `tfsdk:"xss_protection" json:"xssProtection,omitempty"`
 			} `tfsdk:"security_headers_config" json:"securityHeadersConfig,omitempty"`
 			ServerTimingHeadersConfig *struct {
 				Enabled      *bool    `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -523,7 +523,7 @@ func (r *CloudfrontServicesK8SAwsResponseHeadersPolicyV1Alpha1Manifest) Schema(_
 										Computed: false,
 									},
 
-									"x_ss_protection": schema.SingleNestedAttribute{
+									"xss_protection": schema.SingleNestedAttribute{
 										Description:         "Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs.",
 										MarkdownDescription: "Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs.",
 										Attributes: map[string]schema.Attribute{

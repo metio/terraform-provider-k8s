@@ -138,6 +138,11 @@ type AcmpcaServicesK8SAwsCertificateV1Alpha1ManifestData struct {
 				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"certificate_authority_ref" json:"certificateAuthorityRef,omitempty"`
+		CertificateOutput *struct {
+			Key       *string `tfsdk:"key" json:"key,omitempty"`
+			Name      *string `tfsdk:"name" json:"name,omitempty"`
+			Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+		} `tfsdk:"certificate_output" json:"certificateOutput,omitempty"`
 		CertificateSigningRequest    *string `tfsdk:"certificate_signing_request" json:"certificateSigningRequest,omitempty"`
 		CertificateSigningRequestRef *struct {
 			From *struct {
@@ -883,6 +888,39 @@ func (r *AcmpcaServicesK8SAwsCertificateV1Alpha1Manifest) Schema(_ context.Conte
 								Required: false,
 								Optional: true,
 								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
+					},
+
+					"certificate_output": schema.SingleNestedAttribute{
+						Description:         "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+						MarkdownDescription: "SecretKeyReference combines a k8s corev1.SecretReference with aspecific key within the referred-to Secret",
+						Attributes: map[string]schema.Attribute{
+							"key": schema.StringAttribute{
+								Description:         "Key is the key within the secret",
+								MarkdownDescription: "Key is the key within the secret",
+								Required:            true,
+								Optional:            false,
+								Computed:            false,
+							},
+
+							"name": schema.StringAttribute{
+								Description:         "name is unique within a namespace to reference a secret resource.",
+								MarkdownDescription: "name is unique within a namespace to reference a secret resource.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"namespace": schema.StringAttribute{
+								Description:         "namespace defines the space within which the secret name must be unique.",
+								MarkdownDescription: "namespace defines the space within which the secret name must be unique.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
 							},
 						},
 						Required: false,

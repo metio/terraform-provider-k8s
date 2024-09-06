@@ -136,6 +136,7 @@ Optional:
 
 Optional:
 
+- `jaeger_query` (String) JaegerQuery defines the tempo-query container image.
 - `oauth_proxy` (String) OauthProxy defines the oauth proxy image used to protect the jaegerUI on single tenant.
 - `tempo` (String) Tempo defines the tempo container image.
 - `tempo_gateway` (String) TempoGateway defines the tempo-gateway container image.
@@ -662,6 +663,7 @@ Optional:
 - `monitor_tab` (Attributes) MonitorTab defines the monitor tab configuration. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--monitor_tab))
 - `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--resources))
 - `services_query_duration` (String) ServicesQueryDuration defines how long the services will be available in the services list
+- `tempo_query` (Attributes) TempoQuery defines options specific to the Tempoo Query component. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--tempo_query))
 
 <a id="nestedatt--spec--template--query_frontend--jaeger_query--authentication"></a>
 ### Nested Schema for `spec.template.query_frontend.jaeger_query.authentication`
@@ -735,6 +737,32 @@ Optional:
 Required:
 
 - `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
+
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--tempo_query"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.tempo_query`
+
+Optional:
+
+- `resources` (Attributes) Resources defines resources for this component, this will override the calculated resources derived from total (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--tempo_query--resources))
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--tempo_query--resources"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.tempo_query.resources`
+
+Optional:
+
+- `claims` (Attributes List) Claims lists the names of resources, defined in spec.resourceClaims,that are used by this container.This is an alpha field and requires enabling theDynamicResourceAllocation feature gate.This field is immutable. It can only be set for containers. (see [below for nested schema](#nestedatt--spec--template--query_frontend--jaeger_query--tempo_query--resources--claims))
+- `limits` (Map of String) Limits describes the maximum amount of compute resources allowed.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+- `requests` (Map of String) Requests describes the minimum amount of compute resources required.If Requests is omitted for a container, it defaults to Limits if that is explicitly specified,otherwise to an implementation-defined value. Requests cannot exceed Limits.More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+<a id="nestedatt--spec--template--query_frontend--jaeger_query--tempo_query--resources--claims"></a>
+### Nested Schema for `spec.template.query_frontend.jaeger_query.tempo_query.resources.claims`
+
+Required:
+
+- `name` (String) Name must match the name of one entry in pod.spec.resourceClaims ofthe Pod where this field is used. It makes that resource availableinside a container.
+
 
 
 

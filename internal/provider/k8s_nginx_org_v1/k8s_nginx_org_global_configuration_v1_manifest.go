@@ -44,6 +44,8 @@ type K8SNginxOrgGlobalConfigurationV1ManifestData struct {
 
 	Spec *struct {
 		Listeners *[]struct {
+			Ipv4     *string `tfsdk:"ipv4" json:"ipv4,omitempty"`
+			Ipv6     *string `tfsdk:"ipv6" json:"ipv6,omitempty"`
 			Name     *string `tfsdk:"name" json:"name,omitempty"`
 			Port     *int64  `tfsdk:"port" json:"port,omitempty"`
 			Protocol *string `tfsdk:"protocol" json:"protocol,omitempty"`
@@ -134,6 +136,22 @@ func (r *K8SNginxOrgGlobalConfigurationV1Manifest) Schema(_ context.Context, _ d
 						MarkdownDescription: "",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
+								"ipv4": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
+								"ipv6": schema.StringAttribute{
+									Description:         "",
+									MarkdownDescription: "",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+
 								"name": schema.StringAttribute{
 									Description:         "",
 									MarkdownDescription: "",

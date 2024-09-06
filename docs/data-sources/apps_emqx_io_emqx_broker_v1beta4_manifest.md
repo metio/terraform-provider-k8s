@@ -803,6 +803,10 @@ Optional:
 <a id="nestedatt--spec--template--spec--emqx_container--image"></a>
 ### Nested Schema for `spec.template.spec.emqx_container.image`
 
+Required:
+
+- `version` (String)
+
 Optional:
 
 - `prefix` (String)
@@ -810,7 +814,6 @@ Optional:
 - `registry` (String)
 - `repository` (String)
 - `suffix` (String)
-- `version` (String)
 
 
 <a id="nestedatt--spec--template--spec--emqx_container--lifecycle"></a>

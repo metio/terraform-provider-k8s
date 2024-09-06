@@ -236,8 +236,8 @@ func (r *KumaIoMeshTcprouteV1Alpha1Manifest) Schema(_ context.Context, _ datasou
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

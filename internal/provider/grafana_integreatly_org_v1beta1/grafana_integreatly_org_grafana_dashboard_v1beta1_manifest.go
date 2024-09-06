@@ -110,8 +110,22 @@ type GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1ManifestData struct {
 			Name    *string `tfsdk:"name" json:"name,omitempty"`
 			Version *string `tfsdk:"version" json:"version,omitempty"`
 		} `tfsdk:"plugins" json:"plugins,omitempty"`
-		ResyncPeriod *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
-		Url          *string `tfsdk:"url" json:"url,omitempty"`
+		ResyncPeriod     *string `tfsdk:"resync_period" json:"resyncPeriod,omitempty"`
+		Url              *string `tfsdk:"url" json:"url,omitempty"`
+		UrlAuthorization *struct {
+			BasicAuth *struct {
+				Password *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"password" json:"password,omitempty"`
+				Username *struct {
+					Key      *string `tfsdk:"key" json:"key,omitempty"`
+					Name     *string `tfsdk:"name" json:"name,omitempty"`
+					Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
+				} `tfsdk:"username" json:"username,omitempty"`
+			} `tfsdk:"basic_auth" json:"basicAuth,omitempty"`
+		} `tfsdk:"url_authorization" json:"urlAuthorization,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -658,6 +672,90 @@ func (r *GrafanaIntegreatlyOrgGrafanaDashboardV1Beta1Manifest) Schema(_ context.
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"url_authorization": schema.SingleNestedAttribute{
+						Description:         "authorization options for dashboard from url",
+						MarkdownDescription: "authorization options for dashboard from url",
+						Attributes: map[string]schema.Attribute{
+							"basic_auth": schema.SingleNestedAttribute{
+								Description:         "",
+								MarkdownDescription: "",
+								Attributes: map[string]schema.Attribute{
+									"password": schema.SingleNestedAttribute{
+										Description:         "SecretKeySelector selects a key of a Secret.",
+										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+
+									"username": schema.SingleNestedAttribute{
+										Description:         "SecretKeySelector selects a key of a Secret.",
+										MarkdownDescription: "SecretKeySelector selects a key of a Secret.",
+										Attributes: map[string]schema.Attribute{
+											"key": schema.StringAttribute{
+												Description:         "The key of the secret to select from.  Must be a valid secret key.",
+												MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
+												Required:            true,
+												Optional:            false,
+												Computed:            false,
+											},
+
+											"name": schema.StringAttribute{
+												Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+
+											"optional": schema.BoolAttribute{
+												Description:         "Specify whether the Secret or its key must be defined",
+												MarkdownDescription: "Specify whether the Secret or its key must be defined",
+												Required:            false,
+												Optional:            true,
+												Computed:            false,
+											},
+										},
+										Required: false,
+										Optional: true,
+										Computed: false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 				},
 				Required: false,

@@ -452,6 +452,10 @@ Optional:
 <a id="nestedatt--spec--emqx_template"></a>
 ### Nested Schema for `spec.emqx_template`
 
+Required:
+
+- `image` (String)
+
 Optional:
 
 - `acl` (List of String)
@@ -459,7 +463,6 @@ Optional:
 - `config` (Map of String)
 - `extra_volume_mounts` (Attributes List) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volume_mounts))
 - `extra_volumes` (Attributes List) (see [below for nested schema](#nestedatt--spec--emqx_template--extra_volumes))
-- `image` (String)
 - `image_pull_policy` (String)
 - `liveness_probe` (Attributes) (see [below for nested schema](#nestedatt--spec--emqx_template--liveness_probe))
 - `modules` (Attributes List) (see [below for nested schema](#nestedatt--spec--emqx_template--modules))

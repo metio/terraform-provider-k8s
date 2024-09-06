@@ -186,6 +186,7 @@ Required:
 
 Optional:
 
+- `base_backup_required` (Boolean) Determines if a base backup is required during restoration.
 - `post_ready` (Attributes List) Specifies the actions that should be executed after the data has been prepared and is ready for restoration. (see [below for nested schema](#nestedatt--spec--restore--post_ready))
 - `prepare_data` (Attributes) Specifies the action required to prepare data for restoration. (see [below for nested schema](#nestedatt--spec--restore--prepare_data))
 

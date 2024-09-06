@@ -63,8 +63,9 @@ type KyvernoIoCleanupPolicyV2Beta1ManifestData struct {
 					Key   *string            `tfsdk:"key" json:"key,omitempty"`
 					Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"data" json:"data,omitempty"`
-				JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-				Method   *string `tfsdk:"method" json:"method,omitempty"`
+				Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+				JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+				Method   *string            `tfsdk:"method" json:"method,omitempty"`
 				Service  *struct {
 					CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 					Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -458,6 +459,15 @@ func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											Computed: false,
 										},
 
+										"default": schema.MapAttribute{
+											Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+											MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
 										"jmes_path": schema.StringAttribute{
 											Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 											MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -628,8 +638,8 @@ func (r *KyvernoIoCleanupPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 								"name": schema.StringAttribute{
 									Description:         "Name is the variable name.",
 									MarkdownDescription: "Name is the variable name.",
-									Required:            false,
-									Optional:            true,
+									Required:            true,
+									Optional:            false,
 									Computed:            false,
 								},
 

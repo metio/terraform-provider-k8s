@@ -160,7 +160,7 @@ Optional:
 - `frame_options` (Attributes) Determines whether CloudFront includes the X-Frame-Options HTTP responseheader and the header's value.For more information about the X-Frame-Options HTTP response header, seeX-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--frame_options))
 - `referrer_policy` (Attributes) Determines whether CloudFront includes the Referrer-Policy HTTP responseheader and the header's value.For more information about the Referrer-Policy HTTP response header, seeReferrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--referrer_policy))
 - `strict_transport_security` (Attributes) Determines whether CloudFront includes the Strict-Transport-Security HTTPresponse header and the header's value.For more information about the Strict-Transport-Security HTTP response header,see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--strict_transport_security))
-- `x_ss_protection` (Attributes) Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--x_ss_protection))
+- `xss_protection` (Attributes) Determines whether CloudFront includes the X-XSS-Protection HTTP responseheader and the header's value.For more information about the X-XSS-Protection HTTP response header, seeX-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)in the MDN Web Docs. (see [below for nested schema](#nestedatt--spec--response_headers_policy_config--security_headers_config--xss_protection))
 
 <a id="nestedatt--spec--response_headers_policy_config--security_headers_config--content_security_policy"></a>
 ### Nested Schema for `spec.response_headers_policy_config.security_headers_config.content_security_policy`
@@ -208,8 +208,8 @@ Optional:
 - `preload` (Boolean)
 
 
-<a id="nestedatt--spec--response_headers_policy_config--security_headers_config--x_ss_protection"></a>
-### Nested Schema for `spec.response_headers_policy_config.security_headers_config.x_ss_protection`
+<a id="nestedatt--spec--response_headers_policy_config--security_headers_config--xss_protection"></a>
+### Nested Schema for `spec.response_headers_policy_config.security_headers_config.xss_protection`
 
 Optional:
 

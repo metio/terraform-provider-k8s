@@ -628,8 +628,8 @@ func (r *KumaIoMeshCircuitBreakerV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

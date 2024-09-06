@@ -455,6 +455,16 @@ type CamelApacheOrgIntegrationProfileV1ManifestData struct {
 			Strimzi *struct {
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 			} `tfsdk:"strimzi" json:"strimzi,omitempty"`
+			Telemetry *struct {
+				Auto                 *bool              `tfsdk:"auto" json:"auto,omitempty"`
+				Configuration        *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
+				Enabled              *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
+				Endpoint             *string            `tfsdk:"endpoint" json:"endpoint,omitempty"`
+				Sampler              *string            `tfsdk:"sampler" json:"sampler,omitempty"`
+				Sampler_parent_based *bool              `tfsdk:"sampler_parent_based" json:"sampler-parent-based,omitempty"`
+				Sampler_ratio        *string            `tfsdk:"sampler_ratio" json:"sampler-ratio,omitempty"`
+				ServiceName          *string            `tfsdk:"service_name" json:"serviceName,omitempty"`
+			} `tfsdk:"telemetry" json:"telemetry,omitempty"`
 			Toleration *struct {
 				Configuration *map[string]string `tfsdk:"configuration" json:"configuration,omitempty"`
 				Enabled       *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
@@ -3589,6 +3599,80 @@ func (r *CamelApacheOrgIntegrationProfileV1Manifest) Schema(_ context.Context, _
 										ElementType:         types.StringType,
 										Required:            true,
 										Optional:            false,
+										Computed:            false,
+									},
+								},
+								Required: false,
+								Optional: true,
+								Computed: false,
+							},
+
+							"telemetry": schema.SingleNestedAttribute{
+								Description:         "The configuration of Telemetry trait",
+								MarkdownDescription: "The configuration of Telemetry trait",
+								Attributes: map[string]schema.Attribute{
+									"auto": schema.BoolAttribute{
+										Description:         "Enables automatic configuration of the trait, including automatic discovery of the telemetry endpoint.",
+										MarkdownDescription: "Enables automatic configuration of the trait, including automatic discovery of the telemetry endpoint.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"configuration": schema.MapAttribute{
+										Description:         "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										MarkdownDescription: "Legacy trait configuration parameters.Deprecated: for backward compatibility.",
+										ElementType:         types.StringType,
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"enabled": schema.BoolAttribute{
+										Description:         "Can be used to enable or disable a trait. All traits share this common property.",
+										MarkdownDescription: "Can be used to enable or disable a trait. All traits share this common property.",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"endpoint": schema.StringAttribute{
+										Description:         "The target endpoint of the Telemetry service (automatically discovered by default)",
+										MarkdownDescription: "The target endpoint of the Telemetry service (automatically discovered by default)",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sampler": schema.StringAttribute{
+										Description:         "The sampler of the telemetry used for tracing (default 'on')",
+										MarkdownDescription: "The sampler of the telemetry used for tracing (default 'on')",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sampler_parent_based": schema.BoolAttribute{
+										Description:         "The sampler of the telemetry used for tracing is parent based (default 'true')",
+										MarkdownDescription: "The sampler of the telemetry used for tracing is parent based (default 'true')",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"sampler_ratio": schema.StringAttribute{
+										Description:         "The sampler ratio of the telemetry used for tracing",
+										MarkdownDescription: "The sampler ratio of the telemetry used for tracing",
+										Required:            false,
+										Optional:            true,
+										Computed:            false,
+									},
+
+									"service_name": schema.StringAttribute{
+										Description:         "The name of the service that publishes telemetry data (defaults to the integration name)",
+										MarkdownDescription: "The name of the service that publishes telemetry data (defaults to the integration name)",
+										Required:            false,
+										Optional:            true,
 										Computed:            false,
 									},
 								},

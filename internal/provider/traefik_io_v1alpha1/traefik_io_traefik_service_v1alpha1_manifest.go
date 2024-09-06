@@ -59,6 +59,7 @@ type TraefikIoTraefikServiceV1Alpha1ManifestData struct {
 			} `tfsdk:"health_check" json:"healthCheck,omitempty"`
 			Kind        *string `tfsdk:"kind" json:"kind,omitempty"`
 			MaxBodySize *int64  `tfsdk:"max_body_size" json:"maxBodySize,omitempty"`
+			MirrorBody  *bool   `tfsdk:"mirror_body" json:"mirrorBody,omitempty"`
 			Mirrors     *[]struct {
 				HealthCheck *struct {
 					FollowRedirects *bool              `tfsdk:"follow_redirects" json:"followRedirects,omitempty"`
@@ -366,6 +367,14 @@ func (r *TraefikIoTraefikServiceV1Alpha1Manifest) Schema(_ context.Context, _ da
 							"max_body_size": schema.Int64Attribute{
 								Description:         "MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.",
 								MarkdownDescription: "MaxBodySize defines the maximum size allowed for the body of the request.If the body is larger, the request is not mirrored.Default value is -1, which means unlimited size.",
+								Required:            false,
+								Optional:            true,
+								Computed:            false,
+							},
+
+							"mirror_body": schema.BoolAttribute{
+								Description:         "MirrorBody defines whether the body of the request should be mirrored.Default value is true.",
+								MarkdownDescription: "MirrorBody defines whether the body of the request should be mirrored.Default value is true.",
 								Required:            false,
 								Optional:            true,
 								Computed:            false,

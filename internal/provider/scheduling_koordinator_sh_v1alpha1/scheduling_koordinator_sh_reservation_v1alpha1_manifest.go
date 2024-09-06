@@ -75,7 +75,13 @@ type SchedulingKoordinatorShReservationV1Alpha1ManifestData struct {
 				Uid             *string `tfsdk:"uid" json:"uid,omitempty"`
 			} `tfsdk:"object" json:"object,omitempty"`
 		} `tfsdk:"owners" json:"owners,omitempty"`
-		PreAllocation *bool              `tfsdk:"pre_allocation" json:"preAllocation,omitempty"`
+		PreAllocation *bool `tfsdk:"pre_allocation" json:"preAllocation,omitempty"`
+		Taints        *[]struct {
+			Effect    *string `tfsdk:"effect" json:"effect,omitempty"`
+			Key       *string `tfsdk:"key" json:"key,omitempty"`
+			TimeAdded *string `tfsdk:"time_added" json:"timeAdded,omitempty"`
+			Value     *string `tfsdk:"value" json:"value,omitempty"`
+		} `tfsdk:"taints" json:"taints,omitempty"`
 		Template      *map[string]string `tfsdk:"template" json:"template,omitempty"`
 		Ttl           *string            `tfsdk:"ttl" json:"ttl,omitempty"`
 		Unschedulable *bool              `tfsdk:"unschedulable" json:"unschedulable,omitempty"`
@@ -387,6 +393,52 @@ func (r *SchedulingKoordinatorShReservationV1Alpha1Manifest) Schema(_ context.Co
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
+					},
+
+					"taints": schema.ListNestedAttribute{
+						Description:         "Specifies the reservation's taints. This can be toleranted by the reservation tolerance.Eviction is not supported for NoExecute taints",
+						MarkdownDescription: "Specifies the reservation's taints. This can be toleranted by the reservation tolerance.Eviction is not supported for NoExecute taints",
+						NestedObject: schema.NestedAttributeObject{
+							Attributes: map[string]schema.Attribute{
+								"effect": schema.StringAttribute{
+									Description:         "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									MarkdownDescription: "Required. The effect of the taint on podsthat do not tolerate the taint.Valid effects are NoSchedule, PreferNoSchedule and NoExecute.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"key": schema.StringAttribute{
+									Description:         "Required. The taint key to be applied to a node.",
+									MarkdownDescription: "Required. The taint key to be applied to a node.",
+									Required:            true,
+									Optional:            false,
+									Computed:            false,
+								},
+
+								"time_added": schema.StringAttribute{
+									Description:         "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									MarkdownDescription: "TimeAdded represents the time at which the taint was added.It is only written for NoExecute taints.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+									Validators: []validator.String{
+										validators.DateTime64Validator(),
+									},
+								},
+
+								"value": schema.StringAttribute{
+									Description:         "The taint value corresponding to the taint key.",
+									MarkdownDescription: "The taint value corresponding to the taint key.",
+									Required:            false,
+									Optional:            true,
+									Computed:            false,
+								},
+							},
+						},
+						Required: false,
+						Optional: true,
+						Computed: false,
 					},
 
 					"template": schema.MapAttribute{

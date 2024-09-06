@@ -206,7 +206,12 @@ type GatewayNetworkingK8SIoHttprouteV1Beta1ManifestData struct {
 					Value *string `tfsdk:"value" json:"value,omitempty"`
 				} `tfsdk:"query_params" json:"queryParams,omitempty"`
 			} `tfsdk:"matches" json:"matches,omitempty"`
-			Name               *string `tfsdk:"name" json:"name,omitempty"`
+			Name  *string `tfsdk:"name" json:"name,omitempty"`
+			Retry *struct {
+				Attempts *int64    `tfsdk:"attempts" json:"attempts,omitempty"`
+				Backoff  *string   `tfsdk:"backoff" json:"backoff,omitempty"`
+				Codes    *[]string `tfsdk:"codes" json:"codes,omitempty"`
+			} `tfsdk:"retry" json:"retry,omitempty"`
 			SessionPersistence *struct {
 				AbsoluteTimeout *string `tfsdk:"absolute_timeout" json:"absoluteTimeout,omitempty"`
 				CookieConfig    *struct {
@@ -1710,6 +1715,43 @@ func (r *GatewayNetworkingK8SIoHttprouteV1Beta1Manifest) Schema(_ context.Contex
 										stringvalidator.LengthAtMost(253),
 										stringvalidator.RegexMatches(regexp.MustCompile(`^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$`), ""),
 									},
+								},
+
+								"retry": schema.SingleNestedAttribute{
+									Description:         "Retry defines the configuration for when to retry an HTTP request.Support: Extended",
+									MarkdownDescription: "Retry defines the configuration for when to retry an HTTP request.Support: Extended",
+									Attributes: map[string]schema.Attribute{
+										"attempts": schema.Int64Attribute{
+											Description:         "Attempts specifies the maxmimum number of times an individual requestfrom the gateway to a backend should be retried.If the maximum number of retries has been attempted without a successfulresponse from the backend, the Gateway MUST return an error.When this field is unspecified, the number of times to attempt to retrya backend request is implementation-specific.Support: Extended",
+											MarkdownDescription: "Attempts specifies the maxmimum number of times an individual requestfrom the gateway to a backend should be retried.If the maximum number of retries has been attempted without a successfulresponse from the backend, the Gateway MUST return an error.When this field is unspecified, the number of times to attempt to retrya backend request is implementation-specific.Support: Extended",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"backoff": schema.StringAttribute{
+											Description:         "Backoff specifies the minimum duration a Gateway should wait betweenretry attempts and is represented in Gateway API Duration formatting.For example, setting the 'rules[].retry.backoff' field to the value'100ms' will cause a backend request to first be retried approximately100 milliseconds after timing out or receiving a response code configuredto be retryable.An implementation MAY use an exponential or alternative backoff strategyfor subsequent retry attempts, MAY cap the maximum backoff duration tosome amount greater than the specified minimum, and MAY add arbitraryjitter to stagger requests, as long as unsuccessful backend requests arenot retried before the configured minimum duration.If a Request timeout ('rules[].timeouts.request') is configured on theroute, the entire duration of the initial request and any retry attemptsMUST not exceed the Request timeout duration. If any retry attempts arestill in progress when the Request timeout duration has been reached,these SHOULD be canceled if possible and the Gateway MUST immediatelyreturn a timeout error.If a BackendRequest timeout ('rules[].timeouts.backendRequest') isconfigured on the route, any retry attempts which reach the configuredBackendRequest timeout duration without a response SHOULD be canceled ifpossible and the Gateway should wait for at least the specified backoffduration before attempting to retry the backend request again.If a BackendRequest timeout is _not_ configured on the route, retryattempts MAY time out after an implementation default duration, or MAYremain pending until a configured Request timeout or implementationdefault duration for total request time is reached.When this field is unspecified, the time to wait between retry attemptsis implementation-specific.Support: Extended",
+											MarkdownDescription: "Backoff specifies the minimum duration a Gateway should wait betweenretry attempts and is represented in Gateway API Duration formatting.For example, setting the 'rules[].retry.backoff' field to the value'100ms' will cause a backend request to first be retried approximately100 milliseconds after timing out or receiving a response code configuredto be retryable.An implementation MAY use an exponential or alternative backoff strategyfor subsequent retry attempts, MAY cap the maximum backoff duration tosome amount greater than the specified minimum, and MAY add arbitraryjitter to stagger requests, as long as unsuccessful backend requests arenot retried before the configured minimum duration.If a Request timeout ('rules[].timeouts.request') is configured on theroute, the entire duration of the initial request and any retry attemptsMUST not exceed the Request timeout duration. If any retry attempts arestill in progress when the Request timeout duration has been reached,these SHOULD be canceled if possible and the Gateway MUST immediatelyreturn a timeout error.If a BackendRequest timeout ('rules[].timeouts.backendRequest') isconfigured on the route, any retry attempts which reach the configuredBackendRequest timeout duration without a response SHOULD be canceled ifpossible and the Gateway should wait for at least the specified backoffduration before attempting to retry the backend request again.If a BackendRequest timeout is _not_ configured on the route, retryattempts MAY time out after an implementation default duration, or MAYremain pending until a configured Request timeout or implementationdefault duration for total request time is reached.When this field is unspecified, the time to wait between retry attemptsis implementation-specific.Support: Extended",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+											Validators: []validator.String{
+												stringvalidator.RegexMatches(regexp.MustCompile(`^([0-9]{1,5}(h|m|s|ms)){1,4}$`), ""),
+											},
+										},
+
+										"codes": schema.ListAttribute{
+											Description:         "Codes defines the HTTP response status codes for which a backend requestshould be retried.Support: Extended",
+											MarkdownDescription: "Codes defines the HTTP response status codes for which a backend requestshould be retried.Support: Extended",
+											ElementType:         types.StringType,
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+									},
+									Required: false,
+									Optional: true,
+									Computed: false,
 								},
 
 								"session_persistence": schema.SingleNestedAttribute{

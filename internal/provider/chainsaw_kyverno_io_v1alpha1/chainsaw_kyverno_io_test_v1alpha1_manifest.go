@@ -72,6 +72,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"command" json:"command,omitempty"`
 			Delete *struct {
 				Bindings *[]struct {
@@ -176,6 +177,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 				} `tfsdk:"outputs" json:"outputs,omitempty"`
 				SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 				Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+				WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 			} `tfsdk:"script" json:"script,omitempty"`
 			Sleep *struct {
 				Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -257,6 +259,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
 				Delete *struct {
 					Bindings *[]struct {
@@ -361,6 +364,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -416,6 +420,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
 				Delete *struct {
 					Bindings *[]struct {
@@ -520,6 +525,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -582,6 +588,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
 				Delete *struct {
 					Bindings *[]struct {
@@ -686,6 +693,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -792,6 +800,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"command" json:"command,omitempty"`
 				ContinueOnError *bool `tfsdk:"continue_on_error" json:"continueOnError,omitempty"`
 				Create          *struct {
@@ -981,6 +990,7 @@ type ChainsawKyvernoIoTestV1Alpha1ManifestData struct {
 					} `tfsdk:"outputs" json:"outputs,omitempty"`
 					SkipLogOutput *bool   `tfsdk:"skip_log_output" json:"skipLogOutput,omitempty"`
 					Timeout       *string `tfsdk:"timeout" json:"timeout,omitempty"`
+					WorkDir       *string `tfsdk:"work_dir" json:"workDir,omitempty"`
 				} `tfsdk:"script" json:"script,omitempty"`
 				Sleep *struct {
 					Duration *string `tfsdk:"duration" json:"duration,omitempty"`
@@ -1329,6 +1339,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 										"timeout": schema.StringAttribute{
 											Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 											MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
+
+										"work_dir": schema.StringAttribute{
+											Description:         "WorkDir is the working directory for command.",
+											MarkdownDescription: "WorkDir is the working directory for command.",
 											Required:            false,
 											Optional:            true,
 											Computed:            false,
@@ -2079,6 +2097,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 											Optional:            true,
 											Computed:            false,
 										},
+
+										"work_dir": schema.StringAttribute{
+											Description:         "WorkDir is the working directory for script.",
+											MarkdownDescription: "WorkDir is the working directory for script.",
+											Required:            false,
+											Optional:            true,
+											Computed:            false,
+										},
 									},
 									Required: false,
 									Optional: true,
@@ -2657,6 +2683,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Optional:            true,
 														Computed:            false,
 													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for command.",
+														MarkdownDescription: "WorkDir is the working directory for command.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -3399,6 +3433,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"timeout": schema.StringAttribute{
 														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for script.",
+														MarkdownDescription: "WorkDir is the working directory for script.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -3786,6 +3828,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Optional:            true,
 														Computed:            false,
 													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for command.",
+														MarkdownDescription: "WorkDir is the working directory for command.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -4528,6 +4578,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"timeout": schema.StringAttribute{
 														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for script.",
+														MarkdownDescription: "WorkDir is the working directory for script.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -4967,6 +5025,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 														Optional:            true,
 														Computed:            false,
 													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for command.",
+														MarkdownDescription: "WorkDir is the working directory for command.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
 												},
 												Required: false,
 												Optional: true,
@@ -5709,6 +5775,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"timeout": schema.StringAttribute{
 														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for script.",
+														MarkdownDescription: "WorkDir is the working directory for script.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -6462,6 +6536,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"timeout": schema.StringAttribute{
 														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for command.",
+														MarkdownDescription: "WorkDir is the working directory for command.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,
@@ -7826,6 +7908,14 @@ func (r *ChainsawKyvernoIoTestV1Alpha1Manifest) Schema(_ context.Context, _ data
 													"timeout": schema.StringAttribute{
 														Description:         "Timeout for the operation. Overrides the global timeout set in the Configuration.",
 														MarkdownDescription: "Timeout for the operation. Overrides the global timeout set in the Configuration.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
+													"work_dir": schema.StringAttribute{
+														Description:         "WorkDir is the working directory for script.",
+														MarkdownDescription: "WorkDir is the working directory for script.",
 														Required:            false,
 														Optional:            true,
 														Computed:            false,

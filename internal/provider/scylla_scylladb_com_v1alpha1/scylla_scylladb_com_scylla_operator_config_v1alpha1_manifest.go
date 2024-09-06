@@ -42,7 +42,10 @@ type ScyllaScylladbComScyllaOperatorConfigV1Alpha1ManifestData struct {
 	} `tfsdk:"metadata" json:"metadata"`
 
 	Spec *struct {
-		ScyllaUtilsImage *string `tfsdk:"scylla_utils_image" json:"scyllaUtilsImage,omitempty"`
+		ScyllaUtilsImage                     *string `tfsdk:"scylla_utils_image" json:"scyllaUtilsImage,omitempty"`
+		UnsupportedBashToolsImageOverride    *string `tfsdk:"unsupported_bash_tools_image_override" json:"unsupportedBashToolsImageOverride,omitempty"`
+		UnsupportedGrafanaImageOverride      *string `tfsdk:"unsupported_grafana_image_override" json:"unsupportedGrafanaImageOverride,omitempty"`
+		UnsupportedPrometheusVersionOverride *string `tfsdk:"unsupported_prometheus_version_override" json:"unsupportedPrometheusVersionOverride,omitempty"`
 	} `tfsdk:"spec" json:"spec,omitempty"`
 }
 
@@ -112,14 +115,35 @@ func (r *ScyllaScylladbComScyllaOperatorConfigV1Alpha1Manifest) Schema(_ context
 				MarkdownDescription: "spec defines the desired state of the operator.",
 				Attributes: map[string]schema.Attribute{
 					"scylla_utils_image": schema.StringAttribute{
-						Description:         "scyllaUtilsImage is a Scylla image used for running scylla utilities.",
-						MarkdownDescription: "scyllaUtilsImage is a Scylla image used for running scylla utilities.",
+						Description:         "scyllaUtilsImage is a ScyllaDB image used for running ScyllaDB utilities.",
+						MarkdownDescription: "scyllaUtilsImage is a ScyllaDB image used for running ScyllaDB utilities.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
-						Validators: []validator.String{
-							stringvalidator.LengthAtLeast(1),
-						},
+					},
+
+					"unsupported_bash_tools_image_override": schema.StringAttribute{
+						Description:         "unsupportedBashToolsImageOverride allows to adjust a generic Bash image with extra tools used by the operator for auxiliary purposes. Setting this field renders your cluster unsupported. Use at your own risk.",
+						MarkdownDescription: "unsupportedBashToolsImageOverride allows to adjust a generic Bash image with extra tools used by the operator for auxiliary purposes. Setting this field renders your cluster unsupported. Use at your own risk.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"unsupported_grafana_image_override": schema.StringAttribute{
+						Description:         "unsupportedGrafanaImageOverride allows to adjust Grafana image used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.",
+						MarkdownDescription: "unsupportedGrafanaImageOverride allows to adjust Grafana image used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
+					},
+
+					"unsupported_prometheus_version_override": schema.StringAttribute{
+						Description:         "unsupportedPrometheusVersionOverride allows to adjust Prometheus version used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.",
+						MarkdownDescription: "unsupportedPrometheusVersionOverride allows to adjust Prometheus version used by the operator for testing, dev or emergencies. Setting this field renders your cluster unsupported. Use at your own risk.",
+						Required:            false,
+						Optional:            true,
+						Computed:            false,
 					},
 				},
 				Required: false,

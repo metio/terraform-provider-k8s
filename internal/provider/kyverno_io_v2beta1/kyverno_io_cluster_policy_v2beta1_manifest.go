@@ -61,8 +61,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 						Key   *string            `tfsdk:"key" json:"key,omitempty"`
 						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"data" json:"data,omitempty"`
-					JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-					Method   *string `tfsdk:"method" json:"method,omitempty"`
+					Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+					JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+					Method   *string            `tfsdk:"method" json:"method,omitempty"`
 					Service  *struct {
 						CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 						Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -206,8 +207,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Key   *string            `tfsdk:"key" json:"key,omitempty"`
 								Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"data" json:"data,omitempty"`
-							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-							Method   *string `tfsdk:"method" json:"method,omitempty"`
+							Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+							JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 								Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -346,8 +348,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Key   *string            `tfsdk:"key" json:"key,omitempty"`
 								Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"data" json:"data,omitempty"`
-							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-							Method   *string `tfsdk:"method" json:"method,omitempty"`
+							Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+							JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 								Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -409,8 +412,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Key   *string            `tfsdk:"key" json:"key,omitempty"`
 								Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"data" json:"data,omitempty"`
-							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-							Method   *string `tfsdk:"method" json:"method,omitempty"`
+							Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+							JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 								Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -537,8 +541,9 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								Key   *string            `tfsdk:"key" json:"key,omitempty"`
 								Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
 							} `tfsdk:"data" json:"data,omitempty"`
-							JmesPath *string `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
-							Method   *string `tfsdk:"method" json:"method,omitempty"`
+							Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
+							JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
+							Method   *string            `tfsdk:"method" json:"method,omitempty"`
 							Service  *struct {
 								CaBundle *string `tfsdk:"ca_bundle" json:"caBundle,omitempty"`
 								Url      *string `tfsdk:"url" json:"url,omitempty"`
@@ -649,7 +654,8 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								} `tfsdk:"secret" json:"secret,omitempty"`
 								SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 							} `tfsdk:"keys" json:"keys,omitempty"`
-							Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+							Repository         *string `tfsdk:"repository" json:"repository,omitempty"`
+							SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 						} `tfsdk:"entries" json:"entries,omitempty"`
 					} `tfsdk:"attestors" json:"attestors,omitempty"`
 					DryRun *struct {
@@ -739,7 +745,8 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 								} `tfsdk:"secret" json:"secret,omitempty"`
 								SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 							} `tfsdk:"keys" json:"keys,omitempty"`
-							Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+							Repository         *string `tfsdk:"repository" json:"repository,omitempty"`
+							SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 						} `tfsdk:"entries" json:"entries,omitempty"`
 					} `tfsdk:"attestors" json:"attestors,omitempty"`
 					Conditions *[]struct {
@@ -756,6 +763,7 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							Value    *map[string]string `tfsdk:"value" json:"value,omitempty"`
 						} `tfsdk:"any" json:"any,omitempty"`
 					} `tfsdk:"conditions" json:"conditions,omitempty"`
+					Name          *string `tfsdk:"name" json:"name,omitempty"`
 					PredicateType *string `tfsdk:"predicate_type" json:"predicateType,omitempty"`
 					Type          *string `tfsdk:"type" json:"type,omitempty"`
 				} `tfsdk:"attestations" json:"attestations,omitempty"`
@@ -815,7 +823,8 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 							} `tfsdk:"secret" json:"secret,omitempty"`
 							SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 						} `tfsdk:"keys" json:"keys,omitempty"`
-						Repository *string `tfsdk:"repository" json:"repository,omitempty"`
+						Repository         *string `tfsdk:"repository" json:"repository,omitempty"`
+						SignatureAlgorithm *string `tfsdk:"signature_algorithm" json:"signatureAlgorithm,omitempty"`
 					} `tfsdk:"entries" json:"entries,omitempty"`
 				} `tfsdk:"attestors" json:"attestors,omitempty"`
 				FailureAction            *string   `tfsdk:"failure_action" json:"failureAction,omitempty"`
@@ -831,7 +840,13 @@ type KyvernoIoClusterPolicyV2Beta1ManifestData struct {
 				SkipImageReferences *[]string `tfsdk:"skip_image_references" json:"skipImageReferences,omitempty"`
 				Type                *string   `tfsdk:"type" json:"type,omitempty"`
 				UseCache            *bool     `tfsdk:"use_cache" json:"useCache,omitempty"`
-				VerifyDigest        *bool     `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
+				Validate            *struct {
+					Deny *struct {
+						Conditions *map[string]string `tfsdk:"conditions" json:"conditions,omitempty"`
+					} `tfsdk:"deny" json:"deny,omitempty"`
+					Message *string `tfsdk:"message" json:"message,omitempty"`
+				} `tfsdk:"validate" json:"validate,omitempty"`
+				VerifyDigest *bool `tfsdk:"verify_digest" json:"verifyDigest,omitempty"`
 			} `tfsdk:"verify_images" json:"verifyImages,omitempty"`
 		} `tfsdk:"rules" json:"rules,omitempty"`
 		SchemaValidation                 *bool   `tfsdk:"schema_validation" json:"schemaValidation,omitempty"`
@@ -1057,6 +1072,15 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 														Computed: false,
 													},
 
+													"default": schema.MapAttribute{
+														Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+														MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+														ElementType:         types.StringType,
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+
 													"jmes_path": schema.StringAttribute{
 														Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 														MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -1227,8 +1251,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 											"name": schema.StringAttribute{
 												Description:         "Name is the variable name.",
 												MarkdownDescription: "Name is the variable name.",
-												Required:            false,
-												Optional:            true,
+												Required:            true,
+												Optional:            false,
 												Computed:            false,
 											},
 
@@ -2047,6 +2071,15 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			Computed: false,
 																		},
 
+																		"default": schema.MapAttribute{
+																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"jmes_path": schema.StringAttribute{
 																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -2217,8 +2250,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																"name": schema.StringAttribute{
 																	Description:         "Name is the variable name.",
 																	MarkdownDescription: "Name is the variable name.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -3032,6 +3065,15 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			Computed: false,
 																		},
 
+																		"default": schema.MapAttribute{
+																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"jmes_path": schema.StringAttribute{
 																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -3202,8 +3244,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																"name": schema.StringAttribute{
 																	Description:         "Name is the variable name.",
 																	MarkdownDescription: "Name is the variable name.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -3479,6 +3521,15 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			Computed: false,
 																		},
 
+																		"default": schema.MapAttribute{
+																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"jmes_path": schema.StringAttribute{
 																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -3649,8 +3700,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																"name": schema.StringAttribute{
 																	Description:         "Name is the variable name.",
 																	MarkdownDescription: "Name is the variable name.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -4372,6 +4423,15 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			Computed: false,
 																		},
 
+																		"default": schema.MapAttribute{
+																			Description:         "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			MarkdownDescription: "Default is an optional arbitrary JSON object that the context may take if the apiCallreturns error",
+																			ElementType:         types.StringType,
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
 																		"jmes_path": schema.StringAttribute{
 																			Description:         "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
 																			MarkdownDescription: "JMESPath is an optional JSON Match Expression that can be used totransform the JSON response returned from the server. For examplea JMESPath of 'items | length(@)' applied to the API server responsefor the URLPath '/apis/apps/v1/deployments' will return the total countof deployments across all namespaces.",
@@ -4542,8 +4602,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																"name": schema.StringAttribute{
 																	Description:         "Name is the variable name.",
 																	MarkdownDescription: "Name is the variable name.",
-																	Required:            false,
-																	Optional:            true,
+																	Required:            true,
+																	Optional:            false,
 																	Computed:            false,
 																},
 
@@ -5129,8 +5189,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				},
 
 																				"signature_algorithm": schema.StringAttribute{
-																					Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
-																					MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																					Description:         "Deprecated. Use attestor.signatureAlgorithm instead.",
+																					MarkdownDescription: "Deprecated. Use attestor.signatureAlgorithm instead.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5144,6 +5204,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																		"repository": schema.StringAttribute{
 																			Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																			MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																			Required:            false,
+																			Optional:            true,
+																			Computed:            false,
+																		},
+
+																		"signature_algorithm": schema.StringAttribute{
+																			Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																			MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																			Required:            false,
 																			Optional:            true,
 																			Computed:            false,
@@ -5747,8 +5815,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																						},
 
 																						"signature_algorithm": schema.StringAttribute{
-																							Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
-																							MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																							Description:         "Deprecated. Use attestor.signatureAlgorithm instead.",
+																							MarkdownDescription: "Deprecated. Use attestor.signatureAlgorithm instead.",
 																							Required:            false,
 																							Optional:            true,
 																							Computed:            false,
@@ -5762,6 +5830,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																				"repository": schema.StringAttribute{
 																					Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																					MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																					Required:            false,
+																					Optional:            true,
+																					Computed:            false,
+																				},
+
+																				"signature_algorithm": schema.StringAttribute{
+																					Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																					MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																					Required:            false,
 																					Optional:            true,
 																					Computed:            false,
@@ -5884,6 +5960,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 															Required: false,
 															Optional: true,
 															Computed: false,
+														},
+
+														"name": schema.StringAttribute{
+															Description:         "Name is the variable name.",
+															MarkdownDescription: "Name is the variable name.",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
 														},
 
 														"predicate_type": schema.StringAttribute{
@@ -6274,8 +6358,8 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																			},
 
 																			"signature_algorithm": schema.StringAttribute{
-																				Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
-																				MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																				Description:         "Deprecated. Use attestor.signatureAlgorithm instead.",
+																				MarkdownDescription: "Deprecated. Use attestor.signatureAlgorithm instead.",
 																				Required:            false,
 																				Optional:            true,
 																				Computed:            false,
@@ -6289,6 +6373,14 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 																	"repository": schema.StringAttribute{
 																		Description:         "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
 																		MarkdownDescription: "Repository is an optional alternate OCI repository to use for signatures and attestations that match this rule.If specified Repository will override other OCI image repository locations for this Attestor.",
+																		Required:            false,
+																		Optional:            true,
+																		Computed:            false,
+																	},
+
+																	"signature_algorithm": schema.StringAttribute{
+																		Description:         "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
+																		MarkdownDescription: "Specify signature algorithm for public keys. Supported values are sha224, sha256, sha384 and sha512.",
 																		Required:            false,
 																		Optional:            true,
 																		Computed:            false,
@@ -6411,6 +6503,41 @@ func (r *KyvernoIoClusterPolicyV2Beta1Manifest) Schema(_ context.Context, _ data
 												Required:            false,
 												Optional:            true,
 												Computed:            false,
+											},
+
+											"validate": schema.SingleNestedAttribute{
+												Description:         "Validation checks conditions across multiple imageverification attestations or context entries",
+												MarkdownDescription: "Validation checks conditions across multiple imageverification attestations or context entries",
+												Attributes: map[string]schema.Attribute{
+													"deny": schema.SingleNestedAttribute{
+														Description:         "Deny defines conditions used to pass or fail a validation rule.",
+														MarkdownDescription: "Deny defines conditions used to pass or fail a validation rule.",
+														Attributes: map[string]schema.Attribute{
+															"conditions": schema.MapAttribute{
+																Description:         "Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+																MarkdownDescription: "Multiple conditions can be declared under an 'any' or 'all' statement. A direct listof conditions (without 'any' or 'all' statements) is also supported for backwards compatibilitybut will be deprecated in the next major release.See: https://kyverno.io/docs/writing-policies/validate/#deny-rules",
+																ElementType:         types.StringType,
+																Required:            false,
+																Optional:            true,
+																Computed:            false,
+															},
+														},
+														Required: false,
+														Optional: true,
+														Computed: false,
+													},
+
+													"message": schema.StringAttribute{
+														Description:         "Message specifies a custom message to be displayed on failure.",
+														MarkdownDescription: "Message specifies a custom message to be displayed on failure.",
+														Required:            false,
+														Optional:            true,
+														Computed:            false,
+													},
+												},
+												Required: false,
+												Optional: true,
+												Computed: false,
 											},
 
 											"verify_digest": schema.BoolAttribute{

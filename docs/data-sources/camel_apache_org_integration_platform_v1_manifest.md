@@ -75,6 +75,7 @@ Optional:
 - `publish_strategy` (String) the strategy to adopt for publishing an Integration container image
 - `publish_strategy_options` (Map of String) Deprecated: no longer in use
 - `registry` (Attributes) the image registry used to push/pull Integration images (see [below for nested schema](#nestedatt--spec--build--registry))
+- `runtime_core_version` (String) the Camel core version used by this IntegrationPlatform
 - `runtime_provider` (String) the runtime used. Likely Camel Quarkus (we used to have main runtime which has been discontinued since version 1.5)
 - `runtime_version` (String) the Camel K Runtime dependency version
 - `timeout` (String) how much time to wait before time out the pipeline process
@@ -326,6 +327,7 @@ Optional:
 - `service` (Attributes) The configuration of Service trait (see [below for nested schema](#nestedatt--spec--traits--service))
 - `service_binding` (Attributes) The configuration of Service Binding trait (see [below for nested schema](#nestedatt--spec--traits--service_binding))
 - `strimzi` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--traits--strimzi))
+- `telemetry` (Attributes) The configuration of Telemetry trait (see [below for nested schema](#nestedatt--spec--traits--telemetry))
 - `threescale` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--traits--threescale))
 - `toleration` (Attributes) The configuration of Toleration trait (see [below for nested schema](#nestedatt--spec--traits--toleration))
 - `tracing` (Attributes) Deprecated: for backward compatibility. (see [below for nested schema](#nestedatt--spec--traits--tracing))
@@ -849,6 +851,21 @@ Optional:
 Required:
 
 - `configuration` (Map of String) TraitConfiguration parameters configuration
+
+
+<a id="nestedatt--spec--traits--telemetry"></a>
+### Nested Schema for `spec.traits.telemetry`
+
+Optional:
+
+- `auto` (Boolean) Enables automatic configuration of the trait, including automatic discovery of the telemetry endpoint.
+- `configuration` (Map of String) Legacy trait configuration parameters.Deprecated: for backward compatibility.
+- `enabled` (Boolean) Can be used to enable or disable a trait. All traits share this common property.
+- `endpoint` (String) The target endpoint of the Telemetry service (automatically discovered by default)
+- `sampler` (String) The sampler of the telemetry used for tracing (default 'on')
+- `sampler_parent_based` (Boolean) The sampler of the telemetry used for tracing is parent based (default 'true')
+- `sampler_ratio` (String) The sampler ratio of the telemetry used for tracing
+- `service_name` (String) The name of the service that publishes telemetry data (defaults to the integration name)
 
 
 <a id="nestedatt--spec--traits--threescale"></a>

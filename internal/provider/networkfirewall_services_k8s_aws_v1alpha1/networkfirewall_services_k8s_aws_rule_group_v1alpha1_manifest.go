@@ -53,14 +53,14 @@ type NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1ManifestData struct {
 		} `tfsdk:"encryption_configuration" json:"encryptionConfiguration,omitempty"`
 		RuleGroup *struct {
 			ReferenceSets *struct {
-				IPSetReferences *struct {
+				IpSetReferences *struct {
 					ReferenceARN *string `tfsdk:"reference_arn" json:"referenceARN,omitempty"`
-				} `tfsdk:"i_p_set_references" json:"iPSetReferences,omitempty"`
+				} `tfsdk:"ip_set_references" json:"ipSetReferences,omitempty"`
 			} `tfsdk:"reference_sets" json:"referenceSets,omitempty"`
 			RuleVariables *struct {
-				IPSets *struct {
+				IpSets *struct {
 					Definition *[]string `tfsdk:"definition" json:"definition,omitempty"`
-				} `tfsdk:"i_p_sets" json:"iPSets,omitempty"`
+				} `tfsdk:"ip_sets" json:"ipSets,omitempty"`
 				PortSets *struct {
 					Definition *[]string `tfsdk:"definition" json:"definition,omitempty"`
 				} `tfsdk:"port_sets" json:"portSets,omitempty"`
@@ -287,7 +287,7 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 								Description:         "Contains a set of IP set references.",
 								MarkdownDescription: "Contains a set of IP set references.",
 								Attributes: map[string]schema.Attribute{
-									"i_p_set_references": schema.SingleNestedAttribute{
+									"ip_set_references": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
@@ -313,7 +313,7 @@ func (r *NetworkfirewallServicesK8SAwsRuleGroupV1Alpha1Manifest) Schema(_ contex
 								Description:         "Settings that are available for use in the rules in the RuleGroup where thisis defined.",
 								MarkdownDescription: "Settings that are available for use in the rules in the RuleGroup where thisis defined.",
 								Attributes: map[string]schema.Attribute{
-									"i_p_sets": schema.SingleNestedAttribute{
+									"ip_sets": schema.SingleNestedAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{

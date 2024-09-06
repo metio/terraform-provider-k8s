@@ -318,6 +318,9 @@ type EnterpriseGlooSoloIoAuthConfigV1ManifestData struct {
 					EndSessionProperties      *struct {
 						MethodType *string `tfsdk:"method_type" json:"methodType,omitempty"`
 					} `tfsdk:"end_session_properties" json:"endSessionProperties,omitempty"`
+					FrontChannelLogout *struct {
+						Path *string `tfsdk:"path" json:"path,omitempty"`
+					} `tfsdk:"front_channel_logout" json:"frontChannelLogout,omitempty"`
 					Headers *struct {
 						AccessTokenHeader               *string `tfsdk:"access_token_header" json:"accessTokenHeader,omitempty"`
 						IdTokenHeader                   *string `tfsdk:"id_token_header" json:"idTokenHeader,omitempty"`
@@ -2402,6 +2405,23 @@ func (r *EnterpriseGlooSoloIoAuthConfigV1Manifest) Schema(_ context.Context, _ d
 													MarkdownDescription: "",
 													Attributes: map[string]schema.Attribute{
 														"method_type": schema.StringAttribute{
+															Description:         "",
+															MarkdownDescription: "",
+															Required:            false,
+															Optional:            true,
+															Computed:            false,
+														},
+													},
+													Required: false,
+													Optional: true,
+													Computed: false,
+												},
+
+												"front_channel_logout": schema.SingleNestedAttribute{
+													Description:         "",
+													MarkdownDescription: "",
+													Attributes: map[string]schema.Attribute{
+														"path": schema.StringAttribute{
 															Description:         "",
 															MarkdownDescription: "",
 															Required:            false,

@@ -3543,8 +3543,8 @@ func (r *AppsEmqxIoEmqxBrokerV1Beta4Manifest) Schema(_ context.Context, _ dataso
 													"version": schema.StringAttribute{
 														Description:         "",
 														MarkdownDescription: "",
-														Required:            false,
-														Optional:            true,
+														Required:            true,
+														Optional:            false,
 														Computed:            false,
 													},
 												},
