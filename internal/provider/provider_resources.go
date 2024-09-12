@@ -1428,6 +1428,7 @@ func allResources() []func() resource.Resource {
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaConnectorV1Beta2Resource,
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaMirrorMaker2V1Beta2Resource,
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaMirrorMakerV1Beta2Resource,
+		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaNodePoolV1Beta2Resource,
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaRebalanceV1Beta2Resource,
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaTopicV1Beta2Resource,
 		//kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaUserV1Beta2Resource,

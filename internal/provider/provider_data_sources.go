@@ -2324,6 +2324,8 @@ func allDataSources() []func() datasource.DataSource {
 		kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaMirrorMaker2V1Beta2Manifest,
 		// kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaMirrorMakerV1Beta2DataSource,
 		kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaMirrorMakerV1Beta2Manifest,
+		// kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaNodePoolV1Beta2DataSource,
+		kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaNodePoolV1Beta2Manifest,
 		// kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaRebalanceV1Beta2DataSource,
 		kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaRebalanceV1Beta2Manifest,
 		// kafka_strimzi_io_v1beta2.NewKafkaStrimziIoKafkaTopicV1Beta2DataSource,
