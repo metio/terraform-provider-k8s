@@ -18,6 +18,10 @@ data "k8s_chisel_operator_io_exit_node_v2_manifest" "example" {
     name      = "some-name"
     namespace = "some-namespace"
   }
+  spec = {
+    host = "some-host"
+    port = 12345
+  }
 }
 ```
 

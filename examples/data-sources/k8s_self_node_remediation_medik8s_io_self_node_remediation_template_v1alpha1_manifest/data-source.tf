@@ -3,4 +3,9 @@ data "k8s_self_node_remediation_medik8s_io_self_node_remediation_template_v1alph
     name      = "some-name"
     namespace = "some-namespace"
   }
+  spec = {
+    template = {
+      spec = {}
+    }
+  }
 }
