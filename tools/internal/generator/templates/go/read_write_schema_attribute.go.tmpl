@@ -4,6 +4,9 @@
     {{ if .TerraformElementType -}}
     ElementType:         {{ .TerraformElementType }},
     {{ end -}}
+    {{ if .TerraformCustomType -}}
+    CustomType:          {{ .TerraformCustomType }},
+    {{ end -}}
     {{ if eq .TerraformAttributeType "schema.SingleNestedAttribute" -}}
     Attributes: map[string]schema.Attribute{
     {{ range $index, $property := .Properties -}}

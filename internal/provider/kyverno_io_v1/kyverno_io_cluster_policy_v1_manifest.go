@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+	"github.com/metio/terraform-provider-k8s/internal/custom_types"
 	"github.com/metio/terraform-provider-k8s/internal/utilities"
 	"github.com/metio/terraform-provider-k8s/internal/validators"
 	"k8s.io/utils/pointer"
@@ -59,8 +60,8 @@ type KyvernoIoClusterPolicyV1ManifestData struct {
 			Context *[]struct {
 				ApiCall *struct {
 					Data *[]struct {
-						Key   *string            `tfsdk:"key" json:"key,omitempty"`
-						Value *map[string]string `tfsdk:"value" json:"value,omitempty"`
+						Key   *string                 `tfsdk:"key" json:"key,omitempty"`
+						Value custom_types.Normalized `tfsdk:"value" json:"value,omitempty"`
 					} `tfsdk:"data" json:"data,omitempty"`
 					Default  *map[string]string `tfsdk:"default" json:"default,omitempty"`
 					JmesPath *string            `tfsdk:"jmes_path" json:"jmesPath,omitempty"`
@@ -1114,10 +1115,10 @@ func (r *KyvernoIoClusterPolicyV1Manifest) Schema(_ context.Context, _ datasourc
 																	Computed:            false,
 																},
 
-																"value": schema.MapAttribute{
+																"value": schema.StringAttribute{
 																	Description:         "Value is the data value",
 																	MarkdownDescription: "Value is the data value",
-																	ElementType:         types.StringType,
+																	CustomType:          custom_types.NormalizedType{},
 																	Required:            true,
 																	Optional:            false,
 																	Computed:            false,

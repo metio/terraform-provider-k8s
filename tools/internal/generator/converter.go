@@ -124,6 +124,7 @@ type AdditionalImports struct {
 	Regexp           bool
 	Path             bool
 	MathBig          bool
+	Normalized       bool
 }
 
 type Property struct {
@@ -134,6 +135,7 @@ type Property struct {
 	TerraformAttributeName string
 	TerraformAttributeType string
 	TerraformElementType   string
+	TerraformCustomType    string
 	TerraformValueType     string
 	Description            string
 	Required               bool
