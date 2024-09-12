@@ -122,7 +122,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "map_value" {
               data = [
                 {
                   key   = "images"
-                  value = jsonencode({"a": "b", "c": "d"})
+                  value = jsonencode({ "a" : "b", "c" : "d" })
                 },
               ]
             }
@@ -149,7 +149,7 @@ data "k8s_kyverno_io_cluster_policy_v1_manifest" "mixed_value" {
               data = [
                 {
                   key   = "images"
-                  value = jsonencode({"a": [123, 456], "c": {"d": true, "e": "f", "g": 789}})
+                  value = jsonencode({ "a" : [123, 456], "c" : { "d" : true, "e" : "f", "g" : 789 } })
                 },
               ]
             }
