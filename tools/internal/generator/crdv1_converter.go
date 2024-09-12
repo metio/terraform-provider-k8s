@@ -109,16 +109,19 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			nestedProperties = crdV1Properties(&prop, imports, propPath, terraformResourceName)
 		}
 
-		attributeType, valueType, elementType, goType := translateTypeWith(&crd1TypeTranslator{property: &prop})
+		attributeType, valueType, elementType, goType, customType := translateTypeWith(&crd1TypeTranslator{property: &prop}, terraformResourceName, propPath)
+
+		if goType == "big.Float" {
+			imports.MathBig = true
+		}
+		if goType == "custom_types.Normalized" {
+			imports.Normalized = true
+		}
 
 		validators := validatorsFor(&crdv1ValidatorExtractor{
 			property: &prop,
 			imports:  imports,
 		}, terraformResourceName, propPath, imports)
-
-		if goType == "big.Float" {
-			imports.MathBig = true
-		}
 
 		props = append(props, &Property{
 			BT:                     "`",
@@ -128,6 +131,7 @@ func crdV1Properties(schema *apiextensionsv1.JSONSchemaProps, imports *Additiona
 			TerraformAttributeName: terraformAttributeName(name, path == ""),
 			TerraformAttributeType: attributeType,
 			TerraformElementType:   elementType,
+			TerraformCustomType:    customType,
 			TerraformValueType:     valueType,
 			Description:            description(prop.Description),
 			Required:               slices.Contains(schema.Required, name),

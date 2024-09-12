@@ -34,13 +34,25 @@ type typeTranslator interface {
 	itemsHaveAdditionalStringProperties() bool
 }
 
-func translateTypeWith(translator typeTranslator) (attributeType string, valueType string, elementType string, goType string) {
+func translateTypeWith(translator typeTranslator, terraformResourceName string, propPath string) (attributeType string, valueType string, elementType string, goType string, customType string) {
+	if cts, ok := customTypes[terraformResourceName]; ok {
+		if ct, ok := cts[propPath]; ok {
+			attributeType = ct.attributeType
+			valueType = ct.valueType
+			elementType = ct.elementType
+			goType = ct.goType
+			customType = ct.customType
+			return
+		}
+	}
+
 	if translator.isBoolean() {
 		//attributeType = "types.BoolType"
 		attributeType = "schema.BoolAttribute"
 		elementType = ""
 		valueType = "types.Bool"
 		goType = "bool"
+		customType = ""
 		return
 	}
 	if translator.isInteger() {
@@ -49,6 +61,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.Int64"
 		goType = "int64"
+		customType = ""
 		return
 	}
 	if translator.isString() {
@@ -57,6 +70,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.String"
 		goType = "string"
+		customType = ""
 		return
 	}
 	if translator.isIntOrString() {
@@ -65,6 +79,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.String"
 		goType = "string"
+		customType = ""
 		return
 	}
 	if translator.isNumber() {
@@ -74,6 +89,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = ""
 			valueType = "types.Float64"
 			goType = "float64"
+			customType = ""
 			return
 		}
 		//attributeType = "types.NumberType"
@@ -82,6 +98,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.Float64"
 		goType = "float64"
+		customType = ""
 		return
 	}
 	if translator.hasUnknownFields() {
@@ -91,6 +108,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = ""
 			valueType = "types.Object"
 			goType = "struct"
+			customType = ""
 			return
 		}
 		//attributeType = "types.MapType{ElemType: types.StringType}"
@@ -98,6 +116,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = "types.StringType"
 		valueType = "types.Map"
 		goType = "map[string]string"
+		customType = ""
 		return
 	}
 	if translator.hasNoType() && translator.hasProperties() {
@@ -105,6 +124,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.Object"
 		goType = "struct"
+		customType = ""
 		return
 	}
 	if translator.hasOneOf() {
@@ -114,6 +134,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = "types.StringType"
 			valueType = "types.List"
 			goType = "[]string"
+			customType = ""
 			return
 		}
 		if translator.isOneOfBoolean() {
@@ -122,6 +143,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = ""
 			valueType = "types.Bool"
 			goType = "bool"
+			customType = ""
 			return
 		}
 	}
@@ -131,6 +153,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = "types.StringType"
 		valueType = "types.Map"
 		goType = "map[string]string"
+		customType = ""
 		return
 	}
 	if translator.isObjectWithAdditionalObjectProperties() {
@@ -140,6 +163,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = "types.MapType{ElemType: types.StringType}"
 			valueType = "types.Map"
 			goType = "map[string]map[string]string"
+			customType = ""
 			return
 		}
 		if translator.additionalPropertiesHaveAdditionalArrayProperties() {
@@ -149,6 +173,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 				elementType = "types.MapType{ElemType: types.ListType{ElemType: types.StringType}}"
 				valueType = "types.Map"
 				goType = "map[string]map[string][]string"
+				customType = ""
 				return
 			}
 		}
@@ -159,6 +184,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 				elementType = "types.StringType"
 				valueType = "types.Map"
 				goType = "map[string]string"
+				customType = ""
 				return
 			}
 		}
@@ -167,6 +193,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = ""
 		valueType = "types.Object"
 		goType = "struct"
+		customType = ""
 		return
 	}
 	if translator.isObjectWithAdditionalArrayProperties() {
@@ -176,6 +203,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = "types.ListType{ElemType: types.StringType}"
 			valueType = "types.Map"
 			goType = "map[string][]string"
+			customType = ""
 			return
 		}
 	}
@@ -187,6 +215,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 				elementType = "types.MapType{ElemType: types.StringType}"
 				valueType = "types.List"
 				goType = "[]map[string]string"
+				customType = ""
 				return
 			}
 			if translator.itemsHaveAdditionalStringProperties() {
@@ -195,6 +224,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 				elementType = "types.MapType{ElemType: types.StringType}"
 				valueType = "types.List"
 				goType = "[]map[string]string"
+				customType = ""
 				return
 			}
 			//attributeType = "types.ListType{ElemType: types.ObjectType}"
@@ -202,6 +232,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = ""
 			valueType = "types.List"
 			goType = "[]struct"
+			customType = ""
 			return
 		}
 		//attributeType = "types.ListType{ElemType: types.StringType}"
@@ -209,6 +240,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = "types.StringType"
 		valueType = "types.List"
 		goType = "[]string"
+		customType = ""
 		return
 	}
 
@@ -219,6 +251,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 			elementType = ""
 			valueType = "types.Object"
 			goType = "struct"
+			customType = ""
 			return
 		}
 		//attributeType = "types.MapType{ElemType: types.StringType}"
@@ -226,6 +259,7 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 		elementType = "types.StringType"
 		valueType = "types.Map"
 		goType = "map[string]string"
+		customType = ""
 		return
 	}
 
@@ -233,5 +267,6 @@ func translateTypeWith(translator typeTranslator) (attributeType string, valueTy
 	elementType = "UNKNOWN"
 	valueType = "UNKNOWN"
 	goType = "UNKNOWN"
+	customType = "UNKNOWN"
 	return
 }

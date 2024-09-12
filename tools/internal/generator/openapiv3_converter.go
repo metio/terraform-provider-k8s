@@ -114,7 +114,7 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					nestedProperties = openAPIv3Properties(prop.Value, imports, propPath, terraformResourceName)
 				}
 
-				attributeType, valueType, elementType, goType := translateTypeWith(&openapiv3TypeTranslator{property: prop.Value})
+				attributeType, valueType, elementType, goType, customType := translateTypeWith(&openapiv3TypeTranslator{property: prop.Value}, terraformResourceName, propPath)
 
 				validators := validatorsFor(&openapiv3ValidatorExtractor{
 					property: prop.Value,
@@ -133,6 +133,7 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					TerraformAttributeName: terraformAttributeName(name, path == ""),
 					TerraformAttributeType: attributeType,
 					TerraformElementType:   elementType,
+					TerraformCustomType:    customType,
 					TerraformValueType:     valueType,
 					Description:            description(prop.Value.Description),
 					Required:               slices.Contains(schema.Required, name),
