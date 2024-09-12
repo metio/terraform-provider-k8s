@@ -26,7 +26,6 @@ func init() {
 	openapi3Loader.ReadFromURIFunc = func(loader *openapi3.Loader, uri *url.URL) ([]byte, error) {
 		return os.ReadFile(uri.Path)
 	}
-	openapi3.CircularReferenceCounter = 10
 }
 
 func ParseOpenAPIv2Files(basePath string) []map[string]*openapi3.SchemaRef {
