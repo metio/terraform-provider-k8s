@@ -4,7 +4,7 @@ data "k8s_notification_toolkit_fluxcd_io_receiver_v1beta2_manifest" "example" {
     namespace = "some-namespace"
   }
   spec = {
-    type = "generic"
+    type      = "generic"
     resources = []
     secret_ref = {
       name = "some-secret"
