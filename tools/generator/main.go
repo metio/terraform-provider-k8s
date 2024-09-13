@@ -33,7 +33,7 @@ func main() {
 	var data []*generator.TemplateData
 	if *parseOpenAPIv2 {
 		openapi := generator.ParseOpenAPIv2Files(fmt.Sprintf("%s/openapi_v2/", *schemaDir))
-		data = append(data, generator.ConvertOpenAPIv3(openapi)...)
+		data = append(data, generator.ConvertOpenAPIv2(openapi)...)
 	}
 	if *parseCRDv1 {
 		crd := generator.ParseCRDv1Files(fmt.Sprintf("%s/crd_v1/", *schemaDir))

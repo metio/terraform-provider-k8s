@@ -5,8 +5,10 @@
 package generator
 
 import (
-	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/pb33f/libopenapi/datamodel/high/base"
+	"github.com/pb33f/libopenapi/orderedmap"
 	"github.com/stretchr/testify/assert"
+	"gopkg.in/yaml.v3"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"testing"
 )
@@ -488,9 +490,9 @@ func TestTranslateTypeWith(t *testing.T) {
 			customType:    "",
 		},
 
-		"OpenAPIv3/empty": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{},
+		"OpenAPIv2/empty": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{},
 			},
 			attributeType: "UNKNOWN",
 			elementType:   "UNKNOWN",
@@ -498,10 +500,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "UNKNOWN",
 			customType:    "UNKNOWN",
 		},
-		"OpenAPIv3/string": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"string"},
+		"OpenAPIv2/string": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"string"},
 				},
 			},
 			attributeType: "schema.StringAttribute",
@@ -510,10 +512,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "string",
 			customType:    "",
 		},
-		"OpenAPIv3/boolean": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"boolean"},
+		"OpenAPIv2/boolean": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"boolean"},
 				},
 			},
 			attributeType: "schema.BoolAttribute",
@@ -522,10 +524,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "bool",
 			customType:    "",
 		},
-		"OpenAPIv3/integer": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"integer"},
+		"OpenAPIv2/integer": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"integer"},
 				},
 			},
 			attributeType: "schema.Int64Attribute",
@@ -534,10 +536,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "int64",
 			customType:    "",
 		},
-		"OpenAPIv3/number": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"number"},
+		"OpenAPIv2/number": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"number"},
 				},
 			},
 			attributeType: "schema.Float64Attribute",
@@ -546,10 +548,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "float64",
 			customType:    "",
 		},
-		"OpenAPIv3/float-float": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type:   &openapi3.Types{"number"},
+		"OpenAPIv2/float-float": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type:   []string{"number"},
 					Format: "float",
 				},
 			},
@@ -559,10 +561,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "float64",
 			customType:    "",
 		},
-		"OpenAPIv3/float-double": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type:   &openapi3.Types{"number"},
+		"OpenAPIv2/float-double": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type:   []string{"number"},
 					Format: "double",
 				},
 			},
@@ -572,10 +574,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "float64",
 			customType:    "",
 		},
-		"OpenAPIv3/array": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"array"},
+		"OpenAPIv2/array": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"array"},
 				},
 			},
 			attributeType: "schema.ListAttribute",
@@ -584,10 +586,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "[]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
+		"OpenAPIv2/object": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
 				},
 			},
 			attributeType: "schema.MapAttribute",
@@ -596,13 +598,11 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					Properties: openapi3.Schemas{
-						"first": {},
-					},
+		"OpenAPIv2/object-with-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type:       []string{"object"},
+					Properties: orderedmap.FromPairs(orderedmap.NewPair("first", &base.SchemaProxy{})),
 				},
 			},
 			attributeType: "schema.SingleNestedAttribute",
@@ -611,14 +611,14 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "struct",
 			customType:    "",
 		},
-		"OpenAPIv3/array-of-objects": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"array"},
-					Items: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: &openapi3.Types{"object"},
-						},
+		"OpenAPIv2/array-of-objects": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"array"},
+					Items: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{Type: []string{"object"}}),
+						B: false,
 					},
 				},
 			},
@@ -628,17 +628,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "[]struct",
 			customType:    "",
 		},
-		"OpenAPIv3/array-of-objects-with-unknown-fields": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"array"},
-					Items: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: &openapi3.Types{"object"},
-							Extensions: map[string]interface{}{
-								"x-kubernetes-preserve-unknown-fields": "true",
-							},
-						},
+		"OpenAPIv2/array-of-objects-with-unknown-fields": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"array"},
+					Items: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type:       []string{"object"},
+							Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-preserve-unknown-fields", &yaml.Node{Value: "true"})),
+						}),
+						B: false,
 					},
 				},
 			},
@@ -648,21 +648,23 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "[]map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/array-of-objects-with-additional-string-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"array"},
-					Items: &openapi3.SchemaRef{
-						Value: &openapi3.Schema{
-							Type: &openapi3.Types{"object"},
-							AdditionalProperties: openapi3.AdditionalProperties{
-								Schema: &openapi3.SchemaRef{
-									Value: &openapi3.Schema{
-										Type: &openapi3.Types{"string"},
-									},
-								},
+		"OpenAPIv2/array-of-objects-with-additional-string-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"array"},
+					Items: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"object"},
+							AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+								N: 0,
+								A: base.CreateSchemaProxy(&base.Schema{
+									Type: []string{"string"},
+								}),
+								B: false,
 							},
-						},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -672,16 +674,16 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "[]map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-array-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"array"},
-							},
-						},
+		"OpenAPIv2/object-with-additional-array-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"array"},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -691,21 +693,23 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-array-properties-having-string-items": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"array"},
-								Items: &openapi3.SchemaRef{
-									Value: &openapi3.Schema{
-										Type: &openapi3.Types{"string"},
-									},
-								},
+		"OpenAPIv2/object-with-additional-array-properties-having-string-items": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"array"},
+							Items: &base.DynamicValue[*base.SchemaProxy, bool]{
+								N: 0,
+								A: base.CreateSchemaProxy(&base.Schema{
+									Type: []string{"string"},
+								}),
+								B: false,
 							},
-						},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -715,16 +719,16 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string][]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-							},
-						},
+		"OpenAPIv2/object-with-additional-object-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"object"},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -734,23 +738,23 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "struct",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties-having-additional-string-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-								AdditionalProperties: openapi3.AdditionalProperties{
-									Schema: &openapi3.SchemaRef{
-										Value: &openapi3.Schema{
-											Type: &openapi3.Types{"string"},
-										},
-									},
-								},
+		"OpenAPIv2/object-with-additional-object-properties-having-additional-string-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"object"},
+							AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+								N: 0,
+								A: base.CreateSchemaProxy(&base.Schema{
+									Type: []string{"string"},
+								}),
+								B: false,
 							},
-						},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -760,23 +764,23 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-								AdditionalProperties: openapi3.AdditionalProperties{
-									Schema: &openapi3.SchemaRef{
-										Value: &openapi3.Schema{
-											Type: &openapi3.Types{"array"},
-										},
-									},
-								},
+		"OpenAPIv2/object-with-additional-object-properties-having-additional-array-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"object"},
+							AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+								N: 0,
+								A: base.CreateSchemaProxy(&base.Schema{
+									Type: []string{"array"},
+								}),
+								B: false,
 							},
-						},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -786,19 +790,17 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "struct",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties-having-unknown-fields": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-								Extensions: map[string]interface{}{
-									"x-kubernetes-preserve-unknown-fields": "true",
-								},
-							},
-						},
+		"OpenAPIv2/object-with-additional-object-properties-having-unknown-fields": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type:       []string{"object"},
+							Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-preserve-unknown-fields", &yaml.Node{Value: "true"})),
+						}),
+						B: false,
 					},
 				},
 			},
@@ -808,22 +810,18 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties-having-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-								Extensions: map[string]interface{}{
-									"x-kubernetes-preserve-unknown-fields": "true",
-								},
-								Properties: openapi3.Schemas{
-									"firs": {},
-								},
-							},
-						},
+		"OpenAPIv2/object-with-additional-object-properties-having-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type:       []string{"object"},
+							Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-preserve-unknown-fields", &yaml.Node{Value: "true"})),
+							Properties: orderedmap.FromPairs(orderedmap.NewPair("first", base.CreateSchemaProxy(&base.Schema{}))),
+						}),
+						B: false,
 					},
 				},
 			},
@@ -833,28 +831,30 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "struct",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-object-properties-having-additional-array-properties-with-string-items": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"object"},
-								AdditionalProperties: openapi3.AdditionalProperties{
-									Schema: &openapi3.SchemaRef{
-										Value: &openapi3.Schema{
-											Type: &openapi3.Types{"array"},
-											Items: &openapi3.SchemaRef{
-												Value: &openapi3.Schema{
-													Type: &openapi3.Types{"string"},
-												},
-											},
-										},
+		"OpenAPIv2/object-with-additional-object-properties-having-additional-array-properties-with-string-items": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"object"},
+							AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+								N: 0,
+								A: base.CreateSchemaProxy(&base.Schema{
+									Type: []string{"array"},
+									Items: &base.DynamicValue[*base.SchemaProxy, bool]{
+										N: 0,
+										A: base.CreateSchemaProxy(&base.Schema{
+											Type: []string{"string"},
+										}),
+										B: false,
 									},
-								},
+								}),
+								B: false,
 							},
-						},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -864,16 +864,16 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]map[string][]string",
 			customType:    "",
 		},
-		"OpenAPIv3/object-with-additional-string-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type: &openapi3.Types{"object"},
-					AdditionalProperties: openapi3.AdditionalProperties{
-						Schema: &openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"string"},
-							},
-						},
+		"OpenAPIv2/object-with-additional-string-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type: []string{"object"},
+					AdditionalProperties: &base.DynamicValue[*base.SchemaProxy, bool]{
+						N: 0,
+						A: base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"string"},
+						}),
+						B: false,
 					},
 				},
 			},
@@ -883,15 +883,13 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/one-of-array": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					OneOf: openapi3.SchemaRefs{
-						&openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"array"},
-							},
-						},
+		"OpenAPIv2/one-of-array": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					OneOf: []*base.SchemaProxy{
+						base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"array"},
+						}),
 					},
 				},
 			},
@@ -901,15 +899,13 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "[]string",
 			customType:    "",
 		},
-		"OpenAPIv3/one-of-boolean": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					OneOf: openapi3.SchemaRefs{
-						&openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"boolean"},
-							},
-						},
+		"OpenAPIv2/one-of-boolean": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					OneOf: []*base.SchemaProxy{
+						base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"boolean"},
+						}),
 					},
 				},
 			},
@@ -919,15 +915,13 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "bool",
 			customType:    "",
 		},
-		"OpenAPIv3/one-of-string": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					OneOf: openapi3.SchemaRefs{
-						&openapi3.SchemaRef{
-							Value: &openapi3.Schema{
-								Type: &openapi3.Types{"string"},
-							},
-						},
+		"OpenAPIv2/one-of-string": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					OneOf: []*base.SchemaProxy{
+						base.CreateSchemaProxy(&base.Schema{
+							Type: []string{"string"},
+						}),
 					},
 				},
 			},
@@ -937,12 +931,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "UNKNOWN",
 			customType:    "UNKNOWN",
 		},
-		"OpenAPIv3/unknown-fields": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Extensions: map[string]interface{}{
-						"x-kubernetes-preserve-unknown-fields": "true",
-					},
+		"OpenAPIv2/unknown-fields": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-preserve-unknown-fields", &yaml.Node{Value: "true"})),
 				},
 			},
 			attributeType: "schema.MapAttribute",
@@ -951,15 +943,11 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "map[string]string",
 			customType:    "",
 		},
-		"OpenAPIv3/unknown-fields-with-properties": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Extensions: map[string]interface{}{
-						"x-kubernetes-preserve-unknown-fields": "true",
-					},
-					Properties: openapi3.Schemas{
-						"firs": {},
-					},
+		"OpenAPIv2/unknown-fields-with-properties": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-preserve-unknown-fields", &yaml.Node{Value: "true"})),
+					Properties: orderedmap.FromPairs(orderedmap.NewPair("first", base.CreateSchemaProxy(&base.Schema{}))),
 				},
 			},
 			attributeType: "schema.SingleNestedAttribute",
@@ -968,12 +956,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "struct",
 			customType:    "",
 		},
-		"OpenAPIv3/int-or-string": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Extensions: map[string]interface{}{
-						"x-kubernetes-int-or-string": "true",
-					},
+		"OpenAPIv2/int-or-string": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Extensions: orderedmap.FromPairs(orderedmap.NewPair("x-kubernetes-int-or-string", &yaml.Node{Value: "true"})),
 				},
 			},
 			attributeType: "schema.StringAttribute",
@@ -982,10 +968,10 @@ func TestTranslateTypeWith(t *testing.T) {
 			goType:        "string",
 			customType:    "",
 		},
-		"OpenAPIv3/string-or-int": {
-			translator: &openapiv3TypeTranslator{
-				property: &openapi3.Schema{
-					Type:   &openapi3.Types{"string"},
+		"OpenAPIv2/string-or-int": {
+			translator: &openapiv2TypeTranslator{
+				property: &base.Schema{
+					Type:   []string{"string"},
 					Format: "int-or-string",
 				},
 			},
@@ -996,7 +982,7 @@ func TestTranslateTypeWith(t *testing.T) {
 			customType:    "",
 		},
 		"custom-types/kyverno_io_cluster_policy_v1/spec.rules.context.apiCall.data.value": {
-			translator:            &openapiv3TypeTranslator{},
+			translator:            &openapiv2TypeTranslator{},
 			attributeType:         "schema.StringAttribute",
 			elementType:           "",
 			valueType:             "types.String",

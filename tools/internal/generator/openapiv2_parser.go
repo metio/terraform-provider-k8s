@@ -6,46 +6,37 @@
 package generator
 
 import (
-	"encoding/json"
-	"github.com/getkin/kin-openapi/openapi2"
-	"github.com/getkin/kin-openapi/openapi2conv"
-	"github.com/getkin/kin-openapi/openapi3"
+	"fmt"
+	"github.com/pb33f/libopenapi"
+	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
 	"io/fs"
 	"log"
-	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-var openapi3Loader *openapi3.Loader
-
-func init() {
-	openapi3Loader = openapi3.NewLoader()
-	openapi3Loader.IsExternalRefsAllowed = true
-	openapi3Loader.ReadFromURIFunc = func(loader *openapi3.Loader, uri *url.URL) ([]byte, error) {
-		return os.ReadFile(uri.Path)
-	}
-}
-
-func ParseOpenAPIv2Files(basePath string) []map[string]*openapi3.SchemaRef {
-	schemas := make([]map[string]*openapi3.SchemaRef, 0)
+func ParseOpenAPIv2Files(basePath string) []v2high.Swagger {
+	schemas := make([]v2high.Swagger, 0)
 
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if !d.IsDir() && strings.HasSuffix(path, ".json") {
-			openapiv2, parseErr := parseOpenAPIv2(path)
-			if parseErr != nil {
-				return parseErr
+			fileContent, readErr := os.ReadFile(path)
+			if readErr != nil {
+				return readErr
 			}
-			openapiv3, conversionErr := convertV2toV3(openapiv2)
-			if conversionErr != nil {
-				return conversionErr
+			document, docErr := libopenapi.NewDocument(fileContent)
+			if docErr != nil {
+				return docErr
 			}
-			resolveErr := resolveReferences(path, openapiv3)
-			if resolveErr != nil {
-				return resolveErr
+			docModel, errors := document.BuildV2Model()
+			if len(errors) > 0 {
+				for i := range errors {
+					fmt.Printf("error: %e\n", errors[i])
+				}
+				panic(fmt.Sprintf("cannot create v3 model from document: %d errors reported", len(errors)))
 			}
-			schemas = append(schemas, openapiv3.Components.Schemas)
+			schemas = append(schemas, docModel.Model)
 		}
 		return nil
 	})
@@ -54,34 +45,4 @@ func ParseOpenAPIv2Files(basePath string) []map[string]*openapi3.SchemaRef {
 	}
 
 	return schemas
-}
-
-func parseOpenAPIv2(filePath string) (*openapi2.T, error) {
-	input, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-	var doc openapi2.T
-	err = json.Unmarshal(input, &doc)
-	if err != nil {
-		return nil, err
-	}
-	return &doc, nil
-
-}
-
-func resolveReferences(filePath string, v3 *openapi3.T) error {
-	err := openapi3Loader.ResolveRefsIn(v3, &url.URL{Path: filePath})
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func convertV2toV3(doc *openapi2.T) (*openapi3.T, error) {
-	v3, err := openapi2conv.ToV3(doc)
-	if err != nil {
-		return nil, err
-	}
-	return v3, nil
 }

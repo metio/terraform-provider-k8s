@@ -7,43 +7,51 @@ package generator
 
 import (
 	"fmt"
-	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/pb33f/libopenapi/datamodel/high/base"
+	v2high "github.com/pb33f/libopenapi/datamodel/high/v2"
 	"k8s.io/utils/strings/slices"
 	"sort"
 	"strings"
 )
 
-func ConvertOpenAPIv3(schemas []map[string]*openapi3.SchemaRef) []*TemplateData {
+func ConvertOpenAPIv2(schemas []v2high.Swagger) []*TemplateData {
 	data := make([]*TemplateData, 0)
 	for _, schema := range schemas {
-		for name, definition := range schema {
-			if supportedOpenAPIv3Object(name, definition) {
+		for name, definition := range schema.Definitions.Definitions.FromNewest() {
+			if supportedOpenAPIv2Object(name, definition) {
 				namespaced := isNamespacedObject(name)
-				templateData := openAPIv3AsTemplateData(definition, namespaced)
-				data = append(data, templateData)
+				if templateData := openAPIv2AsTemplateData(definition, namespaced); templateData != nil {
+					data = append(data, templateData)
+				}
 			}
 		}
 	}
 	return data
 }
 
-func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, namespaced bool) *TemplateData {
+func openAPIv2AsTemplateData(definition *base.SchemaProxy, namespaced bool) *TemplateData {
 	var group string
 	var version string
 	var kind string
-	if gvkExt, ok := definition.Value.Extensions["x-kubernetes-group-version-kind"]; ok {
-		raw := gvkExt.([]interface{})
-		gvk := raw[0].(map[string]interface{})
-		group = gvk["group"].(string)
-		version = gvk["version"].(string)
-		kind = gvk["kind"].(string)
+	if node, present := definition.Schema().Extensions.Get("x-kubernetes-group-version-kind"); present {
+		var gvk []map[string]string
+		err := node.Decode(&gvk)
+		if err != nil {
+			fmt.Println(err)
+			return nil
+		}
+		group = gvk[0]["group"]
+		version = gvk[0]["version"]
+		kind = gvk[0]["kind"]
+	} else {
+		return nil
 	}
-	schema := definition.Value
+	schema := definition.Schema()
 	// remove manually managed or otherwise ignored properties
-	delete(schema.Properties, "metadata")
-	delete(schema.Properties, "status")
-	delete(schema.Properties, "apiVersion")
-	delete(schema.Properties, "kind")
+	schema.Properties.Delete("metadata")
+	schema.Properties.Delete("status")
+	schema.Properties.Delete("apiVersion")
+	schema.Properties.Delete("kind")
 
 	imports := AdditionalImports{}
 	typeName := resourceTypeName(group, kind, version)
@@ -88,16 +96,16 @@ func openAPIv3AsTemplateData(definition *openapi3.SchemaRef, namespaced bool) *T
 		TerraformModelType: terraformModelType(group, kind, version),
 
 		AdditionalImports: imports,
-		Properties:        openAPIv3Properties(schema, &imports, "", typeName),
+		Properties:        openAPIv2Properties(schema, &imports, "", typeName),
 	}
 }
 
-func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, path string, terraformResourceName string) []*Property {
+func openAPIv2Properties(schema *base.Schema, imports *AdditionalImports, path string, terraformResourceName string) []*Property {
 	props := make([]*Property, 0)
 
 	if schema != nil {
-		for name, prop := range schema.Properties {
-			if prop.Value != nil {
+		for name, prop := range schema.Properties.FromNewest() {
+			if prop.Schema() != nil {
 				propPath := propertyPath(path, name)
 				if ignored, ok := ignoredAttributes[terraformResourceName]; ok {
 					if slices.Contains(ignored, propPath) {
@@ -105,19 +113,21 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					}
 				}
 
+				schemaType := prop.Schema().Type[0]
+
 				var nestedProperties []*Property
-				if prop.Value.Type.Is(openapi3.TypeArray) && prop.Value.Items != nil && prop.Value.Items.Value != nil && prop.Value.Items.Value.Type.Is(openapi3.TypeObject) {
-					nestedProperties = openAPIv3Properties(prop.Value.Items.Value, imports, propPath, terraformResourceName)
-				} else if prop.Value.Type.Is(openapi3.TypeObject) && prop.Value.AdditionalProperties.Schema != nil && prop.Value.AdditionalProperties.Schema.Value.Type.Is(openapi3.TypeObject) {
-					nestedProperties = openAPIv3Properties(prop.Value.AdditionalProperties.Schema.Value, imports, propPath, terraformResourceName)
+				if schemaType == "array" && prop.Schema().Items != nil && prop.Schema().Items.IsA() && prop.Schema().Items.A.Schema().Type[0] == "object" {
+					nestedProperties = openAPIv2Properties(prop.Schema().Items.A.Schema(), imports, propPath, terraformResourceName)
+				} else if schemaType == "object" && prop.Schema().AdditionalProperties != nil && prop.Schema().AdditionalProperties.IsA() && prop.Schema().AdditionalProperties.A.Schema().Type[0] == "object" {
+					nestedProperties = openAPIv2Properties(prop.Schema().AdditionalProperties.A.Schema(), imports, propPath, terraformResourceName)
 				} else {
-					nestedProperties = openAPIv3Properties(prop.Value, imports, propPath, terraformResourceName)
+					nestedProperties = openAPIv2Properties(prop.Schema(), imports, propPath, terraformResourceName)
 				}
 
-				attributeType, valueType, elementType, goType, customType := translateTypeWith(&openapiv3TypeTranslator{property: prop.Value}, terraformResourceName, propPath)
+				attributeType, valueType, elementType, goType, customType := translateTypeWith(&openapiv2TypeTranslator{property: prop.Schema()}, terraformResourceName, propPath)
 
-				validators := validatorsFor(&openapiv3ValidatorExtractor{
-					property: prop.Value,
+				validators := validatorsFor(&openapiv2ValidatorExtractor{
+					property: prop.Schema(),
 					imports:  imports,
 				}, terraformResourceName, propPath, imports)
 
@@ -135,7 +145,7 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 					TerraformElementType:   elementType,
 					TerraformCustomType:    customType,
 					TerraformValueType:     valueType,
-					Description:            description(prop.Value.Description),
+					Description:            description(prop.Schema().Description),
 					Required:               slices.Contains(schema.Required, name),
 					Optional:               !slices.Contains(schema.Required, name),
 					Computed:               false,
@@ -152,11 +162,11 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 		return props[i].Name < props[j].Name
 	})
 
-	if schema.MinProps > 0 && schema.MaxProps != nil {
-		min := schema.MinProps
-		max := schema.MaxProps
+	if schema.MinProperties != nil && schema.MaxProperties != nil {
+		minProperties := *schema.MinProperties
+		maxProperties := schema.MaxProperties
 
-		if min == 1 && *max == 1 {
+		if minProperties == 1 && *maxProperties == 1 {
 			for _, outer := range props {
 				var pathExpressions []string
 				for _, inner := range props {
@@ -170,10 +180,10 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 				imports.Path = true
 			}
 		}
-	} else if schema.MinProps > 0 && schema.MaxProps == nil {
-		min := schema.MinProps
+	} else if schema.MinProperties != nil && schema.MaxProperties == nil {
+		minProperties := *schema.MinProperties
 
-		if min == 1 {
+		if minProperties == 1 {
 			for _, outer := range props {
 				var pathExpressions []string
 				for _, inner := range props {
@@ -186,7 +196,7 @@ func openAPIv3Properties(schema *openapi3.Schema, imports *AdditionalImports, pa
 				addValidatorImports(outer, imports)
 				imports.Path = true
 			}
-		} else if min > 1 && min == uint64(len(props)) {
+		} else if minProperties > 1 && minProperties == int64(len(props)) {
 			for _, prop := range props {
 				prop.Required = true
 				prop.Optional = false
