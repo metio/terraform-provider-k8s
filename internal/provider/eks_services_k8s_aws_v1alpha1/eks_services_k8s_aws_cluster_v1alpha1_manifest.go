@@ -81,7 +81,7 @@ type EksServicesK8SAwsClusterV1Alpha1ManifestData struct {
 		ResourcesVPCConfig *struct {
 			EndpointPrivateAccess *bool     `tfsdk:"endpoint_private_access" json:"endpointPrivateAccess,omitempty"`
 			EndpointPublicAccess  *bool     `tfsdk:"endpoint_public_access" json:"endpointPublicAccess,omitempty"`
-			PublicAccessCIDRs     *[]string `tfsdk:"public_access_cid_rs" json:"publicAccessCIDRs,omitempty"`
+			PublicAccessCIDRs     *[]string `tfsdk:"public_access_cidrs" json:"publicAccessCIDRs,omitempty"`
 			SecurityGroupIDs      *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
 			SecurityGroupRefs     *[]struct {
 				From *struct {
@@ -423,7 +423,7 @@ func (r *EksServicesK8SAwsClusterV1Alpha1Manifest) Schema(_ context.Context, _ d
 								Computed:            false,
 							},
 
-							"public_access_cid_rs": schema.ListAttribute{
+							"public_access_cidrs": schema.ListAttribute{
 								Description:         "",
 								MarkdownDescription: "",
 								ElementType:         types.StringType,

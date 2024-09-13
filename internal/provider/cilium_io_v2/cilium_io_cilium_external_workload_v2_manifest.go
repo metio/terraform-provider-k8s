@@ -54,8 +54,8 @@ func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Metadata(_ context.Context, r
 
 func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumExternalWorkload is a Kubernetes Custom Resource thatcontains a specification for an external workload that can join thecluster.  The name of the CRD is the FQDN of the external workload,and it needs to match the name in the workload registration. Thelabels on the CRD object are the labels that will be used toallocate a Cilium Identity for the external workload. If'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labelsare not explicitly specified, they will be defaulted to 'default'and <workload name>, respectively. 'io.cilium.k8s.policy.cluster'will always be defined as the name of the current cluster, whichdefaults to 'default'.",
-		MarkdownDescription: "CiliumExternalWorkload is a Kubernetes Custom Resource thatcontains a specification for an external workload that can join thecluster.  The name of the CRD is the FQDN of the external workload,and it needs to match the name in the workload registration. Thelabels on the CRD object are the labels that will be used toallocate a Cilium Identity for the external workload. If'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labelsare not explicitly specified, they will be defaulted to 'default'and <workload name>, respectively. 'io.cilium.k8s.policy.cluster'will always be defined as the name of the current cluster, whichdefaults to 'default'.",
+		Description:         "CiliumExternalWorkload is a Kubernetes Custom Resource that contains a specification for an external workload that can join the cluster.  The name of the CRD is the FQDN of the external workload, and it needs to match the name in the workload registration. The labels on the CRD object are the labels that will be used to allocate a Cilium Identity for the external workload. If 'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labels are not explicitly specified, they will be defaulted to 'default' and <workload name>, respectively. 'io.cilium.k8s.policy.cluster' will always be defined as the name of the current cluster, which defaults to 'default'.",
+		MarkdownDescription: "CiliumExternalWorkload is a Kubernetes Custom Resource that contains a specification for an external workload that can join the cluster.  The name of the CRD is the FQDN of the external workload, and it needs to match the name in the workload registration. The labels on the CRD object are the labels that will be used to allocate a Cilium Identity for the external workload. If 'io.kubernetes.pod.namespace' or 'io.kubernetes.pod.name' labels are not explicitly specified, they will be defaulted to 'default' and <workload name>, respectively. 'io.cilium.k8s.policy.cluster' will always be defined as the name of the current cluster, which defaults to 'default'.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -114,8 +114,8 @@ func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Schema(_ context.Context, _ d
 				MarkdownDescription: "Spec is the desired configuration of the external Cilium workload.",
 				Attributes: map[string]schema.Attribute{
 					"ipv4_alloc_cidr": schema.StringAttribute{
-						Description:         "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.",
-						MarkdownDescription: "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.",
+						Description:         "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
+						MarkdownDescription: "IPv4AllocCIDR is the range of IPv4 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -125,8 +125,8 @@ func (r *CiliumIoCiliumExternalWorkloadV2Manifest) Schema(_ context.Context, _ d
 					},
 
 					"ipv6_alloc_cidr": schema.StringAttribute{
-						Description:         "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.",
-						MarkdownDescription: "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload canuse to allocate IP addresses for the tunnel device and the health endpoint.",
+						Description:         "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
+						MarkdownDescription: "IPv6AllocCIDR is the range of IPv6 addresses in the CIDR format that the external workload can use to allocate IP addresses for the tunnel device and the health endpoint.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,

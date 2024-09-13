@@ -131,29 +131,29 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 				MarkdownDescription: "",
 				Attributes: map[string]schema.Attribute{
 					"backend_services": schema.ListNestedAttribute{
-						Description:         "BackendServices specifies Kubernetes services whose backendsare automatically synced to Envoy using EDS.  Traffic for theseservices is not forwarded to an Envoy listener. This allows anEnvoy listener load balance traffic to these backends whilenormal Cilium service load balancing takes care of balancingtraffic for these services at the same time.",
-						MarkdownDescription: "BackendServices specifies Kubernetes services whose backendsare automatically synced to Envoy using EDS.  Traffic for theseservices is not forwarded to an Envoy listener. This allows anEnvoy listener load balance traffic to these backends whilenormal Cilium service load balancing takes care of balancingtraffic for these services at the same time.",
+						Description:         "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
+						MarkdownDescription: "BackendServices specifies Kubernetes services whose backends are automatically synced to Envoy using EDS.  Traffic for these services is not forwarded to an Envoy listener. This allows an Envoy listener load balance traffic to these backends while normal Cilium service load balancing takes care of balancing traffic for these services at the same time.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description:         "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.",
-									MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.",
+									Description:         "Name is the name of a destination Kubernetes service that identifies traffic to be redirected.",
+									MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies traffic to be redirected.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace defaults to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
-									MarkdownDescription: "Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace defaults to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
+									Description:         "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace defaults to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
+									MarkdownDescription: "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace defaults to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"number": schema.ListAttribute{
-									Description:         "Ports is a set of port numbers, which can be used for filtering in case of underlyingis exposing multiple port numbers.",
-									MarkdownDescription: "Ports is a set of port numbers, which can be used for filtering in case of underlyingis exposing multiple port numbers.",
+									Description:         "Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.",
+									MarkdownDescription: "Ports is a set of port numbers, which can be used for filtering in case of underlying is exposing multiple port numbers.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,
@@ -167,8 +167,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 					},
 
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector is a label selector that determines to which nodesthis configuration applies.If nil, then this config applies to all nodes.",
-						MarkdownDescription: "NodeSelector is a label selector that determines to which nodesthis configuration applies.If nil, then this config applies to all nodes.",
+						Description:         "NodeSelector is a label selector that determines to which nodes this configuration applies. If nil, then this config applies to all nodes.",
+						MarkdownDescription: "NodeSelector is a label selector that determines to which nodes this configuration applies. If nil, then this config applies to all nodes.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -184,8 +184,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -195,8 +195,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -210,8 +210,8 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -224,46 +224,46 @@ func (r *CiliumIoCiliumClusterwideEnvoyConfigV2Manifest) Schema(_ context.Contex
 					},
 
 					"resources": schema.ListAttribute{
-						Description:         "Envoy xDS resources, a list of the following Envoy resource types:type.googleapis.com/envoy.config.listener.v3.Listener,type.googleapis.com/envoy.config.route.v3.RouteConfiguration,type.googleapis.com/envoy.config.cluster.v3.Cluster,type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, andtype.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
-						MarkdownDescription: "Envoy xDS resources, a list of the following Envoy resource types:type.googleapis.com/envoy.config.listener.v3.Listener,type.googleapis.com/envoy.config.route.v3.RouteConfiguration,type.googleapis.com/envoy.config.cluster.v3.Cluster,type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, andtype.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
+						Description:         "Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
+						MarkdownDescription: "Envoy xDS resources, a list of the following Envoy resource types: type.googleapis.com/envoy.config.listener.v3.Listener, type.googleapis.com/envoy.config.route.v3.RouteConfiguration, type.googleapis.com/envoy.config.cluster.v3.Cluster, type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment, and type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret.",
 						ElementType:         types.MapType{ElemType: types.StringType},
-						Required:            true,
-						Optional:            false,
+						Required:            false,
+						Optional:            true,
 						Computed:            false,
 					},
 
 					"services": schema.ListNestedAttribute{
-						Description:         "Services specifies Kubernetes services for which traffic isforwarded to an Envoy listener for L7 load balancing. Backendsof these services are automatically synced to Envoy usign EDS.",
-						MarkdownDescription: "Services specifies Kubernetes services for which traffic isforwarded to an Envoy listener for L7 load balancing. Backendsof these services are automatically synced to Envoy usign EDS.",
+						Description:         "Services specifies Kubernetes services for which traffic is forwarded to an Envoy listener for L7 load balancing. Backends of these services are automatically synced to Envoy usign EDS.",
+						MarkdownDescription: "Services specifies Kubernetes services for which traffic is forwarded to an Envoy listener for L7 load balancing. Backends of these services are automatically synced to Envoy usign EDS.",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"listener": schema.StringAttribute{
-									Description:         "Listener specifies the name of the Envoy listener theservice traffic is redirected to. The listener must bespecified in the Envoy 'resources' of the sameCiliumEnvoyConfig.If omitted, the first listener specified in 'resources' isused.",
-									MarkdownDescription: "Listener specifies the name of the Envoy listener theservice traffic is redirected to. The listener must bespecified in the Envoy 'resources' of the sameCiliumEnvoyConfig.If omitted, the first listener specified in 'resources' isused.",
+									Description:         "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.",
+									MarkdownDescription: "Listener specifies the name of the Envoy listener the service traffic is redirected to. The listener must be specified in the Envoy 'resources' of the same CiliumEnvoyConfig.  If omitted, the first listener specified in 'resources' is used.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"name": schema.StringAttribute{
-									Description:         "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.",
-									MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies trafficto be redirected.",
+									Description:         "Name is the name of a destination Kubernetes service that identifies traffic to be redirected.",
+									MarkdownDescription: "Name is the name of a destination Kubernetes service that identifies traffic to be redirected.",
 									Required:            true,
 									Optional:            false,
 									Computed:            false,
 								},
 
 								"namespace": schema.StringAttribute{
-									Description:         "Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
-									MarkdownDescription: "Namespace is the Kubernetes service namespace.In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC,In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
+									Description:         "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
+									MarkdownDescription: "Namespace is the Kubernetes service namespace. In CiliumEnvoyConfig namespace this is overridden to the namespace of the CEC, In CiliumClusterwideEnvoyConfig namespace defaults to 'default'.",
 									Required:            false,
 									Optional:            true,
 									Computed:            false,
 								},
 
 								"ports": schema.ListAttribute{
-									Description:         "Ports is a set of service's frontend ports that should be redirected to the Envoylistener. By default all frontend ports of the service are redirected.",
-									MarkdownDescription: "Ports is a set of service's frontend ports that should be redirected to the Envoylistener. By default all frontend ports of the service are redirected.",
+									Description:         "Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.",
+									MarkdownDescription: "Ports is a set of service's frontend ports that should be redirected to the Envoy listener. By default all frontend ports of the service are redirected.",
 									ElementType:         types.StringType,
 									Required:            false,
 									Optional:            true,

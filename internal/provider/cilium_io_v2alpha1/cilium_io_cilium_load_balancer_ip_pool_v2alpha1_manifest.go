@@ -66,8 +66,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Metadata(_ context.Co
 
 func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource whichis used to defined pools of IPs which the operator can use to to allocateand advertise IPs for Services of type LoadBalancer.",
-		MarkdownDescription: "CiliumLoadBalancerIPPool is a Kubernetes third-party resource whichis used to defined pools of IPs which the operator can use to to allocateand advertise IPs for Services of type LoadBalancer.",
+		Description:         "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
+		MarkdownDescription: "CiliumLoadBalancerIPPool is a Kubernetes third-party resource which is used to defined pools of IPs which the operator can use to to allocate and advertise IPs for Services of type LoadBalancer.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -122,12 +122,12 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 			},
 
 			"spec": schema.SingleNestedAttribute{
-				Description:         "Spec is a human readable description for a BGP load balancerip pool.",
-				MarkdownDescription: "Spec is a human readable description for a BGP load balancerip pool.",
+				Description:         "Spec is a human readable description for a BGP load balancer ip pool.",
+				MarkdownDescription: "Spec is a human readable description for a BGP load balancer ip pool.",
 				Attributes: map[string]schema.Attribute{
 					"allow_first_last_i_ps": schema.StringAttribute{
-						Description:         "AllowFirstLastIPs, if set to 'Yes' or undefined means that the first and last IPs of each CIDR will be allocatable.If 'No', these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs sincereserving the first and last IPs would make the CIDRs unusable.",
-						MarkdownDescription: "AllowFirstLastIPs, if set to 'Yes' or undefined means that the first and last IPs of each CIDR will be allocatable.If 'No', these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs sincereserving the first and last IPs would make the CIDRs unusable.",
+						Description:         "AllowFirstLastIPs, if set to 'Yes' or undefined means that the first and last IPs of each CIDR will be allocatable. If 'No', these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.",
+						MarkdownDescription: "AllowFirstLastIPs, if set to 'Yes' or undefined means that the first and last IPs of each CIDR will be allocatable. If 'No', these IPs will be reserved. This field is ignored for /{31,32} and /{127,128} CIDRs since reserving the first and last IPs would make the CIDRs unusable.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -172,8 +172,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 					},
 
 					"disabled": schema.BoolAttribute{
-						Description:         "Disabled, if set to true means that no new IPs will be allocated from this pool.Existing allocations will not be removed from services.",
-						MarkdownDescription: "Disabled, if set to true means that no new IPs will be allocated from this pool.Existing allocations will not be removed from services.",
+						Description:         "Disabled, if set to true means that no new IPs will be allocated from this pool. Existing allocations will not be removed from services.",
+						MarkdownDescription: "Disabled, if set to true means that no new IPs will be allocated from this pool. Existing allocations will not be removed from services.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
@@ -197,8 +197,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -208,8 +208,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -223,8 +223,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -236,8 +236,8 @@ func (r *CiliumIoCiliumLoadBalancerIppoolV2Alpha1Manifest) Schema(_ context.Cont
 						Computed: false,
 					},
 				},
-				Required: true,
-				Optional: false,
+				Required: false,
+				Optional: true,
 				Computed: false,
 			},
 		},

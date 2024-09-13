@@ -2138,7 +2138,6 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 			Enabled         *bool   `tfsdk:"enabled" json:"enabled,omitempty"`
 			Image           *string `tfsdk:"image" json:"image,omitempty"`
 			ImagePullPolicy *string `tfsdk:"image_pull_policy" json:"imagePullPolicy,omitempty"`
-			QuerySource     *string `tfsdk:"query_source" json:"querySource,omitempty"`
 			Resources       *struct {
 				Claims *[]struct {
 					Name    *string `tfsdk:"name" json:"name,omitempty"`
@@ -2708,15 +2707,6 @@ type Pgv2PerconaComPerconaPgclusterV2ManifestData struct {
 				Name     *string `tfsdk:"name" json:"name,omitempty"`
 				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
 			} `tfsdk:"custom_replication_tls_secret" json:"customReplicationTLSSecret,omitempty"`
-			CustomRootCATLSSecret *struct {
-				Items *[]struct {
-					Key  *string `tfsdk:"key" json:"key,omitempty"`
-					Mode *int64  `tfsdk:"mode" json:"mode,omitempty"`
-					Path *string `tfsdk:"path" json:"path,omitempty"`
-				} `tfsdk:"items" json:"items,omitempty"`
-				Name     *string `tfsdk:"name" json:"name,omitempty"`
-				Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-			} `tfsdk:"custom_root_catls_secret" json:"customRootCATLSSecret,omitempty"`
 			CustomTLSSecret *struct {
 				Items *[]struct {
 					Key  *string `tfsdk:"key" json:"key,omitempty"`
@@ -16933,17 +16923,6 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 								},
 							},
 
-							"query_source": schema.StringAttribute{
-								Description:         "",
-								MarkdownDescription: "",
-								Required:            true,
-								Optional:            false,
-								Computed:            false,
-								Validators: []validator.String{
-									stringvalidator.OneOf("pgstatmonitor", "pgstatstatements"),
-								},
-							},
-
 							"resources": schema.SingleNestedAttribute{
 								Description:         "Compute resources of a PMM container.",
 								MarkdownDescription: "Compute resources of a PMM container.",
@@ -20712,66 +20691,6 @@ func (r *Pgv2PerconaComPerconaPgclusterV2Manifest) Schema(_ context.Context, _ d
 							"custom_replication_tls_secret": schema.SingleNestedAttribute{
 								Description:         "The secret containing the replication client certificates and keys forsecure connections to the PostgreSQL server. It will need to contain theclient TLS certificate, TLS key and the Certificate Authority certificatewith the data keys set to tls.crt, tls.key and ca.crt, respectively.NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecretMUST be provided and the ca.crt provided must be the same.",
 								MarkdownDescription: "The secret containing the replication client certificates and keys forsecure connections to the PostgreSQL server. It will need to contain theclient TLS certificate, TLS key and the Certificate Authority certificatewith the data keys set to tls.crt, tls.key and ca.crt, respectively.NOTE: If CustomReplicationClientTLSSecret is provided, CustomTLSSecretMUST be provided and the ca.crt provided must be the same.",
-								Attributes: map[string]schema.Attribute{
-									"items": schema.ListNestedAttribute{
-										Description:         "items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
-										MarkdownDescription: "items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",
-										NestedObject: schema.NestedAttributeObject{
-											Attributes: map[string]schema.Attribute{
-												"key": schema.StringAttribute{
-													Description:         "key is the key to project.",
-													MarkdownDescription: "key is the key to project.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-
-												"mode": schema.Int64Attribute{
-													Description:         "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
-													MarkdownDescription: "mode is Optional: mode bits used to set permissions on this file.Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511.YAML accepts both octal and decimal values, JSON requires decimal values for mode bits.If not specified, the volume defaultMode will be used.This might be in conflict with other options that affect the filemode, like fsGroup, and the result can be other mode bits set.",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"path": schema.StringAttribute{
-													Description:         "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
-													MarkdownDescription: "path is the relative path of the file to map the key to.May not be an absolute path.May not contain the path element '..'.May not start with the string '..'.",
-													Required:            true,
-													Optional:            false,
-													Computed:            false,
-												},
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-
-									"name": schema.StringAttribute{
-										Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"optional": schema.BoolAttribute{
-										Description:         "optional field specify whether the Secret or its key must be defined",
-										MarkdownDescription: "optional field specify whether the Secret or its key must be defined",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
-							"custom_root_catls_secret": schema.SingleNestedAttribute{
-								Description:         "The secret containing the root CA certificate and key forsecure connections to the PostgreSQL server. It will need to contain theCA TLS certificate and CA TLS key with the data keys set toroot.crt and root.key, respectively.",
-								MarkdownDescription: "The secret containing the root CA certificate and key forsecure connections to the PostgreSQL server. It will need to contain theCA TLS certificate and CA TLS key with the data keys set toroot.crt and root.key, respectively.",
 								Attributes: map[string]schema.Attribute{
 									"items": schema.ListNestedAttribute{
 										Description:         "items if unspecified, each key-value pair in the Data field of the referencedSecret will be projected into the volume as a file whose name is thekey and content is the value. If specified, the listed keys will beprojected into the specified paths, and unlisted keys will not bepresent. If a key is specified which is not present in the Secret,the volume setup will error unless it is marked optional. Paths must berelative and may not contain the '..' path or start with '..'.",

@@ -161,8 +161,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 								"kind": schema.StringAttribute{
 									Description:         "Kind of the referent",
 									MarkdownDescription: "Kind of the referent",
-									Required:            true,
-									Optional:            false,
+									Required:            false,
+									Optional:            true,
 									Computed:            false,
 									Validators: []validator.String{
 										stringvalidator.OneOf("Bucket", "GitRepository", "Kustomization", "HelmRelease", "HelmChart", "HelmRepository", "ImageRepository", "ImagePolicy", "ImageUpdateAutomation", "OCIRepository"),
@@ -220,8 +220,8 @@ func (r *NotificationToolkitFluxcdIoReceiverV1Beta1Manifest) Schema(_ context.Co
 								Computed:            false,
 							},
 						},
-						Required: true,
-						Optional: false,
+						Required: false,
+						Optional: true,
 						Computed: false,
 					},
 

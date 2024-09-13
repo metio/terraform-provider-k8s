@@ -596,11 +596,7 @@ type GatewaySoloIoMatchableHttpGatewayV1ManifestData struct {
 					Strict *bool `tfsdk:"strict" json:"strict,omitempty"`
 				} `tfsdk:"stateful_session" json:"statefulSession,omitempty"`
 				Tap *struct {
-					MaxBufferedRxBytes         *int64 `tfsdk:"max_buffered_rx_bytes" json:"maxBufferedRxBytes,omitempty"`
-					MaxBufferedTxBytes         *int64 `tfsdk:"max_buffered_tx_bytes" json:"maxBufferedTxBytes,omitempty"`
-					RecordDownstreamConnection *bool  `tfsdk:"record_downstream_connection" json:"recordDownstreamConnection,omitempty"`
-					RecordHeadersReceivedTime  *bool  `tfsdk:"record_headers_received_time" json:"recordHeadersReceivedTime,omitempty"`
-					Sinks                      *[]struct {
+					Sinks *[]struct {
 						GrpcService *struct {
 							TapServer *struct {
 								Name      *string `tfsdk:"name" json:"name,omitempty"`
@@ -4578,46 +4574,6 @@ func (r *GatewaySoloIoMatchableHttpGatewayV1Manifest) Schema(_ context.Context, 
 										Description:         "",
 										MarkdownDescription: "",
 										Attributes: map[string]schema.Attribute{
-											"max_buffered_rx_bytes": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-													int64validator.AtMost(4.294967295e+09),
-												},
-											},
-
-											"max_buffered_tx_bytes": schema.Int64Attribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-												Validators: []validator.Int64{
-													int64validator.AtLeast(0),
-													int64validator.AtMost(4.294967295e+09),
-												},
-											},
-
-											"record_downstream_connection": schema.BoolAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"record_headers_received_time": schema.BoolAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
 											"sinks": schema.ListNestedAttribute{
 												Description:         "",
 												MarkdownDescription: "",

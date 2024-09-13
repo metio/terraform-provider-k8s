@@ -49,7 +49,7 @@ type MulticlusterCrdAntreaIoResourceImportV1Alpha1ManifestData struct {
 			GatewayInfos *[]struct {
 				GatewayIP *string `tfsdk:"gateway_ip" json:"gatewayIP,omitempty"`
 			} `tfsdk:"gateway_infos" json:"gatewayInfos,omitempty"`
-			PodCIDRs    *[]string `tfsdk:"pod_cid_rs" json:"podCIDRs,omitempty"`
+			PodCIDRs    *[]string `tfsdk:"pod_cidrs" json:"podCIDRs,omitempty"`
 			ServiceCIDR *string   `tfsdk:"service_cidr" json:"serviceCIDR,omitempty"`
 			WireGuard   *struct {
 				PublicKey *string `tfsdk:"public_key" json:"publicKey,omitempty"`
@@ -664,7 +664,7 @@ func (r *MulticlusterCrdAntreaIoResourceImportV1Alpha1Manifest) Schema(_ context
 								Computed: false,
 							},
 
-							"pod_cid_rs": schema.ListAttribute{
+							"pod_cidrs": schema.ListAttribute{
 								Description:         "PodCIDRs is the Pod IP address CIDRs.",
 								MarkdownDescription: "PodCIDRs is the Pod IP address CIDRs.",
 								ElementType:         types.StringType,

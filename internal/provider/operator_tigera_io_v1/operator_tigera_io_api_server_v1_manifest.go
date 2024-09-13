@@ -1196,7 +1196,7 @@ func (r *OperatorTigeraIoApiserverV1Manifest) Schema(_ context.Context, _ dataso
 																	Optional:            false,
 																	Computed:            false,
 																	Validators: []validator.String{
-																		stringvalidator.OneOf("calico-apiserver", "tigera-queryserver", "calico-l7-admission-controller"),
+																		stringvalidator.OneOf("calico-apiserver", "tigera-queryserver"),
 																	},
 																},
 

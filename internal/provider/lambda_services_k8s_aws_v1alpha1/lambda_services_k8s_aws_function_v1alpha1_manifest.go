@@ -49,8 +49,7 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 			S3Bucket    *string `tfsdk:"s3_bucket" json:"s3Bucket,omitempty"`
 			S3BucketRef *struct {
 				From *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"s3_bucket_ref" json:"s3BucketRef,omitempty"`
 			S3Key           *string `tfsdk:"s3_key" json:"s3Key,omitempty"`
@@ -96,8 +95,7 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 		KmsKeyARN *string `tfsdk:"kms_key_arn" json:"kmsKeyARN,omitempty"`
 		KmsKeyRef *struct {
 			From *struct {
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"kms_key_ref" json:"kmsKeyRef,omitempty"`
 		Layers                       *[]string `tfsdk:"layers" json:"layers,omitempty"`
@@ -109,8 +107,7 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 		Role                         *string   `tfsdk:"role" json:"role,omitempty"`
 		RoleRef                      *struct {
 			From *struct {
-				Name      *string `tfsdk:"name" json:"name,omitempty"`
-				Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+				Name *string `tfsdk:"name" json:"name,omitempty"`
 			} `tfsdk:"from" json:"from,omitempty"`
 		} `tfsdk:"role_ref" json:"roleRef,omitempty"`
 		Runtime   *string `tfsdk:"runtime" json:"runtime,omitempty"`
@@ -126,15 +123,13 @@ type LambdaServicesK8SAwsFunctionV1Alpha1ManifestData struct {
 			SecurityGroupIDs  *[]string `tfsdk:"security_group_i_ds" json:"securityGroupIDs,omitempty"`
 			SecurityGroupRefs *[]struct {
 				From *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"security_group_refs" json:"securityGroupRefs,omitempty"`
 			SubnetIDs  *[]string `tfsdk:"subnet_i_ds" json:"subnetIDs,omitempty"`
 			SubnetRefs *[]struct {
 				From *struct {
-					Name      *string `tfsdk:"name" json:"name,omitempty"`
-					Namespace *string `tfsdk:"namespace" json:"namespace,omitempty"`
+					Name *string `tfsdk:"name" json:"name,omitempty"`
 				} `tfsdk:"from" json:"from,omitempty"`
 			} `tfsdk:"subnet_refs" json:"subnetRefs,omitempty"`
 		} `tfsdk:"vpc_config" json:"vpcConfig,omitempty"`
@@ -256,14 +251,6 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 										MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 										Attributes: map[string]schema.Attribute{
 											"name": schema.StringAttribute{
-												Description:         "",
-												MarkdownDescription: "",
-												Required:            false,
-												Optional:            true,
-												Computed:            false,
-											},
-
-											"namespace": schema.StringAttribute{
 												Description:         "",
 												MarkdownDescription: "",
 												Required:            false,
@@ -566,14 +553,6 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 										Optional:            true,
 										Computed:            false,
 									},
-
-									"namespace": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
 								},
 								Required: false,
 								Optional: true,
@@ -651,14 +630,6 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 								MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 								Attributes: map[string]schema.Attribute{
 									"name": schema.StringAttribute{
-										Description:         "",
-										MarkdownDescription: "",
-										Required:            false,
-										Optional:            true,
-										Computed:            false,
-									},
-
-									"namespace": schema.StringAttribute{
 										Description:         "",
 										MarkdownDescription: "",
 										Required:            false,
@@ -764,14 +735,6 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 													Optional:            true,
 													Computed:            false,
 												},
-
-												"namespace": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
 											},
 											Required: false,
 											Optional: true,
@@ -803,14 +766,6 @@ func (r *LambdaServicesK8SAwsFunctionV1Alpha1Manifest) Schema(_ context.Context,
 											MarkdownDescription: "AWSResourceReference provides all the values necessary to reference anotherk8s resource for finding the identifier(Id/ARN/Name)",
 											Attributes: map[string]schema.Attribute{
 												"name": schema.StringAttribute{
-													Description:         "",
-													MarkdownDescription: "",
-													Required:            false,
-													Optional:            true,
-													Computed:            false,
-												},
-
-												"namespace": schema.StringAttribute{
 													Description:         "",
 													MarkdownDescription: "",
 													Required:            false,

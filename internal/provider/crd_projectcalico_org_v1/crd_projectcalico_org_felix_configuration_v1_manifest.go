@@ -49,13 +49,13 @@ type CrdProjectcalicoOrgFelixConfigurationV1ManifestData struct {
 		BpfCTLBLogFilter                   *string            `tfsdk:"bpf_ctlb_log_filter" json:"bpfCTLBLogFilter,omitempty"`
 		BpfConnectTimeLoadBalancing        *string            `tfsdk:"bpf_connect_time_load_balancing" json:"bpfConnectTimeLoadBalancing,omitempty"`
 		BpfConnectTimeLoadBalancingEnabled *bool              `tfsdk:"bpf_connect_time_load_balancing_enabled" json:"bpfConnectTimeLoadBalancingEnabled,omitempty"`
-		BpfDSROptoutCIDRs                  *[]string          `tfsdk:"bpf_dsr_optout_cid_rs" json:"bpfDSROptoutCIDRs,omitempty"`
+		BpfDSROptoutCIDRs                  *[]string          `tfsdk:"bpf_dsr_optout_cidrs" json:"bpfDSROptoutCIDRs,omitempty"`
 		BpfDataIfacePattern                *string            `tfsdk:"bpf_data_iface_pattern" json:"bpfDataIfacePattern,omitempty"`
 		BpfDisableGROForIfaces             *string            `tfsdk:"bpf_disable_gro_for_ifaces" json:"bpfDisableGROForIfaces,omitempty"`
 		BpfDisableUnprivileged             *bool              `tfsdk:"bpf_disable_unprivileged" json:"bpfDisableUnprivileged,omitempty"`
 		BpfEnabled                         *bool              `tfsdk:"bpf_enabled" json:"bpfEnabled,omitempty"`
 		BpfEnforceRPF                      *string            `tfsdk:"bpf_enforce_rpf" json:"bpfEnforceRPF,omitempty"`
-		BpfExcludeCIDRsFromNAT             *[]string          `tfsdk:"bpf_exclude_cid_rs_from_nat" json:"bpfExcludeCIDRsFromNAT,omitempty"`
+		BpfExcludeCIDRsFromNAT             *[]string          `tfsdk:"bpf_exclude_cidrs_from_nat" json:"bpfExcludeCIDRsFromNAT,omitempty"`
 		BpfExtToServiceConnmark            *int64             `tfsdk:"bpf_ext_to_service_connmark" json:"bpfExtToServiceConnmark,omitempty"`
 		BpfExternalServiceMode             *string            `tfsdk:"bpf_external_service_mode" json:"bpfExternalServiceMode,omitempty"`
 		BpfForceTrackPacketsFromIfaces     *[]string          `tfsdk:"bpf_force_track_packets_from_ifaces" json:"bpfForceTrackPacketsFromIfaces,omitempty"`
@@ -322,7 +322,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						Computed:            false,
 					},
 
-					"bpf_dsr_optout_cid_rs": schema.ListAttribute{
+					"bpf_dsr_optout_cidrs": schema.ListAttribute{
 						Description:         "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will accesses nodeports as if BPFExternalServiceMode was set to Tunnel.",
 						MarkdownDescription: "BPFDSROptoutCIDRs is a list of CIDRs which are excluded from DSR. That is, clients in those CIDRs will accesses nodeports as if BPFExternalServiceMode was set to Tunnel.",
 						ElementType:         types.StringType,
@@ -374,7 +374,7 @@ func (r *CrdProjectcalicoOrgFelixConfigurationV1Manifest) Schema(_ context.Conte
 						},
 					},
 
-					"bpf_exclude_cid_rs_from_nat": schema.ListAttribute{
+					"bpf_exclude_cidrs_from_nat": schema.ListAttribute{
 						Description:         "BPFExcludeCIDRsFromNAT is a list of CIDRs that are to be excluded from NAT resolution so that host can handle them. A typical usecase is node local DNS cache.",
 						MarkdownDescription: "BPFExcludeCIDRsFromNAT is a list of CIDRs that are to be excluded from NAT resolution so that host can handle them. A typical usecase is node local DNS cache.",
 						ElementType:         types.StringType,

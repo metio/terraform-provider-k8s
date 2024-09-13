@@ -70,8 +70,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Metadata(_ context.
 
 func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Context, _ datasource.SchemaRequest, response *datasource.SchemaResponse) {
 	response.Schema = schema.Schema{
-		Description:         "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource whichis used to defined which nodes should announce what services on theL2 network.",
-		MarkdownDescription: "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource whichis used to defined which nodes should announce what services on theL2 network.",
+		Description:         "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.",
+		MarkdownDescription: "CiliumL2AnnouncementPolicy is a Kubernetes third-party resource which is used to defined which nodes should announce what services on the L2 network.",
 		Attributes: map[string]schema.Attribute{
 			"yaml": schema.StringAttribute{
 				Description:         "The generated manifest in YAML format.",
@@ -138,8 +138,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"interfaces": schema.ListAttribute{
-						Description:         "A list of regular expressions that express which network interface(s) should be usedto announce the services over. If nil, all network interfaces are used.",
-						MarkdownDescription: "A list of regular expressions that express which network interface(s) should be usedto announce the services over. If nil, all network interfaces are used.",
+						Description:         "A list of regular expressions that express which network interface(s) should be used to announce the services over. If nil, all network interfaces are used.",
+						MarkdownDescription: "A list of regular expressions that express which network interface(s) should be used to announce the services over. If nil, all network interfaces are used.",
 						ElementType:         types.StringType,
 						Required:            false,
 						Optional:            true,
@@ -147,16 +147,16 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"load_balancer_i_ps": schema.BoolAttribute{
-						Description:         "If true, the loadbalancer IPs of the services are announcedIf nil this policy applies to all services.",
-						MarkdownDescription: "If true, the loadbalancer IPs of the services are announcedIf nil this policy applies to all services.",
+						Description:         "If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.",
+						MarkdownDescription: "If true, the loadbalancer IPs of the services are announced  If nil this policy applies to all services.",
 						Required:            false,
 						Optional:            true,
 						Computed:            false,
 					},
 
 					"node_selector": schema.SingleNestedAttribute{
-						Description:         "NodeSelector selects a group of nodes which will announce the IPs forthe services selected by the service selector.If nil this policy applies to all nodes.",
-						MarkdownDescription: "NodeSelector selects a group of nodes which will announce the IPs forthe services selected by the service selector.If nil this policy applies to all nodes.",
+						Description:         "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes.",
+						MarkdownDescription: "NodeSelector selects a group of nodes which will announce the IPs for the services selected by the service selector.  If nil this policy applies to all nodes.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -172,8 +172,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -183,8 +183,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -198,8 +198,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,
@@ -212,8 +212,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 					},
 
 					"service_selector": schema.SingleNestedAttribute{
-						Description:         "ServiceSelector selects a set of services which will be announced over L2 networks.The loadBalancerClass for a service must be nil or specify a supported class, e.g.'io.cilium/l2-announcer'. Refer to the following document for additional detailsregarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf nil this policy applies to all services.",
-						MarkdownDescription: "ServiceSelector selects a set of services which will be announced over L2 networks.The loadBalancerClass for a service must be nil or specify a supported class, e.g.'io.cilium/l2-announcer'. Refer to the following document for additional detailsregarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-classIf nil this policy applies to all services.",
+						Description:         "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services.",
+						MarkdownDescription: "ServiceSelector selects a set of services which will be announced over L2 networks. The loadBalancerClass for a service must be nil or specify a supported class, e.g. 'io.cilium/l2-announcer'. Refer to the following document for additional details regarding load balancer classes:  https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class  If nil this policy applies to all services.",
 						Attributes: map[string]schema.Attribute{
 							"match_expressions": schema.ListNestedAttribute{
 								Description:         "matchExpressions is a list of label selector requirements. The requirements are ANDed.",
@@ -229,8 +229,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"operator": schema.StringAttribute{
-											Description:         "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
-											MarkdownDescription: "operator represents a key's relationship to a set of values.Valid operators are In, NotIn, Exists and DoesNotExist.",
+											Description:         "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
+											MarkdownDescription: "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.",
 											Required:            true,
 											Optional:            false,
 											Computed:            false,
@@ -240,8 +240,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 										},
 
 										"values": schema.ListAttribute{
-											Description:         "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
-											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn,the values array must be non-empty. If the operator is Exists or DoesNotExist,the values array must be empty. This array is replaced during a strategicmerge patch.",
+											Description:         "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
+											MarkdownDescription: "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.",
 											ElementType:         types.StringType,
 											Required:            false,
 											Optional:            true,
@@ -255,8 +255,8 @@ func (r *CiliumIoCiliumL2AnnouncementPolicyV2Alpha1Manifest) Schema(_ context.Co
 							},
 
 							"match_labels": schema.MapAttribute{
-								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
-								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabelsmap is equivalent to an element of matchExpressions, whose key field is 'key', theoperator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								Description:         "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
+								MarkdownDescription: "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only 'value'. The requirements are ANDed.",
 								ElementType:         types.StringType,
 								Required:            false,
 								Optional:            true,

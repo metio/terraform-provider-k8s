@@ -587,9 +587,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				Name          *string `tfsdk:"name" json:"name,omitempty"`
 				Protocol      *string `tfsdk:"protocol" json:"protocol,omitempty"`
 			} `tfsdk:"ports" json:"ports,omitempty"`
-			PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-			SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
-			Secrets           *[]struct {
+			SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+			Secrets       *[]struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 				Path       *string `tfsdk:"path" json:"path,omitempty"`
 				SecretType *string `tfsdk:"secret_type" json:"secretType,omitempty"`
@@ -1433,9 +1432,8 @@ type SparkoperatorK8SIoSparkApplicationV1Beta2ManifestData struct {
 				Name          *string `tfsdk:"name" json:"name,omitempty"`
 				Protocol      *string `tfsdk:"protocol" json:"protocol,omitempty"`
 			} `tfsdk:"ports" json:"ports,omitempty"`
-			PriorityClassName *string `tfsdk:"priority_class_name" json:"priorityClassName,omitempty"`
-			SchedulerName     *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
-			Secrets           *[]struct {
+			SchedulerName *string `tfsdk:"scheduler_name" json:"schedulerName,omitempty"`
+			Secrets       *[]struct {
 				Name       *string `tfsdk:"name" json:"name,omitempty"`
 				Path       *string `tfsdk:"path" json:"path,omitempty"`
 				SecretType *string `tfsdk:"secret_type" json:"secretType,omitempty"`
@@ -5787,14 +5785,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
-							},
-
-							"priority_class_name": schema.StringAttribute{
-								Description:         "PriorityClassName is the name of the PriorityClass for the driver pod.",
-								MarkdownDescription: "PriorityClassName is the name of the PriorityClass for the driver pod.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
 							},
 
 							"scheduler_name": schema.StringAttribute{
@@ -11461,14 +11451,6 @@ func (r *SparkoperatorK8SIoSparkApplicationV1Beta2Manifest) Schema(_ context.Con
 								Required: false,
 								Optional: true,
 								Computed: false,
-							},
-
-							"priority_class_name": schema.StringAttribute{
-								Description:         "PriorityClassName is the name of the PriorityClass for the executor pod.",
-								MarkdownDescription: "PriorityClassName is the name of the PriorityClass for the executor pod.",
-								Required:            false,
-								Optional:            true,
-								Computed:            false,
 							},
 
 							"scheduler_name": schema.StringAttribute{

@@ -46,7 +46,7 @@ type Elbv2K8SAwsIngressClassParamsV1Beta1ManifestData struct {
 		Group          *struct {
 			Name *string `tfsdk:"name" json:"name,omitempty"`
 		} `tfsdk:"group" json:"group,omitempty"`
-		InboundCIDRs           *[]string `tfsdk:"inbound_cid_rs" json:"inboundCIDRs,omitempty"`
+		InboundCIDRs           *[]string `tfsdk:"inbound_cidrs" json:"inboundCIDRs,omitempty"`
 		IpAddressType          *string   `tfsdk:"ip_address_type" json:"ipAddressType,omitempty"`
 		LoadBalancerAttributes *[]struct {
 			Key   *string `tfsdk:"key" json:"key,omitempty"`
@@ -164,7 +164,7 @@ func (r *Elbv2K8SAwsIngressClassParamsV1Beta1Manifest) Schema(_ context.Context,
 						Computed: false,
 					},
 
-					"inbound_cid_rs": schema.ListAttribute{
+					"inbound_cidrs": schema.ListAttribute{
 						Description:         "InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.",
 						MarkdownDescription: "InboundCIDRs specifies the CIDRs that are allowed to access the Ingresses that belong to IngressClass with this IngressClassParams.",
 						ElementType:         types.StringType,

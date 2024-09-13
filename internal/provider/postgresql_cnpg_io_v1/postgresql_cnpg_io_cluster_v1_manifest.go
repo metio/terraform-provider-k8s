@@ -688,7 +688,6 @@ type PostgresqlCnpgIoClusterV1ManifestData struct {
 			ReusePVC   *bool `tfsdk:"reuse_pvc" json:"reusePVC,omitempty"`
 		} `tfsdk:"node_maintenance_window" json:"nodeMaintenanceWindow,omitempty"`
 		Plugins *[]struct {
-			Enabled    *bool              `tfsdk:"enabled" json:"enabled,omitempty"`
 			Name       *string            `tfsdk:"name" json:"name,omitempty"`
 			Parameters *map[string]string `tfsdk:"parameters" json:"parameters,omitempty"`
 		} `tfsdk:"plugins" json:"plugins,omitempty"`
@@ -5445,14 +5444,6 @@ func (r *PostgresqlCnpgIoClusterV1Manifest) Schema(_ context.Context, _ datasour
 						MarkdownDescription: "The plugins configuration, containingany plugin to be loaded with the corresponding configuration",
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
-								"enabled": schema.BoolAttribute{
-									Description:         "Enabled is true if this plugin will be used",
-									MarkdownDescription: "Enabled is true if this plugin will be used",
-									Required:            false,
-									Optional:            true,
-									Computed:            false,
-								},
-
 								"name": schema.StringAttribute{
 									Description:         "Name is the plugin name",
 									MarkdownDescription: "Name is the plugin name",

@@ -164,31 +164,13 @@ type FluentbitFluentIoOutputV1Alpha2ManifestData struct {
 			Tls             *bool   `tfsdk:"tls" json:"tls,omitempty"`
 		} `tfsdk:"datadog" json:"datadog,omitempty"`
 		Es *struct {
-			AwsAuth       *string `tfsdk:"aws_auth" json:"awsAuth,omitempty"`
-			AwsAuthSecret *struct {
-				ValueFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-			} `tfsdk:"aws_auth_secret" json:"awsAuthSecret,omitempty"`
-			AwsExternalID   *string `tfsdk:"aws_external_id" json:"awsExternalID,omitempty"`
-			AwsRegion       *string `tfsdk:"aws_region" json:"awsRegion,omitempty"`
-			AwsRoleARN      *string `tfsdk:"aws_role_arn" json:"awsRoleARN,omitempty"`
-			AwsSTSEndpoint  *string `tfsdk:"aws_sts_endpoint" json:"awsSTSEndpoint,omitempty"`
-			BufferSize      *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
-			CloudAuth       *string `tfsdk:"cloud_auth" json:"cloudAuth,omitempty"`
-			CloudAuthSecret *struct {
-				ValueFrom *struct {
-					SecretKeyRef *struct {
-						Key      *string `tfsdk:"key" json:"key,omitempty"`
-						Name     *string `tfsdk:"name" json:"name,omitempty"`
-						Optional *bool   `tfsdk:"optional" json:"optional,omitempty"`
-					} `tfsdk:"secret_key_ref" json:"secretKeyRef,omitempty"`
-				} `tfsdk:"value_from" json:"valueFrom,omitempty"`
-			} `tfsdk:"cloud_auth_secret" json:"cloudAuthSecret,omitempty"`
+			AwsAuth          *string `tfsdk:"aws_auth" json:"awsAuth,omitempty"`
+			AwsExternalID    *string `tfsdk:"aws_external_id" json:"awsExternalID,omitempty"`
+			AwsRegion        *string `tfsdk:"aws_region" json:"awsRegion,omitempty"`
+			AwsRoleARN       *string `tfsdk:"aws_role_arn" json:"awsRoleARN,omitempty"`
+			AwsSTSEndpoint   *string `tfsdk:"aws_sts_endpoint" json:"awsSTSEndpoint,omitempty"`
+			BufferSize       *string `tfsdk:"buffer_size" json:"bufferSize,omitempty"`
+			CloudAuth        *string `tfsdk:"cloud_auth" json:"cloudAuth,omitempty"`
 			CloudID          *string `tfsdk:"cloud_id" json:"cloudID,omitempty"`
 			Compress         *string `tfsdk:"compress" json:"compress,omitempty"`
 			CurrentTimeIndex *bool   `tfsdk:"current_time_index" json:"currentTimeIndex,omitempty"`
@@ -1992,57 +1974,6 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Computed:            false,
 							},
 
-							"aws_auth_secret": schema.SingleNestedAttribute{
-								Description:         "AWSAuthSecret Enable AWS Sigv4 Authentication for Amazon ElasticSearch Service.",
-								MarkdownDescription: "AWSAuthSecret Enable AWS Sigv4 Authentication for Amazon ElasticSearch Service.",
-								Attributes: map[string]schema.Attribute{
-									"value_from": schema.SingleNestedAttribute{
-										Description:         "ValueSource defines how to find a value's key.",
-										MarkdownDescription: "ValueSource defines how to find a value's key.",
-										Attributes: map[string]schema.Attribute{
-											"secret_key_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a key of a secret in the pod's namespace",
-												MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
-							},
-
 							"aws_external_id": schema.StringAttribute{
 								Description:         "External ID for the AWS IAM Role specified with aws_role_arn.",
 								MarkdownDescription: "External ID for the AWS IAM Role specified with aws_role_arn.",
@@ -2092,57 +2023,6 @@ func (r *FluentbitFluentIoOutputV1Alpha2Manifest) Schema(_ context.Context, _ da
 								Required:            false,
 								Optional:            true,
 								Computed:            false,
-							},
-
-							"cloud_auth_secret": schema.SingleNestedAttribute{
-								Description:         "CloudAuthSecret Specify the credentials to use to connect to Elastic's Elasticsearch Service running on Elastic Cloud.",
-								MarkdownDescription: "CloudAuthSecret Specify the credentials to use to connect to Elastic's Elasticsearch Service running on Elastic Cloud.",
-								Attributes: map[string]schema.Attribute{
-									"value_from": schema.SingleNestedAttribute{
-										Description:         "ValueSource defines how to find a value's key.",
-										MarkdownDescription: "ValueSource defines how to find a value's key.",
-										Attributes: map[string]schema.Attribute{
-											"secret_key_ref": schema.SingleNestedAttribute{
-												Description:         "Selects a key of a secret in the pod's namespace",
-												MarkdownDescription: "Selects a key of a secret in the pod's namespace",
-												Attributes: map[string]schema.Attribute{
-													"key": schema.StringAttribute{
-														Description:         "The key of the secret to select from.  Must be a valid secret key.",
-														MarkdownDescription: "The key of the secret to select from.  Must be a valid secret key.",
-														Required:            true,
-														Optional:            false,
-														Computed:            false,
-													},
-
-													"name": schema.StringAttribute{
-														Description:         "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														MarkdownDescription: "Name of the referent.This field is effectively required, but due to backwards compatibility isallowed to be empty. Instances of this type with an empty value here arealmost certainly wrong.TODO: Add other useful fields. apiVersion, kind, uid?More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#namesTODO: Drop 'kubebuilder:default' when controller-gen doesn't need it https://github.com/kubernetes-sigs/kubebuilder/issues/3896.",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-
-													"optional": schema.BoolAttribute{
-														Description:         "Specify whether the Secret or its key must be defined",
-														MarkdownDescription: "Specify whether the Secret or its key must be defined",
-														Required:            false,
-														Optional:            true,
-														Computed:            false,
-													},
-												},
-												Required: false,
-												Optional: true,
-												Computed: false,
-											},
-										},
-										Required: false,
-										Optional: true,
-										Computed: false,
-									},
-								},
-								Required: false,
-								Optional: true,
-								Computed: false,
 							},
 
 							"cloud_id": schema.StringAttribute{
